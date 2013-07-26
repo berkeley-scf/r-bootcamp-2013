@@ -1,0 +1,159 @@
+% R bootcamp, Module 11: Parallel processing
+% August 2013, UC Berkeley
+% Chris Paciorek and (add others)
+
+# Computer architecture
+
+* Modern computers have multiple processors and clusters/supercomputers have multiple networked machines, each with multiple processors.
+* The key to increasing computational efficiency in these contexts is breaking up the work amongst the processors.
+* Processors on a single machine (or 'node') share memory and don't need to carry out explicit communication (shared memory computation)
+* Processors on separate machines need to pass data across a network, often using the MPI protocol (distributed memory computation)
+
+We'll focus on shared memory computation here.
+
+# How do I know how many cores a computer has?
+
+* Linux - count the processors listed in `/proc/cpuinfo`
+* Mac - in a terminal: `system_profiler | grep 'Total Number Of Cores'`
+* Windows - count the number of graphs shown for CPU Usage (or CPU Usage History) under Task Manager->Performance, or [try this program](http://www.cpuid.com/cpuz.php) 
+ 
+To see if multiple cores are being used by your job, you can do:
+
+* Mac/Linux - use *top* or *ps*
+* Windows - see the Task Manager->Performance->CPU Usage
+
+# How can we make use of multiple cores?
+
+Some basic approaches are:
+
+* Use a linear algebra package that distributes computations across 'threads'
+* Spread independent calculations (embarrassingly parallel problems) across multiple cores
+    - for loops with independent calculations
+    - parallelizing *apply()* and its variants
+
+
+# Threaded linear algebra
+
+R comes with a default BLAS (basic linear algebra subroutines) that carry out the core linear algebra computations. However, you can generally improve performance (sometimes by an order of magnitude) by using a different BLAS. Furthermore a threaded BLAS will allow you to use multiple cores.
+
+A 'thread' is a lightweight process, and the operating system sees multiple threads as part of a single process.
+
+* For Linux, *openBLAS*, Intel's *MKL* and AMD's *ACML* are fast and also allow you to use multiple cores. On the SCF we have openBLAS on the compute servers and ACML on the Linux cluster and R uses these for linear algebra.
+* For Mac, Apple's vecLib (in a library called libRblas.vecLib.dylib) is fast and threaded
+* For Windows ???
+
+We'll show by demonstration that my Mac and our Linux machines are using multiple cores for linear algebra operations.
+
+```{r, cache=TRUE}
+n <- 5000
+x <- matrix(rnorm(n^2), n)
+U <- chol(crossprod(x))
+```
+
+You should see that your R process is using more than 100% of CPU. Inconceivable!
+
+# More details on the BLAS
+
+You can talk with your systems administrator about linking R to a fast BLAS or you can look into it yourself for your personal machine. 
+
+Note that in some cases, in particular for small matrix operations, using multiple threads may actually slow down computation, so you may want to experiment, particularly with Linux. You can force the linear algebra to use only a single core by doing (in bash) `export OMP_NUM_THREADS=1` in the Linux terminal window before starting R.
+
+Finally, note that threaded BLAS and either foreach or parallel versions of apply can conflict and cause R to hang, so you're likely to want to set the number of threads to 1 as above if you're doing explicit parallelization. 
+
+# What is an embarrassingly parallel (EP) problem?
+
+Do you think you should be asking? 
+
+An EP problem is one that can be solved by doing independent computations as separate processes without communication between the processes. You can get the answer by doing separate tasks and then collecting the results. 
+
+Examples in statistics include
+1. simulations with many independent replicates
+2. bootstrapping
+3. stratified analyses
+4. cross-validation
+5. random forests
+
+Some things that are not EP:
+1. Markov chain Monte Carlo
+2. optimization
+
+# Using multiple cores for EP problems: *foreach*
+
+First, make sure your iterations are independent!
+
+The *foreach* package provides a way to do a for loop using multiple cores. It can use a variety of 'back-ends' that handle the nitty-gritty of the parallelization. 
+
+To use multiple cores on a single machine, use the *parallel* back-end from the *doParallel* package (or *multicore* from *doMC*)
+
+```{r cache=TRUE}
+require(parallel)
+require(doParallel)
+require(foreach)
+nCores <- 4
+registerDoParallel(nCores)
+
+testFun <- function(i) {
+        set.seed(i)
+        mn <- mean(rnorm(n))
+        mn
+}
+
+n <- 1e7
+nSims <- 100
+out <- foreach(i = 1:nSims) %dopar% {
+    cat("Starting ", i, "th job.\n", sep = "")
+    outSub <- testFun(i)
+    cat("Finishing ", i, "th job.\n", sep = "")
+    outSub # this will become part of the out objec
+}
+```
+
+# Using multiple cores for EP problems: parallel *apply* 
+
+`help(clusterApply)` shows the wide variety of parallel versions of the apply() family of functions.
+
+```{r cache=TRUE}
+require(parallel)
+nCores <- 4
+cluster <- makeCluster(nCores)
+
+out <- parSapply(cluster, 1:nSims, testFun)
+out2 <- mclapply(seq_len(nSims), testFun, mc.cores = nCores)
+```
+
+One thing to keep in mind is whether the different tasks all take about the same amount of time or widely different times. In the latter case, one wants to sequentially dispatch tasks as earlier tasks finish, rather than dispatching a block of tasks to each core.
+
+# Parallelization and Random Number Generation
+
+A tale of the good, the bad, and the ugly
+
+Random numbers on a computer are not truly random but are generated as a sequence of pseudo-random numbers. The sequence is finite (but very, very, very, very long) and eventally repeats itself. 
+
+A random number seed determines where in the sequence one starts when generating random numbers.
+
+* The ugly: Make sure you do not use the same seed for each task
+```{r}
+set.seed(0)
+rnorm(5)
+set.seed(0)
+rnorm(5)
+```
+* The (not so) bad: Use a different seed for each task or each process. It's possible the subsequences will overlap but quite unlikely.
+* The good: Use the L'Ecuyer algorithm to ensure distinct subsequences
+
+* The ugly but good: Generate all your random numbers in the master process and distribute them to the tasks if feasible.
+
+The syntax for using L'Ecuyer is available in [my parallel computing workshop notes](http://www.stat.berkeley.edu/scf/paciorek-parallelWorkshop.pdf).
+
+# A brief note on distributed computing
+
+If you have access to multiple machines with a networked environment, such as the compute servers in the Statistics Department, there are a couple straightforward ways to parallelize EP jobs across machines.
+
+1. Use *foreach* with doMPI as the back-end. You'll need MPI and Rmpi installed on all machines. 
+2. Use sockets to make a cluster in R and then use *parLapply()*, *parSapply()*,*mclapply()*, etc.
+
+See my [notes on distributed computing](http://www.stat.berkeley.edu/scf/paciorek-distribComp.pdf) for syntax and more details. 
+
+# Breakout
+
+Use the bootstrap to assess uncertainty in the regression coefficient for regressing X on Y in the ZZZ dataset. Split the bootstrap replicates across multiple cores either via *foreach* or a parallel version of one of the *apply* variants.

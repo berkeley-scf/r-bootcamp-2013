@@ -1,0 +1,10 @@
+#! /usr/bin/Rscript
+
+modules = c("module0_induction", "module1_basics", "module4_resources", "module9_workflows", "module11_parallel")
+
+library(knitr)
+for(module in modules) {
+knit(paste(module, ".Rmd", sep = ""), envir = new.env())
+system(paste("pandoc -s -t slidy ", paste(module, ".md", sep = ""), " -o ", paste(module, "_slides.html", sep = ""), " --self-contained"))
+knit2html(paste(module, ".Rmd", sep = ""), envir = new.env())
+}

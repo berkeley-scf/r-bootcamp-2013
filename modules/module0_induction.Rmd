@@ -1,0 +1,119 @@
+% R bootcamp, Module 0: Recruit processing
+% August 2013, UC Berkeley
+% Chris Paciorek and (add others)
+
+# How we'll operate
+
+The bootcamp will be organized in modules, each of which will be a combination of lecture/demo presentation with brief pauses for you to try out and experiment with code snippets, concluded by a longer problem or two for you to work at on your own in a breakout session. Solutions will be presented before the start of the next module. Assistants will be available to help answer any questions you have (just wave to one of them), or feel free to just ask during the presentation. We'll also have assistants monitoring the [Forum/Disc board] on bspace, so feel free to type in a question there and one of the assistants (or one of you!) will answer the question. 
+
+I encourage you to:
+- try out the code as I walk through it
+- try to guess what my syntax means in cases we haven't yet seen that syntax
+- play with it and try variations and try to break it and see what happens
+- tell me if something interesting happens
+- ask questions of me, the helpers, and on the [Forum]
+
+We'll present most of the material from within RStudio, using R Markdown documents with embedded R code. R Markdown is an extension to the Markdown markup language which makes it easy to write html in a simple plain text format.  This allows me to both run the R code directly as well as compile on-the-fly to an html file that can be used for presentation. All files will be available on [bspace](https://bspace.berkeley.edu/portal/site/28905ed6-df96-4778-b2a7-d87fb6405ba2) (just point and click on the files you want under Resources and [Github](https://github.com/berkeley-scf/r-bootcamp-2013).  Note that Github is likely to have the most up-to-date documents while bspace will only be updated periodically.
+
+## Using github to get the documents
+
+To download the files from github, you can do the following. 
+
+### Within RStudio
+
+Within RStudio go to Project->New Project->Version Control->Git and enter:
+
+- "Repository URL": https://github.com/berkeley-scf/r-bootcamp-2013
+- "Project Directory Name": r-bootcamp-2013 (or something else of your choosing)
+- "Directory": ~/Desktop (or somewhere of your choosing)
+
+Then to update from the repository to get any changes we've made, you can select (from within RStudio):
+Tools->Version Control->Pull Branches
+
+or from the Workspace/History/Git window:
+Git->More->Pull Branches
+
+Be warned that you probably do not want to make your own notes or changes to the files we are providing as if you then do a "Git Pull" to update the materials, you'll have to deal with the conflict between your local version and our version. You probably will want to make a personal copy of such files.
+
+### From a terminal window
+
+- cd /directory/where/you/want/repository/located
+- git clone https://github.com/berkeley-scf/r-bootcamp-2013/
+
+Then to update from the repository to get any changes we've made:
+
+- cd /directory/holding/repository/r-bootcamp-2013
+- git pull
+
+
+# What is R?
+
+- R is an Open Source (and freely available) environment for statistical computing and graphics
+- It is a full-featured programming language, in particular a scripting language (with similarities to Matlab and Python)
+- It can be run interactively or as a batch/background job
+- R is being actively developed ongoing updates/new releases
+- R has a variety of built-in as well as community-provided packages that extend its functionality (see [CRAN](http://www.cran.r-project.org) for the thousands of add-on packages) with code and data
+- It is freely-available and modifiable 
+- Available for Windows, Mac OS X, and Linux
+
+# Modes of using R
+
+- From the command line in a Linux/Mac terminal window
+- Using the Windows/Mac GUIs
+- Using the RStudio GUI, an 'integrated development environment'
+- Running an R script in the background on a Linux/Mac machine (Windows?)
+
+# Starting R and RStudio
+
+The pieces of an R session include:
+
+- The R console
+- Scripts for code
+- Help files
+- Graphics windows
+- Workspace of your objects holding data and information
+
+RStudio provides an integrated development environment in which all of these pieces are in a single application and tightly integrated. 
+
+# Why R?
+
+- R is widely used (statisticians, scientists, social scientists) and has the widest statistical functionality of any software
+- Users add functionality via packages all the time
+- R is free and available on all major platforms
+- As a scripting language R is very powerful, flexible, and easy to use
+- As a scripting language R allows for reproducibility and automatizing tasks
+- As a language, R can do essentially anything
+- Wide usage helps to improve quality and reduce bugs
+- R can interact with other software, databases, the operating system, the web, etc.
+
+# Why Not R?
+
+* Other software is better than R at various tasks
+    
+    E.g., Python is very good for text manipulation, interacting with the operating system, and as a glue for tying together various applications/software in a workflow
+* R can be much slower than compiled languages (but is often not with good coding practices!)
+* R's packages are only as good as the person who wrote them; no explicit quality control
+* R is a sprawling and unstandardized
+
+# What are my other options? Get me out of here!
+
+- Python
+- Matlab/Octave
+- Julia?
+- C/C++
+- SAS
+- Stata
+
+# My hidden agenda - see Session 9
+
+The building blocks of scientific computing:
+
+- reproducibility
+- scripting
+- version control
+- automating repetitive tasks
+
+# The Legal Stuff
+
+- Some of this material was drawn from Jarek Knowles R bootcamp [url]
+- You are free to use, modify and redistribute any of this material with or without attribution

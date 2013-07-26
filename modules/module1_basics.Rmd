@@ -1,0 +1,228 @@
+% R bootcamp, Module 1: Basics
+% August 2013, UC Berkeley
+% Chris Paciorek and (add others)
+
+# R as a calculator
+
+```{r computing,echo=TRUE,results='markup'}
+2+2 # add numbers
+2*pi #multiply by a constant
+7+runif(1,min=0,max=1) #add a random variable
+4^4 # powers
+sqrt(4^4) # functions
+23 %/% 2 
+23 %% 2
+```
+
+Think of a mathematical operation you need - can you guess how to do it in R?
+
+# Assigning values to R objects
+
+A key action in R is to store values in the form of R objects, and to examine the value of R objects.
+
+```{r}
+val <- 3
+Val <- 7
+mySeq <- 1:20
+myOtherSeq <- seq(1.1, 20.1, by = 2)
+fours <- rep(4, 23)
+
+# This is a comment: here is an example of non-numeric data
+depts <- c('espm', 'pmb', 'stats')
+
+# looking at an object
+val
+print(val)
+```
+
+
+# How to be lazy
+
+If you're starting to type something you've typed before, or the long name of an R object or function, STOP!  You likely don't need to type all of that.
+
+- Tab completion
+- Command history (up/down arrows, Ctrl-{up arrow})
+- RStudio: select a line or block for execution
+- Use *source()*: `source('myRcodeFile.R')`
+
+# Vectors in R
+
+The most basic form of an R object is a vector. In fact, individual values are vectors of length one. 
+
+```{r}
+# numeric vector
+nums <- c(1.1, 3, -5.7)
+devs <- rnorm(100)
+# integer vector
+ints <- c(1L, 5L, -3L)
+idevs <- sample(ints, 100, replace = TRUE)
+# character vector
+chars <- c('hi', 'hallo', "mother's", 'father\'s', "He said, \"hi\"" )
+chars
+cat(chars)
+# logical vector
+bools <- c(TRUE, FALSE, TRUE)
+
+
+# Working with indices and subsets
+
+```{r}
+vals <- seq(2, 12, by = 2)
+
+vals[3]
+vals[3:5]
+vals[c(1, 3, 6)]
+vals[c(rep(TRUE, 3), rep(FALSE, 2), TRUE)]
+
+vals[4] <- -35
+vals[1:2] <- 0
+
+# How does R process these next subset operations?
+vals <- rnorm(100)
+vals[vals < 0] <- 0
+
+vals <- rnorm(100)
+extremes <- vals[vals > 3 | vals < (-3)]
+```
+
+
+# Vectorized calculations and comparisons
+
+```{r}
+vec1 <- sample(1:5, 10, replace = TRUE)
+vec2 <- sample(1:5, 10, replace = TRUE)
+vec1 + vec2
+vec1^vec2
+
+vec1 >= vec2
+vec1 <= 3
+
+vec1 == vec2
+# careful: 
+vec1 = vec2
+identical(vec1, vec2)
+
+
+vec3 <- sample(1:5, 5, replace = TRUE)
+vec4 <- sample(1:5, 3, replace = TRUE)
+
+vec1 + vec3
+vec1 + vec4
+```
+
+Tell me what's going on. What choices were made by the R developers?
+
+# Getting help about a function
+
+To get information about a function you know exists, use 'help' or '?'. For information on a general topic, use 'apropos' or '??'
+
+```{r eval = FALSE}
+help(lm)
+?lm
+
+??'regr'
+```
+
+# Basic kinds of R objects
+
+All data, function inputs, function outputs, etc. are in the form of R objects. 
+
+- Vectors: vectors of various types, all items must be of the same type
+
+- Matrices: matrices of various types, all items must be of the same type
+```{r}
+mat <- matrix(rnorm(9), nrow = 3)
+t(mat) %*% mat
+``` 
+
+- Dataframes
+```{r}
+data=read.dta('../data/2004_labeled_processed_race.dta')
+head(data)
+class(data)
+is.matrix(data)
+class(data$pres04)
+class(data$sex)
+class(data$age9)
+```
+
+- Lists
+```{r}
+myList <- list(stuff = 3, mat = matrix(1:4, nrow = 2), moreStuff = c("china", "japan"), list(5, "bear"))
+myList[[1]]
+identical(myList[[1]], myList$stuff)
+myList$moreStuff[2]
+myList[[4]][[2]]
+myList[1:3]
+```
+
+# Managing your objects
+
+R has a number of functions for getting metadata about your objects and about the collection of objects in your workspace.
+
+```{r}
+
+length(vec1)
+str(vec1)
+class(vec1)
+typeof(vec1)
+is.vector(vec1)
+is.numeric(vec1)
+is.list(vec1)
+
+is.list(myList)
+is.vector(myList)
+
+is.data.frame(data)
+is.list(data)
+```
+
+What have you learned? Does it make sense? 
+
+# Managing and saving the workspace
+
+```{r}
+ls()  # search the user workspace (global environment)
+rm(x)    # delete a variable
+ls()
+ls.str() #list and describe variables
+
+identical(x, z)
+
+save.image('module1.Rda')
+rm(list = ls())
+ls()
+load('module1.Rda')
+
+```
+
+Challenge: how would I find all of my objects that have 'x' in their names?
+
+# A bit on plotting
+
+R has several different plotting systems:
+
+- base graphics
+- lattice graphics
+- ggplot2
+
+We'll see a little bit of base graphics here and then lattice and ggplot2 tomorrow.
+
+```{r}
+library(foreign)
+data <- read.dta('../data/heights.dta')
+names(data)
+hist(data$earn)
+plot(data$earn ~ data$height)
+plot(data$earn ~ data$height)
+boxplot(data$earn ~ data$height)
+boxplot(data$earn ~ data$sex)
+```
+
+# Breakout
+
+1) Create a new column/field in the earnings dataset that contains the heights in meters ($1 m \approx 39.4 in$)
+
+2) Take a random subset of 100 individuals from the earnings dataset.
+
+3) Using the earnings dataset, do some exploratory analysis of the relationship between earnings and education, stratified by race or sex. 

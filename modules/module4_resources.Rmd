@@ -1,0 +1,96 @@
+% R bootcamp, Module 4: R packages and resources
+% August 2013, UC Berkeley
+% Chris Paciorek and (add others)
+
+# Packages (R's killer app)
+
+Let's checkout the [packages on CRAN](http://www.cran.r-project.org/web/packages/).
+
+Essentially any well-established and many not-so-established statistical methods and other functionality is available in a package. 
+
+If you want to sound like an R expert, make sure to call them *packages* and not *libraries*.
+
+# Getting packages
+
+Two steps:
+1) Install the package on your machine
+2) Load the package
+
+To install a package, in RStudio, just do `Packages->Install Packages`.
+
+From the command line, you generally will just do
+```{r eval = FALSE}
+install.packages('fields')
+```
+If you're on a network and are not the administrator of the machine, you may need to explicitly tell R to install it in a directory you are able to write in:
+```{r eval = FALSE}
+install.packages('fields', lib = '~/R')
+```
+
+# The search path
+
+To see the packages that are loaded and the order in which packages are searched for functions/objects:
+*search()*.
+
+To see what *libraries* R is retrieving packages from: *.libPaths()*
+
+And to see where R is getting specific packages, *searchpaths()*
+
+# Package namespaces
+
+Namespaces are way to keep all the names for objects in a package together in a coherent way and allow R to look for objects in a principled way.
+
+A few useful things to know:
+
+```{r}
+ls('package:stats')[1:20]
+lm <- function(i) {
+   print(i)
+}
+lm(7) 
+x <- rnorm(10); y <- rnorm(10)
+lm(y ~ x)
+stats::lm(y ~ x)
+```
+
+Can you explain what is going on? Consider the results of *search()*.
+
+
+# Looking inside a package
+
+Packages are available as "Package source", namely the raw code and help files, and "binaries", where stuff is packaged up for R to use efficiently. 
+
+To look at the raw R code (and possibly C/C++/Fortran code included in some packages), download and unzip the package source tarball. In Linux/Mac:
+
+`$ curl http://www.cran.r-project.org/src/contrib/fields_6.8.tar.gz -o fields_6.8.tar.gz`
+`$ tar -xvzf fields_6.8.tar.gz`
+`$ cd fields`
+`$ ls R`
+`$ ls src`
+`$ ls man`
+`$ ls data`
+
+# Getting help online
+
+There are several mailing lists that have lots of useful postings. In general if you have an error, others have already posted about it.
+
+- R help: [R mailing lists archive](http://tolstoy.newcastle.edu.au/R/)
+- [Stack Overflow](http://stackoverflow.com) (R stuff will be tagged with [R])
+- R help special interest groups (SIG) such as r-sig-hpc (high performance computing), r-sig-mac (R on Macs), etc. (not easily searchable)
+- Simple Google searches 
+    - You may want to include "in R", with the quotes in the search
+    - To search a SIG you might include the name of the SIG in the search string
+    - [Rseek.org](Rseek.org) for Google searches restricted to sites that have information on R
+
+If you are searching you often want to search for a specific error message. Remember to use double quotes around your error message so it is not broken into individual words by the search engine. 
+
+# Posting your own questions
+
+The main rule of thumb is to do your homework first to make sure the answer is not already available on the mailing list or in other documentation. Some of the folks who respond to mailing list questions are not the friendliest so it helps to have a thick skin, even if you have done your homework.
+
+Here are some guidelines when posting to one of the R mailing lists [http://www.r-project.org/posting-guide.html](http://www.r-project.org/posting-guide.html)
+
+*sessionInfo()* is a function that will give information about your R version, OS, etc., that you can include in your posting.
+
+You also want to include a short, focused, [reproducible](https://github.com/hadley/devtools/wiki/Reproducibility) example of your problem that others can run. 
+
