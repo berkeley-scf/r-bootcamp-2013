@@ -1,0 +1,294 @@
+% R bootcamp, Module 2: Working with objects and data
+% August 2013, UC Berkeley
+% Chris Paciorek and (add others)
+
+# Matrices and Arrays
+
+Let's review matrices
+
+- Matrices are two-dimensional collections of values of the same type
+- We can have numeric matrices, character matrices, or logical matrices
+- You can't mix types within a matrix
+```{r}
+mat <- matrix(rnorm(12), nrow = 3, ncol = 4)
+arr <- array(rnorm(12), c(2, 3, 4))
+mat
+arr
+
+mat*4
+mat <- cbind(mat, 1:3)
+
+```
+
+# Attributes
+
+Objects have *attributes*.
+
+```{r attr}
+attributes(mat)
+rownames(mat) <- c('first', 'middle', 'last')
+mat
+attributes(mat)
+
+mat <- matrix(rnorm(12), nrow = 3, ncol = 4)
+mat[4]
+attributes(mat)$dim <- NULL
+mat
+is.matrix(mat)
+```
+What can you infer about what a matrix is in R?
+
+# Matrices are stored column-major
+
+This is like Fortran but not like C. 
+
+```{r}
+mat <- matrix(1:12, 3, 4)
+c(mat)
+```
+So you can go back and forth smoothly. 
+
+
+# Missing values and other special values
+
+Since it was designed by statisticians, R handles missing value very well relative to other languages.
+
+* `NA` is a missing value
+```{r}
+vec <- rnorm(12)
+vec[c(3, 5)] <- NA
+vec
+length(vec)
+sum(vec)
+sum(vec, na.rm = TRUE)
+hist(vec)
+is.na(vec)
+```
+Be careful because many R functions won't warn you that they are ignoring the missing values.
+
+* To infinity and beyond
+big <- 1e500 
+big
+big + 7
+
+
+* NaN stands for Not a Number
+```{r}
+sqrt(-5)
+big - big
+1/0
+```
+
+* NULL
+```{r nulldata}
+vec <- c(vec, NULL) 
+vec
+length(vec)
+a <- NULL
+a + 7
+a[3, 4]
+is.null(a)
+```
+
+`NA` can hold a place but `NULL` cannot.
+`NULL` is useful for having a function argument default to 'nothing'.
+
+# Logical vectors
+
+answers <- c(TRUE, TRUE, FALSE, FALSE)
+update <- c(TRUE, FALSE, TRUE, FALSE)
+
+answers & update
+answers | update
+
+# what am I doing here?
+identical(answers & update, as.logical(answers*update))
+identical(answers | update, as.logical(answers + update))
+
+sum(answers)
+answers + update
+
+
+### HERE
+
+# Dataframes
+- Dataframes are combinations of vectors of the same length, but can be of different types
+
+```{r dataframetypes,echo=TRUE,results='markup'}
+str(df[ ,25:32])
+```
+
+- Data frames must have consistent dimensions
+- Dataframes are what we use most commonly as a "dataset" for analysis
+- Dataframes are what sets R apart from other programming languages like C, C++, Python, and Perl. 
+- The dataframe structure is much more complex and much easier to use than any datastructure in these languages - though Python is catching up!
+
+# Subsetting
+
+There are many ways to select subsets in R
+```{r}
+vec <- rnorm(20)
+mat <- matrix(vec, 4, 5)
+```
+1) by direct indexing
+```{r}
+vec[c(3, 5, 12:14)]
+vec[-c(3,5)]
+mat[c(2,4), 5]
+rowInd <- c(1, 3, 4)
+colInd <- c(2, 2, 1)
+mat[cbind(rowInd, colInd)]
+```
+2) by a vector of logicals
+```{r}
+cond <- vec > 0
+vec[cond]
+mat[mat[,1] > 0, ]
+```
+3) using *subset()*
+```{r}
+subset(mtcars, mpg > 20)
+```
+
+
+# Assignment into subsets
+
+We can assign into subsets by using similar syntax.
+
+```{r}
+vec[c(3, 5, 12:14)] <- 1:5
+mat[2, ] <- rnorm(5)
+mat[mat[,1] > 0, ] <- -Inf
+```
+
+# Factors
+- A factor is a very special and sometimes frustrating data type in R
+
+```{r fac}
+myfac<-factor(c("basic","proficient","advanced","minimal"))
+class(myfac)
+myfac # What order are the factors in?
+```
+- What if we don't like the order these are in? Factor order is important for all kinds of things like plot type, regression output, and more
+
+# Ordering the Factor
+- Ordered factors simply have an additional attribute explaining the order of the levels of a factor
+- This is a useful shortcut when we want to preserve some of the meaning provided by the order
+- Think cardinal data
+
+```{r orderedfac}
+myfac_o<-ordered(myfac,levels=c("minimal","basic","proficient","advanced"))
+myfac_o
+summary(myfac_o)
+```
+
+# Reclassifying Factors
+- Turning factors into other data types can be tricky. All factor levels have an underlying numeric structure.
+
+```{r fac2}
+class(myfac_o)
+unclass(myfac_o)
+defac<-unclass(myfac_o)
+defac
+```
+
+- What is wrong with this? Well--why would `minimal` be `2` and `basic` be `3`?
+- Be careful! The best way to unpack a factor is to convert it to a character first.
+
+# Defactor
+```{r fac2.1,eval=FALSE,echo=TRUE}
+# From the eeptools package
+defac<-function(x){
+  x<-as.character(x)
+  x
+}
+```
+
+```{r fac3}
+defac(myfac_o)
+defac<-defac(myfac_o)
+defac
+```
+
+# Convert to Numeric?
+- What if we do want it to be numeric?
+- The best way to do this is to recode the variable manually--we'll discuss this later
+- You can try to convert it to numeric though, but do at your own risk:
+
+```{r numericfac}
+myfac_o
+as.numeric(myfac_o)
+```
+- If we did not properly specify the order above, this would be wrong!
+
+```{r numericfacwrong}
+myfac
+as.numeric(myfac)
+```
+
+# Dates and times
+- R has built-in ways to handle dates
+- See `lubridate` package for more advanced functionality including mathematical operations on dates
+
+```{r dates}
+mydate<-as.Date("7/20/2012",format="%m/%d/%Y")
+# Input is a character string and a parser
+class(mydate) # this is date
+weekdays(mydate) # what day of the week is it?
+mydate+30 # Operate on dates
+```
+
+# More Dates
+
+```{r moredates1}
+# We can parse other formats of dates
+mydate2<-as.Date("8-5-1988",format="%d-%m-%Y") 
+mydate2
+
+mydate-mydate2
+# Can add and subtract two date objects
+```
+
+# A few notes on dates
+- R converts all dates to numeric values, like Excel and other languages
+- The origin date in R is January 1, 1970
+
+```{r moredates}
+as.numeric(mydate) # days since 1-1-1970
+as.Date(56,origin="2013-4-29") # we can set our own origin
+```
+
+# Strings
+
+# Some string operations
+
+# Regular expressions
+
+# The working directory
+
+# Reading data into R
+
+# It can get messy...
+
+see 243 notes for example
+
+# Writing data out from R
+
+# Reading 'foreign' format data
+
+# Breakout
+
+# R as a calculator
+
+```{r computing,echo=TRUE,results='markup'}
+2+2 # add numbers
+2*pi #multiply by a constant
+7+runif(1,min=0,max=1) #add a random variable
+4^4 # powers
+sqrt(4^4) # functions
+23 %/% 2 
+23 %% 2
+```
+
+Think of a mathematical operation you need - can you guess how to do it in R?
+
