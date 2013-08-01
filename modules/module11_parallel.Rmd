@@ -13,14 +13,14 @@ We'll focus on shared memory computation here.
 
 # How do I know how many cores a computer has?
 
-* Linux - count the processors listed in `/proc/cpuinfo`
+* Linux - count the processors listed in */proc/cpuinfo*
 * Mac - in a terminal: `system_profiler | grep 'Total Number Of Cores'`
-* Windows - count the number of graphs shown for CPU Usage (or CPU Usage History) under Task Manager->Performance, or [try this program](http://www.cpuid.com/cpuz.php) 
+* Windows - count the number of graphs shown for CPU Usage (or CPU Usage History) under "Task Manager->Performance", or [try this program](http://www.cpuid.com/cpuz.php) 
  
 To see if multiple cores are being used by your job, you can do:
 
 * Mac/Linux - use *top* or *ps*
-* Windows - see the Task Manager->Performance->CPU Usage
+* Windows - see the "Task Manager->Performance->CPU Usage"
 
 # How can we make use of multiple cores?
 
@@ -110,7 +110,7 @@ out <- foreach(i = 1:nSims) %dopar% {
 
 # Using multiple cores for EP problems: parallel *apply* 
 
-`help(clusterApply)` shows the wide variety of parallel versions of the apply() family of functions.
+`help(clusterApply)` shows the wide variety of parallel versions of the *apply()* family of functions.
 
 ```{r cache=TRUE}
 require(parallel)

@@ -1,6 +1,6 @@
 #! /usr/bin/Rscript
 
-modules = c("module0_induction", "module1_basics", "module4_resources", "module9_workflows", "module11_parallel")
+modules = c("module0_induction", "module1_basics", "module2_data", "module4_resources", "module9_workflows", "module11_parallel")
 
 library(knitr)
 for(module in modules) {

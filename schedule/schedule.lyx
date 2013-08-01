@@ -200,8 +200,7 @@ dataframes/matrices and subsetting, and subset assigning (LHS)
 \end_layout
 
 \begin_layout Itemize
-more advanced object types (including factors, date-time, classes), attributes,
- NAs
+factors, attributes, NAs
 \end_layout
 
 \begin_layout Itemize
@@ -222,7 +221,7 @@ Break (20 minutes)
 \end_layout
 
 \begin_layout Itemize
-Session 3: Manipulating data (Chris P.)
+Session 3: Calculations (Chris P.)
 \end_layout
 
 \begin_deeper
@@ -344,7 +343,7 @@ Day 2 morning (9-12:30) (more real-world work)
 
 \begin_deeper
 \begin_layout Itemize
-Session 7: doing more useful stuff (Chris P.)
+Session 7: Useful tools (Chris P.)
 \end_layout
 
 \begin_deeper
@@ -362,6 +361,10 @@ optimization
 
 \begin_layout Itemize
 simulation, sample()
+\end_layout
+
+\begin_layout Itemize
+dates and times
 \end_layout
 
 \begin_layout Itemize
@@ -455,15 +458,15 @@ Session 10: quick tastes of advanced topics (Chris P.)
 
 \begin_deeper
 \begin_layout Itemize
-strings and regular expressions, encodings
-\end_layout
-
-\begin_layout Itemize
 OOP (S3, S4, ReferenceClasses)
 \end_layout
 
 \begin_layout Itemize
 computing on the language (using R to write and evaluate R code)
+\end_layout
+
+\begin_layout Itemize
+encodings
 \end_layout
 
 \begin_layout Itemize

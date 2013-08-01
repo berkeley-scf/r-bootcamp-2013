@@ -6,8 +6,8 @@
 
 ```{r computing,echo=TRUE,results='markup'}
 2+2 # add numbers
-2*pi #multiply by a constant
-7+runif(1,min=0,max=1) #add a random variable
+2*pi # multiply by a constant
+7+runif(1) # add a random variable
 4^4 # powers
 sqrt(4^4) # functions
 23 %/% 2 
@@ -121,7 +121,7 @@ Tell me what's going on. What choices were made by the R developers?
 
 # Getting help about a function
 
-To get information about a function you know exists, use 'help' or '?'. For information on a general topic, use 'apropos' or '??'
+To get information about a function you know exists, use `help` or `?`, e.g., `?lm`. For information on a general topic, use `apropos` or `??`
 
 ```{r eval = FALSE}
 help(lm)
@@ -156,11 +156,11 @@ class(data$age9)
 - Lists
 ```{r}
 myList <- list(stuff = 3, mat = matrix(1:4, nrow = 2), moreStuff = c("china", "japan"), list(5, "bear"))
-myList[[1]]
+myList[[1]] # result is not (usually) a list (unless you have nested lists)
 identical(myList[[1]], myList$stuff)
 myList$moreStuff[2]
 myList[[4]][[2]]
-myList[1:3]
+myList[1:3] # result is a list
 ```
 
 # Managing your objects
@@ -195,7 +195,7 @@ What have you learned? Does it make sense?
 ls()  # search the user workspace (global environment)
 rm(x)    # delete a variable
 ls()
-ls.str() #list and describe variables
+ls.str() # list and describe variables
 
 identical(x, z)
 

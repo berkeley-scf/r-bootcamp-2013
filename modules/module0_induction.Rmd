@@ -56,6 +56,7 @@ Then to update from the repository to get any changes we've made:
 - It is freely-available and modifiable 
 - Available for Windows, Mac OS X, and Linux
 
+
 # Modes of using R
 
 - From the command line in a Linux/Mac terminal window
@@ -91,7 +92,7 @@ RStudio provides an integrated development environment in which all of these pie
 * Other software is better than R at various tasks
     
     E.g., Python is very good for text manipulation, interacting with the operating system, and as a glue for tying together various applications/software in a workflow
-* R can be much slower than compiled languages (but is often not with good coding practices!)
+* R can be much slower than compiled languages (but is often quite fast with good coding practices!)
 * R's packages are only as good as the person who wrote them; no explicit quality control
 * R is a sprawling and unstandardized
 
