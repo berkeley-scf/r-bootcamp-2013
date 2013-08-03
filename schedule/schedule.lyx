@@ -77,24 +77,11 @@ knitr
 \begin_body
 
 \begin_layout Title
-R bootcamp - tentative syllabus/schedule
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-take Knowles material as baseline
-\end_layout
-
-\end_inset
-
-
+R bootcamp - August 2013: Tentative syllabus/schedule
 \end_layout
 
 \begin_layout Subsection*
-Comments
+Comments for presenters
 \end_layout
 
 \begin_layout Itemize
@@ -343,7 +330,7 @@ Day 2 morning (9-12:30) (more real-world work)
 
 \begin_deeper
 \begin_layout Itemize
-Session 7: Useful tools (Chris P.)
+Session 7: Some core tools (Chris P.)
 \end_layout
 
 \begin_deeper
@@ -393,7 +380,7 @@ exporting graphics (vector/raster)
 \end_layout
 
 \begin_layout Itemize
-more advanced graphics including lattice/ggplot2 (see Knowles) 
+more advanced graphics including lattice/ggplot2 
 \end_layout
 
 \begin_layout Itemize
@@ -417,7 +404,7 @@ _medium=email
 
 \end_inset
 
- (perhaps Jarrod; Chris has draft of material already)
+ (Jarrod)
 \end_layout
 
 \begin_deeper
