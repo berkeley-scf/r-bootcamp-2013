@@ -4,6 +4,8 @@
 
 # Optimization
 
+Note: remember to start recording.
+
 R provides functionality for optimization - finding maxima or minima of a function. 
 
 A workhorse is `optim()`, which implements a number of optimization algorithms. 

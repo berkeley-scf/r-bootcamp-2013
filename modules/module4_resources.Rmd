@@ -4,6 +4,8 @@
 
 # Packages (R's killer app)
 
+Note: remember to start recording.
+
 Let's checkout the [packages on CRAN](http://www.cran.r-project.org/web/packages/).
 
 Essentially any well-established and many not-so-established statistical methods and other functionality is available in a package. 

@@ -4,6 +4,8 @@
 
 # The UNIX command line
 
+Note: remember to start recording.
+
 Being able to operate your computer from a command line rather than via point-and-click in a GUI environment provides incredible power and flexibility to the user, as well as allowing for reproducibility and automation in your work.
 
 In Linux and Mac, you just need to open a Terminal window. On the Mac this is in Applications->Utilities->Terminal. Once in the Terminal, you can treat your Mac as if it is a UNIX machine (which it is). 

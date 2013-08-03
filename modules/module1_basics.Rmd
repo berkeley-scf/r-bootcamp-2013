@@ -4,6 +4,8 @@
 
 # R as a calculator
 
+Note: Remember to start recording.
+
 ```{r computing,echo=TRUE,results='markup'}
 2+2 # add numbers
 2*pi # multiply by a constant

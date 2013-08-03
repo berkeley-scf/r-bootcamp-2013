@@ -4,6 +4,8 @@
 
 # Matrices and Arrays
 
+Note: remember to start recording.
+
 Let's review matrices
 
 - Matrices are two-dimensional collections of values of the same type
@@ -153,7 +155,7 @@ identical(data[c(3,5)], data[ , c(3,5)])
 data=read.dta('../data/2004_labeled_processed_race.dta')
 class(data$sizeplac)
 head(data$sizeplac) # What order are the factors in?
-levels(data$sizeplac)
+levels(data[["sizeplac"]])
 summary(data$sizeplac)
 ```
 
@@ -202,6 +204,7 @@ There are many ways to select subsets in R. The syntax below is useful for vecto
 ```{r}
 vec <- rnorm(20)
 mat <- matrix(vec, 4, 5)
+rownames(mat) <- letters[1:4]
 ```
 1) by direct indexing
 ```{r}
@@ -218,7 +221,11 @@ cond <- vec > 0
 vec[cond]
 mat[mat[,1] > 0, ]
 ```
-3) using *subset()*
+3) by a vector of names
+```{r}
+mat[c('a', 'd', 'a'), ]
+```
+4) using *subset()*
 ```{r}
 subset(mtcars, mpg > 20)
 ```
