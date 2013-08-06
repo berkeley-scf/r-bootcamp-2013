@@ -1,0 +1,12 @@
+
+
+# Expressions
+
+system.time(a = 5)
+system.time({a = 5})
+
+code <- quote(a <- 5)
+
+# stop() and warn()
+
+# try()

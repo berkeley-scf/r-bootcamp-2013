@@ -10,10 +10,12 @@ The bootcamp will be organized in modules, each of which will be a combination o
 
 I encourage you to:
 - try out the code as I walk through it
+- I'll illustrate a lot of syntax and concepts by example; keep your eyes open!
 - try to guess what my syntax means in cases we haven't yet seen that syntax
 - play with it and try variations and try to break it and see what happens
 - tell me if something interesting happens
 - ask questions of me, the helpers, and on the [Forum]
+
 
 We'll present most of the material from within RStudio, using R Markdown documents with embedded R code. R Markdown is an extension to the Markdown markup language which makes it easy to write html in a simple plain text format.  This allows me to both run the R code directly as well as compile on-the-fly to an html file that can be used for presentation. All files will be available on [bspace](https://bspace.berkeley.edu/portal/site/28905ed6-df96-4778-b2a7-d87fb6405ba2) (just point and click on the files you want under Resources and [Github](https://github.com/berkeley-scf/r-bootcamp-2013).  Note that Github is likely to have the most up-to-date documents while bspace will only be updated periodically.
 
@@ -71,12 +73,12 @@ Then to update from the repository to get any changes we've made:
 The pieces of an R session include:
 
 - The R console
-- Scripts for code
+- Scripts containing your code
 - Help files
 - Graphics windows
-- Workspace of your objects holding data and information
+- Workspace containing your objects, which hold data and information
 
-RStudio provides an integrated development environment in which all of these pieces are in a single application and tightly integrated. 
+RStudio provides an integrated development environment in which all of these pieces are in a single application and tightly integrated, with a built-in editor. 
 
 # Why R?
 

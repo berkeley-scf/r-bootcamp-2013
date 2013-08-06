@@ -91,6 +91,8 @@ a <- NULL
 a + 7
 a[3, 4]
 is.null(a)
+myList <- list(a = 7, b = 5)
+myList$a <- NULL  # works for data frames too
 ```
 
 `NA` can hold a place but `NULL` cannot.
@@ -104,6 +106,7 @@ update <- c(TRUE, FALSE, TRUE, FALSE)
 
 answers & update
 answers | update
+# note the vectorized boolean arithmetic
 
 # what am I doing here?
 identical(answers & update, as.logical(answers*update))
@@ -116,7 +119,7 @@ answers + update
 # Data frames
 
 - Data frames are combinations of vectors of the same length, but can be of different types
-- Data frames are what is used for standard rectangular (record by field) datasets
+- Data frames are what is used for standard rectangular (record by field) datasets, similar to a spreadsheet
 - Data frames are a functionality that both sets R aside from some languages (e.g., Matlab) and provides functionality similar to some statistical packages (e.g., Stata, SAS)
 
 ```{r}
@@ -273,6 +276,8 @@ To read and write from R, you need to have a firm grasp of where you are reading
 ```{r}
 getwd()  # what directory will R look in?
 setwd('~/Desktop/r-bootcamp-2013') # change the working directory
+setwd('/Users/paciorek/Desktop/tmp') # absolute path
+setwd('../r-bootcamp-2013') # relative path
 ```
 Many errors and much confusion result from you and R not being on the same page in terms of where in the directory structure you are.
 
@@ -327,6 +332,21 @@ Here you have a number of options.
 3) You can use *write()* to write out matrices in a simple flat text format.
 4) You can use *cat()* to write to a file, while controlling the formatting to a fine degree.
 5) The various file formats mentioned on the previous slide
+
+# Writing out plots and tables
+```{r}
+pdf('myplot.pdf', width = 7, height = 7)
+x <- rnorm(10); y <- rnorm(10)
+plot(x, y)
+dev.off()
+```
+`xtable()` formats tables for HTML and Latex (the default).
+
+```{r}
+require(xtable)
+print(xtable(table(data$race, data$pres04)), type = "html")
+```
+
 
 # Breakout
 

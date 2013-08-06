@@ -14,6 +14,9 @@ Note: Remember to start recording.
 sqrt(4^4) # functions
 23 %/% 2 
 23 %% 2
+
+# scientific notation
+5e9 * 1e3
 ```
 
 Think of a mathematical operation you need - can you guess how to do it in R?
@@ -24,7 +27,8 @@ A key action in R is to store values in the form of R objects, and to examine th
 
 ```{r}
 val <- 3
-Val <- 7
+Val <- 7 # case-sensitive!
+print(c(val, Val))
 mySeq <- 1:20
 myOtherSeq <- seq(1.1, 20.1, by = 2)
 fours <- rep(4, 23)
@@ -36,6 +40,8 @@ depts <- c('espm', 'pmb', 'stats')
 val
 print(val)
 ```
+
+If we don't assign the output of a command to an object, we haven't saved it for later use.
 
 
 # How to be lazy
@@ -50,6 +56,8 @@ If you're starting to type something you've typed before, or the long name of an
 # Vectors in R
 
 The most basic form of an R object is a vector. In fact, individual values are vectors of length one. 
+
+We can concatenate values into a vector with `c()`.
 
 ```{r}
 # numeric vector
@@ -100,6 +108,7 @@ vec1 >= vec2
 vec1 <= 3
 
 vec1 == vec2
+vec1 != vec2
 # careful: 
 vec1 = vec2
 identical(vec1, vec2)
@@ -118,8 +127,12 @@ Tell me what's going on. What choices were made by the R developers?
 
 * Operations are carried out with functions. Functions take objects as inputs and return objects as outputs. 
 * An analysis can be considered a pipeline of function calls, with output from a function used later in a subsequent operation as input to another function.
-* Functions themselves are objects
-
+* Functions themselves are objects: 
+```{r}
+sum
+class(sum)
+```
+* We can embed function calls: `hist(rnorm(1000))`
 
 # Getting help about a function
 
@@ -148,6 +161,7 @@ t(mat) %*% mat
 ```{r}
 data=read.dta('../data/2004_labeled_processed_race.dta')
 head(data)
+names(data)
 class(data)
 is.matrix(data)
 class(data$pres04)
@@ -163,6 +177,42 @@ identical(myList[[1]], myList$stuff)
 myList$moreStuff[2]
 myList[[4]][[2]]
 myList[1:3] # result is a list
+names(myList)
+```
+
+# Other classes of objects      
+
+R has several approaches to object-oriented programming.  These are widely used, albeit a bit klunky. 
+
+The most basic is 'S3' objects. These objects are generally built upon lists.
+
+```{r}
+y <- rnorm(10)
+x <- rnorm(10)
+mod <- lm(y ~ x)
+class(mod)
+is.list(mod)
+names(mod)
+mod$coefficients
+mod[['coefficients']]
+mod[[1]]
+```
+
+The magic of OOP here is that methods (functions) can be tailored to work specifically with specific kinds of objects.
+
+```{r}
+summary(y)
+summary(mod)
+```
+
+# Converting between different types of objects
+
+You can use the `as()` family of functions.
+
+```{r}
+ints <- 1:10
+as.character(ints)
+as.numeric(c('3.7', '4.8'))
 ```
 
 # Managing your objects
