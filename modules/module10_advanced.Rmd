@@ -1,3 +1,8 @@
+# test1
+
+```{r chunksetup, include=FALSE} 
+# include any code here you don't want to show up in the document
+```
 
 
 # Expressions

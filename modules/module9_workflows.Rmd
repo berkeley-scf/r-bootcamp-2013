@@ -2,6 +2,11 @@
 % August 2013, UC Berkeley
 % Chris Paciorek and (add others)
 
+```{r chunksetup, include=FALSE} 
+# include any code here you don't want to show up in the document,
+# e.g. package and dataset loading
+```
+
 # The UNIX command line
 
 Note: remember to start recording.

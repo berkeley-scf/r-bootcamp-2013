@@ -2,9 +2,14 @@
 % August 2013, UC Berkeley
 % Chris Paciorek and (add others)
 
+```{r chunksetup, include=FALSE} 
+# include any code here you don't want to show up in the document,
+# e.g. package and dataset loading
+```
+
 # Computer architecture
 
-Note: remember to start recording.
+Note to BB: remember to start recording.
 
 * Modern computers have multiple processors and clusters/supercomputers have multiple networked machines, each with multiple processors.
 * The key to increasing computational efficiency in these contexts is breaking up the work amongst the processors.

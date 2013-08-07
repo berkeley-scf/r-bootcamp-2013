@@ -2,9 +2,14 @@
 % August 2013, UC Berkeley
 % Chris Paciorek and (add others)
 
+```{r chunksetup, include=FALSE} 
+# include any code here you don't want to show up in the document,
+# e.g. package and dataset loading
+```
+
 # Packages (R's killer app)
 
-Note: remember to start recording.
+Note to BB: remember to start recording.
 
 Let's checkout the [packages on CRAN](http://www.cran.r-project.org/web/packages/).
 

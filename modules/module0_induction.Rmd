@@ -4,7 +4,7 @@
 
 # How we'll operate
 
-Note: Remember to start recording.
+Note to BB: Remember to start recording.
 
 The bootcamp will be organized in modules, each of which will be a combination of lecture/demo presentation with brief pauses for you to try out and experiment with code snippets, concluded by a longer problem or two for you to work at on your own in a breakout session. Solutions will be presented before the start of the next module. Assistants will be available to help answer any questions you have (just wave to one of them), or feel free to just ask during the presentation. We'll also have assistants monitoring the [Forum/Disc board] on bspace, so feel free to type in a question there and one of the assistants (or one of you!) will answer the question. 
 
@@ -90,6 +90,7 @@ RStudio provides an integrated development environment in which all of these pie
 - As a language, R can do essentially anything
 - Wide usage helps to improve quality and reduce bugs
 - R can interact with other software, databases, the operating system, the web, etc.
+- R is built on C and can call user-written and external C code and packages (in particular, see the *Rcpp* R package)
 
 # Why Not R?
 
