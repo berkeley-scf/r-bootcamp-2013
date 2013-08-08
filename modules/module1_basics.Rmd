@@ -6,7 +6,7 @@
 # include any code here you don't want to show up in the document,
 # e.g. package and dataset loading
 library(foreign)
-data=read.dta('../data/2004_labeled_processed_race.dta')
+vote <- read.dta('../data/2004_labeled_processed_race.dta')
 ```
 
 # R as a calculator
@@ -211,16 +211,16 @@ dim(mat)
 * Data frames: collections of columns of potentially different types
 ```{r}
 library(foreign)
-data=read.dta('../data/2004_labeled_processed_race.dta')
-head(data)
-dim(data)
-nrow(data)
-names(data)
-class(data)
-is.matrix(data)
-class(data$pres04)
-class(data$sex)
-class(data$age9)
+vote <- read.dta('../data/2004_labeled_processed_race.dta')
+head(vote)
+dim(vote)
+nrow(vote)
+names(vote)
+class(vote)
+is.matrix(vote)
+class(vote$pres04)
+class(vote$sex)
+class(vote$age9)
 ```
 
 * Lists: collections of disparate or complicated objects
@@ -310,8 +310,8 @@ is.list(vec1)
 is.list(myList)
 is.vector(myList)
 
-is.data.frame(data)
-is.list(data)
+is.data.frame(vote)
+is.list(vote)
 ```
 
 What have you learned? Does it make sense? 
@@ -350,12 +350,12 @@ R has several different plotting systems:
 We'll see a little bit of *base* graphics here and then *lattice* and *ggplot2* tomorrow.
 
 ```{r basic_plots}
-data <- read.dta("../data/heights.dta")
-names(data)
-hist(data$earn)
-plot(data$earn ~ data$height)
-boxplot(data$earn ~ data$height)
-boxplot(data$earn ~ data$sex)
+earnings <- read.dta("../data/heights.dta")
+names(earnings)
+hist(earnings$earn)
+plot(earnings$earn ~ earnings$height)
+boxplot(earnings$earn ~ earnings$height)
+boxplot(earnings$earn ~ earnings$sex)
 ```
 
 # Breakout

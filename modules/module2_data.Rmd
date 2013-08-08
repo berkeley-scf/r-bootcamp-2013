@@ -152,19 +152,19 @@ A review from Module 1...
 
 ```{r}
 require(foreign)
-data=read.dta('../data/2004_labeled_processed_race.dta')
-class(data)
-head(data)
-str(data)
+vote=read.dta('../data/2004_labeled_processed_race.dta')
+class(vote)
+head(vote)
+str(vote)
 ```
 
 # Data frames are (special) lists!
 
 ```{r}
-is.list(data)
-length(data)
-data[[3]][1:5]
-lapply(data, class) 
+is.list(vote)
+length(vote)
+vote[[3]][1:5]
+lapply(vote, class) 
 ```
 
 *lapply()* is a function used on lists; it works here to apply the *class()* function to each element of the list, which in this case is each field/column.
@@ -172,10 +172,10 @@ lapply(data, class)
 # But lists are also vectors!
 
 ```{r}
-length(data)
-someFields <- data[c(3,5)]
+length(vote)
+someFields <- vote[c(3,5)]
 head(someFields)
-identical(data[c(3,5)], data[ , c(3,5)])
+identical(vote[c(3,5)], vote[ , c(3,5)])
 ```
 
 In general the placement of commas is crucial, but here, two different operations give the same result because of the underlying structure of data frames.
@@ -184,10 +184,10 @@ In general the placement of commas is crucial, but here, two different operation
 - A factor is a special and sometimes frustrating data type in R used for categorical data
 
 ```{r fac}
-class(data$sizeplac)
-head(data$sizeplac) # What order are the factors in?
-levels(data[["sizeplac"]])
-summary(data$sizeplac)
+class(vote$sizeplac)
+head(vote$sizeplac) # What order are the factors in?
+levels(vote[["sizeplac"]])
+summary(vote$sizeplac)
 ```
 
 - What if we don't like the order these are in? Factor order is important for all kinds of things like plotting, analysis of variance, regression output, and more
@@ -198,12 +198,12 @@ summary(data$sizeplac)
 - Think ordinal data
 
 ```{r orderedfac}
-data <- within(data, 
+vote <- within(vote, 
      sizeplac_ord <- ordered(sizeplac, levels = 
      levels(sizeplac)[c(5,3,4,2,1)])
 )
-head(data$sizeplac_ord)
-levels(data$sizeplac_ord)
+head(vote$sizeplac_ord)
+levels(vote$sizeplac_ord)
 ```
 
 Try to decipher what I just did with that complicated single line of code.
@@ -389,7 +389,7 @@ dev.off()
 
 ```{r}
 require(xtable)
-print(xtable(table(data$race, data$pres04)), type = "html")
+print(xtable(table(vote$race, vote$pres04)), type = "html")
 ```
 
 Recall our discussion of the `summary()` function used on either a vector or a regression object. What do you think is going on with call to `print()` above? 
