@@ -4,6 +4,9 @@
 # include any code here you don't want to show up in the document
 ```
 
+# slide 1
+
+Note to BB: start recording.
 
 # Expressions
 

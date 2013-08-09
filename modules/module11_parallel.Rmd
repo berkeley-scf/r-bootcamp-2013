@@ -1,6 +1,6 @@
 % R bootcamp, Module 11: Parallel processing
 % August 2013, UC Berkeley
-% Chris Paciorek and (add others)
+% Chris Paciorek
 
 ```{r chunksetup, include=FALSE} 
 # include any code here you don't want to show up in the document,
@@ -163,4 +163,4 @@ See my [notes on distributed computing](http://www.stat.berkeley.edu/scf/paciore
 
 # Breakout
 
-Use the bootstrap to assess uncertainty in the regression coefficient for regressing X on Y in the ZZZ dataset. Split the bootstrap replicates across multiple cores either via *foreach* or a parallel version of one of the *apply* variants.
+Fit logistic regression models of preference for Bush/Kerry on income, stratified by state. Use *foreach* or a parallel version of one of the `apply()` variants.

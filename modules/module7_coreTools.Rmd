@@ -1,21 +1,27 @@
 % R bootcamp, Module 7: Core tools
 % August 2013, UC Berkeley
-% Chris Paciorek and (add others)
+% Chris Paciorek
 
 ```{r chunksetup, include=FALSE} 
 # include any code here you don't want to show up in the document,
 # e.g. package and dataset loading
+require(fields)
+require(foreign)
+earnings <- read.dta('../data/heights.dta')
 ```
 
 # Optimization
 
-Note: remember to start recording.
+Note to BB: remember to start recording.
 
 R provides functionality for optimization - finding maxima or minima of a function. 
 
 A workhorse is `optim()`, which implements a number of optimization algorithms. 
 
-```{r}
+```{r eval=FALSE} 
+require(fields)  
+```
+```{r fig.width=11}
  banana <- function(x) {   ## Rosenbrock Banana function
          x1 <- x[1]
          x2 <- x[2]
@@ -31,8 +37,9 @@ image.plot(x1s, x2s, matrix(fx, 100))
 image.plot(x1s, x2s, matrix(log(fx), 100))
 
 optim(c(-2,0), banana)
- 
-if(FALSE) {
+```
+We can see the progression of evaluations of the objective function:
+```{r eval=FALSE}
 banana <- function(x) {   ## Rosenbrock Banana function
          points(x[1],x[2])
          x1 <- x[1]
@@ -40,7 +47,6 @@ banana <- function(x) {   ## Rosenbrock Banana function
          100 * (x2 - x1 * x1)^2 + (1 - x1)^2
      }
 optim(c(-2,0), banana)
-}
 ```
 
 # Smoothing
@@ -59,50 +65,50 @@ Let's consider height in the earnings dataset.
 
 Any hypotheses about the relationship of earnings with height and education?
 
-```{r}
-data <- read.dta('../data/heights.dta')
-mod_male <- gam(earn ~ s(height, k = 10) + s(ed, k = 10), data = data[data$sex == 1,])
-mod_female <- gam(earn ~ s(height, k = 10) + s(ed, k = 10), data = data[data$sex == 2,])
+```{r gamExample, cache=TRUE, fig.width=10}
+library(mgcv)
+mod_male <- gam(earn ~ s(height, k = 10) + s(ed, k = 10), 
+data = earnings[earnings$sex == 1,])
+mod_female <- gam(earn ~ s(height, k = 10) + s(ed, k = 10), 
+data = earnings[earnings$sex == 2,])
 summary(mod_male)
 summary(mod_female)
-# plot(mod_male)
-# plot(mod_female)
+par(mfrow = c(1,2))
+plot(mod_male)
+plot(mod_female)
 ```
 
 # A bit more model-building 
 
 Suppose we want to account for race in the model.
 
-```{r}
-data <- read.dta('../data/heights.dta')
-mod_male <- gam(earn ~ s(height, k = 10) + s(ed, k = 10) + race, data = data[data$sex == 1,])
-mod_female <- gam(earn ~ s(height, k = 10) + s(ed, k = 10) + race, data = data[data$sex == 2,])
-summary(mod_male)
-summary(mod_female)
-# plot(mod_male)
-# plot(mod_female)
+```{r gamExampleFull, cache=TRUE, fig.width=10}
+mod_male_full <- gam(earn ~ s(height, k = 10) + s(ed, k = 10) + race, 
+data = earnings[earnings$sex == 1,])
+mod_female_full <- gam(earn ~ s(height, k = 10) + s(ed, k = 10) + race, 
+data = earnings[earnings$sex == 2,])
+summary(mod_male_full)
+summary(mod_female_full)
+par(mfrow = c(1,2))
+plot(mod_male_full)
+plot(mod_female_full)
 ```
 
 Comments? 
-
-
-# Mixed effects models
-
-should I cover this?
 
 # Distributions
 Since R was developed by statisticians, it handles distributions and simulation seamlessly.
 
 All commonly-used distributions have functions in R. Each distribution has a family of functions: 
 
-* d - probability density/mass function
-* r - generate a random value 
-* p - cumulative distribution function
-* q - quantile function (inverse CDF)
+* d - probability density/mass function, e.g. `dnorm()`
+* r - generate a random value, e.g., `rnorm()`
+* p - cumulative distribution function, e.g., `pnorm()`
+* q - quantile function (inverse CDF), e.g., `qnorm()`
 
-Some of the distributions include the following (in the form of their random number generator function): `dnorm()`, `dunif()`, `dbinom()`, `dpois()`, `dbeta()`, `dgamma()`, dt
+Some of the distributions include the following (in the form of their random number generator function): `rnorm()`, `runif()`, `rbinom()`, `rpois()`, `rbeta()`, `rgamma()`, `rt()`.
 
-# The normal distribution in action
+# Distributions in action
 
 ```{r}
 pnorm(1.96)
@@ -110,35 +116,48 @@ qnorm(.975)
 dbinom(0:10, size = 10, prob = 0.3)
 dnorm(5)
 dt(5, df = 1)
-rmultinom(1, 100, prob = c(.1, .1, .2, .3, .25, .05)) 
 
 x <- seq(-5, 5, length = 100)
 plot(x, dnorm(x), type = 'l')
 lines(x, dt(x, df = 1), col = 'red')
 ```
 
+```{r}
+rmultinom(1, 100, prob = c(.1, .1, .2, .3, .25, .05)) 
+
+x <- seq(0, 10, length = 100)
+plot(x, dchisq(x, df = 1), type = 'l')
+lines(x, dchisq(x, df = 2), col = 'red')
+```
+
+
+
 # Other types of simulation and sampling
 
-We can draw a sample with or without replacement. Here's an example that starts to lead to a bootstrap.
+We can draw a sample with or without replacement. Here's an example of some code that would be part of coding up a bootstrap.
 
 ```{r}
 sample(row.names(state.x77), 7, replace = FALSE)
+mean(earnings$earn, na.rm = TRUE)
+smp <- sample(seq_len(nrow(earnings)), replace = TRUE)
+mean(earnings$earn[smp], na.rm = TRUE)
+```
 
-require(foreign)
-data <- read.dta('../data/heights.dta')
+It's a good idea to use `seq_along()` and `seq_len()` and not syntax like `1:length(earnings)` in `sample()` because the outcome of `length()` might in some cases be unexpected (e.g., if you're taking subsets of a dataset). Similar reasoning holds when setting up for loops: e.g., 
 
-mean(data$earn, na.rm = TRUE)
-smp <- sample(seq_len(nrow(data)), replace = TRUE)
-mean(data$earn[smp], na.rm = TRUE)
+```{r eval=FALSE}
+for(i in seq_len(nrow(earnings))) {
+# blah
+}
 ```
 
 # The Random Seed
 
 A few key facts about generating random numbers
 
-* Random number generation is based on generating uniformly between 0 and 1 and the and then transforming to the kind of random number of interest
-* Random numbers on a computer are pseudo-random; they are generated deterministically from a very, very, very long sequence that repeats
-* The seed determines where you are in that sequence
+* Random number generation is based on generating uniformly between 0 and 1 and then transforming to the kind of random number of interest: normal, categorical, etc.
+* Random numbers on a computer are *pseudo-random*; they are generated deterministically from a very, very, very long sequence that repeats
+* The *seed* determines where you are in that sequence
 
 To replicate any work involving random numbers, make sure to set the seed first.
 
@@ -160,6 +179,8 @@ vals
 date1 <- as.Date("03-01-2011", format = "%m-%d-%Y")
 date2 <- as.Date("03/02/11", format = "%m/%d/%y")
 date3 <- as.Date("07-May-11", format = "%d-%b-%y")
+
+date1; date2
 class(date1)
 dates <- c(date1, date2, date3)
 weekdays(dates)
@@ -174,16 +195,23 @@ unclass(dates)
 
 ```{r}
 library(chron)
-d1 <- chron("12/25/2004", "10:37:59") # default format of m/d/Y and h:m:s
+d1 <- chron("12/25/2004", "10:37:59") 
+# default format of m/d/Y and h:m:s
 d2 <- chron("12/26/2004", "11:37:59")
+
+class(d1)
 d1
 d1 + 33
 d2 - d1
 d1 + d2
 ```
 
-There's lots more packages/functionality for dates/times: see *lubridate*, `?DateTimeClasses`
+There's lots more packages/functionality for dates/times: see *lubridate* and `?DateTimeClasses`
  
 # Breakout 
 
-Write code to do 10-fold cross-validation on an analysis of [some data]. First you need to randomly split your dataset into 10 equal-size chunks. Then hold out a single chunk in turn, fitting with the remaining and predicting for the remaining chunks.
+Suppose you wanted to do 10-fold cross-validation for some sort of regression model fit to the *earnings* dataset. Write some R code that produces a field in the dataset that indicates which fold each observation is in. Ensure each of the folds has an equal (or as nearly equal as possible if the number of observations is not divisible by 10) number of observations.
+
+Write some code to demonstrate the central limit theorem. Generate many different replicates of samples of size `n` from a skewed or discrete distribution and show that if `n` is big enough, the distribution of the means (of each sample of size `n`) looks approximately normal in a histogram. Do it without any looping! 
+
+
