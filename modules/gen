@@ -2,7 +2,7 @@
 
 modules = c("module0_induction", "module1_basics", "module2_data", "module3_calc", "module4_resources", "module7_coreTools", "module9_workflows", "module11_parallel")
 
-modules=modules[c(6)]
+modules=modules[c(8)]
 
 library(knitr)
 for(module in modules) {
