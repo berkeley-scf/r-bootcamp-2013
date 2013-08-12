@@ -1,0 +1,25 @@
+% R bootcamp, Module 3: Calculations
+% August 2013, UC Berkeley
+% Chris Krogslund
+
+```{r chunksetup, include=FALSE} 
+# include any code here you don't want to show up in the document,
+# e.g. package and dataset loading
+```
+
+# Slide 1
+
+Note to BB: remember to start recording.
+
+
+# Breakout
+
+Consider the voting preference data. Fit a logistic regression to the data for California, modeling preference for Bush vs. Kerry as a function of income, potentially including additional covariates such as sex, race and age. What do you find in terms of how income associates with voting preference?
+
+How do you predict the actual probability of voting for Bush for a given set of covariate values? Consider the `predict.glm()` function and what its help page says. Or write code that converts from the model coefficients to the probability scale.
+
+# Overnight homework
+
+Using the tools for stratified analyses we have seen today, fit separate models of voting preference as a function of income (and potentially additional covariates) for each state (or a collection of states of interest to you). How does the effect of income vary by state? Consider separate analyses for men and women and for blacks, whites, and Latinos. Are there gender or racial differences?
+
+Make some basic plots to illustrate what you have found. 
