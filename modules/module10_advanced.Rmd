@@ -1,12 +1,23 @@
-# test1
+% R bootcamp, Module 10: Advanced topics
+% August 2013, UC Berkeley
+% Chris Paciorek
 
 ```{r chunksetup, include=FALSE} 
-# include any code here you don't want to show up in the document
+# include any code here you don't want to show up in the document,
+# e.g. package and dataset loading
 ```
 
-# slide 1
+# Object-oriented programming in R
 
 Note to BB: start recording.
+
+# File encodings
+
+# Computing on the language
+
+One of the powerful capabilities you have in R is the ability to use R to modify and create R code. 
+
+First we need to understand a bit about how R code is stored and manipulated when we don't want to immediately evaluate it.
 
 # Expressions
 
@@ -15,6 +26,18 @@ system.time({a = 5})
 
 code <- quote(a <- 5)
 
-# stop() and warn()
+# Error and warning messages
+stop() and warn()
 
-# try()
+# 'Catching' errors
+
+When you automate analyses, sometimes an R call will fail. But you don't want all of your analyses to grind to a halt because one failed. Rather, you want to catch the error, record that it failed, and move on.
+
+For me this is most critical when I'm doing stratified analyses or sequential operations.
+
+The `try()` function is a powerful tool here.
+
+
+# Working with databases
+
+

@@ -162,7 +162,16 @@ basic graphics
 \end_layout
 
 \begin_layout Itemize
-breakout [perhaps a basic plotting problem that involves some data manipulation]
+breakout problems 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+[perhaps a basic plotting problem that involves some data manipulation]
+\end_layout
+
+\end_inset
+
  
 \begin_inset Note Note
 status open
@@ -183,15 +192,19 @@ Session 2: Working with data (Chris P.)
 
 \begin_deeper
 \begin_layout Itemize
-dataframes/matrices and subsetting, and subset assigning (LHS)
+dataframes/matrices
 \end_layout
 
 \begin_layout Itemize
-factors, attributes, NAs
+attributes, missing values and factors
 \end_layout
 
 \begin_layout Itemize
-strings (a little bit) and cleaning data
+subsetting
+\end_layout
+
+\begin_layout Itemize
+strings
 \end_layout
 
 \begin_layout Itemize
@@ -199,7 +212,17 @@ reading/writing data; working directory, foreign package
 \end_layout
 
 \begin_layout Itemize
-breakout problem [work on reading a dataset in and manipulating a data frame]
+breakout problems 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+[work on reading a dataset in and manipulating a data frame]
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
@@ -213,8 +236,8 @@ Session 3: Calculations (Chris P.)
 
 \begin_deeper
 \begin_layout Itemize
-more on vectorized calculations and efficiency (pre-allocate, look-up tables
- by indexing, linear algebra/BLAS)
+vectorized calculations and efficiency (pre-allocate, look-up tables by
+ indexing, linear algebra/BLAS)
 \end_layout
 
 \begin_layout Itemize
@@ -222,11 +245,21 @@ apply, lapply
 \end_layout
 
 \begin_layout Itemize
-data summary, aggregation, merge
+tabulation, stratified analyses, aggregation, merging data
 \end_layout
 
 \begin_layout Itemize
-breakout [work on a data aggregation problem]
+breakout problems 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+[work on a data aggregation problem]
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
@@ -250,7 +283,12 @@ packages - installing, loading, namespaces
 \end_layout
 
 \begin_layout Itemize
-getting help - R help, Stack Overflow, Google 
+getting help online 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+R help, Stack Overflow, Google 
 \begin_inset Quotes eld
 \end_inset
 
@@ -259,6 +297,11 @@ in R
 \end_inset
 
 , reproducible examples, sessionInfo() [could shift to last session Sunday]
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
@@ -280,12 +323,8 @@ basic scoping and environments
 \end_layout
 
 \begin_layout Itemize
-intro to OOP in R: using existing S3 classes/methods (mention S4 exists)
-\end_layout
-
-\begin_layout Itemize
-breakout [write a function with arguments - perhaps a sort function using
- order()]
+breakout problems [write a function with arguments - perhaps a sort function
+ using order()]
 \begin_inset Note Note
 status open
 
@@ -318,12 +357,13 @@ reshape
 \end_layout
 
 \begin_layout Itemize
-regression, GLMs
+regression, GLMs (building on Chris' intro to S3 in module 
 \end_layout
 
 \begin_layout Itemize
-breakout [assign overnight homework - data analysis problem, perhaps with
- some programming - bootstrap or cross-validation]
+breakout problems [Chris to prepare this: assign overnight homework - data
+ analysis problem, perhaps with some programming - bootstrap or cross-validation
+]
 \end_layout
 
 \end_deeper
@@ -334,7 +374,7 @@ Day 2 morning (9-12:30) (more real-world work)
 
 \begin_deeper
 \begin_layout Itemize
-Session 7: Some core tools (Chris P.)
+Session 7: Some core tools (Chris P.) (45 minutes)
 \end_layout
 
 \begin_deeper
@@ -359,12 +399,22 @@ dates and times
 \end_layout
 
 \begin_layout Itemize
-breakout [a small simulation study perhaps]
+breakout 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+[a small simulation study perhaps]
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
-Session 8: more graphics (Chris K.)
+Session 8: Graphics (Chris K.)
 \begin_inset Note Note
 status open
 
@@ -380,15 +430,19 @@ http://teachpress.environmentalinformatics-marburg.de/2013/07/creating-publicati
 
 \begin_deeper
 \begin_layout Itemize
-exporting graphics (vector/raster)
+exporting graphics (vector/raster formats)
 \end_layout
 
 \begin_layout Itemize
-more advanced graphics including lattice/ggplot2 
+lattice graphics
 \end_layout
 
 \begin_layout Itemize
-breakout [creating a nice lattice/ggplot2 graphic]
+ggplot2
+\end_layout
+
+\begin_layout Itemize
+breakout problems [creating a nice lattice/ggplot2 graphic]
 \end_layout
 
 \end_deeper
@@ -433,7 +487,7 @@ version control for code and data; Git
 \end_layout
 
 \begin_layout Itemize
-breakout [assess timing and memory use for some code?]
+breakout problems [assess timing and memory use for some code?]
 \end_layout
 
 \end_deeper
@@ -469,7 +523,17 @@ working with databases
 \end_layout
 
 \begin_layout Itemize
-breakout [set up some OOP code]
+breakout problems
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+[set up some OOP code]
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
@@ -495,7 +559,17 @@ RNG issues
 \end_layout
 
 \begin_layout Itemize
-breakout [do some parallel computation]
+breakout problems 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+[do some parallel computation]
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
