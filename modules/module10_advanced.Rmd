@@ -13,11 +13,93 @@ earnings <- read.dta('../data/heights.dta')
 
 Note to BB: start recording.
 
+Confusingly, R has three different systems for OOP, and none of them are as elegant and powerful as in Python or other languages more focused on OOP. That said, they get the job done for a lot of tasks.
+
+* S3: informal system used for `lm()`, `glm()`, and many other core features in R in the *stats* package
+* S4: more formal system, used with *lme4* 
+* Reference Classes: new system allowing for passing objects by reference
+
+# Basics of object-oriented programming
+
+The basic idea is that coding is structured around *objects*, which have  *class* and *methods* that operate on objects in the class.
+
+So basically like a list but with methods that are specifically associated with particular classes, as we've seen with the `lm` class.
+
+Whether one needs to carefully specify the definition of the class (what the fields/components and methods are) is a distinguishing feature between S3 and S4.
+
 # Working with S3 classes and methods
+
+```{r}
+library(methods)
+yb <- sample(c(0, 1), 10, replace = TRUE)
+yc <- rnorm(10)
+x <- rnorm(10)
+mod1 <- lm(yc ~ x)
+mod2 <- glm(yb ~ x, family = binomial)
+mod2$residuals # access field with list-like syntax
+
+class(mod2)
+is(mod2, "lm")
+is.list(mod2)
+names(mod2)
+
+methods(class = "glm")
+
+methods(predict)
+
+print
+
+# print.glm
+```
+
+When `print()` is called on a GLM object, it first calls the generic `print()`, which then recognizes that the first argument is of the class *glm* and immediately calls the right class-specific method.
+
+# Making your own S3 class/object/method
+
+Making an object and class-specific methods under S3 is simple. 
+
+```{r}
+rboot2013 <- list(month = 'August', year = 2013, instructor = 'Paciorek', attendance = 100)
+class(rboot2013) <- "workshop"
+
+rboot2013
+is(rboot2013, "workshop")
+rboot2013$instructor 
+
+print.workshop <- function(x) {
+    with(x,
+       cat("A workshop held in ", month, " ", year, "; taught by ", instructor, ".\nThe attendance was ", attendance, ".\n", sep = ""))
+    invisible(x)
+}
+rboot2013
+```
+ 
+Note that we rely on the generic `print()` already existing in R. Otherwise we'd need to create it.
 
 # Using S4 classes and methods
 
+Unlike S4, S4 classes have a formal definition and objects in the class must have the specified fields/components. 
+
+The components of an S4 class are called slots. Instead of `x$field` you do `x@field`.
+
+Here's a bit of an example of an S4 class for a linear mixed effects model from *lme4*:
+
+```{r}
+fm1 <- lmer(Reaction ~ Days + (Days|Subject), sleepstudy)
+class(fm1)
+methods("mer")
+slotNames(fm1)
+fm1$ranef
+fm1@ranef
+```
+
 # A brief mention of Reference Classes
+
+Reference classes are new in the last few years; for more information, see `?ReferenceClasses`.
+
+Reference classes are somewhat like S4 in that a class is formally defined and R is careful about the fields of the class.
+
+Methods for reference classes can modify the contents of fields in an object invisibly without the need to copy over the entire object.
 
 
 # Computing on the language
@@ -26,16 +108,60 @@ One of the powerful capabilities you have in R is the ability to use R to modify
 
 First we need to understand a bit about how R code is stored and manipulated when we don't want to immediately evaluate it.
 
-# Expressions
+When you send some code to R to execute, it has to 'parse' the input; i.e., to process it so that it know how to evaluate it. The parsed input can then be evaluated in the proper context (i.e., the right frame). 
 
-system.time(a = 5)
-system.time({a = 5})
+We can capture parsed code before it is evaluated, manipulate it, and execute the modified result.
 
-code <- quote(a <- 5)
+# Capturing and evaluating parsed code
 
-# Using R to write and evaluate code
+```{r}
+code <- quote(n <- 100)
+code
+class(code)
+eval(code)
+results <- rep(0, n)
+moreCode <- quote(for(i in 1:n) {
+    tmp <- rnorm(30)
+    results[i] <- min(tmp)
+})
+class(moreCode)
 
+newN <- 200
+codeText <- paste("n", "<-", newN)
+codeFromText <- parse(text = codeText)
+eval(codeFromText)
+n
+```
 
+So you could use R's string manipulation capabilities to write and then evaluate R code. Meta.
+
+# Using R to automate working with object names 
+
+Suppose you were given a bunch of objects named "x1", "x2", "x3", ... and you wanted to write code to automatically do some computation on them.
+
+```{r}
+x1 <- rnorm(5)
+x2 <- rgamma(10)
+x3 <- runif(20)
+nVals <- 3
+results <- rep(0, nVals)
+for(i in 1:nVals) {  
+  tmp <- eval(as.name(paste("x", i, sep = "")))
+  # tmp <- get(paste("x", i, sep = "")) # an alternative
+   results[i] <- mean(tmp)
+}
+```
+
+Or suppose you needed to create "x1", "x2", "x3", automatically.
+
+```{r}
+nVals <- 3
+results <- rep(0, nVals)
+for(i in 1:nVals) {  
+   assign(paste("x", i, sep = ""), rnorm(10))
+}
+x2
+```
 
 # Error and warning messages
 
@@ -149,11 +275,11 @@ Windows, Mac, and Linux handle line endings in text files somewhat differently. 
 * In UNIX, lines end in only a newline.
 * On a Mac, lines may end only in a carriage return.
 
-So in UNIX you might see ^M at the end of lines when you open a Windows file in a text editor. The dos2unix or fromdos commands can do the necessary conversion
+So in UNIX you might see `^M` at the end of lines when you open a Windows file in a text editor. The dos2unix or fromdos commands can do the necessary conversion
 
-In Windows you might have a UNIX text file appear to be all one line. The unix2dos or todos commands in UNIX can do the conversion. 
+In Windows you might have a UNIX text file appear to be all one line. The *unix2dos* or *todos* commands in UNIX can do the conversion. 
 
-There is a UNIX utility call mac2unix that can convert Mac text files.
+There is a UNIX utility call *mac2unix* that can convert Mac text files.
 
 There may also be Windows tools to deal with this. 
 
