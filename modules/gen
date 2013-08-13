@@ -1,6 +1,6 @@
 #! /usr/bin/Rscript
 
-modules = c("module0_induction", "module1_basics", "module2_data", "module3_calc", "module4_resources", "module7_coreTools", "module9_workflows", "module11_parallel")
+modules = c("module0_induction", "module1_basics", "module2_data", "module3_calc", "module4_resources", "module7_coreTools", "module9_workflows", "module10_advanced", "module11_parallel")
 
 modules=modules[c(8)]
 

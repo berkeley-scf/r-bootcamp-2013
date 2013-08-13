@@ -5,13 +5,20 @@
 ```{r chunksetup, include=FALSE} 
 # include any code here you don't want to show up in the document,
 # e.g. package and dataset loading
+library(foreign)
+earnings <- read.dta('../data/heights.dta')
 ```
 
 # Object-oriented programming in R
 
 Note to BB: start recording.
 
-# File encodings
+# Working with S3 classes and methods
+
+# Using S4 classes and methods
+
+# A brief mention of Reference Classes
+
 
 # Computing on the language
 
@@ -26,8 +33,47 @@ system.time({a = 5})
 
 code <- quote(a <- 5)
 
+# Using R to write and evaluate code
+
+
+
 # Error and warning messages
-stop() and warn()
+
+When you write your own functions, and particularly for distributing to others, it's a good idea to:
+
+* Check for possible errors (particularly in the input arguments) and give the user an informative error message
+* Warn them if you're doing something they might not have anticipated
+
+We can use `stop()` and `warning()` to do this. They're the same functions that are being called when you see an error message or a warning in reaction to your own work in R.
+
+```{r}
+mysqrt <- function(x) {
+  if(is.list(x)) {
+    warning("x is a list; converting to a vector")
+    x <- unlist(x)
+  }
+  if(!is.numeric(x)) {
+    stop("What is the square root of 'bob'?")
+  } else {
+      if(any(x < 0)) {
+        warning("mysqrt: found negative values; proceeding anyway")
+        x[x < 0] <- NaN
+        x[x >= 0] <- (x[x >= 0])^(1/2)
+        return(x)
+      } else return(x^(1/2))
+  }
+}
+
+mysqrt(c(1, 2, 3))
+mysqrt(c(5, -7))
+mysqrt(c('asdf', 'sdf'))
+mysqrt(list(5, 3, 'ab'))
+sqrt(c(5, -7))
+sqrt('asdf')
+sqrt(list(5, 3, 2))
+```
+
+So we've done something similar to what `sqrt()` actually does in R.
 
 # 'Catching' errors
 
@@ -37,7 +83,102 @@ For me this is most critical when I'm doing stratified analyses or sequential op
 
 The `try()` function is a powerful tool here.
 
+# Why we need to `try()`
+
+Suppose we tried to do a stratified analysis of earnings on height within education levels. I'm going to do this as a for loop for pedagogical reasons, but again, it would be better to do this with apply/by/plyr type tools.
+
+
+```{r}
+mod <- list()
+for(edLevel in unique(earnings$ed)) {
+print(edLevel)
+            sub <- subset(earnings, ed == edLevel)
+            mod[[edLevel]] <- lm(earn ~ height, data = sub)
+}
+```
+
+1) What happened?
+2) Why did it go through the education levels in that order? (12, 16, 17, ...)
+
+# How we can `try()` harder
+
+```{r}
+mod <- list()
+for(edLevel in unique(earnings$ed)) {
+print(edLevel)
+            sub <- subset(earnings, ed == edLevel)
+            tmp <- try(lm(earn ~ height, data = sub))
+            if(is(tmp, "try-error")) mod[[edLevel]] <- NA else mod[[edLevel]] <- tmp
+}
+mod[[2]]
+mod[[3]]
+```
+
+
+# File encodings
+
+Text (either in the form of a file with regular language in it or a data file with fields of character strings) will often contain characters that are not part of the [limited ASCII set of characters](http://en.wikipedia.org/wiki/ASCII), which has 128 characters and control codes; basically what you see on a standard US keyboard.
+
+UTF-8 is an encoding for the Unicode characters that include more than 110,000 characters from 100 different alphabets/scripts. It's widely used on the web.
+
+Latin-1 encodes a small subset of Unicode and contains the characters used in many Europeon languages (e.g., letters with accents).
+
+# Dealing with encodings in R
+
+To read files with other characters correctly into R, you may need to tell R what encoding the file is in. E.g., see help on `read.table()` for the *fileEncoding* and *encoding* arguments. 
+
+With strings already in R, you can convert between encodings:
+```{r}
+text <- "_Melhore sua seguran\xe7a_"
+iconv(text, from = "latin1", to = "UTF-8")
+iconv(text, from = "latin1", to = "ASCII", sub = "???")
+```
+
+You can mark a string with an encoding so R can display it correctly:
+```{r}
+x <- "fa\xE7ile"
+Encoding(x) <- "latin1"
+x
+```
+
+# Line endings in text files
+
+Windows, Mac, and Linux handle line endings in text files somewhat differently. So if you read a text file into R that was created in a different operating system you can run into difficulties.
+
+* In Windows lines end in both a newline (the ASCII character \n) and a carriage return (\r). 
+* In UNIX, lines end in only a newline.
+* On a Mac, lines may end only in a carriage return.
+
+So in UNIX you might see ^M at the end of lines when you open a Windows file in a text editor. The dos2unix or fromdos commands can do the necessary conversion
+
+In Windows you might have a UNIX text file appear to be all one line. The unix2dos or todos commands in UNIX can do the conversion. 
+
+There is a UNIX utility call mac2unix that can convert Mac text files.
+
+There may also be Windows tools to deal with this. 
 
 # Working with databases
 
+R has the capability to read and write from a variety of relational database management systems (DBMS). Basically a database is a collection of rectangular format datasets (tables). Some of these tables have fields in common so it makes sense to merge (i.e., join) information from multiple tables. E.g., you might have a database with a table of student information, a table of teacher information and a table of school information. 
 
+The *DBI* package provides a front-end for manipulating databases from a variety of DBMS (MySQL, SQLite, Oracle, among others)
+
+Basically, you tell the package what DBMS is being used on the back-end, link to the actual database, and then you can use the standard functions in the package regardless of the back-end. 
+
+# Database example
+
+The Current Index to Statistics contains records of article and author information from most Statistics journals. 
+
+The database is not freely available, so it's not on the course bSpace or Github, but I can do a demo here.
+
+```{r}
+library(RSQLite)  # DBI is a dependency
+db <- dbConnect(SQLite(), dbname = "../data/cis.db") # cis.db is an SQLite database
+dbListTables(db)
+dbListFields(db, "articles")
+breiman <- dbGetQuery(db, "select * from authors where name like 'Breiman%'")
+```
+
+# Breakout
+
+Have a snack!

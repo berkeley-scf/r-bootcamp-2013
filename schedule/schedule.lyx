@@ -77,8 +77,12 @@ knitr
 \begin_body
 
 \begin_layout Title
-R bootcamp - August 2013: Tentative syllabus/schedule
+R bootcamp - August 2013: Syllabus/schedule
 \end_layout
+
+\begin_layout Subsection*
+\begin_inset Note Note
+status open
 
 \begin_layout Subsection*
 Comments for presenters
@@ -100,8 +104,14 @@ ask participants to play with code as we go along and see if they can break
  forum)
 \end_layout
 
-\begin_layout Subsection*
-Schedule/syllabus
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Unless otherwise noted, sessions are 60-70 minutes long, including time
+ for work on breakout problems.
 \end_layout
 
 \begin_layout Itemize
@@ -154,7 +164,7 @@ basic R objects: vectors, matrices, dataframes, lists
 \end_layout
 
 \begin_layout Itemize
-managing R objects, the R workspace, save.image(), str()
+managing R objects, the R workspace
 \end_layout
 
 \begin_layout Itemize
@@ -236,8 +246,17 @@ Session 3: Calculations (Chris P.)
 
 \begin_deeper
 \begin_layout Itemize
-vectorized calculations and efficiency (pre-allocate, look-up tables by
- indexing, linear algebra/BLAS)
+vectorized calculations and efficiency
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ (pre-allocate, look-up tables by indexing, linear algebra/BLAS)
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -283,7 +302,7 @@ packages - installing, loading, namespaces
 \end_layout
 
 \begin_layout Itemize
-getting help online 
+getting R help online 
 \begin_inset Note Note
 status open
 
@@ -323,13 +342,12 @@ basic scoping and environments
 \end_layout
 
 \begin_layout Itemize
-breakout problems [write a function with arguments - perhaps a sort function
- using order()]
+breakout problems
 \begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-write a function with arguments: perhaps a sort function
+ [write a function with arguments - perhaps a sort function using order()]
 \end_layout
 
 \end_inset
@@ -357,13 +375,32 @@ reshape
 \end_layout
 
 \begin_layout Itemize
-regression, GLMs (building on Chris' intro to S3 in module)
+regression, GLMs 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+(building on Chris' intro to S3 in module)
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
-breakout problems [Chris to prepare this: assign overnight homework - data
- analysis problem, perhaps with some programming - bootstrap or cross-validation
-]
+breakout problems/homework 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+[Chris to prepare this: assign overnight homework - data analysis problem,
+ perhaps with some programming - bootstrap or cross-validation]
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
@@ -442,7 +479,17 @@ ggplot2
 \end_layout
 
 \begin_layout Itemize
-breakout problems [creating a nice lattice/ggplot2 graphic]
+breakout problems 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+[creating a nice lattice/ggplot2 graphic]
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
@@ -487,7 +534,17 @@ version control for code and data; Git
 \end_layout
 
 \begin_layout Itemize
-breakout problems [assess timing and memory use for some code?]
+breakout problems
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ [assess timing and memory use for some code?]
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
@@ -512,6 +569,10 @@ OOP (S3, S4, ReferenceClasses)
 
 \begin_layout Itemize
 computing on the language (using R to write and evaluate R code)
+\end_layout
+
+\begin_layout Itemize
+errors and try-catch
 \end_layout
 
 \begin_layout Itemize
@@ -579,11 +640,21 @@ Session 12: Wrapping up (Chris P.) (15 minutes)
 
 \begin_deeper
 \begin_layout Itemize
-R inconsistencies and different ways to do things (see Knowles slide)
+R inconsistencies and different ways to do things 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+(see Knowles slide)
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
-Where to learn more and get help
+Where to learn more (campus and non-campus resources)
 \end_layout
 
 \end_deeper
