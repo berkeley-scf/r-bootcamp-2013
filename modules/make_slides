@@ -1,12 +1,14 @@
 #! /usr/bin/Rscript
 
-modules = c("module0_induction", "module1_basics", "module2_data", "module3_calc", "module4_resources", "module5_programming", "module7_coreTools", "module9_workflows", "module10_advanced", "module11_parallel")
-
-modules=modules[c(6)]
-
 library(knitr)
-for(module in modules) {
-knit(paste(module, ".Rmd", sep = ""), envir = new.env())
-system(paste("pandoc -s -t slidy ", paste(module, ".md", sep = ""), " -o ", paste(module, "_slides.html", sep = ""), " --self-contained"))
-knit2html(paste(module, ".Rmd", sep = ""), envir = new.env())
+
+module <- commandArgs(trailingOnly = TRUE)
+source <- paste(module, ".Rmd", sep = "")
+
+if (file.exists(source)){
+    knit(source, envir = new.env())
+    system(paste("pandoc -s -t slidy ", paste(module, ".md", sep = ""), " -o ", paste(module, "_slides.html", sep = ""), " --self-contained"))
+    knit2html(source, envir = new.env())
+} else {
+    cat("Error: ", source, "does not exist.\n")
 }
