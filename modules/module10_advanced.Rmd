@@ -9,6 +9,10 @@ library(foreign)
 earnings <- read.dta('../data/heights.dta')
 ```
 
+# This purpose of this module
+
+For some of the topics here, my goal is not to teach you how to fish, but merely to tell you that fish exist, they are delicious, that they can be caught, and where one might go to figure out how to catch them.
+
 # Object-oriented programming in R
 
 Note to BB: start recording.
@@ -19,13 +23,13 @@ Confusingly, R has three different systems for OOP, and none of them are as eleg
 * S4: more formal system, used with *lme4* 
 * Reference Classes: new system allowing for passing objects by reference
 
-# Basics of object-oriented programming
+# Basics of object-oriented programming (OOP)
 
-The basic idea is that coding is structured around *objects*, which have  *class* and *methods* that operate on objects in the class.
+The basic idea is that coding is structured around *objects*, which have  *class*, and *methods* that operate on objects in the class.
 
-So basically like a list but with methods that are specifically associated with particular classes, as we've seen with the `lm` class.
+Objects are like lists, but with methods that are specifically associated with particular classes, as we've seen with the `lm` class.
 
-Whether one needs to carefully specify the definition of the class (what the fields/components and methods are) is a distinguishing feature between S3 and S4.
+Objects have fields, analogous to the components of a list. For S4 and reference classes, the fields of the class are fixed. 
 
 # Working with S3 classes and methods
 
@@ -47,19 +51,20 @@ methods(class = "glm")
 
 methods(predict)
 
-print
+predict
 
-# print.glm
+# predict.glm
 ```
 
-When `print()` is called on a GLM object, it first calls the generic `print()`, which then recognizes that the first argument is of the class *glm* and immediately calls the right class-specific method.
+When `predict()` is called on a GLM object, it first calls the generic `predict()`, which then recognizes that the first argument is of the class *glm* and immediately calls the right class-specific method.
 
 # Making your own S3 class/object/method
 
 Making an object and class-specific methods under S3 is simple. 
 
 ```{r}
-rboot2013 <- list(month = 'August', year = 2013, instructor = 'Paciorek', attendance = 100)
+rboot2013 <- list(month = 'August', year = 2013, 
+  instructor = 'Paciorek', attendance = 100)
 class(rboot2013) <- "workshop"
 
 rboot2013
@@ -71,23 +76,27 @@ print.workshop <- function(x) {
        cat("A workshop held in ", month, " ", year, "; taught by ", instructor, ".\nThe attendance was ", attendance, ".\n", sep = ""))
     invisible(x)
 }
-rboot2013
+rboot2013 # doesn't execute correctly in the slide creation
 ```
  
 Note that we rely on the generic `print()` already existing in R. Otherwise we'd need to create it.
 
+So what is happening behind the scenes here?
+
 # Using S4 classes and methods
 
-Unlike S4, S4 classes have a formal definition and objects in the class must have the specified fields/components. 
+Unlike S4, S4 classes have a formal definition and objects in the class must have the specified fields. 
 
-The components of an S4 class are called slots. Instead of `x$field` you do `x@field`.
+The fields of an S4 class are called 'slots'. Instead of `x$field` you do `x@field`.
 
 Here's a bit of an example of an S4 class for a linear mixed effects model from *lme4*:
 
 ```{r}
+require(lme4)
+require(methods)
 fm1 <- lmer(Reaction ~ Days + (Days|Subject), sleepstudy)
 class(fm1)
-methods("mer")
+methods(class = "mer")
 slotNames(fm1)
 fm1$ranef
 fm1@ranef
@@ -102,66 +111,6 @@ Reference classes are somewhat like S4 in that a class is formally defined and R
 Methods for reference classes can modify the contents of fields in an object invisibly without the need to copy over the entire object.
 
 
-# Computing on the language
-
-One of the powerful capabilities you have in R is the ability to use R to modify and create R code. 
-
-First we need to understand a bit about how R code is stored and manipulated when we don't want to immediately evaluate it.
-
-When you send some code to R to execute, it has to 'parse' the input; i.e., to process it so that it know how to evaluate it. The parsed input can then be evaluated in the proper context (i.e., the right frame). 
-
-We can capture parsed code before it is evaluated, manipulate it, and execute the modified result.
-
-# Capturing and evaluating parsed code
-
-```{r}
-code <- quote(n <- 100)
-code
-class(code)
-eval(code)
-results <- rep(0, n)
-moreCode <- quote(for(i in 1:n) {
-    tmp <- rnorm(30)
-    results[i] <- min(tmp)
-})
-class(moreCode)
-
-newN <- 200
-codeText <- paste("n", "<-", newN)
-codeFromText <- parse(text = codeText)
-eval(codeFromText)
-n
-```
-
-So you could use R's string manipulation capabilities to write and then evaluate R code. Meta.
-
-# Using R to automate working with object names 
-
-Suppose you were given a bunch of objects named "x1", "x2", "x3", ... and you wanted to write code to automatically do some computation on them.
-
-```{r}
-x1 <- rnorm(5)
-x2 <- rgamma(10)
-x3 <- runif(20)
-nVals <- 3
-results <- rep(0, nVals)
-for(i in 1:nVals) {  
-  tmp <- eval(as.name(paste("x", i, sep = "")))
-  # tmp <- get(paste("x", i, sep = "")) # an alternative
-   results[i] <- mean(tmp)
-}
-```
-
-Or suppose you needed to create "x1", "x2", "x3", automatically.
-
-```{r}
-nVals <- 3
-results <- rep(0, nVals)
-for(i in 1:nVals) {  
-   assign(paste("x", i, sep = ""), rnorm(10))
-}
-x2
-```
 
 # Error and warning messages
 
@@ -183,8 +132,8 @@ mysqrt <- function(x) {
   } else {
       if(any(x < 0)) {
         warning("mysqrt: found negative values; proceeding anyway")
-        x[x < 0] <- NaN
         x[x >= 0] <- (x[x >= 0])^(1/2)
+        x[x < 0] <- NaN
         return(x)
       } else return(x^(1/2))
   }
@@ -240,6 +189,77 @@ mod[[2]]
 mod[[3]]
 ```
 
+# Computing on the language
+
+One of the powerful capabilities you have in R is the ability to use R to modify and create R code. 
+
+First we need to understand a bit about how R code is stored and manipulated when we don't want to immediately evaluate it.
+
+When you send some code to R to execute, it has to 'parse' the input; i.e., to process it so that it know how to evaluate it. The parsed input can then be evaluated in the proper context (i.e., the right frame). 
+
+We can capture parsed code before it is evaluated, manipulate it, and execute the modified result.
+
+# Capturing and evaluating parsed code
+
+```{r}
+code <- quote(n <- 100)
+code
+class(code)
+n
+
+eval(code)
+n
+
+results <- rep(0, n)
+moreCode <- quote(for(i in 1:n) {
+    tmp <- rnorm(30)
+    results[i] <- min(tmp)
+})
+class(moreCode)
+as.list(moreCode)
+
+newN <- 200
+codeText <- paste("n", "<-", newN)
+codeText
+codeFromText <- parse(text = codeText)
+eval(codeFromText)
+n
+```
+
+So you could use R's string manipulation capabilities to write and then evaluate R code. Meta.
+
+# Using R to automate working with object names 
+
+Suppose you were given a bunch of objects named "x1", "x2", "x3", ... and you wanted to write code to automatically do some computation on them.
+
+```{r}
+x1 <- rnorm(5)
+x2 <- rgamma(10, 1)
+x3 <- runif(20)
+nVals <- 3
+results <- rep(0, nVals)
+for(i in 1:nVals) { 
+  varName <- paste("x", i, sep = "")
+  tmp <- eval(as.name(varName))
+  # tmp <- get(varName) # an alternative
+   results[i] <- mean(tmp)
+}
+results
+```
+
+Or suppose you needed to create "x1", "x2", "x3", automatically.
+
+```{r}
+nVals <- 3
+results <- rep(0, nVals)
+for(i in 1:nVals) {  
+   varName <- paste("x", i, sep = "")
+   assign(varName, rnorm(10))
+}
+x2
+```
+
+Can you think of any uses of this ability for R to self-generate?
 
 # File encodings
 
@@ -247,13 +267,13 @@ Text (either in the form of a file with regular language in it or a data file wi
 
 UTF-8 is an encoding for the Unicode characters that include more than 110,000 characters from 100 different alphabets/scripts. It's widely used on the web.
 
-Latin-1 encodes a small subset of Unicode and contains the characters used in many Europeon languages (e.g., letters with accents).
+Latin-1 encodes a small subset of Unicode and contains the characters used in many European languages (e.g., letters with accents).
 
 # Dealing with encodings in R
 
 To read files with other characters correctly into R, you may need to tell R what encoding the file is in. E.g., see help on `read.table()` for the *fileEncoding* and *encoding* arguments. 
 
-With strings already in R, you can convert between encodings:
+With strings already in R, you can convert between encodings with `iconv()`:
 ```{r}
 text <- "_Melhore sua seguran\xe7a_"
 iconv(text, from = "latin1", to = "UTF-8")
@@ -265,17 +285,22 @@ You can mark a string with an encoding so R can display it correctly:
 x <- "fa\xE7ile"
 Encoding(x) <- "latin1"
 x
+
+# playing around...
+x <- "\xa1 \xa2 \xa3 \xf1 \xf2"
+Encoding(x) <- "latin1"
+x
 ```
 
 # Line endings in text files
 
 Windows, Mac, and Linux handle line endings in text files somewhat differently. So if you read a text file into R that was created in a different operating system you can run into difficulties.
 
-* In Windows lines end in both a newline (the ASCII character \n) and a carriage return (\r). 
+* In Windows lines end in both a newline (the ASCII character `\n`) and a carriage return (`\r`). 
 * In UNIX, lines end in only a newline.
-* On a Mac, lines may end only in a carriage return.
+* On a Mac, lines may end only in a carriage return (though this may not generally be an issue).
 
-So in UNIX you might see `^M` at the end of lines when you open a Windows file in a text editor. The dos2unix or fromdos commands can do the necessary conversion
+So in UNIX you might see `^M` at the end of lines when you open a Windows file in a text editor. The *dos2unix* or *fromdos* commands can do the necessary conversion
 
 In Windows you might have a UNIX text file appear to be all one line. The *unix2dos* or *todos* commands in UNIX can do the conversion. 
 
@@ -295,14 +320,17 @@ Basically, you tell the package what DBMS is being used on the back-end, link to
 
 The Current Index to Statistics contains records of article and author information from most Statistics journals. 
 
-The database is not freely available, so it's not on the course bSpace or Github, but I can do a demo here.
+The database is not freely available, so it's not on the course bSpace or Github, but I can do a demo here. (This may not process correctly when producing these slides...)
 
 ```{r}
 library(RSQLite)  # DBI is a dependency
-db <- dbConnect(SQLite(), dbname = "../data/cis.db") # cis.db is an SQLite database
+db <- dbConnect(SQLite(), dbname = "../data/cis.db") 
+# cis.db is an SQLite database
+
 dbListTables(db)
 dbListFields(db, "articles")
-breiman <- dbGetQuery(db, "select * from authors where name like 'Breiman%'")
+breiman <- dbGetQuery(db, "select * from authors 
+   where name like 'Breiman%'")
 ```
 
 # Breakout
