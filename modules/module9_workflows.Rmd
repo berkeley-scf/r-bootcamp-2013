@@ -1,6 +1,6 @@
 % R bootcamp, Module 9: Workflows, managing projects and good practices
 % August 2013, UC Berkeley
-% Chris Paciorek and (add others)
+% Chris Paciorek and Jarrod Millman
 
 ```{r chunksetup, include=FALSE} 
 # include any code here you don't want to show up in the document,
@@ -96,6 +96,21 @@ Then you don't need to leave RStudio or R or a terminal window open. Your job wi
 
 IMPORTANT: make sure to write any needed output to a file (e.g. .Rda files, CSV files, text output from print() or cat()).
 
+# Making dirt fly!
+
+![](figs/panama-canal.png)
+
+# Reproducible research
+
+> An article about computational science in a scientific
+publication is **not the scholarship itself**, it is merely
+**advertising** of the scholarship. The actual scholarship is the
+complete software development environment and the
+complete set of instructions which generated the figures.
+
+--- Jonathan Buckheit and David Donoho, WaveLab and
+Reproducible Research (1995)
+
 # Version control
 
 The basic idea is that instead of manually trying to keep track of what changes you've made to code, data, documents, you use software to help you manage the process. This has several benefits:
@@ -109,6 +124,12 @@ A popular tool these days is *git*, with storage for projects at github.com.
 
 At a basic level, a simple principle is to have version numbers for all your work: code, datasets, manuscripts. Whenever you make a change to a dataset, increment the version number. For code and manuscripts, increment when you make substantial changes or have obvious breakpoints in your workflow. 
 
+# Learning Git
+
+* [Git for Scientists: A Tutorial](http://nyuccl.org/pages/GitTutorial/)
+* [Gitwash: workflow for scientific Python projects](http://matthew-brett.github.io/pydagogue/gitwash_build.html)
+* [Git branching demo](http://pcottle.github.io/learnGitBranching/)
+
 # Some ideas about reproducibility
 
 * Never change a dataset manually. Always have a script that operates on the data. 
@@ -117,6 +138,22 @@ At a basic level, a simple principle is to have version numbers for all your wor
 * When making figures, use *save()* or *save.image()* to save all the inputs needed to recreate a figure, with the code for making the figure in a script file
 * If feasible, include your code for doing analyses and making figures in the relevant document reporting the work by using Rmarkdown or Latex with knitr or Sweave. 
 * Set the random number seed so someone else can duplicate your exact numbers
+
+# Github
+
+![](figs/ipython_github_pull1.png)
+
+# knitr
+
+![](figs/knitr-book.png)
+
+# Implementing Reproducible Computational Research
+
+![In many of today’s research fields, including biomedicine, computational tools are increasingly being used so that the results can be reproduced. Researchers are now encouraged to incorporate software, data, and code in their academic papers so that others can replicate their research results. Edited by three pioneers in this emerging area, this book is the first one to explore this groundbreaking topic. It presents various computational tools useful in research, including cloud computing, data repositories, virtual machines, R’s Sweave function, XML-based programming, and more. It also discusses legal issues and case studies.](figs/ircr-book.png)
+
+# Best practices
+
+![[arXiv:1210.0530v3 [cs.MS] 29 Nov 2012](http://arxiv.org/abs/1210.0530v3)](figs/best-practices.png)
 
 # Coding practices
 
