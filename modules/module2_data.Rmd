@@ -1,6 +1,6 @@
 % R bootcamp, Module 2: Working with objects and data
 % August 2013, UC Berkeley
-% Chris Paciorek and (add others)
+% Chris Paciorek
 
 ```{r chunksetup, include=FALSE} 
 # include any code here you don't want to show up in the document,

@@ -1,6 +1,6 @@
 % R bootcamp, Module 9: Workflows, managing projects and good practices
 % August 2013, UC Berkeley
-% Chris Paciorek and Jarrod Millman
+% Jarrod Millman and Chris Paciorek
 
 ```{r chunksetup, include=FALSE} 
 # include any code here you don't want to show up in the document,

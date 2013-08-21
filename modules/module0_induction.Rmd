@@ -1,12 +1,12 @@
 % R bootcamp, Module 0: Recruit processing
 % August 2013, UC Berkeley
-% Chris Paciorek and (add others)
+% Chris Paciorek
 
 # How we'll operate
 
 Note to BB: Remember to start recording.
 
-The bootcamp will be organized in modules, each of which will be a combination of lecture/demo presentation with brief pauses for you to try out and experiment with code snippets, concluded by a longer problem or two for you to work at on your own in a breakout session. Solutions will be presented before the start of the next module. Assistants will be available to help answer any questions you have (just wave to one of them), or feel free to just ask during the presentation. We'll also have assistants monitoring the [Forum/Disc board] on bspace, so feel free to type in a question there and one of the assistants (or one of you!) will answer the question. 
+The bootcamp will be organized in modules, each of which will be a combination of lecture/demo presentation with brief pauses for you to try out and experiment with code snippets, concluded by a longer problem or two for you to work at on your own in a breakout session. Solutions will be presented before the start of the next module. Assistants will be available to help answer any questions you have (just wave to one of them), or feel free to just ask during the presentation. We'll also have assistants monitoring Piazza (or possibly the bSpace chat room, TBD) on bspace, so feel free to type in a question there and one of the assistants (or one of you!) will answer the question. 
 
 I encourage you to:
 - try out the code as I walk through it
@@ -14,16 +14,16 @@ I encourage you to:
 - try to guess what my syntax means in cases we haven't yet seen that syntax
 - play with it and try variations and try to break it and see what happens
 - tell me if something interesting happens
-- ask questions of me, the helpers, and on the [Forum]
+- ask questions of me, the helpers, and on Piazza/chat room
 
 
 We'll present most of the material from within RStudio, using R Markdown documents with embedded R code. R Markdown is an extension to the Markdown markup language which makes it easy to write html in a simple plain text format.  This allows me to both run the R code directly as well as compile on-the-fly to an html file that can be used for presentation. All files will be available on [bspace](https://bspace.berkeley.edu/portal/site/28905ed6-df96-4778-b2a7-d87fb6405ba2) (just point and click on the files you want under Resources and [Github](https://github.com/berkeley-scf/r-bootcamp-2013).  Note that Github is likely to have the most up-to-date documents while bspace will only be updated periodically.
 
-## Using github to get the documents
+# Using github to get the documents
 
 To download the files from github, you can do the following. 
 
-### Within RStudio
+## Within RStudio
 
 Within RStudio go to Project->New Project->Version Control->Git and enter:
 
@@ -39,7 +39,7 @@ Git->More->Pull Branches
 
 Be warned that you probably do not want to make your own notes or changes to the files we are providing as if you then do a "Git Pull" to update the materials, you'll have to deal with the conflict between your local version and our version. You probably will want to make a personal copy of such files.
 
-### From a terminal window
+## From a terminal window
 
 - cd /directory/where/you/want/repository/located
 - git clone https://github.com/berkeley-scf/r-bootcamp-2013/
