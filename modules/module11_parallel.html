@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Computer architecture</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+</style>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: rgb(88, 72, 246)
+   }
+
+   pre .number {
+     color: rgb(0, 0, 205);
+   }
+
+   pre .comment {
+     color: rgb(76, 136, 107);
+   }
+
+   pre .keyword {
+     color: rgb(0, 0, 255);
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: rgb(3, 106, 7);
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+</head>
+
+<body>
+<h1>Computer architecture</h1>
+
+<p>Note to BB: remember to start recording.</p>
+
+<ul>
+<li>Modern computers have multiple processors and clusters/supercomputers have multiple networked machines, each with multiple processors.</li>
+<li>The key to increasing computational efficiency in these contexts is breaking up the work amongst the processors.</li>
+<li>Processors on a single machine (or &#39;node&#39;) share memory and don&#39;t need to carry out explicit communication (shared memory computation)</li>
+<li>Processors on separate machines need to pass data across a network, often using the MPI protocol (distributed memory computation)</li>
+</ul>
+
+<p>We&#39;ll focus on shared memory computation here.</p>
+
+<h1>How do I know how many cores a computer has?</h1>
+
+<ul>
+<li>Linux - count the processors listed in <em>/proc/cpuinfo</em></li>
+<li>Mac - in a terminal: <code>system_profiler | grep &#39;Total Number Of Cores&#39;</code></li>
+<li>Windows - count the number of graphs shown for CPU Usage (or CPU Usage History) under &ldquo;Task Manager-&gt;Performance&rdquo;, or <a href="http://www.cpuid.com/cpuz.php">try this program</a> </li>
+</ul>
+
+<p>To see if multiple cores are being used by your job, you can do:</p>
+
+<ul>
+<li>Mac/Linux - use <em>top</em> or <em>ps</em></li>
+<li>Windows - see the &ldquo;Task Manager-&gt;Performance-&gt;CPU Usage&rdquo;</li>
+</ul>
+
+<h1>How can we make use of multiple cores?</h1>
+
+<p>Some basic approaches are:</p>
+
+<ul>
+<li>Use a linear algebra package that distributes computations across &#39;threads&#39;</li>
+<li>Spread independent calculations (embarrassingly parallel problems) across multiple cores
+
+<ul>
+<li>for loops with independent calculations</li>
+<li>parallelizing <code>apply()</code> and its variants</li>
+</ul></li>
+</ul>
+
+<h1>Threaded linear algebra</h1>
+
+<p>R comes with a default BLAS (basic linear algebra subroutines) that carry out the core linear algebra computations. However, you can generally improve performance (sometimes by an order of magnitude) by using a different BLAS. Furthermore a threaded BLAS will allow you to use multiple cores.</p>
+
+<p>A &#39;thread&#39; is a lightweight process, and the operating system sees multiple threads as part of a single process.</p>
+
+<ul>
+<li>For Linux, <em>openBLAS</em>, Intel&#39;s <em>MKL</em> and AMD&#39;s <em>ACML</em> are both fast and threaded. On the SCF we have openBLAS on the compute servers and ACML on the Linux cluster and R uses these for linear algebra.</li>
+<li>For Mac, Apple&#39;s <em>vecLib</em> (in a library called <em>libRblas.vecLib.dylib</em>) is fast and threaded.</li>
+<li>For Windows, you&#39;re probably out of luck.</li>
+</ul>
+
+<p>We&#39;ll show by demonstration that my Mac and our Linux machines are using multiple cores for linear algebra operations.</p>
+
+<pre><code class="r">n &lt;- 5000
+x &lt;- matrix(rnorm(n^2), n)
+U &lt;- chol(crossprod(x))
+</code></pre>
+
+<p>You should see that your R process is using more than 100% of CPU. Inconceivable!</p>
+
+<h1>More details on the BLAS</h1>
+
+<p>You can talk with your systems administrator about linking R to a fast BLAS or you can look into it yourself for your personal machine; see the <a href="http://www.cran.r-project.org/manuals.html">R Installation and Administration manual</a>.</p>
+
+<p>Note that in some cases, in particular for small matrix operations, using multiple threads may actually slow down computation, so you may want to experiment, particularly with Linux. You can force the linear algebra to use only a single core by doing (in bash) <code>export OMP_NUM_THREADS=1</code> in the Linux terminal window before starting R.</p>
+
+<p>Finally, note that threaded BLAS and either <code>foreach</code> or parallel versions of <code>apply()</code> can conflict and cause R to hang, so you&#39;re likely to want to set the number of threads to 1 as above if you&#39;re doing explicit parallelization. </p>
+
+<h1>What is an embarrassingly parallel (EP) problem?</h1>
+
+<p>Do you think you should be asking? </p>
+
+<p>An EP problem is one that can be solved by doing independent computations as separate processes without communication between the processes. You can get the answer by doing separate tasks and then collecting the results. </p>
+
+<p>Examples in statistics include</p>
+
+<ol>
+<li>stratified analyses</li>
+<li>cross-validation</li>
+<li>random forests models</li>
+<li>simulations with many independent replicates</li>
+<li>bootstrapping</li>
+</ol>
+
+<p>Can you think of others in your work?</p>
+
+<p>Some things that are not EP:</p>
+
+<ol>
+<li>Markov chain Monte Carlo for fitting Bayesian models</li>
+<li>optimization</li>
+</ol>
+
+<h1>Using multiple cores for EP problems: <em>foreach</em></h1>
+
+<p>First, make sure your iterations are independent and don&#39;t involve sequential calculations!</p>
+
+<p>The <em>foreach</em> package provides a way to do a for loop using multiple cores. It can use a variety of &#39;back-ends&#39; that handle the nitty-gritty of the parallelization. </p>
+
+<p>To use multiple cores on a single machine, use the <em>parallel</em> back-end from the <em>doParallel</em> package (or <em>multicore</em> from <em>doMC</em>)</p>
+
+<pre><code class="r">require(parallel)
+require(doParallel)
+require(foreach)
+nCores &lt;- 4
+registerDoParallel(nCores)
+
+testFun &lt;- function(i) {
+    set.seed(i)
+    mn &lt;- mean(rnorm(n))
+    mn
+}
+
+n &lt;- 1e+07
+nSims &lt;- 100
+out &lt;- foreach(i = 1:nSims, .combine = c) %dopar% {
+    cat(&quot;Starting &quot;, i, &quot;th job.\n&quot;, sep = &quot;&quot;)
+    outSub &lt;- testFun(i)
+    cat(&quot;Finishing &quot;, i, &quot;th job.\n&quot;, sep = &quot;&quot;)
+    outSub  # this will become part of the out objec
+}
+out[1:5]
+</code></pre>
+
+<pre><code>## [1]  0.0004037 -0.0002178 -0.0002258  0.0005587  0.0002852
+</code></pre>
+
+<p>What do you think are the advantages and disadvantages of having many small tasks vs. a few large tasks?</p>
+
+<p>You can leave out the <code>.combine</code> argument - <code>foreach</code> will do something reasonably sensible on its own in terms of combining the results from the different tasks.</p>
+
+<h1>Using multiple cores for EP problems: parallel <em>apply</em> variants</h1>
+
+<p><code>help(clusterApply)</code> shows the wide variety of parallel versions of the <code>apply()</code> family of functions.</p>
+
+<pre><code class="r">require(parallel)
+nCores &lt;- 4
+cluster &lt;- makeCluster(nCores)
+
+out &lt;- parSapply(cluster, seq_len(nSims), testFun)
+out2 &lt;- mclapply(seq_len(nSims), testFun, mc.cores = nCores)
+out[1:5]
+</code></pre>
+
+<pre><code>## [1]  0.0004037 -0.0002178 -0.0002258  0.0005587  0.0002852
+</code></pre>
+
+<p>One thing to keep in mind is whether the different tasks all take about the same amount of time or widely different times. In the latter case, one wants to sequentially dispatch tasks as earlier tasks finish, rather than dispatching a block of tasks to each core. Some of these parallel <em>apply</em> variants allow you to control this. </p>
+
+<h1>Parallelization and Random Number Generation</h1>
+
+<p>A tale of the good, the bad, and the ugly</p>
+
+<p>Random numbers on a computer are not truly random but are generated as a sequence of pseudo-random numbers. The sequence is finite (but very, very, very, very long) and eventally repeats itself. </p>
+
+<p>A random number seed determines where in the sequence one starts when generating random numbers.</p>
+
+<ul>
+<li>The ugly: Make sure you do not use the same seed for each task</li>
+</ul>
+
+<pre><code class="r">set.seed(0)
+rnorm(5)
+</code></pre>
+
+<pre><code>## [1]  1.2630 -0.3262  1.3298  1.2724  0.4146
+</code></pre>
+
+<pre><code class="r">set.seed(0)
+rnorm(5)
+</code></pre>
+
+<pre><code>## [1]  1.2630 -0.3262  1.3298  1.2724  0.4146
+</code></pre>
+
+<ul>
+<li><p>The (not so) bad: Use a different seed for each task or each process. It&#39;s possible the subsequences will overlap but quite unlikely.</p></li>
+<li><p>The good: Use the L&#39;Ecuyer algorithm to ensure distinct subsequences</p>
+
+<ul>
+<li>with <code>foreach</code> you can use <code>%dorng%</code> from the <em>doRNG</em> package in place of <code>%dopar%</code></li>
+<li>with <code>mclapply()</code>, use the <code>mc.set.seed</code> argument (see <code>help(mcparallel)</code>) </li>
+</ul></li>
+<li><p>The ugly but good: Generate all your random numbers in the master process and distribute them to the tasks if feasible.</p></li>
+</ul>
+
+<p>The syntax for using L&#39;Ecuyer is available in <a href="http://www.stat.berkeley.edu/scf/paciorek-parallelWorkshop.pdf">my parallel computing workshop notes</a>.</p>
+
+<h1>A brief note on distributed computing for advanced users</h1>
+
+<p>If you have access to multiple machines with a networked environment, such as the compute servers in the Statistics Department, there are a couple straightforward ways to parallelize EP jobs across machines.</p>
+
+<ol>
+<li>Use <code>foreach</code> with <em>doMPI</em> as the back-end. You&#39;ll need <em>MPI</em> and <em>Rmpi</em> installed on all machines. </li>
+<li>Use sockets to make a cluster in R and then use <code>parLapply()</code>, <code>parSapply()</code>, <code>mclapply()</code>, etc.</li>
+</ol>
+
+<p>See my <a href="http://www.stat.berkeley.edu/scf/paciorek-distribComp.pdf">notes on distributed computing</a> for syntax and more details. </p>
+
+<h1>Breakout</h1>
+
+<p>Fit logistic regression models of preference for Bush/Kerry on income, stratified by state. Use <code>foreach</code> or a parallel version of one of the <em>apply</em> variants.</p>
+
+</body>
+
+</html>
