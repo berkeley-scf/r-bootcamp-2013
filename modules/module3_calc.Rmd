@@ -7,8 +7,9 @@
 # e.g. package and dataset loading
 require(foreign)
 require(fields)
-vote <- read.dta('data/2004_labeled_processed_race.dta')
-earnings <- read.dta('data/heights.dta')
+if(!('modules' %in% unlist(strsplit(getwd(), split = '/')))) setwd('modules')
+vote <- read.dta('../data/2004_labeled_processed_race.dta')
+earnings <- read.dta('../data/heights.dta')
 ```
 
 # Vectorized calculations

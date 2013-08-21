@@ -9,8 +9,8 @@ library(plyr)
 library(reshape2)
 library(ggplot2)
 library(lattice)
-#setwd
-mydata <- read.csv("data/cpds.csv")
+if(!('modules' %in% unlist(strsplit(getwd(), split = '/')))) setwd('modules')
+mydata <- read.csv("../data/cpds.csv")
 ```
 
 # Out with the old...

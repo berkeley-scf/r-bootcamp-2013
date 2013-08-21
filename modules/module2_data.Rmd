@@ -5,6 +5,7 @@
 ```{r chunksetup, include=FALSE} 
 # include any code here you don't want to show up in the document,
 # e.g. package and dataset loading
+if(!('modules' %in% unlist(strsplit(getwd(), split = '/')))) setwd('modules')
 ```
 
 # Matrices and Arrays
@@ -152,7 +153,7 @@ A review from Module 1...
 
 ```{r}
 require(foreign)
-vote=read.dta('data/2004_labeled_processed_race.dta')
+vote=read.dta('../data/2004_labeled_processed_race.dta')
 class(vote)
 head(vote)
 str(vote)
@@ -326,20 +327,20 @@ Many errors and much confusion result from you and R not being on the same page 
 The workhorse for reading into a data frame is *read.table()*, which allows any separator (CSV, tab-delimited, etc.). *read.csv()* is a special case of *read.table()* for CSV files.
 
 ```{r, cache=TRUE}
-rta <- read.table("data/RTAData.csv", sep = ",", head = TRUE)
+rta <- read.table("../data/RTAData.csv", sep = ",", head = TRUE)
 rta[1:5, 1:5]
 dim(rta)
 # great, we're all set, right?
 # Not so fast...
 unlist(lapply(rta, class))[1:5]
 # ?read.table
-rta2 <- read.table("data/RTAData.csv", sep = ",", head = TRUE,
+rta2 <- read.table("../data/RTAData.csv", sep = ",", head = TRUE,
        stringsAsFactors = FALSE)
 rta2[3,3]
 unlist(lapply(rta2, class))[1:5]
 # let's delve more deeply
 levels(rta[ , 2])[c(1:5, 3041:3044)]
-rta3 <- read.table("data/RTAData.csv", sep = ",", head = TRUE, 
+rta3 <- read.table("../data/RTAData.csv", sep = ",", head = TRUE, 
       stringsAsFactors = FALSE, na.strings = c('NA', 'x'))
 unlist(lapply(rta3, class))[1:5]
 

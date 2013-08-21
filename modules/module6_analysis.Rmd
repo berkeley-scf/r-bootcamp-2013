@@ -11,8 +11,8 @@ library(reshape2)
 library(ggplot2)
 library(lmtest)
 library(sandwich)
-#setwd
-mydata <- read.dta("data/2004_labeled_processed_race.dta")
+if(!('modules' %in% unlist(strsplit(getwd(), split = '/')))) setwd('modules')
+mydata <- read.dta("../data/2004_labeled_processed_race.dta")
 ```
 
 # Now you've got all the basic pieces

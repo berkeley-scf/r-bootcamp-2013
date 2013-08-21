@@ -5,8 +5,9 @@
 ```{r chunksetup, include=FALSE} 
 # include any code here you don't want to show up in the document,
 # e.g. package and dataset loading
+if(!('modules' %in% unlist(strsplit(getwd(), split = '/')))) setwd('modules')
 library(foreign)
-vote <- read.dta('data/2004_labeled_processed_race.dta')
+vote <- read.dta('../data/2004_labeled_processed_race.dta')
 ```
 
 # R as a calculator
@@ -213,7 +214,7 @@ dim(mat)
 * Data frames: collections of columns of potentially different types
 ```{r}
 library(foreign)
-vote <- read.dta('data/2004_labeled_processed_race.dta')
+vote <- read.dta('../data/2004_labeled_processed_race.dta')
 head(vote)
 dim(vote)
 nrow(vote)
@@ -352,7 +353,7 @@ R has several different plotting systems:
 We'll see a little bit of *base* graphics here and then *lattice* and *ggplot2* tomorrow.
 
 ```{r basic_plots}
-earnings <- read.dta("data/heights.dta")
+earnings <- read.dta("../data/heights.dta")
 names(earnings)
 hist(earnings$earn)
 plot(earnings$earn ~ earnings$height)

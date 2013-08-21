@@ -7,7 +7,8 @@
 # e.g. package and dataset loading
 require(fields)
 require(foreign)
-earnings <- read.dta('data/heights.dta')
+if(!('modules' %in% unlist(strsplit(getwd(), split = '/')))) setwd('modules')
+earnings <- read.dta('../data/heights.dta')
 ```
 
 # Optimization
