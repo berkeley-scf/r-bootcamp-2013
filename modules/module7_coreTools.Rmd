@@ -7,7 +7,7 @@
 # e.g. package and dataset loading
 require(fields)
 require(foreign)
-earnings <- read.dta('../data/heights.dta')
+earnings <- read.dta('data/heights.dta')
 ```
 
 # Optimization

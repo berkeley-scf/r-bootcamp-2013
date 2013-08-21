@@ -6,7 +6,7 @@
 # include any code here you don't want to show up in the document,
 # e.g. package and dataset loading
 library(foreign)
-vote <- read.dta('../data/2004_labeled_processed_race.dta')
+vote <- read.dta('data/2004_labeled_processed_race.dta')
 ```
 
 # R as a calculator
@@ -14,9 +14,9 @@ vote <- read.dta('../data/2004_labeled_processed_race.dta')
 Note: Remember to start recording.
 
 ```{r computing,echo=TRUE,results='markup'}
-2+2 # add numbers
-2*pi # multiply by a constant
-7+runif(1) # add a random number
+2 + 2 # add numbers
+2 * pi # multiply by a constant
+7 + runif(1) # add a random number
 3^4 # powers
 sqrt(4^4) # functions
 log(10)
@@ -70,9 +70,11 @@ R gives us a lot of flexibility (within certain rules) for assigning to (parts o
 If you're starting to type something you've typed before, or the long name of an R object or function, STOP!  You likely don't need to type all of that.
 
 - Tab completion
-- Command history (up/down arrows, Ctrl-{up arrow})
+- Command history 
+    * up/down arrows
+    * Ctrl-{up arrow} or Command-{up arrow}
 - RStudio: select a line or block for execution
-- Put your code in a file and use `source()`: `source('myRcodeFile.R')`
+- Put your code in a file and use `source()`. For example: `source('myRcodeFile.R')`
 
 Are there other tricks that anyone knows of?
 
@@ -211,7 +213,7 @@ dim(mat)
 * Data frames: collections of columns of potentially different types
 ```{r}
 library(foreign)
-vote <- read.dta('../data/2004_labeled_processed_race.dta')
+vote <- read.dta('data/2004_labeled_processed_race.dta')
 head(vote)
 dim(vote)
 nrow(vote)
@@ -350,7 +352,7 @@ R has several different plotting systems:
 We'll see a little bit of *base* graphics here and then *lattice* and *ggplot2* tomorrow.
 
 ```{r basic_plots}
-earnings <- read.dta("../data/heights.dta")
+earnings <- read.dta("data/heights.dta")
 names(earnings)
 hist(earnings$earn)
 plot(earnings$earn ~ earnings$height)

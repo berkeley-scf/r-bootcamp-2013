@@ -45,7 +45,7 @@ August 2013, UC Berkeley
 <pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span> * pi  <span class="co"># multiply by a constant</span></code></pre>
 <pre><code>## [1] 6.283</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="dv">7</span> + <span class="kw">runif</span>(<span class="dv">1</span>)  <span class="co"># add a random number</span></code></pre>
-<pre><code>## [1] 7.073</code></pre>
+<pre><code>## [1] 7.197</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span>^<span class="dv">4</span>  <span class="co"># powers</span></code></pre>
 <pre><code>## [1] 81</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt</span>(<span class="dv">4</span>^<span class="dv">4</span>)  <span class="co"># functions</span></code></pre>
@@ -105,7 +105,11 @@ depts</code></pre>
 <p>If you're starting to type something you've typed before, or the long name of an R object or function, STOP! You likely don't need to type all of that.</p>
 <ul>
 <li>Tab completion</li>
-<li>Command history (up/down arrows, Ctrl-{up arrow})</li>
+<li>Command history
+<ul>
+<li>up/down arrows</li>
+<li>Ctrl-{up arrow} or Command-{up arrow}</li>
+</ul></li>
 <li>RStudio: select a line or block for execution</li>
 <li>Put your code in a file and use <code>source()</code>: <code>source('myRcodeFile.R')</code></li>
 </ul>
@@ -119,7 +123,7 @@ depts</code></pre>
 nums &lt;- <span class="kw">c</span>(<span class="fl">1.1</span>, <span class="dv">3</span>, -<span class="fl">5.7</span>)
 devs &lt;- <span class="kw">rnorm</span>(<span class="dv">5</span>)
 devs</code></pre>
-<pre><code>## [1] -0.23265 -2.13942 -0.08951  1.15784 -0.60814</code></pre>
+<pre><code>## [1] -0.6876 -0.3979  1.3807  1.5972  1.4075</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">
 <span class="co"># integer vector</span>
 ints &lt;- <span class="kw">c</span>(1L, 5L, -3L) <span class="co"># force storage as integer not decimal number</span>
@@ -170,7 +174,7 @@ vals[<span class="dv">1</span>:<span class="dv">2</span>] &lt;- <span class="dv"
 vals &lt;- <span class="kw">rnorm</span>(<span class="dv">100</span>)
 vals[vals &lt; <span class="dv">0</span>] &lt;- <span class="dv">0</span>
 vals[<span class="dv">1</span>:<span class="dv">8</span>]</code></pre>
-<pre><code>## [1] 0.9726 0.7337 0.2327 0.0000 0.0000 0.0000 0.0000 0.0000</code></pre>
+<pre><code>## [1] 0.4083 0.9509 0.5840 1.9976 0.0000 0.0000 0.0000 0.0000</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">
 <span class="kw">set.seed</span>(<span class="dv">0</span>)  <span class="co"># make random number generation repeatable</span>
 vals &lt;- <span class="kw">rnorm</span>(<span class="dv">100</span>)
@@ -469,10 +473,10 @@ vec2 &lt;- <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv"
 <pre><code>## bools :  logi [1:3] TRUE FALSE TRUE
 ## chars :  chr [1:6] &quot;hi&quot; &quot;hallo&quot; &quot;mother's&quot; &quot;father's&quot; ...
 ## depts :  chr [1:3] &quot;espm&quot; &quot;pmb&quot; &quot;stats&quot;
-## devs :  num [1:5] -0.2327 -2.1394 -0.0895 1.1578 -0.6081
+## devs :  num [1:5] -0.688 -0.398 1.381 1.597 1.408
 ## extremes :  num(0) 
 ## fours :  num [1:6] 4 4 4 4 4 4
-## idevs :  int [1:100] -3 -3 1 -3 5 1 1 1 -3 -3 ...
+## idevs :  int [1:100] -3 -3 5 5 -3 -3 1 1 -3 5 ...
 ## indices :  num [1:2] 1.7 2.3
 ## ints :  int [1:10] 1 2 3 4 5 6 7 8 9 10
 ## mat :  num [1:3, 1:3] -0.629 0.563 -0.953 -1.095 0.412 ...
