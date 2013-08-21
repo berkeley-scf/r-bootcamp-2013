@@ -7,50 +7,32 @@
 # e.g. package and dataset loading
 ```
 
-# The UNIX command line
+# Working with code
 
 Note: remember to start recording.
 
-Being able to operate your computer from a command line rather than via point-and-click in a GUI environment provides incredible power and flexibility to the user, as well as allowing for reproducibility and automation in your work.
+# Making dirt fly!
 
-In Linux and Mac, you just need to open a Terminal window. On the Mac this is in Applications->Utilities->Terminal. Once in the Terminal, you can treat your Mac as if it is a UNIX machine (which it is). 
+![](figs/panama-canal.png)
 
-Windows has the old MS-DOS command line that allows some command line functionality. There is something call *cygwin* that provides UNIX-like functionality.
+# Scripting
 
-# Timing your code
+Keeping all your code in script (i.e., text) files is the way to go. Try to keep your files modular and focused.
 
-There are a few tools in R for timing your code. 
+If you find yourself writing code to do something multiple times, write a function to do it and just call that function.
 
-```{r cache=TRUE}
-system.time(mean(rnorm(1e7)))
+If you use a good editor (such as RStudio's built-in editor, emacs with ESS, Aquamacs, [.... - see notes from intro session for new students]), it's easier to write and understand your code.
 
-library(rbenchmark)
-x <- rnorm(1e7)
-benchmark(ifelse(x < 0, x, 0),
-                   x[x < 0] <- 0, replications = 5,
-                   columns = c('replications', 'elapsed'))
-```
-For more advanced assessment of bottlenecks in your code, consider *Rprof()*.
+You can then run blocks of code within RStudio easily.
 
+To run all the code in an entire file, do `source('myCodeFile.R')`.
 
-# Memory use
+To run code as a background job in a Linux/Mac context:
+`R CMD BATCH --no-save myCodeFile.R myOutput.Rout &`
 
-You should know how much memory (RAM) the computer you are using has and keep in mind how big your objects are and how much memory you code might use. All objects in R are stored in RAM unlike, e.g., SAS or a database.
+Then you don't need to leave RStudio or R or a terminal window open. Your job will run by itself. If you are logged into a remote machine, you can log out and come back later.
 
-If in total, the jobs on a machine approach the physical RAM, the machine will start to use the hard disk as 'virtual memory'. This is called paging or swapping, and once this happens you're often toast. 
-
-You can assess memory use with *top* or *ps* in Linux/Mac or the system monitoring tool [???] in Windows. 
-
-```{r}
-x <- rnorm(1e7)
-object.size(x)
-1e7*8/1e6
-print(object.size(x), units = 'auto')
-x <- rnorm(1e8)
-gc()
-rm()
-gc()
-```
+IMPORTANT: make sure to write any needed output to a file (e.g. .Rda files, CSV files, text output from print() or cat()).
 
 # Debugging
 
@@ -77,28 +59,51 @@ fun3 <- function(x) {
 4) We can insert `browser()` inside a function and R will stop there and allow us to proceed with debugging statements
 5) You can temporarily insert code into a function (including built-in functions) with `trace(fxnName, edit = TRUE)`
 
-# Scripting
 
-Keeping all your code in script (i.e., text) files is the way to go. Try to keep your files modular and focused. 
 
-If you find yourself writing code to do something multiple times, write a function to do it and just call that function. 
+# Timing your code
 
-If you use a good editor (such as RStudio's built-in editor, emacs with ESS, Aquamacs, [.... - see notes from intro session for new students]), it's easier to write and understand your code.
+There are a few tools in R for timing your code.
 
-You can then run blocks of code within RStudio easily.
+```{r cache=TRUE}
+system.time(mean(rnorm(1e7)))
 
-To run all the code in an entire file, do `source('myCodeFile.R')`.
+library(rbenchmark)
+x <- rnorm(1e7)
+benchmark(ifelse(x < 0, x, 0),
+                   x[x < 0] <- 0, replications = 5,
+                   columns = c('replications', 'elapsed'))
+```
+For more advanced assessment of bottlenecks in your code, consider *Rprof()*.
 
-To run code as a background job in a Linux/Mac context:
-`R CMD BATCH --no-save myCodeFile.R myOutput.Rout &`
 
-Then you don't need to leave RStudio or R or a terminal window open. Your job will run by itself. If you are logged into a remote machine, you can log out and come back later. 
+# Memory use
 
-IMPORTANT: make sure to write any needed output to a file (e.g. .Rda files, CSV files, text output from print() or cat()).
+You should know how much memory (RAM) the computer you are using has and keep in mind how big your objects are and how much memory you code might use. All objects in R are stored in RAM unlike, e.g., SAS or a database.
 
-# Making dirt fly!
+If in total, the jobs on a machine approach the physical RAM, the machine will start to use the hard disk as 'virtual memory'. This is called paging or swapping, and once this happens you're often toast.
 
-![](figs/panama-canal.png)
+You can assess memory use with *top* or *ps* in Linux/Mac or the system monitoring tool [???] in Windows.
+
+```{r}
+x <- rnorm(1e7)
+object.size(x)
+1e7*8/1e6
+print(object.size(x), units = 'auto')
+x <- rnorm(1e8)
+gc()
+rm()
+gc()
+```
+
+# The UNIX command line
+
+Being able to operate your computer from a command line rather than via point-and-click in a GUI environment provides incredible power and flexibility to the user, as well as allowing for reproducibility and automation in your work.
+
+In Linux and Mac, you just need to open a Terminal window. On the Mac this is in Applications->Utilities->Terminal. Once in the Terminal, you can treat your Mac as if it is a UNIX machine (which it is).
+
+Windows has the old MS-DOS command line that allows some command line functionality. There is something call *cygwin* that provides UNIX-like functionality.
+
 
 # Reproducible research
 
@@ -123,6 +128,45 @@ The basic idea is that instead of manually trying to keep track of what changes 
 A popular tool these days is *git*, with storage for projects at github.com. 
 
 At a basic level, a simple principle is to have version numbers for all your work: code, datasets, manuscripts. Whenever you make a change to a dataset, increment the version number. For code and manuscripts, increment when you make substantial changes or have obvious breakpoints in your workflow. 
+
+# Git concepts: commit
+
+a **snapshot** of work at a point in time
+
+![Credit: ProGit book, by Scott Chacon, CC License.](figs/commit_anatomy.png)
+
+# Git concepts: repository
+
+a group of **linked** commits (DAG)
+
+![Credit: ProGit book, by Scott Chacon, CC License.](figs/threecommits.png)
+
+# Git concepts: hash
+
+toy "implementation"
+
+```{r}
+library('digest')
+
+# first commit
+data1 <- 'This is the start of my paper2.'
+meta1 <- 'date: 8/20/13'
+hash1 = digest(c(data1,meta1), algo="sha1")
+cat('Hash:', hash1)
+
+# second commit, linked to the first
+data2 <- 'Some more text in my paper...'
+meta2 <- 'date: 8/20/13'
+# Note we add the parent hash here!
+hash2 <- digest(c(data2,meta2,hash1), algo="sha1")
+cat('Hash:', hash2)
+```
+
+# Git
+
+```{r test-bash, engine='bash'}
+git help
+```
 
 # Learning Git
 
@@ -174,3 +218,5 @@ precipExtremes <- rnorm(5)  # precip_extremes
 timeInDays <- rnorm(5)   # time_in_days
 summary.lm(lm(precipExtremes ~ timeInDays))
 ```
+
+# Breakout
