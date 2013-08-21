@@ -130,8 +130,6 @@ plot(x, dchisq(x, df = 1), type = 'l')
 lines(x, dchisq(x, df = 2), col = 'red')
 ```
 
-
-
 # Other types of simulation and sampling
 
 We can draw a sample with or without replacement. Here's an example of some code that would be part of coding up a bootstrap.

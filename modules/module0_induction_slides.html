@@ -16,17 +16,32 @@
   <p class="author">
 August 2013, UC Berkeley
   </p>
-  <p class="date">Chris Paciorek and (add others)</p>
+  <p class="date">Chris Paciorek</p>
+</div>
+<div class="section slide level1" id="a-little-warm-up">
+<h1 id="a-little-warm-up">A little warm-up</h1>
+<p>This isn't really all that related to R, programming or statistics, but check out the 'binary solo' in this <a href="http://www.geeksugar.com/Flight-Conchords-Binary-Robot-Video-19831449">Flight of the Conchords song</a>.</p>
 </div>
 <div class="section slide level1" id="how-well-operate">
 <h1 id="how-well-operate">How we'll operate</h1>
 <p>Note to BB: Remember to start recording.</p>
-<p>The bootcamp will be organized in modules, each of which will be a combination of lecture/demo presentation with brief pauses for you to try out and experiment with code snippets, concluded by a longer problem or two for you to work at on your own in a breakout session. Solutions will be presented before the start of the next module. Assistants will be available to help answer any questions you have (just wave to one of them), or feel free to just ask during the presentation. We'll also have assistants monitoring the [Forum/Disc board] on bspace, so feel free to type in a question there and one of the assistants (or one of you!) will answer the question.</p>
-<p>I encourage you to: - try out the code as I walk through it - I'll illustrate a lot of syntax and concepts by example; keep your eyes open! - try to guess what my syntax means in cases we haven't yet seen that syntax - play with it and try variations and try to break it and see what happens - tell me if something interesting happens - ask questions of me, the helpers, and on the [Forum]</p>
+<p>The bootcamp will be organized in modules, each of which will be a combination of lecture/demo presentation with brief pauses for you to try out and experiment with code snippets, concluded by a longer problem or two for you to work at on your own in a breakout session. Solutions will be presented before the start of the next module. Assistants will be available to help answer any questions you have (just wave to one of them), or feel free to just ask during the presentation. We'll also have assistants monitoring the <a href="https://bspace.berkeley.edu/portal/site/28905ed6-df96-4778-b2a7-d87fb6405ba2/page/f99ad10a-a841-4345-926d-c419b1a02913">bSpace chat room</a>, so feel free to type in a question there and one of the counseloRs will answer the question. Or if you know the answer, help us out by answering it yourself or adding your thoughts.</p>
+<p>Your counseloRs are: Jacob, Laura, Chris K., Jarrod, Tessa, Fu, Chao, Marla, and Christine.</p>
+<p>I encourage you to: - try out the code as I walk through it - I'll illustrate a lot of syntax and concepts by example; keep your eyes open! - try to guess what my syntax means in cases we haven't yet seen that syntax - play with it and try variations and try to break it and see what happens - tell me if something interesting happens - ask questions of me, the helpers, and on Piazza/chat room</p>
 <p>We'll present most of the material from within RStudio, using R Markdown documents with embedded R code. R Markdown is an extension to the Markdown markup language which makes it easy to write html in a simple plain text format. This allows me to both run the R code directly as well as compile on-the-fly to an html file that can be used for presentation. All files will be available on <a href="https://bspace.berkeley.edu/portal/site/28905ed6-df96-4778-b2a7-d87fb6405ba2">bspace</a> (just point and click on the files you want under Resources and <a href="https://github.com/berkeley-scf/r-bootcamp-2013">Github</a>. Note that Github is likely to have the most up-to-date documents while bspace will only be updated periodically.</p>
-<h2 id="using-github-to-get-the-documents">Using github to get the documents</h2>
+<p>If you need Airbears access as a guest (i.e., you don't have a CalNet ID), try: Username: guest-181500 Password: gXbxexOly4</p>
+<p>Username: guest-181501 Password: UPZMRTr5u5</p>
+<p>Username: guest-181502 Password: DCHCaq3ehO</p>
+<p>Username: guest-181503 Password: Mvn1FrnsXz</p>
+<p>Username: guest-181504 Password: gkMj6jLG4m</p>
+<p>Username: guest-181505 Password: 7i9fuiiyYN</p>
+<p>Username: guest-181506 Password: Z0WHEruUWZ</p>
+<p>Username: guest-181507 Password: m12GkCsrqc</p>
+</div>
+<div class="section slide level1" id="using-github-to-get-the-documents">
+<h1 id="using-github-to-get-the-documents">Using github to get the documents</h1>
 <p>To download the files from github, you can do the following.</p>
-<h3 id="within-rstudio">Within RStudio</h3>
+<h2 id="within-rstudio">Within RStudio</h2>
 <p>Within RStudio go to Project-&gt;New Project-&gt;Version Control-&gt;Git and enter:</p>
 <ul>
 <li>&quot;Repository URL&quot;: https://github.com/berkeley-scf/r-bootcamp-2013</li>
@@ -36,7 +51,7 @@ August 2013, UC Berkeley
 <p>Then to update from the repository to get any changes we've made, you can select (from within RStudio): Tools-&gt;Version Control-&gt;Pull Branches</p>
 <p>or from the Workspace/History/Git window: Git-&gt;More-&gt;Pull Branches</p>
 <p>Be warned that you probably do not want to make your own notes or changes to the files we are providing as if you then do a &quot;Git Pull&quot; to update the materials, you'll have to deal with the conflict between your local version and our version. You probably will want to make a personal copy of such files.</p>
-<h3 id="from-a-terminal-window">From a terminal window</h3>
+<h2 id="from-a-terminal-window">From a terminal window</h2>
 <ul>
 <li>cd /directory/where/you/want/repository/located</li>
 <li>git clone https://github.com/berkeley-scf/r-bootcamp-2013/</li>
@@ -56,7 +71,7 @@ August 2013, UC Berkeley
 <li>R is being actively developed ongoing updates/new releases</li>
 <li>R has a variety of built-in as well as community-provided packages that extend its functionality (see <a href="http://www.cran.r-project.org">CRAN</a> for the thousands of add-on packages) with code and data</li>
 <li>It is freely-available and modifiable</li>
-<li>Available for Windows, Mac OS X, and Linux</li>
+<li>Available for Windows, Mac OS X, and <a href="http://dilbert.com/strips/comic/1995-06-24/">Linux</a></li>
 </ul>
 </div>
 <div class="section slide level1" id="modes-of-using-r">
@@ -98,7 +113,7 @@ August 2013, UC Berkeley
 <h1 id="why-not-r">Why Not R?</h1>
 <ul>
 <li><p>Other software is better than R at various tasks</p>
-E.g., Python is very good for text manipulation, interacting with the operating system, and as a glue for tying together various applications/software in a workflow</li>
+E.g., <a href="http://imgs.xkcd.com/comics/python.png">Python</a> is very good for text manipulation, interacting with the operating system, and as a glue for tying together various applications/software in a workflow</li>
 <li>R can be much slower than compiled languages (but is often quite fast with good coding practices!)</li>
 <li>R's packages are only as good as the person who wrote them; no explicit quality control</li>
 <li><p>R is a sprawling and unstandardized</p></li>

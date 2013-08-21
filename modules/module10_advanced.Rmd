@@ -335,4 +335,6 @@ breiman <- dbGetQuery(db, "select * from authors
 
 # Breakout
 
+Does anyone notice any grammatical issues in [this Dilbert strip](http://dilbert.com/strips/comic/2008-05-07/)?
+
 Have a snack!

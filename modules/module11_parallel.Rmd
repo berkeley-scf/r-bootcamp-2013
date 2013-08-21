@@ -144,7 +144,7 @@ One thing to keep in mind is whether the different tasks all take about the same
 
 A tale of the good, the bad, and the ugly
 
-Random numbers on a computer are not truly random but are generated as a sequence of pseudo-random numbers. The sequence is finite (but very, very, very, very long) and eventally repeats itself. 
+Random numbers on a computer are [not truly random](http://dilbert.com/strips/comic/2001-10-25) but are generated as a sequence of pseudo-random numbers. The sequence is finite (but very, very, very, very long) and eventally repeats itself. 
 
 A random number seed determines where in the sequence one starts when generating random numbers.
 
