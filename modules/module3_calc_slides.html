@@ -55,10 +55,10 @@ chi2_df1000 &lt;- <span class="kw">sum</span>(chi2vals)
 <pre class="sourceCode r"><code class="sourceCode r">vals &lt;- <span class="kw">rnorm</span>(<span class="fl">1e+06</span>)
 <span class="kw">system.time</span>(trunc &lt;- <span class="kw">ifelse</span>(vals &gt; <span class="dv">0</span>, vals, <span class="dv">0</span>))</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.560   0.004   0.565</code></pre>
+##   0.568   0.016   0.582</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(vals &lt;- vals * (vals &gt; <span class="dv">0</span>))</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.008   0.000   0.009</code></pre>
+##   0.012   0.000   0.010</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">tmp &lt;- <span class="kw">as.character</span>(vote$age60)
 vote$ageMin &lt;- <span class="kw">substring</span>(tmp, <span class="dv">1</span>, <span class="dv">2</span>)
 vote$ageMin[<span class="dv">1</span>:<span class="dv">5</span>]</code></pre>
@@ -170,7 +170,7 @@ n &lt;- <span class="dv">50000</span>
     for (i in <span class="dv">1</span>:n) vals[i] &lt;- i
 })</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.060   0.000   0.061</code></pre>
+##   0.064   0.000   0.066</code></pre>
 <p>Here's how to pre-allocate an empty list:</p>
 <pre class="sourceCode r"><code class="sourceCode r">vals &lt;- <span class="kw">list</span>()
 <span class="kw">length</span>(vals) &lt;- n</code></pre>

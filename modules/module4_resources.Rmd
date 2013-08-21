@@ -122,7 +122,7 @@ The main rule of thumb is to do your homework first to make sure the answer is n
 
 Here are some guidelines when posting to one of the R mailing lists [http://www.r-project.org/posting-guide.html](http://www.r-project.org/posting-guide.html)
 
-'sessionInfo()' is a function that will give information about your R version, OS, etc., that you can include in your posting.
+`sessionInfo()` is a function that will give information about your R version, OS, etc., that you can include in your posting.
 
 You also want to include a short, focused, [reproducible](https://github.com/hadley/devtools/wiki/Reproducibility) example of your problem that others can run. 
 

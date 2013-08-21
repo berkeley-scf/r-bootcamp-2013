@@ -336,7 +336,8 @@ ls()
 save.image('module1.Rda')
 rm(list = ls())
 ls()
-load('module1.Rda')
+load('module1.Rda') 
+# the result of this may not be quite right in the slide version
 ls()
 ```
 
@@ -350,7 +351,7 @@ R has several different plotting systems:
 - *lattice* graphics
 - *ggplot2* (an add-on package)
 
-We'll see a little bit of *base* graphics here and then *lattice* and *ggplot2* tomorrow.
+We'll see a little bit of *base* graphics here and then *lattice* and *ggplot2* tomorrow in Module 8.
 
 ```{r basic_plots}
 earnings <- read.dta("../data/heights.dta")

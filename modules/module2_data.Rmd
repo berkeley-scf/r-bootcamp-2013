@@ -27,7 +27,7 @@ mat <- cbind(mat, 1:3)
 mat
 ```
 
-Arrays are matrices but can have more or fewer than two dimensions.
+Arrays are like matrices but can have more or fewer than two dimensions.
 ```{r}
 arr <- array(rnorm(12), c(2, 3, 4))
 arr
@@ -43,7 +43,6 @@ rownames(mat) <- c('first', 'middle', 'last')
 mat
 attributes(mat)
 
-mat <- matrix(rnorm(12), nrow = 3, ncol = 4)
 mat[4]
 attributes(mat)$dim <- NULL
 mat
@@ -59,6 +58,7 @@ This is like Fortran but not like C.
 
 ```{r}
 mat <- matrix(1:12, 3, 4)
+mat
 c(mat)
 ```
 You can go smoothly back and forth between a matrix (or an array) and a vector:
@@ -397,7 +397,7 @@ Recall our discussion of the `summary()` function used on either a vector or a r
 
 # Breakout
 
-* Using the presidential preference dataset, create a new column based on *age9* that gives, as a numeric value, the midpoint of the age range assigned to each person. Do it both by using subsetting and by using string operations. 
+* Using the presidential preference dataset, create a new column based on *age9* that gives, as a numeric value, the midpoint of the age range assigned to each person. Try to do this with a combination of subsetting and string operations (i.e., can you convert the character numbers to actual numbers). To simplify things, feel free to get rid of the rows for ages "75 and over".
     
 * Go back to slide 6 on logical vectors and figure out what is going on in the last few lines of code.
 

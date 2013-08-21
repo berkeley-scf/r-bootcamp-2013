@@ -206,14 +206,14 @@ system.time(trunc &lt;- ifelse(vals &gt; 0, vals, 0))
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   0.332   0.000   0.332
+##   0.352   0.016   0.368
 </code></pre>
 
 <pre><code class="r">system.time(vals &lt;- vals * (vals &gt; 0))
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   0.008   0.000   0.009
+##   0.008   0.000   0.010
 </code></pre>
 
 <pre><code class="r">tmp &lt;- as.character(vote$age60)
@@ -389,7 +389,7 @@ system.time({
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   0.060   0.000   0.061
+##   0.068   0.000   0.070
 </code></pre>
 
 <p>Here&#39;s how to pre-allocate an empty list: </p>
