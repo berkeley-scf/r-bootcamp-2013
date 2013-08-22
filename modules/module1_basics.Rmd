@@ -132,7 +132,7 @@ vals[1:8]
 
 set.seed(0)  # make random number generation repeatable
 vals <- rnorm(100)
-extremes <- vals[vals > 3 | vals < (-3)]
+extremes <- vals[vals > 3]
 extremes
 # what happened?
 ```
@@ -265,7 +265,6 @@ The magic of OOP here is that methods (i.e., functions) can be tailored to work 
 ```{r}
 summary(y)
 summary(mod)
-class(mod)
 ```
 
 What do you think R is doing behind the scenes?
@@ -373,8 +372,6 @@ plot(earnings$earn ~ earnings$height, xlab = 'height (cm)', ylab = 'earnings (lo
 
 # Breakout
 
-1) Create a new column/field in the earnings dataset that contains the heights in meters ($1 m \approx 39.4 in$)
+1) Create a new R object that contains the heights in meters ($1 m \approx 39.4 in$) using the *height1* and *height2*  variables in the *earnings* dataset. Make a histogram of the new variable with breakpoints between the bins every 10 cm.
 
-2) Take a random subset of 100 individuals from the earnings dataset and create a new data frame from it.
-
-3) Using the earnings dataset, do some exploratory analysis of the relationship between earnings and education, stratified by race or sex. 
+2) For a random subset of 100 individuals from the earnings dataset, create a vector with their earnings.

@@ -168,7 +168,7 @@ vote[[3]][1:5]
 lapply(vote, class) 
 ```
 
-*lapply()* is a function used on lists; it works here to apply the *class()* function to each element of the list, which in this case is each field/column.
+`lapply()` is a function used on lists; it works here to apply the `class()` function to each element of the list, which in this case is each field/column.
 
 # But lists are also vectors!
 
@@ -179,7 +179,7 @@ head(someFields)
 identical(vote[c(3,5)], vote[ , c(3,5)])
 ```
 
-In general the placement of commas is crucial, but here, two different operations give the same result because of the underlying structure of data frames.
+In general the placement of commas in R is crucial, but here, two different operations give the same result because of the underlying structure of data frames.
 
 # Factors
 - A factor is a special and sometimes frustrating data type in R used for categorical data
@@ -293,8 +293,9 @@ paste(chars, collapse = ' ')  # paste together things from a vector
 
 strsplit("This is the R bootcamp", split = " ")
 substring(chars, 2, 3)
-substring(chars, 2, 3) <- "ZZ"
-chars
+chars2 <- chars
+substring(chars2, 2, 3) <- "ZZ"
+chars2
 ```
 We can search for patterns in character vectors and replace patterns (both vectorized!)
 ```{r}
@@ -318,6 +319,7 @@ To read and write from R, you need to have a firm grasp of where in the computer
 getwd()  # what directory will R look in?
 setwd('~/Desktop/r-bootcamp-2013') # change the working directory
 setwd('/Users/paciorek/Desktop/tmp') # absolute path
+getwd()
 setwd('../r-bootcamp-2013') # relative path
 ```
 Many errors and much confusion result from you and R not being on the same page in terms of where in the directory structure you are.
@@ -397,8 +399,8 @@ Recall our discussion of the `summary()` function used on either a vector or a r
 
 # Breakout
 
-* Using the presidential preference dataset, create a new column based on *age9* that gives, as a numeric value, the midpoint of the age range assigned to each person. Try to do this with a combination of subsetting and string operations (i.e., can you convert the character numbers to actual numbers). To simplify things, feel free to get rid of the rows for ages "75 and over".
+1. Using the presidential preference dataset, create a new column based on *age9* that gives, as a numeric value, the midpoint of the age range assigned to each person. Try to do this with a combination of subsetting and string operations (i.e., can you convert the character numbers to actual numbers). To simplify things, feel free to get rid of the rows for ages "75 and over".
     
-* Go back to slide 6 on logical vectors and figure out what is going on in the last few lines of code.
+2. Go back to slide 6 on logical vectors and figure out what is going on in the last few lines of code.
 
-* Go back to slide 22 and figure out what is going on with that complicated last line of code.
+3. Go back to slide 22 and figure out what is going on with that complicated last line of code.

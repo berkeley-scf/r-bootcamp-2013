@@ -343,4 +343,4 @@ You can generate a test matrix as: `y <- matrix(sample(1:10, 12, replace = TRUE)
 
 ## Problem 2
 
-For each combination of sex and education level, find the *second* largest value of earnings amongst the people in the group, in a clean format using tools such `sapply()`, `aggregate()`, or `by()`. Do not do this by looping. 
+For each combination of sex and education level, find the *second* largest value of earnings amongst the people in the group without any looping.
