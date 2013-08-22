@@ -722,7 +722,7 @@ class(vote)
 ## [1] &quot;numeric&quot;
 </code></pre>
 
-<p><em>lapply()</em> is a function used on lists; it works here to apply the <em>class()</em> function to each element of the list, which in this case is each field/column.</p>
+<p><code>lapply()</code> is a function used on lists; it works here to apply the <code>class()</code> function to each element of the list, which in this case is each field/column.</p>
 
 <h1>But lists are also vectors!</h1>
 
@@ -751,7 +751,7 @@ head(someFields)
 <pre><code>## [1] TRUE
 </code></pre>
 
-<p>In general the placement of commas is crucial, but here, two different operations give the same result because of the underlying structure of data frames.</p>
+<p>In general the placement of commas in R is crucial, but here, two different operations give the same result because of the underlying structure of data frames.</p>
 
 <h1>Factors</h1>
 
@@ -1028,8 +1028,9 @@ strsplit(&quot;This is the R bootcamp&quot;, split = &quot; &quot;)
 <pre><code>## [1] &quot;i&quot;  &quot;al&quot; &quot;ot&quot; &quot;at&quot; &quot;e &quot;
 </code></pre>
 
-<pre><code class="r">substring(chars, 2, 3) &lt;- &quot;ZZ&quot;
-chars
+<pre><code class="r">chars2 &lt;- chars
+substring(chars2, 2, 3) &lt;- &quot;ZZ&quot;
+chars2
 </code></pre>
 
 <pre><code>## [1] &quot;hZ&quot;              &quot;hZZlo&quot;           &quot;mZZher&#39;s&quot;        &quot;fZZher&#39;s&quot;       
@@ -1041,14 +1042,14 @@ chars
 <pre><code class="r">grep(&quot;ther&quot;, chars)
 </code></pre>
 
-<pre><code>## integer(0)
+<pre><code>## [1] 3 4
 </code></pre>
 
 <pre><code class="r">gsub(&quot;hi&quot;, &quot;Hi&quot;, chars)
 </code></pre>
 
-<pre><code>## [1] &quot;hZ&quot;              &quot;hZZlo&quot;           &quot;mZZher&#39;s&quot;        &quot;fZZher&#39;s&quot;       
-## [5] &quot;HZZsaid, \&quot;Hi\&quot;&quot;
+<pre><code>## [1] &quot;Hi&quot;              &quot;hallo&quot;           &quot;mother&#39;s&quot;        &quot;father&#39;s&quot;       
+## [5] &quot;He said, \&quot;Hi\&quot;&quot;
 </code></pre>
 
 <h1>Regular expressions (regex or regexp)</h1>
@@ -1074,6 +1075,12 @@ setwd(&quot;/Users/paciorek/Desktop/tmp&quot;)  # absolute path
 </code></pre>
 
 <pre><code>## Error: cannot change working directory
+</code></pre>
+
+<pre><code class="r">getwd()
+</code></pre>
+
+<pre><code>## [1] &quot;/accounts/gen/vis/paciorek/Desktop/r-bootcamp-2013&quot;
 </code></pre>
 
 <pre><code class="r">setwd(&quot;../r-bootcamp-2013&quot;)  # relative path
@@ -1254,7 +1261,7 @@ print(xtable(table(vote$race, vote$pres04)), type = &quot;html&quot;)
 </code></pre>
 
 <pre><code>## &lt;!-- html table generated in R 3.0.1 by xtable 1.7-1 package --&gt;
-## &lt;!-- Thu Aug 22 07:51:16 2013 --&gt;
+## &lt;!-- Thu Aug 22 13:31:47 2013 --&gt;
 ## &lt;TABLE border=1&gt;
 ## &lt;TR&gt; &lt;TH&gt;  &lt;/TH&gt; &lt;TH&gt; 0 &lt;/TH&gt; &lt;TH&gt; 1 &lt;/TH&gt; &lt;TH&gt; 2 &lt;/TH&gt; &lt;TH&gt; 3 &lt;/TH&gt; &lt;TH&gt; 4 &lt;/TH&gt; &lt;TH&gt; 9 &lt;/TH&gt;  &lt;/TR&gt;
 ##   &lt;TR&gt; &lt;TD align=&quot;right&quot;&gt; white &lt;/TD&gt; &lt;TD align=&quot;right&quot;&gt; 111 &lt;/TD&gt; &lt;TD align=&quot;right&quot;&gt; 26184 &lt;/TD&gt; &lt;TD align=&quot;right&quot;&gt; 33045 &lt;/TD&gt; &lt;TD align=&quot;right&quot;&gt; 417 &lt;/TD&gt; &lt;TD align=&quot;right&quot;&gt;  14 &lt;/TD&gt; &lt;TD align=&quot;right&quot;&gt; 409 &lt;/TD&gt; &lt;/TR&gt;
@@ -1269,11 +1276,11 @@ print(xtable(table(vote$race, vote$pres04)), type = &quot;html&quot;)
 
 <h1>Breakout</h1>
 
-<ul>
+<ol>
 <li><p>Using the presidential preference dataset, create a new column based on <em>age9</em> that gives, as a numeric value, the midpoint of the age range assigned to each person. Try to do this with a combination of subsetting and string operations (i.e., can you convert the character numbers to actual numbers). To simplify things, feel free to get rid of the rows for ages &ldquo;75 and over&rdquo;.</p></li>
 <li><p>Go back to slide 6 on logical vectors and figure out what is going on in the last few lines of code.</p></li>
 <li><p>Go back to slide 22 and figure out what is going on with that complicated last line of code.</p></li>
-</ul>
+</ol>
 
 </body>
 

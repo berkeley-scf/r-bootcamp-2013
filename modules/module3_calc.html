@@ -206,14 +206,14 @@ system.time(trunc &lt;- ifelse(vals &gt; 0, vals, 0))
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   0.348   0.000   0.349
+##   0.340   0.004   0.342
 </code></pre>
 
 <pre><code class="r">system.time(vals &lt;- vals * (vals &gt; 0))
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   0.008   0.000   0.009
+##   0.012   0.000   0.009
 </code></pre>
 
 <pre><code class="r">tmp &lt;- as.character(vote$age60)
@@ -388,7 +388,7 @@ system.time({
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   0.060   0.000   0.063
+##   0.064   0.000   0.063
 </code></pre>
 
 <p>Here&#39;s how to pre-allocate an empty list: </p>
@@ -865,13 +865,13 @@ dim(vote)
 <p>You can generate a test matrix as: <code>y &lt;- matrix(sample(1:10, 12, replace = TRUE), nrow = 3, ncol = 4)</code>.</p>
 
 <ol>
-<li>Assume you have the <code>e</code> matrix. How do you compute the statistic without loops?</li>
-<li>How can you construct the <code>e</code> matrix. Hint: the <code>outer()</code> function will be helpful - see the board for more details.</li>
+<li>Assume you have the <em>e</em> matrix. How do you compute the statistic without loops?</li>
+<li>How can you construct the <em>e</em> matrix? Hint: the numerator of <em>e</em> is just an <em>outer product</em> for which the <code>outer()</code> function can be used.</li>
 </ol>
 
 <h2>Problem 2</h2>
 
-<p>For each combination of sex and education level, find the <em>second</em> largest value of earnings amongst the people in the group, in a clean format using tools such <code>sapply()</code>, <code>aggregate()</code>, or <code>by()</code>. Do not do this by looping. </p>
+<p>For each combination of sex and education level, find the <em>second</em> largest value of earnings amongst the people in the group without any looping.</p>
 
 </body>
 

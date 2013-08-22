@@ -449,7 +449,7 @@ vals[1:8]
 <pre><code class="r">
 set.seed(0)  # make random number generation repeatable
 vals &lt;- rnorm(100)
-extremes &lt;- vals[vals &gt; 3 | vals &lt; (-3)]
+extremes &lt;- vals[vals &gt; 3]
 extremes
 </code></pre>
 
@@ -849,12 +849,6 @@ class(mod)
 ## F-statistic: 0.542 on 1 and 8 DF,  p-value: 0.483
 </code></pre>
 
-<pre><code class="r">class(mod)
-</code></pre>
-
-<pre><code>## [1] &quot;lm&quot;
-</code></pre>
-
 <p>What do you think R is doing behind the scenes?</p>
 
 <p>Consider <code>summary.lm</code>.</p>
@@ -1169,11 +1163,9 @@ plot(earnings$earn ~ earnings$height, xlab = &quot;height (cm)&quot;, ylab = &qu
 
 <h1>Breakout</h1>
 
-<p>1) Create a new column/field in the earnings dataset that contains the heights in meters (\(1 m \approx 39.4 in\))</p>
+<p>1) Create a new R object that contains the heights in meters (\(1 m \approx 39.4 in\)) using the <em>height1</em> and <em>height2</em>  variables in the <em>earnings</em> dataset. Make a histogram of the new variable with breakpoints between the bins every 10 cm.</p>
 
-<p>2) Take a random subset of 100 individuals from the earnings dataset and create a new data frame from it.</p>
-
-<p>3) Using the earnings dataset, do some exploratory analysis of the relationship between earnings and education, stratified by race or sex. </p>
+<p>2) For a random subset of 100 individuals from the earnings dataset, create a vector with their earnings.</p>
 
 </body>
 

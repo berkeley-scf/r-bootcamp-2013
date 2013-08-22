@@ -55,10 +55,10 @@ chi2_df1000 &lt;- <span class="kw">sum</span>(chi2vals)
 <pre class="sourceCode r"><code class="sourceCode r">vals &lt;- <span class="kw">rnorm</span>(<span class="fl">1e+06</span>)
 <span class="kw">system.time</span>(trunc &lt;- <span class="kw">ifelse</span>(vals &gt; <span class="dv">0</span>, vals, <span class="dv">0</span>))</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.548   0.020   0.569</code></pre>
+##   0.568   0.012   0.579</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(vals &lt;- vals * (vals &gt; <span class="dv">0</span>))</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.012   0.000   0.010</code></pre>
+##   0.012   0.000   0.009</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">tmp &lt;- <span class="kw">as.character</span>(vote$age60)
 vote$ageMin &lt;- <span class="kw">substring</span>(tmp, <span class="dv">1</span>, <span class="dv">2</span>)
 vote$ageMin[<span class="dv">1</span>:<span class="dv">5</span>]</code></pre>
@@ -171,7 +171,7 @@ n &lt;- <span class="dv">50000</span>
     for (i in <span class="dv">1</span>:n) vals[i] &lt;- i
 })</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.060   0.004   0.063</code></pre>
+##   0.064   0.000   0.065</code></pre>
 <p>Here's how to pre-allocate an empty list:</p>
 <pre class="sourceCode r"><code class="sourceCode r">vals &lt;- <span class="kw">list</span>()
 <span class="kw">length</span>(vals) &lt;- n
@@ -514,11 +514,11 @@ fullVote &lt;- <span class="kw">merge</span>(voteWithStateNames, stateInfo[, <sp
 <p>where <span class="math">$e_{ij} = \frac{y_{i\cdot} y_{\cdot j}}{y_{\cdot \cdot}}$</span>, with <span class="math"><em>y</em><sub><em>i</em> ⋅ </sub></span> the sum of the values in the i'th row, <span class="math"><em>y</em><sub> ⋅ <em>j</em></sub></span> the sum of values in the j'th column, and <span class="math"><em>y</em><sub> ⋅  ⋅ </sub></span> the sum of all the values. Suppose I give you a matrix in R with the <span class="math"><em>y</em><sub><em>i</em><em>j</em></sub></span> values. Compute the statistics without <em>any</em> loops.</p>
 <p>You can generate a test matrix as: <code>y &lt;- matrix(sample(1:10, 12, replace = TRUE), nrow = 3, ncol = 4)</code>.</p>
 <ol style="list-style-type: decimal">
-<li>Assume you have the <code>e</code> matrix. How do you compute the statistic without loops?</li>
-<li>How can you construct the <code>e</code> matrix. Hint: the <code>outer()</code> function will be helpful - see the board for more details.</li>
+<li>Assume you have the <em>e</em> matrix. How do you compute the statistic without loops?</li>
+<li>How can you construct the <em>e</em> matrix? Hint: the numerator of <em>e</em> is just an <em>outer product</em> for which the <code>outer()</code> function can be used.</li>
 </ol>
 <h2 id="problem-2">Problem 2</h2>
-<p>For each combination of sex and education level, find the <em>second</em> largest value of earnings amongst the people in the group, in a clean format using tools such <code>sapply()</code>, <code>aggregate()</code>, or <code>by()</code>. Do not do this by looping.</p>
+<p>For each combination of sex and education level, find the <em>second</em> largest value of earnings amongst the people in the group without any looping.</p>
 </div>
 </body>
 </html>

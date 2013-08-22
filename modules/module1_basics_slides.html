@@ -45,7 +45,7 @@ August 2013, UC Berkeley
 <pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span> * pi  <span class="co"># multiply by a constant</span></code></pre>
 <pre><code>## [1] 6.283</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="dv">7</span> + <span class="kw">runif</span>(<span class="dv">1</span>)  <span class="co"># add a random number</span></code></pre>
-<pre><code>## [1] 7.996</code></pre>
+<pre><code>## [1] 7.614</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span>^<span class="dv">4</span>  <span class="co"># powers</span></code></pre>
 <pre><code>## [1] 81</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt</span>(<span class="dv">4</span>^<span class="dv">4</span>)  <span class="co"># functions</span></code></pre>
@@ -123,7 +123,7 @@ depts</code></pre>
 nums &lt;- <span class="kw">c</span>(<span class="fl">1.1</span>, <span class="dv">3</span>, -<span class="fl">5.7</span>)
 devs &lt;- <span class="kw">rnorm</span>(<span class="dv">5</span>)
 devs</code></pre>
-<pre><code>## [1] -1.1874  1.3184 -1.0419  0.2604 -0.5992</code></pre>
+<pre><code>## [1]  0.81764  0.59422 -0.21948  0.49530  0.07399</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">
 <span class="co"># integer vector</span>
 ints &lt;- <span class="kw">c</span>(1L, 5L, -3L) <span class="co"># force storage as integer not decimal number</span>
@@ -174,11 +174,11 @@ vals[<span class="dv">1</span>:<span class="dv">2</span>] &lt;- <span class="dv"
 vals &lt;- <span class="kw">rnorm</span>(<span class="dv">100</span>)
 vals[vals &lt; <span class="dv">0</span>] &lt;- <span class="dv">0</span>
 vals[<span class="dv">1</span>:<span class="dv">8</span>]</code></pre>
-<pre><code>## [1] 0.0000 0.0000 0.5143 0.0000 0.5494 0.7257 0.0000 1.3348</code></pre>
+<pre><code>## [1] 0.000 0.000 1.786 0.000 0.000 0.000 1.555 0.000</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">
 <span class="kw">set.seed</span>(<span class="dv">0</span>)  <span class="co"># make random number generation repeatable</span>
 vals &lt;- <span class="kw">rnorm</span>(<span class="dv">100</span>)
-extremes &lt;- vals[vals &gt; <span class="dv">3</span> | vals &lt; (-<span class="dv">3</span>)]
+extremes &lt;- vals[vals &gt; <span class="dv">3</span>]
 extremes</code></pre>
 <pre><code>## numeric(0)</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># what happened?</span></code></pre>
@@ -398,8 +398,6 @@ mod &lt;- <span class="kw">lm</span>(y ~ x)
 ## Residual standard error: 0.989 on 8 degrees of freedom
 ## Multiple R-squared:  0.0635, Adjusted R-squared:  -0.0536 
 ## F-statistic: 0.542 on 1 and 8 DF,  p-value: 0.483</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(mod)</code></pre>
-<pre><code>## [1] &quot;lm&quot;</code></pre>
 <p>What do you think R is doing behind the scenes?</p>
 <p>Consider <code>summary.lm</code>.</p>
 </div>
@@ -473,10 +471,10 @@ vec2 &lt;- <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv"
 <pre><code>## bools :  logi [1:3] TRUE FALSE TRUE
 ## chars :  chr [1:6] &quot;hi&quot; &quot;hallo&quot; &quot;mother's&quot; &quot;father's&quot; ...
 ## depts :  chr [1:3] &quot;espm&quot; &quot;pmb&quot; &quot;stats&quot;
-## devs :  num [1:5] -1.187 1.318 -1.042 0.26 -0.599
+## devs :  num [1:5] 0.818 0.594 -0.219 0.495 0.074
 ## extremes :  num(0) 
 ## fours :  num [1:6] 4 4 4 4 4 4
-## idevs :  int [1:100] 5 5 1 -3 -3 1 1 1 1 1 ...
+## idevs :  int [1:100] 5 -3 5 -3 5 5 1 5 5 -3 ...
 ## indices :  num [1:2] 1.7 2.3
 ## ints :  int [1:10] 1 2 3 4 5 6 7 8 9 10
 ## mat :  num [1:3, 1:3] -0.629 0.563 -0.953 -1.095 0.412 ...
@@ -609,9 +607,8 @@ vec2 &lt;- <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv"
 <div class="section slide level1" id="breakout">
 <h1 id="breakout">Breakout</h1>
 <ol style="list-style-type: decimal">
-<li><p>Create a new column/field in the earnings dataset that contains the heights in meters (<span class="math">1<em>m</em> ≈ 39. 4<em>i</em><em>n</em></span>)</p></li>
-<li><p>Take a random subset of 100 individuals from the earnings dataset and create a new data frame from it.</p></li>
-<li><p>Using the earnings dataset, do some exploratory analysis of the relationship between earnings and education, stratified by race or sex.</p></li>
+<li><p>Create a new R object that contains the heights in meters (<span class="math">1<em>m</em> ≈ 39. 4<em>i</em><em>n</em></span>) using the <em>height1</em> and <em>height2</em> variables in the <em>earnings</em> dataset. Make a histogram of the new variable with breakpoints between the bins every 10 cm.</p></li>
+<li><p>For a random subset of 100 individuals from the earnings dataset, create a vector with their earnings.</p></li>
 </ol>
 </div>
 </body>
