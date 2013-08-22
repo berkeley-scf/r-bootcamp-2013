@@ -44,12 +44,13 @@ vote$ageMin <- substring(tmp, 1, 2)
 vote$ageMin[1:5]
 ```
 
-What am I doing with `vals * (vals > 0)` ?
+What am I doing with `vals * (vals > 0)` ? What happens behind the scenes in R?
+
 If you use a trick like this, having a comment in your code is a good idea.
 
 # Linear algebra 
 
-R can do essentially any linear algebra you need. It uses asystem-level packages called BLAS (basic linear algebra subroutines) and LAPACK (linear algebra package). Note that these calculations will be essentially as fast as if you wrote C code as R just calls C and Fortran routines to do the calculations.
+R can do essentially any linear algebra you need. It uses system-level packages called BLAS (basic linear algebra subroutines) and LAPACK (linear algebra package). Note that these calculations will be essentially as fast as if you wrote C code because R just calls C and Fortran routines to do the calculations.
 
 The BLAS that comes with R is fairly slow. It's possible to use a faster BLAS, as well as one that uses multiple cores automatically. This can in some cases give you an order of magnitude speedup if your work involves a lot of matrix manipulations/linear algebra. More details in Module 11.
 
@@ -78,13 +79,11 @@ identical(t(A)%*%A, crossprod(A))
 ```
 
 Some decompositions
-```{r eval=FALSE}
-require(fields)
-```
 
 ```{r cache=TRUE}
+require(fields)
 times <- seq(0, 1, length = 100)
-R <- exp(-rdist(times) / 0.2)
+R <- exp(-rdist(times) / 0.2) # a correlation matrix
 e <- eigen(R)
 range(e$values)
 e$vectors[ , 1]
@@ -141,6 +140,7 @@ for(i in 1:n)
 Here's how to pre-allocate an empty list: 
 ```{r}
 vals <- list(); length(vals) <- n
+head(vals)
 ```
 
 # apply
@@ -236,19 +236,12 @@ The `%in%` operator can also be helpful.
 sub <- earnings[earnings$race %in% c(1, 2, 4), ]
 ```
 
-And you may need to discretize a categorical variable, e.g., by age:
-```{r fig.width=9}
-earnings$edLevel <- cut(earnings$ed, breaks = c(0, 11, 12, 15, 16, 18, 99))
-levels(earnings$edLevel) <- c('no HS diploma', 'HS grad', 'some college', 
-   'college grad', 'grad study', 'other')
-boxplot(earn~edLevel, data = earnings)
-```
-
 # Stratified analyses II
 
 Often we want to do individual analyses within subsets or clusters of our data. R has a variety of tools for this; for now we'll look at `aggregate()` and `by()`. These are wrappers of `tapply()`. 
 
 ```{r aggregate1}
+earni
 aggregate(earnings, by = list(educ = earnings$ed), FUN = median, na.rm = TRUE)
 aggregate(earn ~ ed, data = earnings, FUN = median)
 aggregate(earn ~ ed + hisp, data = earnings, FUN = median)
@@ -258,12 +251,23 @@ xtabs(earn ~ ., data = agg)
 
 Notice the 'long' vs. 'wide' formats. You'll see more about that sort of thing in Module 6.
 
+# Discretization
+
+You may need to discretize a categorical variable, e.g., by education level:
+```{r fig.width=9}
+earnings$edLevel <- cut(earnings$ed, breaks = c(0, 11, 12, 15, 16, 18, 99))
+levels(earnings$edLevel) <- c('no HS diploma', 'HS grad', 'some college', 
+   'college grad', 'grad study', 'other')
+boxplot(earn~edLevel, data = earnings)
+```
+
+
 # Stratified analyses III
 
 `aggregate()` works fine when the output is univariate, but what about more complicated analyses than computing the median, such as fitting a set of regressions?
 
 ```{r}
-out <- by(earnings, earnings$ed, 
+out <- by(earnings, earnings$edLevel, 
 function(x) {
   if(sum(!is.na(x$earn))) 
     lm(earn ~ height, data = x) 
