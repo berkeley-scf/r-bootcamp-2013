@@ -33,9 +33,9 @@ x1s <- x2s <- seq(-5, 5, length = 100)
 x <- expand.grid(x1s, x2s)
 fx <- apply(x, 1, banana)
 
-par(mfrow = c(1, 2))
-image.plot(x1s, x2s, matrix(fx, 100))
-image.plot(x1s, x2s, matrix(log(fx), 100))
+par(mfrow = c(1, 2), mai = c(.45, .4, .1, .4))
+image.plot(x1s, x2s, matrix(fx, 100), xlab = '', ylab = '')
+image.plot(x1s, x2s, matrix(log(fx), 100), xlab = '', ylab = '')
 
 optim(c(-2,0), banana)
 ```
@@ -43,10 +43,13 @@ We can see the progression of evaluations of the objective function:
 ```{r eval=FALSE}
 banana <- function(x) {   ## Rosenbrock Banana function
          points(x[1],x[2])
+         Sys.sleep(.1)
          x1 <- x[1]
          x2 <- x[2]
          100 * (x2 - x1 * x1)^2 + (1 - x1)^2
      }
+par(mfrow = c(1, 1), mai = c(.45, .4, .1, .4))
+image.plot(x1s, x2s, matrix(log(fx), 100), xlab = '', ylab = '')
 optim(c(-2,0), banana)
 ```
 
