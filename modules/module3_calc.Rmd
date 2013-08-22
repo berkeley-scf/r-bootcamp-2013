@@ -241,7 +241,6 @@ sub <- earnings[earnings$race %in% c(1, 2, 4), ]
 Often we want to do individual analyses within subsets or clusters of our data. R has a variety of tools for this; for now we'll look at `aggregate()` and `by()`. These are wrappers of `tapply()`. 
 
 ```{r aggregate1}
-earni
 aggregate(earnings, by = list(educ = earnings$ed), FUN = median, na.rm = TRUE)
 aggregate(earn ~ ed, data = earnings, FUN = median)
 aggregate(earn ~ ed + hisp, data = earnings, FUN = median)
@@ -289,7 +288,7 @@ Sorting a matrix or dataframe based on one or more columns is a somewhat manual 
 ord <- order(earnings$earn, earnings$height, decreasing = TRUE)
 # ord <- with(earnings, order(earn, height, decreasing = TRUE))
 ord[1:5]
-earnings$earn[ord][c(1:5, 2025:2029)]
+(earnings$earn[ord])[c(1:5, 2025:2029)] # parentheses for clarity
 earnings_ordered <- earnings[ord, ]
 ```
 
@@ -324,15 +323,24 @@ What's the deal with the `all.x` and `all.y` ?  We can tell R whether we want to
 
 # Breakout
 
-For each combination of sex by age group, collect the $R^2$ values from a regression of earnings on height, controlling for education, in a clean format, using tools such `sapply()`, `aggregate()`, or `by()`. Do not do this by looping. 
+## Problem 1
 
 **To see this problem with the equations below rendered correctly, see module3_calc.html (the non-slide version).**
 
 Suppose we have two categorical variables and we conduct a hypothesis test of independence. The chi-square statistic is: 
 
 \[
-\chi^2 = \sum_{i=1}^{n}\sum_{j=1}^{m} \frac{(y_{ij} - e_{ij})^2}{e_ij}, 
+\chi^2 = \sum_{i=1}^{n}\sum_{j=1}^{m} \frac{(y_{ij} - e_{ij})^2}{e_{ij}}, 
 \] 
 
 where $e_{ij} = \frac{y_{i\cdot} y_{\cdot j}}{y_{\cdot \cdot}}$, with $y_{i\cdot}$ the sum of the values in the i'th row, $y_{\cdot j}$ the sum of values in the j'th column, and $y_{\cdot\cdot}$ the sum of all the values. Suppose I give you a matrix in R with the $y_{ij}$ values. Compute the statistics without *any* loops.
 
+You can generate a test matrix as: `y <- matrix(sample(1:10, 12, replace = TRUE), nrow = 3, ncol = 4)`.
+
+1. Assume you have the *e* matrix. How do you compute the statistic without loops?
+2. How can you construct the *e* matrix? Hint: the numerator of *e* is just an *outer product* for which the `outer()` function can be used.
+
+
+## Problem 2
+
+For each combination of sex and education level, find the *second* largest value of earnings amongst the people in the group, in a clean format using tools such `sapply()`, `aggregate()`, or `by()`. Do not do this by looping. 

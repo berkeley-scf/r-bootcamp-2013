@@ -206,7 +206,7 @@ system.time(trunc &lt;- ifelse(vals &gt; 0, vals, 0))
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   0.340   0.000   0.339
+##   0.348   0.000   0.349
 </code></pre>
 
 <pre><code class="r">system.time(vals &lt;- vals * (vals &gt; 0))
@@ -224,12 +224,13 @@ vote$ageMin[1:5]
 <pre><code>## [1] &quot;18&quot; &quot;18&quot; &quot;30&quot; &quot;30&quot; &quot;30&quot;
 </code></pre>
 
-<p>What am I doing with <code>vals * (vals &gt; 0)</code> ?
-If you use a trick like this, having a comment in your code is a good idea.</p>
+<p>What am I doing with <code>vals * (vals &gt; 0)</code> ? What happens behind the scenes in R?</p>
+
+<p>If you use a trick like this, having a comment in your code is a good idea.</p>
 
 <h1>Linear algebra</h1>
 
-<p>R can do essentially any linear algebra you need. It uses asystem-level packages called BLAS (basic linear algebra subroutines) and LAPACK (linear algebra package). Note that these calculations will be essentially as fast as if you wrote C code as R just calls C and Fortran routines to do the calculations.</p>
+<p>R can do essentially any linear algebra you need. It uses system-level packages called BLAS (basic linear algebra subroutines) and LAPACK (linear algebra package). Note that these calculations will be essentially as fast as if you wrote C code because R just calls C and Fortran routines to do the calculations.</p>
 
 <p>The BLAS that comes with R is fairly slow. It&#39;s possible to use a faster BLAS, as well as one that uses multiple cores automatically. This can in some cases give you an order of magnitude speedup if your work involves a lot of matrix manipulations/linear algebra. More details in Module 11.</p>
 
@@ -306,10 +307,8 @@ identical(t(A) %*% A, crossprod(A))
 <p>Some decompositions</p>
 
 <pre><code class="r">require(fields)
-</code></pre>
-
-<pre><code class="r">times &lt;- seq(0, 1, length = 100)
-R &lt;- exp(-rdist(times)/0.2)
+times &lt;- seq(0, 1, length = 100)
+R &lt;- exp(-rdist(times)/0.2)  # a correlation matrix
 e &lt;- eigen(R)
 range(e$values)
 </code></pre>
@@ -356,7 +355,7 @@ system.time({
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   2.776   0.004   2.791
+##   2.968   0.044   3.022
 </code></pre>
 
 <p>The same holds for using <code>rbind()</code>, <code>cbind()</code>, or adding to a list, one element at a time.</p>
@@ -371,7 +370,7 @@ system.time({
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   1.660   0.000   1.667
+##   1.984   0.004   1.994
 </code></pre>
 
 <p>Thoughts on why these are so slow? Think about what R might be doing behind the scenes</p>
@@ -389,13 +388,33 @@ system.time({
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   0.064   0.000   0.065
+##   0.060   0.000   0.063
 </code></pre>
 
 <p>Here&#39;s how to pre-allocate an empty list: </p>
 
 <pre><code class="r">vals &lt;- list()
 length(vals) &lt;- n
+head(vals)
+</code></pre>
+
+<pre><code>## [[1]]
+## NULL
+## 
+## [[2]]
+## NULL
+## 
+## [[3]]
+## NULL
+## 
+## [[4]]
+## NULL
+## 
+## [[5]]
+## NULL
+## 
+## [[6]]
+## NULL
 </code></pre>
 
 <h1>apply</h1>
@@ -422,19 +441,19 @@ lapply(myList, min)
 </code></pre>
 
 <pre><code>## [[1]]
-## [1] -1.985
+## [1] -0.9019
 ## 
 ## [[2]]
-## [1] -0.1762
+## [1] -1.542
 ## 
 ## [[3]]
-## [1] -0.4051
+## [1] -0.8389
 </code></pre>
 
 <pre><code class="r">sapply(myList, min)
 </code></pre>
 
-<pre><code>## [1] -1.9851 -0.1762 -0.4051
+<pre><code>## [1] -0.9019 -1.5418 -0.8389
 </code></pre>
 
 <p>Note that we don&#39;t generally want to use <code>apply()</code> on a data frame. </p>
@@ -594,16 +613,6 @@ length(subsets)
 <pre><code class="r">sub &lt;- earnings[earnings$race %in% c(1, 2, 4), ]
 </code></pre>
 
-<p>And you may need to discretize a categorical variable, e.g., by age:</p>
-
-<pre><code class="r">earnings$edLevel &lt;- cut(earnings$ed, breaks = c(0, 11, 12, 15, 16, 18, 99))
-levels(earnings$edLevel) &lt;- c(&quot;no HS diploma&quot;, &quot;HS grad&quot;, &quot;some college&quot;, &quot;college grad&quot;, 
-    &quot;grad study&quot;, &quot;other&quot;)
-boxplot(earn ~ edLevel, data = earnings)
-</code></pre>
-
-<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-20"/> </p>
-
 <h1>Stratified analyses II</h1>
 
 <p>Often we want to do individual analyses within subsets or clusters of our data. R has a variety of tools for this; for now we&#39;ll look at <code>aggregate()</code> and <code>by()</code>. These are wrappers of <code>tapply()</code>. </p>
@@ -611,7 +620,26 @@ boxplot(earn ~ edLevel, data = earnings)
 <pre><code class="r">aggregate(earnings, by = list(educ = earnings$ed), FUN = median, na.rm = TRUE)
 </code></pre>
 
-<pre><code>## Error: need numeric data
+<pre><code>##    educ  earn height1 height2 sex race hisp ed yearbn height
+## 1     2    NA       5     0.0   1    2    2  2    0.0   60.0
+## 2     3  1400       5     2.0   2    1    1  3   26.0   62.0
+## 3     4  6600       5     7.5   2    1    2  4   21.0   66.0
+## 4     5  1200       5     3.0   2    1    2  5   17.0   63.0
+## 5     6  4416       5     5.0   1    1    2  6   20.0   67.0
+## 6     7  7000       5     5.0   2    1    2  7   22.0   66.0
+## 7     8  6250       5     5.0   2    1    2  8   32.0   66.0
+## 8     9  7000       5     4.0   2    1    2  9   38.0   65.0
+## 9    10  8000       5     4.0   2    1    2 10   35.0   66.0
+## 10   11 10000       5     6.0   2    1    2 11   42.5   67.0
+## 11   12 13000       5     5.0   2    1    2 12   52.0   66.0
+## 12   13 15000       5     4.0   2    1    2 13   53.0   66.0
+## 13   14 20000       5     5.0   2    1    2 14   53.0   66.5
+## 14   15 17000       5     4.0   2    1    2 15   51.5   66.0
+## 15   16 24000       5     5.0   2    1    2 16   55.0   66.0
+## 16   17 25000       5     6.0   2    1    2 17   50.0   67.0
+## 17   18 30000       5     6.0   1    1    2 18   47.0   68.0
+## 18   98    NA       5     6.0   2    2    2 98   18.0   66.0
+## 19   99    NA       6     0.0   1    1    2 99   37.0   72.0
 </code></pre>
 
 <pre><code class="r">aggregate(earn ~ ed, data = earnings, FUN = median)
@@ -696,18 +724,30 @@ xtabs(earn ~ ., data = agg)
 
 <p>Notice the &#39;long&#39; vs. &#39;wide&#39; formats. You&#39;ll see more about that sort of thing in Module 6.</p>
 
+<h1>Discretization</h1>
+
+<p>You may need to discretize a categorical variable, e.g., by education level:</p>
+
+<pre><code class="r">earnings$edLevel &lt;- cut(earnings$ed, breaks = c(0, 11, 12, 15, 16, 18, 99))
+levels(earnings$edLevel) &lt;- c(&quot;no HS diploma&quot;, &quot;HS grad&quot;, &quot;some college&quot;, &quot;college grad&quot;, 
+    &quot;grad study&quot;, &quot;other&quot;)
+boxplot(earn ~ edLevel, data = earnings)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-19"/> </p>
+
 <h1>Stratified analyses III</h1>
 
 <p><code>aggregate()</code> works fine when the output is univariate, but what about more complicated analyses than computing the median, such as fitting a set of regressions?</p>
 
-<pre><code class="r">out &lt;- by(earnings, earnings$ed, function(x) {
+<pre><code class="r">out &lt;- by(earnings, earnings$edLevel, function(x) {
     if (sum(!is.na(x$earn))) 
         lm(earn ~ height, data = x) else NA
 })
 length(out)
 </code></pre>
 
-<pre><code>## [1] 19
+<pre><code>## [1] 6
 </code></pre>
 
 <pre><code class="r">summary(out[[5]])
@@ -718,18 +758,20 @@ length(out)
 ## lm(formula = earn ~ height, data = x)
 ## 
 ## Residuals:
-##   905  1025  1103  1282  1507  1904  2016 
-## -8844 -5986 12760   312   382  2109  -732 
+##    Min     1Q Median     3Q    Max 
+## -48563 -16907  -5810   6902 157470 
 ## 
 ## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept)   -36315      40917   -0.89     0.42
-## height           651        609    1.07     0.33
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  -121555      43803   -2.78  0.00623 ** 
+## height          2344        648    3.62  0.00041 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 7510 on 5 degrees of freedom
-##   (6 observations deleted due to missingness)
-## Multiple R-squared:  0.186,  Adjusted R-squared:  0.023 
-## F-statistic: 1.14 on 1 and 5 DF,  p-value: 0.334
+## Residual standard error: 29700 on 148 degrees of freedom
+##   (75 observations deleted due to missingness)
+## Multiple R-squared:  0.0812, Adjusted R-squared:  0.075 
+## F-statistic: 13.1 on 1 and 148 DF,  p-value: 0.000409
 </code></pre>
 
 <p>What&#39;s the business with the <code>if</code> statement? Why is this good practice?</p>
@@ -748,7 +790,7 @@ ord[1:5]
 <pre><code>## [1] 1860  583  351  618  314
 </code></pre>
 
-<pre><code class="r">earnings$earn[ord][c(1:5, 2025:2029)]
+<pre><code class="r">(earnings$earn[ord])[c(1:5, 2025:2029)]  # parentheses for clarity
 </code></pre>
 
 <pre><code>##  [1] 200000 175000 170000 148000 125000     NA     NA     NA     NA     NA
@@ -808,17 +850,28 @@ dim(vote)
 
 <h1>Breakout</h1>
 
-<p>For each combination of sex by age group, collect the \(R^2\) values from a regression of earnings on height, controlling for education, in a clean format, using tools such <code>sapply()</code>, <code>aggregate()</code>, or <code>by()</code>. Do not do this by looping. </p>
+<h2>Problem 1</h2>
 
 <p><strong>To see this problem with the equations below rendered correctly, see module3_calc.html (the non-slide version).</strong></p>
 
 <p>Suppose we have two categorical variables and we conduct a hypothesis test of independence. The chi-square statistic is: </p>
 
 <p>\[
-\chi^2 = \sum_{i=1}^{n}\sum_{j=1}^{m} \frac{(y_{ij} - e_{ij})^2}{e_ij}, 
+\chi^2 = \sum_{i=1}^{n}\sum_{j=1}^{m} \frac{(y_{ij} - e_{ij})^2}{e_{ij}}, 
 \] </p>
 
 <p>where \(e_{ij} = \frac{y_{i\cdot} y_{\cdot j}}{y_{\cdot \cdot}}\), with \(y_{i\cdot}\) the sum of the values in the i&#39;th row, \(y_{\cdot j}\) the sum of values in the j&#39;th column, and \(y_{\cdot\cdot}\) the sum of all the values. Suppose I give you a matrix in R with the \(y_{ij}\) values. Compute the statistics without <em>any</em> loops.</p>
+
+<p>You can generate a test matrix as: <code>y &lt;- matrix(sample(1:10, 12, replace = TRUE), nrow = 3, ncol = 4)</code>.</p>
+
+<ol>
+<li>Assume you have the <code>e</code> matrix. How do you compute the statistic without loops?</li>
+<li>How can you construct the <code>e</code> matrix. Hint: the <code>outer()</code> function will be helpful - see the board for more details.</li>
+</ol>
+
+<h2>Problem 2</h2>
+
+<p>For each combination of sex and education level, find the <em>second</em> largest value of earnings amongst the people in the group, in a clean format using tools such <code>sapply()</code>, <code>aggregate()</code>, or <code>by()</code>. Do not do this by looping. </p>
 
 </body>
 
