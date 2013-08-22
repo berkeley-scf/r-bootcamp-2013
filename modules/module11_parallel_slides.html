@@ -118,9 +118,13 @@ U &lt;- <span class="kw">chol</span>(<span class="kw">crossprod</span>(x))</code
 <p>First, make sure your iterations are independent and don't involve sequential calculations!</p>
 <p>The <em>foreach</em> package provides a way to do a for loop using multiple cores. It can use a variety of 'back-ends' that handle the nitty-gritty of the parallelization.</p>
 <p>To use multiple cores on a single machine, use the <em>parallel</em> back-end from the <em>doParallel</em> package (or <em>multicore</em> from <em>doMC</em>)</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(parallel)
-<span class="kw">require</span>(doParallel)
-<span class="kw">require</span>(foreach)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(parallel)</code></pre>
+<pre><code>## Loading required package: parallel</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(doParallel)</code></pre>
+<pre><code>## Loading required package: doParallel</code></pre>
+<pre><code>## Loading required package: foreach</code></pre>
+<pre><code>## Loading required package: iterators</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(foreach)
 nCores &lt;- <span class="dv">4</span>
 <span class="kw">registerDoParallel</span>(nCores)
 

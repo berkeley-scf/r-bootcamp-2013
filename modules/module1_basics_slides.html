@@ -45,7 +45,7 @@ August 2013, UC Berkeley
 <pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span> * pi  <span class="co"># multiply by a constant</span></code></pre>
 <pre><code>## [1] 6.283</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="dv">7</span> + <span class="kw">runif</span>(<span class="dv">1</span>)  <span class="co"># add a random number</span></code></pre>
-<pre><code>## [1] 7.708</code></pre>
+<pre><code>## [1] 7.996</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span>^<span class="dv">4</span>  <span class="co"># powers</span></code></pre>
 <pre><code>## [1] 81</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt</span>(<span class="dv">4</span>^<span class="dv">4</span>)  <span class="co"># functions</span></code></pre>
@@ -123,7 +123,7 @@ depts</code></pre>
 nums &lt;- <span class="kw">c</span>(<span class="fl">1.1</span>, <span class="dv">3</span>, -<span class="fl">5.7</span>)
 devs &lt;- <span class="kw">rnorm</span>(<span class="dv">5</span>)
 devs</code></pre>
-<pre><code>## [1]  0.4585 -0.2101  0.9666 -0.6511  0.1056</code></pre>
+<pre><code>## [1] -1.1874  1.3184 -1.0419  0.2604 -0.5992</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">
 <span class="co"># integer vector</span>
 ints &lt;- <span class="kw">c</span>(1L, 5L, -3L) <span class="co"># force storage as integer not decimal number</span>
@@ -174,7 +174,7 @@ vals[<span class="dv">1</span>:<span class="dv">2</span>] &lt;- <span class="dv"
 vals &lt;- <span class="kw">rnorm</span>(<span class="dv">100</span>)
 vals[vals &lt; <span class="dv">0</span>] &lt;- <span class="dv">0</span>
 vals[<span class="dv">1</span>:<span class="dv">8</span>]</code></pre>
-<pre><code>## [1] 0.5432 0.0000 2.0849 0.8849 0.0000 0.0000 0.0000 0.0000</code></pre>
+<pre><code>## [1] 0.0000 0.0000 0.5143 0.0000 0.5494 0.7257 0.0000 1.3348</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">
 <span class="kw">set.seed</span>(<span class="dv">0</span>)  <span class="co"># make random number generation repeatable</span>
 vals &lt;- <span class="kw">rnorm</span>(<span class="dv">100</span>)
@@ -473,10 +473,10 @@ vec2 &lt;- <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv"
 <pre><code>## bools :  logi [1:3] TRUE FALSE TRUE
 ## chars :  chr [1:6] &quot;hi&quot; &quot;hallo&quot; &quot;mother's&quot; &quot;father's&quot; ...
 ## depts :  chr [1:3] &quot;espm&quot; &quot;pmb&quot; &quot;stats&quot;
-## devs :  num [1:5] 0.458 -0.21 0.967 -0.651 0.106
+## devs :  num [1:5] -1.187 1.318 -1.042 0.26 -0.599
 ## extremes :  num(0) 
 ## fours :  num [1:6] 4 4 4 4 4 4
-## idevs :  int [1:100] 1 5 5 1 -3 -3 -3 -3 1 -3 ...
+## idevs :  int [1:100] 5 5 1 -3 -3 1 1 1 1 1 ...
 ## indices :  num [1:2] 1.7 2.3
 ## ints :  int [1:10] 1 2 3 4 5 6 7 8 9 10
 ## mat :  num [1:3, 1:3] -0.629 0.563 -0.953 -1.095 0.412 ...
@@ -540,6 +540,7 @@ vec2 &lt;- <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv"
 <span class="kw">ls</span>()</code></pre>
 <pre><code>## character(0)</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;module1.Rda&quot;</span>)
+<span class="co"># the result of this may not be quite right in the slide version</span>
 <span class="kw">ls</span>()</code></pre>
 <pre><code>##  [1] &quot;copy.refObject&quot;   &quot;D2R&quot;              &quot;deepExtract&quot;     
 ##  [4] &quot;delete.refObject&quot; &quot;denslines&quot;        &quot;densplot&quot;        
@@ -572,7 +573,7 @@ vec2 &lt;- <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv"
 <li><em>lattice</em> graphics</li>
 <li><em>ggplot2</em> (an add-on package)</li>
 </ul>
-<p>We'll see a little bit of <em>base</em> graphics here and then <em>lattice</em> and <em>ggplot2</em> tomorrow.</p>
+<p>We'll see a little bit of <em>base</em> graphics here and then <em>lattice</em> and <em>ggplot2</em> tomorrow in Module 8.</p>
 <pre class="sourceCode r"><code class="sourceCode r">earnings &lt;- <span class="kw">read.dta</span>(<span class="st">&quot;../data/heights.dta&quot;</span>)
 <span class="kw">names</span>(earnings)</code></pre>
 <pre><code>## [1] &quot;earn&quot;    &quot;height1&quot; &quot;height2&quot; &quot;sex&quot;     &quot;race&quot;    &quot;hisp&quot;    &quot;ed&quot;     

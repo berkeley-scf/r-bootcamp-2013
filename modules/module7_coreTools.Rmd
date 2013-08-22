@@ -68,6 +68,7 @@ Any hypotheses about the relationship of earnings with height and education?
 
 ```{r gamExample, cache=TRUE, fig.width=10}
 library(mgcv)
+runif(1) # not clear why this is needed; knitr throws error w/out it
 mod_male <- gam(earn ~ s(height, k = 10) + s(ed, k = 10), 
 data = earnings[earnings$sex == 1,])
 mod_female <- gam(earn ~ s(height, k = 10) + s(ed, k = 10), 

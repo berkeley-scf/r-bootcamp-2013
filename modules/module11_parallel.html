@@ -284,8 +284,24 @@ U &lt;- chol(crossprod(x))
 <p>To use multiple cores on a single machine, use the <em>parallel</em> back-end from the <em>doParallel</em> package (or <em>multicore</em> from <em>doMC</em>)</p>
 
 <pre><code class="r">require(parallel)
-require(doParallel)
-require(foreach)
+</code></pre>
+
+<pre><code>## Loading required package: parallel
+</code></pre>
+
+<pre><code class="r">require(doParallel)
+</code></pre>
+
+<pre><code>## Loading required package: doParallel
+</code></pre>
+
+<pre><code>## Loading required package: foreach
+</code></pre>
+
+<pre><code>## Loading required package: iterators
+</code></pre>
+
+<pre><code class="r">require(foreach)
 nCores &lt;- 4
 registerDoParallel(nCores)
 

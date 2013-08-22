@@ -55,10 +55,10 @@ chi2_df1000 &lt;- <span class="kw">sum</span>(chi2vals)
 <pre class="sourceCode r"><code class="sourceCode r">vals &lt;- <span class="kw">rnorm</span>(<span class="fl">1e+06</span>)
 <span class="kw">system.time</span>(trunc &lt;- <span class="kw">ifelse</span>(vals &gt; <span class="dv">0</span>, vals, <span class="dv">0</span>))</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.568   0.016   0.582</code></pre>
+##   0.580   0.016   0.598</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(vals &lt;- vals * (vals &gt; <span class="dv">0</span>))</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.012   0.000   0.010</code></pre>
+##   0.008   0.000   0.010</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">tmp &lt;- <span class="kw">as.character</span>(vote$age60)
 vote$ageMin &lt;- <span class="kw">substring</span>(tmp, <span class="dv">1</span>, <span class="dv">2</span>)
 vote$ageMin[<span class="dv">1</span>:<span class="dv">5</span>]</code></pre>
@@ -148,7 +148,7 @@ n &lt;- <span class="dv">50000</span>
     for (i in <span class="dv">1</span>:n) vals &lt;- <span class="kw">c</span>(vals, i)
 })</code></pre>
 <pre><code>##    user  system elapsed 
-##   3.324   0.008   3.365</code></pre>
+##   2.776   0.004   2.791</code></pre>
 <p>The same holds for using <code>rbind()</code>, <code>cbind()</code>, or adding to a list, one element at a time.</p>
 <p>This is slow and unclear:</p>
 <pre class="sourceCode r"><code class="sourceCode r">vals &lt;- <span class="dv">0</span>
@@ -157,7 +157,7 @@ n &lt;- <span class="dv">50000</span>
     for (i in <span class="dv">1</span>:n) vals[i] &lt;- i
 })</code></pre>
 <pre><code>##    user  system elapsed 
-##   2.324   0.008   2.350</code></pre>
+##   1.660   0.000   1.667</code></pre>
 <p>Thoughts on why these are so slow? Think about what R might be doing behind the scenes</p>
 </div>
 <div class="section slide level1" id="the-answer-is-to-pre-allocate-memory">
@@ -170,7 +170,7 @@ n &lt;- <span class="dv">50000</span>
     for (i in <span class="dv">1</span>:n) vals[i] &lt;- i
 })</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.064   0.000   0.066</code></pre>
+##   0.068   0.000   0.065</code></pre>
 <p>Here's how to pre-allocate an empty list:</p>
 <pre class="sourceCode r"><code class="sourceCode r">vals &lt;- <span class="kw">list</span>()
 <span class="kw">length</span>(vals) &lt;- n</code></pre>
@@ -191,15 +191,15 @@ col_sum &lt;- <span class="kw">colSums</span>(mat)</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">myList &lt;- <span class="kw">list</span>(<span class="kw">rnorm</span>(<span class="dv">3</span>), <span class="kw">rnorm</span>(<span class="dv">3</span>), <span class="kw">rnorm</span>(<span class="dv">5</span>))
 <span class="kw">lapply</span>(myList, min)</code></pre>
 <pre><code>## [[1]]
-## [1] -1.366
+## [1] -1.985
 ## 
 ## [[2]]
-## [1] 0.3028
+## [1] -0.1762
 ## 
 ## [[3]]
-## [1] -0.4372</code></pre>
+## [1] -0.4051</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sapply</span>(myList, min)</code></pre>
-<pre><code>## [1] -1.3660  0.3028 -0.4372</code></pre>
+<pre><code>## [1] -1.9851 -0.1762 -0.4051</code></pre>
 <p>Note that we don't generally want to use <code>apply()</code> on a data frame.</p>
 <p>You can use <code>lapply()</code> and <code>sapply()</code> on regular vectors, such as vectors of indices, which can come in handy, though this is a silly example:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sapply</span>(<span class="dv">1</span>:<span class="dv">10</span>, function(x) x^<span class="dv">2</span>)</code></pre>

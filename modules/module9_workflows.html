@@ -238,7 +238,7 @@ fun3 &lt;- function(x) {
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   0.840   0.024   0.868
+##   0.884   0.048   0.940
 </code></pre>
 
 <pre><code class="r">
@@ -249,8 +249,8 @@ benchmark(ifelse(x &lt; 0, x, 0), x[x &lt; 0] &lt;- 0, replications = 5, columns
 </code></pre>
 
 <pre><code>##   replications elapsed
-## 1            5  10.344
-## 2            5   1.265
+## 1            5  10.408
+## 2            5   1.264
 </code></pre>
 
 <p>For more advanced assessment of bottlenecks in your code, consider <em>Rprof()</em>.</p>
@@ -287,8 +287,8 @@ gc()
 </code></pre>
 
 <pre><code>##             used  (Mb) gc trigger   (Mb)  max used  (Mb)
-## Ncells   1293580  69.1    1967602  105.1   1967602 105.1
-## Vcells 102215388 779.9  143450687 1094.5 112808857 860.7
+## Ncells   1281776  68.5    1967602  105.1   1967602 105.1
+## Vcells 102198769 779.8  143433342 1094.4 112775971 860.5
 </code></pre>
 
 <pre><code class="r">rm()
@@ -296,8 +296,8 @@ gc()
 </code></pre>
 
 <pre><code>##             used  (Mb) gc trigger   (Mb)  max used  (Mb)
-## Ncells   1293599  69.1    1967602  105.1   1967602 105.1
-## Vcells 102215427 779.9  150703221 1149.8 112808857 860.7
+## Ncells   1281795  68.5    1967602  105.1   1967602 105.1
+## Vcells 102198808 779.8  150685009 1149.7 112775971 860.5
 </code></pre>
 
 <h1>The UNIX command line</h1>
@@ -484,19 +484,17 @@ summary.lm(lm(precipExtremes ~ timeInDays))
 ## lm(formula = precipExtremes ~ timeInDays)
 ## 
 ## Residuals:
-##       1       2       3       4       5 
-## -0.0895  0.0378  0.4857 -0.3740 -0.0599 
+##      1      2      3      4      5 
+## -1.425 -0.196 -0.999  2.129  0.491 
 ## 
 ## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)  
-## (Intercept)    0.712      0.171    4.17    0.025 *
-## timeInDays    -0.749      0.269   -2.78    0.069 .
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+##             Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)    0.171      1.271    0.13     0.90
+## timeInDays     0.261      2.345    0.11     0.92
 ## 
-## Residual standard error: 0.36 on 3 degrees of freedom
-## Multiple R-squared:  0.72,   Adjusted R-squared:  0.627 
-## F-statistic: 7.73 on 1 and 3 DF,  p-value: 0.0689
+## Residual standard error: 1.62 on 3 degrees of freedom
+## Multiple R-squared:  0.00413,    Adjusted R-squared:  -0.328 
+## F-statistic: 0.0124 on 1 and 3 DF,  p-value: 0.918
 </code></pre>
 
 <h1>Breakout</h1>
