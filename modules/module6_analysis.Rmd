@@ -653,17 +653,20 @@ coeftest(x=oldman.reg, vcov.=vcovHC)
 
 For panel data, the *plm* package also allows you to compute panel-corrected (Beck-Katz) standard errors
 
-# Breakout!
+# Breakout and overnight homework
 
-Consider the voting preference data. Fit a logistic regression to the data for California, modeling preference for Bush vs. Kerry as a function of income, potentially including additional covariates such as sex, race and age. What do you find in terms of how income associates with voting preference?
+Consider the voting preference data. Fit a logistic regression to the data for California (state number 5), modeling preference for Bush (pres04=2) vs. Kerry (pres04=1) (removing the other candidates) as a function of income, potentially including additional covariates such as sex, race and age. What do you find in terms of how income associates with voting preference?
 
-How do you predict the actual probability of voting for Bush for a given set of covariate values? Consider the `predict.glm()` function and what its help page says. Or write code that converts from the model coefficients to the probability scale.
+How do you predict the probability of voting for Kerry for a given set of covariate values? Consider the `predict.glm()` function and what its help page says. Or write code that converts from the model coefficients to the probability scale. Compare the predicted probability of voting for Kerry for a white male of high income with a white male of low income. Do the same for white females. 
 
-# Overnight homework
+If you're feeling ambitious...
 
-Using the tools for stratified analyses we have seen today, fit separate models of voting preference as a function of income (and potentially additional covariates) for each state (or a collection of states of interest to you). How does the effect of income vary by state? Consider separate analyses for men and women and for blacks, whites, and Latinos. Are there gender or racial differences?
+Using the tools for stratified analyses we have seen today, fit separate models of voting preference as a function of (personal) income and sex (and potentially additional covariates) for each state (or a collection of states of interest to you). How do the effect of income and sex vary by state? The file stateIncome.txt is a tab-delimited file of mean income by state. See if the effects of income and sex are correlated with the state-level mean income. 
 
-Make some basic plots to illustrate what you have found. 
+For our purposes here, don't worry much about the uncertainty in the estimates you get in the logistic regression modeling, but of course in a real analysis you would need to do this. 
+
+Note that the translation from the state numbers to names can be obtained by looking at:
+`numToName <- data.frame(name = row.names(state.x77), num = 1:50)`.
 
 # Breakout Answers!
 

@@ -15,3 +15,5 @@ download from http://nowpublishers.com/articles/quarterly-journal-of-political-s
 exit poll data from the 2004 election. Again the meaning of the codings for various variables should be inferrable from knowing a bit about US demographics - I can help with this if needed.
 
 Note that the heights data have some continuous variables but the election data are all categorical.
+
+stateIncome.txt is extracted from http://www.census.gov/compendia/databooks/2010/tables/sma_A-33.xls and provides average income by state based on data for 2005-2007.
