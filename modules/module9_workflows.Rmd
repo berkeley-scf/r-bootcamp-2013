@@ -7,9 +7,20 @@
 # e.g. package and dataset loading
 ```
 
-# Working with code
+# Outline
 
 Note: remember to start recording.
+
+This module is less focused on R. More to do with general recommendations on
+best practices when working on a computer. Much of the discussion will apply
+to other programming languages such as Python as well as writing papers,
+posters, slides, etc. with tools such as $\LaTeX$.
+
+General themes:
+
+* Automation
+* Toolbox
+* Best practices
 
 # Making dirt fly!
 
@@ -104,6 +115,22 @@ In Linux and Mac, you just need to open a Terminal window. On the Mac this is in
 
 Windows has the old MS-DOS command line that allows some command line functionality. There is something call *cygwin* that provides UNIX-like functionality.
 
+# The UNIX Philosophy
+
+> Write programs that do one thing and do it well.
+>
+> Write programs to work together.
+>
+> Write programs to handle text streams, because that is a universal interface.
+
+--- Doug McIlroy
+
+For more details, please see:
+
+http://en.wikipedia.org/wiki/Unix_philosophy
+
+
+
 
 # Reproducible research
 
@@ -125,9 +152,16 @@ The basic idea is that instead of manually trying to keep track of what changes 
 * allowing you to share work easily without worrying about conflicts
 * providing built-in backup
 
-A popular tool these days is *git*, with storage for projects at github.com. 
-
 At a basic level, a simple principle is to have version numbers for all your work: code, datasets, manuscripts. Whenever you make a change to a dataset, increment the version number. For code and manuscripts, increment when you make substantial changes or have obvious breakpoints in your workflow. 
+
+# Version control architectures
+
+* Client-server (e.g., CVS, Subversion)
+* Distributed (e.g., Mercurial, **Git**)
+
+# Git data structure
+
+
 
 # Git concepts: commit
 
