@@ -43,7 +43,7 @@ We can see the progression of evaluations of the objective function:
 ```{r eval=FALSE}
 banana <- function(x) {   ## Rosenbrock Banana function
          points(x[1],x[2])
-         Sys.sleep(.1)
+         Sys.sleep(.03)
          x1 <- x[1]
          x2 <- x[2]
          100 * (x2 - x1 * x1)^2 + (1 - x1)^2
@@ -73,9 +73,9 @@ Any hypotheses about the relationship of earnings with height and education?
 library(mgcv)
 runif(1) # not clear why this is needed; knitr throws error w/out it
 mod_male <- gam(earn ~ s(height, k = 10) + s(ed, k = 10), 
-data = earnings[earnings$sex == 1,])
+         data = earnings[earnings$sex == 1,])
 mod_female <- gam(earn ~ s(height, k = 10) + s(ed, k = 10), 
-data = earnings[earnings$sex == 2,])
+           data = earnings[earnings$sex == 2,])
 summary(mod_male)
 summary(mod_female)
 par(mfrow = c(1,2))
@@ -89,9 +89,9 @@ Suppose we want to account for race in the model.
 
 ```{r gamExampleFull, cache=TRUE, fig.width=10}
 mod_male_full <- gam(earn ~ s(height, k = 10) + s(ed, k = 10) + race, 
-data = earnings[earnings$sex == 1,])
+              data = earnings[earnings$sex == 1,])
 mod_female_full <- gam(earn ~ s(height, k = 10) + s(ed, k = 10) + race, 
-data = earnings[earnings$sex == 2,])
+                data = earnings[earnings$sex == 2,])
 summary(mod_male_full)
 summary(mod_female_full)
 par(mfrow = c(1,2))
@@ -142,7 +142,8 @@ We can draw a sample with or without replacement. Here's an example of some code
 ```{r}
 sample(row.names(state.x77), 7, replace = FALSE)
 mean(earnings$earn, na.rm = TRUE)
-smp <- sample(seq_len(nrow(earnings)), replace = TRUE)
+# here's a bootstrap sample:
+smp <- sample(seq_len(nrow(earnings)), replace = TRUE) 
 mean(earnings$earn[smp], na.rm = TRUE)
 ```
 
@@ -213,8 +214,7 @@ There's lots more packages/functionality for dates/times: see *lubridate* and `?
  
 # Breakout 
 
-Suppose you wanted to do 10-fold cross-validation for some sort of regression model fit to the *earnings* dataset. Write some R code that produces a field in the dataset that indicates which fold each observation is in. Ensure each of the folds has an equal (or as nearly equal as possible if the number of observations is not divisible by 10) number of observations.
-
-Write some code to demonstrate the central limit theorem. Generate many different replicates of samples of size `n` from a skewed or discrete distribution and show that if `n` is big enough, the distribution of the means (of each sample of size `n`) looks approximately normal in a histogram. Do it without any looping! 
+1. Suppose you wanted to do 10-fold cross-validation for some sort of regression model fit to the *earnings* dataset. Write some R code that produces a field in the dataset that indicates which fold each observation is in. Ensure each of the folds has an equal (or as nearly equal as possible if the number of observations is not divisible by 10) number of observations. Hint: consider the *times* argument to the `rep()` function.
+2. Write some code to demonstrate the central limit theorem. Generate many different replicates of samples of size `n` from a skewed or discrete distribution and show that if `n` is big enough, the distribution of the means (of each sample of size `n`) looks approximately normal in a histogram. Do it without any looping! 
 
 

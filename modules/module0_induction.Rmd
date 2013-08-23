@@ -54,6 +54,10 @@ I encourage you to:
 
 We'll present most of the material from within RStudio, using R Markdown documents with embedded R code. R Markdown is an extension to the Markdown markup language which makes it easy to write HTML in a simple plain text format.  This allows us to both run the R code directly as well as compile on-the-fly to an HTML file that can be used for presentation. All files will be available on [bspace, under Resources](https://bspace.berkeley.edu/portal/site/28905ed6-df96-4778-b2a7-d87fb6405ba2) and [Github](https://github.com/berkeley-scf/r-bootcamp-2013).  Note that Github is likely to have the most up-to-date documents while bSpace will only be updated periodically.
 
+Note: The files named *moduleX_blah_slides.html* have individual slides, while the files named *moduleX_blah.html* have the same content but all on one page.
+
+Warning: in some cases the processing of the R code in the R Markdown is screwy and the slides have error messages that do not occur if you just run the code directly in R or RStudio. 
+
 # Using Github to get the documents
 
 To download the files from Github, you can do the following. 
