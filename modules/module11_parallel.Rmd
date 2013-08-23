@@ -11,6 +11,8 @@
 
 Note to BB: remember to start recording.
 
+Note to participants: I'm having trouble with parallelization in RStudio, so we'll just run the demo code in this module in a command line R session. You can open the basic R GUI for Mac or Windows, or, on a Mac, start R in a terminal window.
+
 * Modern computers have multiple processors and clusters/supercomputers have multiple networked machines, each with multiple processors.
 * The key to increasing computational efficiency in these contexts is breaking up the work amongst the processors.
 * Processors on a single machine (or 'node') share memory and don't need to carry out explicit communication (shared memory computation)
@@ -21,7 +23,7 @@ We'll focus on shared memory computation here.
 # How do I know how many cores a computer has?
 
 * Linux - count the processors listed in */proc/cpuinfo*
-* Mac - in a terminal: `system_profiler | grep 'Total Number Of Cores'`
+* Mac - in a terminal: `system_profiler | grep -i 'Cores'`
 * Windows - count the number of graphs shown for CPU Usage (or CPU Usage History) under "Task Manager->Performance", or [try this program](http://www.cpuid.com/cpuz.php) 
  
 To see if multiple cores are being used by your job, you can do:
@@ -35,13 +37,13 @@ Some basic approaches are:
 
 * Use a linear algebra package that distributes computations across 'threads'
 * Spread independent calculations (embarrassingly parallel problems) across multiple cores
-    - for loops with independent calculations
+    - *for* loops with independent calculations
     - parallelizing `apply()` and its variants
 
 
 # Threaded linear algebra
 
-R comes with a default BLAS (basic linear algebra subroutines) that carry out the core linear algebra computations. However, you can generally improve performance (sometimes by an order of magnitude) by using a different BLAS. Furthermore a threaded BLAS will allow you to use multiple cores.
+R comes with a default BLAS (basic linear algebra subroutines) and LAPACK (linear algebra package) that carry out the core linear algebra computations. However, you can generally improve performance (sometimes by an order of magnitude) by using a different BLAS. Furthermore a threaded BLAS will allow you to use multiple cores.
 
 A 'thread' is a lightweight process, and the operating system sees multiple threads as part of a single process.
 
@@ -49,9 +51,10 @@ A 'thread' is a lightweight process, and the operating system sees multiple thre
 * For Mac, Apple's *vecLib* (in a library called *libRblas.vecLib.dylib*) is fast and threaded.
 * For Windows, you're probably out of luck.
 
-We'll show by demonstration that my Mac and our Linux machines are using multiple cores for linear algebra operations.
+We'll show by demonstration that my Mac laptop is using multiple cores for linear algebra operations.
 
 ```{r, cache=TRUE}
+# note to CJP: don't run in RStudio
 n <- 5000
 x <- matrix(rnorm(n^2), n)
 U <- chol(crossprod(x))
@@ -63,7 +66,7 @@ You should see that your R process is using more than 100% of CPU. Inconceivable
 
 You can talk with your systems administrator about linking R to a fast BLAS or you can look into it yourself for your personal machine; see the [R Installation and Administration manual](http://www.cran.r-project.org/manuals.html).
 
-Note that in some cases, in particular for small matrix operations, using multiple threads may actually slow down computation, so you may want to experiment, particularly with Linux. You can force the linear algebra to use only a single core by doing (in bash) `export OMP_NUM_THREADS=1` in the Linux terminal window before starting R.
+Note that in some cases, in particular for small matrix operations, using multiple threads may actually slow down computation, so you may want to experiment, particularly with Linux. You can force the linear algebra to use only a single core by doing (assuming you're using the bash shell) `export OMP_NUM_THREADS=1` in the terminal window *before* starting R in the same terminal.
 
 Finally, note that threaded BLAS and either `foreach` or parallel versions of `apply()` can conflict and cause R to hang, so you're likely to want to set the number of threads to 1 as above if you're doing explicit parallelization. 
 
@@ -77,9 +80,9 @@ Examples in statistics include
 
 1. stratified analyses
 2. cross-validation
-3. random forests models
 4. simulations with many independent replicates
 5. bootstrapping
+3. random forests models
 
 Can you think of others in your work?
 
@@ -97,6 +100,7 @@ The *foreach* package provides a way to do a for loop using multiple cores. It c
 To use multiple cores on a single machine, use the *parallel* back-end from the *doParallel* package (or *multicore* from *doMC*)
 
 ```{r cache=TRUE}
+# note to CJP: don't run in RStudio
 require(parallel)
 require(doParallel)
 require(foreach)
@@ -126,16 +130,34 @@ You can leave out the `.combine` argument - `foreach` will do something reasonab
 
 # Using multiple cores for EP problems: parallel *apply* variants 
 
-`help(clusterApply)` shows the wide variety of parallel versions of the `apply()` family of functions.
+`help(clusterApply)` shows the wide variety of parallel versions of the *apply* family of functions.
 
 ```{r cache=TRUE}
 require(parallel)
 nCores <- 4
 cluster <- makeCluster(nCores)
+cluster
 
 out <- parSapply(cluster, seq_len(nSims), testFun)
 out2 <- mclapply(seq_len(nSims), testFun, mc.cores = nCores)
 out[1:5]
+```
+
+```{r cache=TRUE}
+require(parallel)
+nCores <- 4
+
+testFun <- function(i) {
+        set.seed(i)
+        mn <- mean(rnorm(n))
+        mn
+}
+
+n <- 1e7
+nSims <- 100
+
+out2 <- mclapply(seq_len(nSims), testFun, mc.cores = nCores)
+out2[1:5]
 ```
 
 One thing to keep in mind is whether the different tasks all take about the same amount of time or widely different times. In the latter case, one wants to sequentially dispatch tasks as earlier tasks finish, rather than dispatching a block of tasks to each core. Some of these parallel *apply* variants allow you to control this. 
