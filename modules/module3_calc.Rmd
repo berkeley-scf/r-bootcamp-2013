@@ -325,8 +325,6 @@ What's the deal with the `all.x` and `all.y` ?  We can tell R whether we want to
 
 ## Problem 1
 
-**To see this problem with the equations below rendered correctly, see module3_calc.html (the non-slide version).**
-
 Suppose we have two categorical variables and we conduct a hypothesis test of independence. The chi-square statistic is: 
 
 $$
