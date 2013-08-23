@@ -183,6 +183,8 @@ hljs.initHighlightingOnLoad();
 
 <p>Note to BB: remember to start recording.</p>
 
+<p>Note to participants: I&#39;m having trouble with parallelization in RStudio, so we&#39;ll just run the demo code in this module in a command line R session. You can open the basic R GUI for Mac or Windows, or, on a Mac, start R in a terminal window.</p>
+
 <ul>
 <li>Modern computers have multiple processors and clusters/supercomputers have multiple networked machines, each with multiple processors.</li>
 <li>The key to increasing computational efficiency in these contexts is breaking up the work amongst the processors.</li>
@@ -196,7 +198,7 @@ hljs.initHighlightingOnLoad();
 
 <ul>
 <li>Linux - count the processors listed in <em>/proc/cpuinfo</em></li>
-<li>Mac - in a terminal: <code>system_profiler | grep &#39;Total Number Of Cores&#39;</code></li>
+<li>Mac - in a terminal: <code>system_profiler | grep -i &#39;Cores&#39;</code></li>
 <li>Windows - count the number of graphs shown for CPU Usage (or CPU Usage History) under &ldquo;Task Manager-&gt;Performance&rdquo;, or <a href="http://www.cpuid.com/cpuz.php">try this program</a> </li>
 </ul>
 
@@ -216,14 +218,14 @@ hljs.initHighlightingOnLoad();
 <li>Spread independent calculations (embarrassingly parallel problems) across multiple cores
 
 <ul>
-<li>for loops with independent calculations</li>
+<li><em>for</em> loops with independent calculations</li>
 <li>parallelizing <code>apply()</code> and its variants</li>
 </ul></li>
 </ul>
 
 <h1>Threaded linear algebra</h1>
 
-<p>R comes with a default BLAS (basic linear algebra subroutines) that carry out the core linear algebra computations. However, you can generally improve performance (sometimes by an order of magnitude) by using a different BLAS. Furthermore a threaded BLAS will allow you to use multiple cores.</p>
+<p>R comes with a default BLAS (basic linear algebra subroutines) and LAPACK (linear algebra package) that carry out the core linear algebra computations. However, you can generally improve performance (sometimes by an order of magnitude) by using a different BLAS. Furthermore a threaded BLAS will allow you to use multiple cores.</p>
 
 <p>A &#39;thread&#39; is a lightweight process, and the operating system sees multiple threads as part of a single process.</p>
 
@@ -233,9 +235,10 @@ hljs.initHighlightingOnLoad();
 <li>For Windows, you&#39;re probably out of luck.</li>
 </ul>
 
-<p>We&#39;ll show by demonstration that my Mac and our Linux machines are using multiple cores for linear algebra operations.</p>
+<p>We&#39;ll show by demonstration that my Mac laptop is using multiple cores for linear algebra operations.</p>
 
-<pre><code class="r">n &lt;- 5000
+<pre><code class="r"># note to CJP: don&#39;t run in RStudio
+n &lt;- 5000
 x &lt;- matrix(rnorm(n^2), n)
 U &lt;- chol(crossprod(x))
 </code></pre>
@@ -246,7 +249,7 @@ U &lt;- chol(crossprod(x))
 
 <p>You can talk with your systems administrator about linking R to a fast BLAS or you can look into it yourself for your personal machine; see the <a href="http://www.cran.r-project.org/manuals.html">R Installation and Administration manual</a>.</p>
 
-<p>Note that in some cases, in particular for small matrix operations, using multiple threads may actually slow down computation, so you may want to experiment, particularly with Linux. You can force the linear algebra to use only a single core by doing (in bash) <code>export OMP_NUM_THREADS=1</code> in the Linux terminal window before starting R.</p>
+<p>Note that in some cases, in particular for small matrix operations, using multiple threads may actually slow down computation, so you may want to experiment, particularly with Linux. You can force the linear algebra to use only a single core by doing (assuming you&#39;re using the bash shell) <code>export OMP_NUM_THREADS=1</code> in the terminal window <em>before</em> starting R in the same terminal.</p>
 
 <p>Finally, note that threaded BLAS and either <code>foreach</code> or parallel versions of <code>apply()</code> can conflict and cause R to hang, so you&#39;re likely to want to set the number of threads to 1 as above if you&#39;re doing explicit parallelization. </p>
 
@@ -261,9 +264,9 @@ U &lt;- chol(crossprod(x))
 <ol>
 <li>stratified analyses</li>
 <li>cross-validation</li>
-<li>random forests models</li>
 <li>simulations with many independent replicates</li>
 <li>bootstrapping</li>
+<li>random forests models</li>
 </ol>
 
 <p>Can you think of others in your work?</p>
@@ -283,10 +286,11 @@ U &lt;- chol(crossprod(x))
 
 <p>To use multiple cores on a single machine, use the <em>parallel</em> back-end from the <em>doParallel</em> package (or <em>multicore</em> from <em>doMC</em>)</p>
 
-<pre><code class="r">require(parallel)
+<pre><code class="r"># note to CJP: don&#39;t run in RStudio
+require(parallel)
 require(doParallel)
 require(foreach)
-nCores &lt;- 4
+nCores &lt;- 4  # actually only 2 on my laptop, but appears hyperthreaded
 registerDoParallel(nCores)
 
 testFun &lt;- function(i) {
@@ -315,18 +319,56 @@ out[1:5]
 
 <h1>Using multiple cores for EP problems: parallel <em>apply</em> variants</h1>
 
-<p><code>help(clusterApply)</code> shows the wide variety of parallel versions of the <code>apply()</code> family of functions.</p>
+<p><code>help(clusterApply)</code> shows the wide variety of parallel versions of the <em>apply</em> family of functions.</p>
 
 <pre><code class="r">require(parallel)
 nCores &lt;- 4
 cluster &lt;- makeCluster(nCores)
+cluster
+</code></pre>
 
+<pre><code>## socket cluster with 4 nodes on host &#39;localhost&#39;
+</code></pre>
+
+<pre><code class="r">
 out &lt;- parSapply(cluster, seq_len(nSims), testFun)
 out2 &lt;- mclapply(seq_len(nSims), testFun, mc.cores = nCores)
 out[1:5]
 </code></pre>
 
 <pre><code>## [1]  0.0004037 -0.0002178 -0.0002258  0.0005587  0.0002852
+</code></pre>
+
+<pre><code class="r">require(parallel)
+nCores &lt;- 4
+
+testFun &lt;- function(i) {
+    set.seed(i)
+    mn &lt;- mean(rnorm(n))
+    mn
+}
+
+n &lt;- 1e+07
+nSims &lt;- 100
+
+out2 &lt;- mclapply(seq_len(nSims), testFun, mc.cores = nCores)
+out2[1:5]
+</code></pre>
+
+<pre><code>## [[1]]
+## [1] 0.0004037
+## 
+## [[2]]
+## [1] -0.0002178
+## 
+## [[3]]
+## [1] -0.0002258
+## 
+## [[4]]
+## [1] 0.0005587
+## 
+## [[5]]
+## [1] 0.0002852
 </code></pre>
 
 <p>One thing to keep in mind is whether the different tasks all take about the same amount of time or widely different times. In the latter case, one wants to sequentially dispatch tasks as earlier tasks finish, rather than dispatching a block of tasks to each core. Some of these parallel <em>apply</em> variants allow you to control this. </p>
@@ -359,7 +401,7 @@ rnorm(5)
 
 <ul>
 <li><p>The (not so) bad: Use a different seed for each task or each process. It&#39;s possible the subsequences will overlap but quite unlikely.</p></li>
-<li><p>The good: Use the L&#39;Ecuyer algorithm to ensure distinct subsequences</p>
+<li><p>The good: Use the L&#39;Ecuyer algorithm (<code>library(lecuyer)</code>) to ensure distinct subsequences</p>
 
 <ul>
 <li>with <code>foreach</code> you can use <code>%dorng%</code> from the <em>doRNG</em> package in place of <code>%dopar%</code></li>
@@ -372,7 +414,7 @@ rnorm(5)
 
 <h1>A brief note on distributed computing for advanced users</h1>
 
-<p>If you have access to multiple machines with a networked environment, such as the compute servers in the Statistics Department, there are a couple straightforward ways to parallelize EP jobs across machines.</p>
+<p>If you have access to multiple machines within a networked environment, such as the compute servers in the Statistics Department, there are a couple straightforward ways to parallelize EP jobs across machines.</p>
 
 <ol>
 <li>Use <code>foreach</code> with <em>doMPI</em> as the back-end. You&#39;ll need <em>MPI</em> and <em>Rmpi</em> installed on all machines. </li>
@@ -383,7 +425,9 @@ rnorm(5)
 
 <h1>Breakout</h1>
 
-<p>Fit logistic regression models of preference for Bush/Kerry on income, stratified by state. Use <code>foreach</code> or a parallel version of one of the <em>apply</em> variants.</p>
+<p>Figure out how many cores your laptop has. </p>
+
+<p>Fit logistic regression models of preference for Bush/Kerry on income, stratified by state. Use <code>foreach</code> or a parallel version of one of the <em>apply</em> variants.  Collect the resulting coefficients (and standard errors, if you&#39;re feeling ambitious) in a clean format such as a matrix or data frame.  Check to see if multiple cores are being used in the execution.</p>
 
 </body>
 

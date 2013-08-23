@@ -40,6 +40,7 @@ August 2013, UC Berkeley
 <div class="section slide level1" id="computer-architecture">
 <h1 id="computer-architecture">Computer architecture</h1>
 <p>Note to BB: remember to start recording.</p>
+<p>Note to participants: I'm having trouble with parallelization in RStudio, so we'll just run the demo code in this module in a command line R session. You can open the basic R GUI for Mac or Windows, or, on a Mac, start R in a terminal window.</p>
 <ul>
 <li>Modern computers have multiple processors and clusters/supercomputers have multiple networked machines, each with multiple processors.</li>
 <li>The key to increasing computational efficiency in these contexts is breaking up the work amongst the processors.</li>
@@ -52,7 +53,7 @@ August 2013, UC Berkeley
 <h1 id="how-do-i-know-how-many-cores-a-computer-has">How do I know how many cores a computer has?</h1>
 <ul>
 <li>Linux - count the processors listed in <em>/proc/cpuinfo</em></li>
-<li>Mac - in a terminal: <code>system_profiler | grep 'Total Number Of Cores'</code></li>
+<li>Mac - in a terminal: <code>system_profiler | grep -i 'Cores'</code></li>
 <li>Windows - count the number of graphs shown for CPU Usage (or CPU Usage History) under &quot;Task Manager-&gt;Performance&quot;, or <a href="http://www.cpuid.com/cpuz.php">try this program</a></li>
 </ul>
 <p>To see if multiple cores are being used by your job, you can do:</p>
@@ -68,22 +69,23 @@ August 2013, UC Berkeley
 <li>Use a linear algebra package that distributes computations across 'threads'</li>
 <li>Spread independent calculations (embarrassingly parallel problems) across multiple cores
 <ul>
-<li>for loops with independent calculations</li>
+<li><em>for</em> loops with independent calculations</li>
 <li>parallelizing <code>apply()</code> and its variants</li>
 </ul></li>
 </ul>
 </div>
 <div class="section slide level1" id="threaded-linear-algebra">
 <h1 id="threaded-linear-algebra">Threaded linear algebra</h1>
-<p>R comes with a default BLAS (basic linear algebra subroutines) that carry out the core linear algebra computations. However, you can generally improve performance (sometimes by an order of magnitude) by using a different BLAS. Furthermore a threaded BLAS will allow you to use multiple cores.</p>
+<p>R comes with a default BLAS (basic linear algebra subroutines) and LAPACK (linear algebra package) that carry out the core linear algebra computations. However, you can generally improve performance (sometimes by an order of magnitude) by using a different BLAS. Furthermore a threaded BLAS will allow you to use multiple cores.</p>
 <p>A 'thread' is a lightweight process, and the operating system sees multiple threads as part of a single process.</p>
 <ul>
 <li>For Linux, <em>openBLAS</em>, Intel's <em>MKL</em> and AMD's <em>ACML</em> are both fast and threaded. On the SCF we have openBLAS on the compute servers and ACML on the Linux cluster and R uses these for linear algebra.</li>
 <li>For Mac, Apple's <em>vecLib</em> (in a library called <em>libRblas.vecLib.dylib</em>) is fast and threaded.</li>
 <li>For Windows, you're probably out of luck.</li>
 </ul>
-<p>We'll show by demonstration that my Mac and our Linux machines are using multiple cores for linear algebra operations.</p>
-<pre class="sourceCode r"><code class="sourceCode r">n &lt;- <span class="dv">5000</span>
+<p>We'll show by demonstration that my Mac laptop is using multiple cores for linear algebra operations.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># note to CJP: don't run in RStudio</span>
+n &lt;- <span class="dv">5000</span>
 x &lt;- <span class="kw">matrix</span>(<span class="kw">rnorm</span>(n^<span class="dv">2</span>), n)
 U &lt;- <span class="kw">chol</span>(<span class="kw">crossprod</span>(x))</code></pre>
 <p>You should see that your R process is using more than 100% of CPU. Inconceivable!</p>
@@ -91,7 +93,7 @@ U &lt;- <span class="kw">chol</span>(<span class="kw">crossprod</span>(x))</code
 <div class="section slide level1" id="more-details-on-the-blas">
 <h1 id="more-details-on-the-blas">More details on the BLAS</h1>
 <p>You can talk with your systems administrator about linking R to a fast BLAS or you can look into it yourself for your personal machine; see the <a href="http://www.cran.r-project.org/manuals.html">R Installation and Administration manual</a>.</p>
-<p>Note that in some cases, in particular for small matrix operations, using multiple threads may actually slow down computation, so you may want to experiment, particularly with Linux. You can force the linear algebra to use only a single core by doing (in bash) <code>export OMP_NUM_THREADS=1</code> in the Linux terminal window before starting R.</p>
+<p>Note that in some cases, in particular for small matrix operations, using multiple threads may actually slow down computation, so you may want to experiment, particularly with Linux. You can force the linear algebra to use only a single core by doing (assuming you're using the bash shell) <code>export OMP_NUM_THREADS=1</code> in the terminal window <em>before</em> starting R in the same terminal.</p>
 <p>Finally, note that threaded BLAS and either <code>foreach</code> or parallel versions of <code>apply()</code> can conflict and cause R to hang, so you're likely to want to set the number of threads to 1 as above if you're doing explicit parallelization.</p>
 </div>
 <div class="section slide level1" id="what-is-an-embarrassingly-parallel-ep-problem">
@@ -102,9 +104,9 @@ U &lt;- <span class="kw">chol</span>(<span class="kw">crossprod</span>(x))</code
 <ol style="list-style-type: decimal">
 <li>stratified analyses</li>
 <li>cross-validation</li>
-<li>random forests models</li>
 <li>simulations with many independent replicates</li>
 <li>bootstrapping</li>
+<li>random forests models</li>
 </ol>
 <p>Can you think of others in your work?</p>
 <p>Some things that are not EP:</p>
@@ -118,10 +120,11 @@ U &lt;- <span class="kw">chol</span>(<span class="kw">crossprod</span>(x))</code
 <p>First, make sure your iterations are independent and don't involve sequential calculations!</p>
 <p>The <em>foreach</em> package provides a way to do a for loop using multiple cores. It can use a variety of 'back-ends' that handle the nitty-gritty of the parallelization.</p>
 <p>To use multiple cores on a single machine, use the <em>parallel</em> back-end from the <em>doParallel</em> package (or <em>multicore</em> from <em>doMC</em>)</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(parallel)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># note to CJP: don't run in RStudio</span>
+<span class="kw">require</span>(parallel)
 <span class="kw">require</span>(doParallel)
 <span class="kw">require</span>(foreach)
-nCores &lt;- <span class="dv">4</span>
+nCores &lt;- <span class="dv">4</span>  <span class="co"># actually only 2 on my laptop, but appears hyperthreaded</span>
 <span class="kw">registerDoParallel</span>(nCores)
 
 testFun &lt;- function(i) {
@@ -145,15 +148,45 @@ out[<span class="dv">1</span>:<span class="dv">5</span>]</code></pre>
 </div>
 <div class="section slide level1" id="using-multiple-cores-for-ep-problems-parallel-apply-variants">
 <h1 id="using-multiple-cores-for-ep-problems-parallel-apply-variants">Using multiple cores for EP problems: parallel <em>apply</em> variants</h1>
-<p><code>help(clusterApply)</code> shows the wide variety of parallel versions of the <code>apply()</code> family of functions.</p>
+<p><code>help(clusterApply)</code> shows the wide variety of parallel versions of the <em>apply</em> family of functions.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(parallel)
 nCores &lt;- <span class="dv">4</span>
 cluster &lt;- <span class="kw">makeCluster</span>(nCores)
-
+cluster</code></pre>
+<pre><code>## socket cluster with 4 nodes on host 'localhost'</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">
 out &lt;- <span class="kw">parSapply</span>(cluster, <span class="kw">seq_len</span>(nSims), testFun)
 out2 &lt;- <span class="kw">mclapply</span>(<span class="kw">seq_len</span>(nSims), testFun, <span class="dt">mc.cores =</span> nCores)
 out[<span class="dv">1</span>:<span class="dv">5</span>]</code></pre>
 <pre><code>## [1]  0.0004037 -0.0002178 -0.0002258  0.0005587  0.0002852</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(parallel)
+nCores &lt;- <span class="dv">4</span>
+
+testFun &lt;- function(i) {
+    <span class="kw">set.seed</span>(i)
+    mn &lt;- <span class="kw">mean</span>(<span class="kw">rnorm</span>(n))
+    mn
+}
+
+n &lt;- <span class="fl">1e+07</span>
+nSims &lt;- <span class="dv">100</span>
+
+out2 &lt;- <span class="kw">mclapply</span>(<span class="kw">seq_len</span>(nSims), testFun, <span class="dt">mc.cores =</span> nCores)
+out2[<span class="dv">1</span>:<span class="dv">5</span>]</code></pre>
+<pre><code>## [[1]]
+## [1] 0.0004037
+## 
+## [[2]]
+## [1] -0.0002178
+## 
+## [[3]]
+## [1] -0.0002258
+## 
+## [[4]]
+## [1] 0.0005587
+## 
+## [[5]]
+## [1] 0.0002852</code></pre>
 <p>One thing to keep in mind is whether the different tasks all take about the same amount of time or widely different times. In the latter case, one wants to sequentially dispatch tasks as earlier tasks finish, rather than dispatching a block of tasks to each core. Some of these parallel <em>apply</em> variants allow you to control this.</p>
 </div>
 <div class="section slide level1" id="parallelization-and-random-number-generation">
@@ -172,7 +205,7 @@ out[<span class="dv">1</span>:<span class="dv">5</span>]</code></pre>
 <pre><code>## [1]  1.2630 -0.3262  1.3298  1.2724  0.4146</code></pre>
 <ul>
 <li><p>The (not so) bad: Use a different seed for each task or each process. It's possible the subsequences will overlap but quite unlikely.</p></li>
-<li>The good: Use the L'Ecuyer algorithm to ensure distinct subsequences
+<li>The good: Use the L'Ecuyer algorithm (<code>library(lecuyer)</code>) to ensure distinct subsequences
 <ul>
 <li>with <code>foreach</code> you can use <code>%dorng%</code> from the <em>doRNG</em> package in place of <code>%dopar%</code></li>
 <li>with <code>mclapply()</code>, use the <code>mc.set.seed</code> argument (see <code>help(mcparallel)</code>)</li>
@@ -183,7 +216,7 @@ out[<span class="dv">1</span>:<span class="dv">5</span>]</code></pre>
 </div>
 <div class="section slide level1" id="a-brief-note-on-distributed-computing-for-advanced-users">
 <h1 id="a-brief-note-on-distributed-computing-for-advanced-users">A brief note on distributed computing for advanced users</h1>
-<p>If you have access to multiple machines with a networked environment, such as the compute servers in the Statistics Department, there are a couple straightforward ways to parallelize EP jobs across machines.</p>
+<p>If you have access to multiple machines within a networked environment, such as the compute servers in the Statistics Department, there are a couple straightforward ways to parallelize EP jobs across machines.</p>
 <ol style="list-style-type: decimal">
 <li>Use <code>foreach</code> with <em>doMPI</em> as the back-end. You'll need <em>MPI</em> and <em>Rmpi</em> installed on all machines.</li>
 <li>Use sockets to make a cluster in R and then use <code>parLapply()</code>, <code>parSapply()</code>, <code>mclapply()</code>, etc.</li>
@@ -192,7 +225,8 @@ out[<span class="dv">1</span>:<span class="dv">5</span>]</code></pre>
 </div>
 <div class="section slide level1" id="breakout">
 <h1 id="breakout">Breakout</h1>
-<p>Fit logistic regression models of preference for Bush/Kerry on income, stratified by state. Use <code>foreach</code> or a parallel version of one of the <em>apply</em> variants.</p>
+<p>Figure out how many cores your laptop has.</p>
+<p>Fit logistic regression models of preference for Bush/Kerry on income, stratified by state. Use <code>foreach</code> or a parallel version of one of the <em>apply</em> variants. Collect the resulting coefficients (and standard errors, if you're feeling ambitious) in a clean format such as a matrix or data frame. Check to see if multiple cores are being used in the execution.</p>
 </div>
 </body>
 </html>

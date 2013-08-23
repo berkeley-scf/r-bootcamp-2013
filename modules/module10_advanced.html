@@ -181,11 +181,11 @@ hljs.initHighlightingOnLoad();
 <body>
 <h1>This purpose of this module</h1>
 
+<p>Note to BB: start recording.</p>
+
 <p>For some of the topics here, my goal is not to teach you how to fish, but merely to tell you that fish exist, they are delicious, that they can be caught, and where one might go to figure out how to catch them.</p>
 
-<h1>Object-oriented programming in R</h1>
-
-<p>Note to BB: start recording.</p>
+<h1>Object-oriented programming (OOP) in R</h1>
 
 <p>Confusingly, R has three different systems for OOP, and none of them are as elegant and powerful as in Python or other languages more focused on OOP. That said, they get the job done for a lot of tasks.</p>
 
@@ -197,11 +197,11 @@ hljs.initHighlightingOnLoad();
 
 <h1>Basics of object-oriented programming (OOP)</h1>
 
-<p>The basic idea is that coding is structured around <em>objects</em>, which have  <em>class</em>, and <em>methods</em> that operate on objects in the class.</p>
+<p>The basic idea is that coding is structured around <em>objects</em>, which belong to a <em>class</em>, and <em>methods</em> that operate on objects in the class.</p>
 
 <p>Objects are like lists, but with methods that are specifically associated with particular classes, as we&#39;ve seen with the <code>lm</code> class.</p>
 
-<p>Objects have fields, analogous to the components of a list. For S4 and reference classes, the fields of the class are fixed. </p>
+<p>Objects have fields, analogous to the components of a list. For S4 and reference classes, the fields of the class are fixed and all objects of the class must contain those fields. </p>
 
 <h1>Working with S3 classes and methods</h1>
 
@@ -215,7 +215,7 @@ mod2$residuals  # access field with list-like syntax
 </code></pre>
 
 <pre><code>##      1      2      3      4      5      6      7      8      9     10 
-##  2.054 -1.913  1.661  2.242  1.696 -1.891 -1.910 -1.759  2.382 -2.494
+##  1.593  2.508 -2.469  2.541  1.553  1.608 -1.992 -1.236 -1.729 -2.553
 </code></pre>
 
 <pre><code class="r">
@@ -293,7 +293,7 @@ predict
 
 <pre><code>## function (object, ...) 
 ## UseMethod(&quot;predict&quot;)
-## &lt;bytecode: 0x1d82c78&gt;
+## &lt;bytecode: 0x24367a0&gt;
 ## &lt;environment: namespace:stats&gt;
 </code></pre>
 
@@ -301,7 +301,7 @@ predict
 # predict.glm
 </code></pre>
 
-<p>When <code>predict()</code> is called on a GLM object, it first calls the generic <code>predict()</code>, which then recognizes that the first argument is of the class <em>glm</em> and immediately calls the right class-specific method.</p>
+<p>When <code>predict()</code> is called on a GLM object, it first calls the generic <code>predict()</code>, which then recognizes that the first argument is of the class <em>glm</em> and immediately calls the right class-specific method, <code>predict.glm()</code> in this case.</p>
 
 <h1>Making your own S3 class/object/method</h1>
 
@@ -517,7 +517,7 @@ mysqrt(c(1, 2, 3))
 
 <h1>&#39;Catching&#39; errors</h1>
 
-<p>When you automate analyses, sometimes an R call will fail. But you don&#39;t want all of your analyses to grind to a halt because one failed. Rather, you want to catch the error, record that it failed, and move on.</p>
+<p>When you automate analyses, sometimes an R function call will fail. But you don&#39;t want all of your analyses to grind to a halt because one failed. Rather, you want to catch the error, record that it failed, and move on.</p>
 
 <p>For me this is most critical when I&#39;m doing stratified analyses or sequential operations.</p>
 
@@ -582,7 +582,8 @@ for (edLevel in unique(earnings$ed)) {
 ## [1] 3
 </code></pre>
 
-<pre><code class="r">mod[[2]]
+<pre><code class="r">
+mod[[2]]
 </code></pre>
 
 <pre><code>## [1] NA
@@ -606,7 +607,7 @@ for (edLevel in unique(earnings$ed)) {
 
 <p>First we need to understand a bit about how R code is stored and manipulated when we don&#39;t want to immediately evaluate it.</p>
 
-<p>When you send some code to R to execute, it has to &#39;parse&#39; the input; i.e., to process it so that it know how to evaluate it. The parsed input can then be evaluated in the proper context (i.e., the right frame). </p>
+<p>When you send some code to R to execute, it has to &#39;parse&#39; the input; i.e., to process it so that it know how to evaluate it. The parsed input can then be evaluated in the proper context (i.e., the right frame, holding the objects to be operated on and created). </p>
 
 <p>We can capture parsed code before it is evaluated, manipulate it, and execute the modified result.</p>
 
@@ -680,7 +681,13 @@ codeText
 </code></pre>
 
 <pre><code class="r">codeFromText &lt;- parse(text = codeText)
-eval(codeFromText)
+codeFromText
+</code></pre>
+
+<pre><code>## expression(n &lt;- 200)
+</code></pre>
+
+<pre><code class="r">eval(codeFromText)
 n
 </code></pre>
 
@@ -691,11 +698,13 @@ n
 
 <h1>Using R to automate working with object names</h1>
 
-<p>Suppose you were given a bunch of objects named &ldquo;x1&rdquo;, &ldquo;x2&rdquo;, &ldquo;x3&rdquo;, &hellip; and you wanted to write code to automatically do some computation on them.</p>
+<p>Suppose you were given a bunch of objects named &ldquo;x1&rdquo;, &ldquo;x2&rdquo;, &ldquo;x3&rdquo;, &hellip; and you wanted to write code to automatically do some computation on them. Here I&#39;ll just demonstrate with three, but this is obviously more compelling if there are many of them.</p>
 
-<pre><code class="r">x1 &lt;- rnorm(5)
+<pre><code class="r"># assume these objects were provided to you
+x1 &lt;- rnorm(5)
 x2 &lt;- rgamma(10, 1)
 x3 &lt;- runif(20)
+# now you want to work with them
 nVals &lt;- 3
 results &lt;- rep(0, nVals)
 for (i in 1:nVals) {
@@ -707,7 +716,21 @@ for (i in 1:nVals) {
 results
 </code></pre>
 
-<pre><code>## [1] 0.4331 0.5443 0.5184
+<pre><code>## [1] -0.05156  0.92707  0.53729
+</code></pre>
+
+<pre><code class="r">varName
+</code></pre>
+
+<pre><code>## [1] &quot;x3&quot;
+</code></pre>
+
+<pre><code class="r">tmp
+</code></pre>
+
+<pre><code>##  [1] 0.97866 0.23552 0.01176 0.36273 0.03088 0.89325 0.29806 0.99698
+##  [9] 0.73083 0.39942 0.62165 0.36998 0.87711 0.08256 0.83460 0.55873
+## [17] 0.10669 0.67214 0.95098 0.73330
 </code></pre>
 
 <p>Or suppose you needed to create &ldquo;x1&rdquo;, &ldquo;x2&rdquo;, &ldquo;x3&rdquo;, automatically.</p>
@@ -721,8 +744,8 @@ for (i in 1:nVals) {
 x2
 </code></pre>
 
-<pre><code>##  [1]  2.40926  0.13516  0.72931 -0.05625  0.45374 -0.83268  1.97816
-##  [8] -0.08542  0.80398  0.53194
+<pre><code>##  [1] -1.31278  0.68073 -0.03082 -0.59822 -0.24104  0.93920 -1.38128
+##  [8] -0.02924 -0.65170 -0.69980
 </code></pre>
 
 <p>Can you think of any uses of this ability for R to self-generate?</p>
@@ -784,7 +807,7 @@ x
 <li>On a Mac, lines may end only in a carriage return (though this may not generally be an issue).</li>
 </ul>
 
-<p>So in UNIX you might see <code>^M</code> at the end of lines when you open a Windows file in a text editor. The <em>dos2unix</em> or <em>fromdos</em> commands can do the necessary conversion</p>
+<p>So in UNIX you might see <code>^M</code> at the end of lines when you open a Windows file in a text editor. The <em>dos2unix</em> or <em>fromdos</em> in UNIX commands can do the necessary conversion</p>
 
 <p>In Windows you might have a UNIX text file appear to be all one line. The <em>unix2dos</em> or <em>todos</em> commands in UNIX can do the conversion. </p>
 
@@ -829,6 +852,12 @@ dbListTables(db)
 </code></pre>
 
 <pre><code class="r">breiman &lt;- dbGetQuery(db, &quot;select * from authors\nwhere name like &#39;Breiman%&#39;&quot;)
+breiman
+</code></pre>
+
+<pre><code>##     id           name
+## 1  532 Breiman, Leo\n
+## 2 1141  Breiman, L.\n
 </code></pre>
 
 <h1>Breakout</h1>

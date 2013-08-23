@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-<title>Working with code</title>
+<title>Outline</title>
 
 <style type="text/css">
 body, td {
@@ -179,9 +179,22 @@ hljs.initHighlightingOnLoad();
 </head>
 
 <body>
-<h1>Working with code</h1>
+<h1>Outline</h1>
 
 <p>Note: remember to start recording.</p>
+
+<p>This module is less focused on R. More to do with general recommendations on
+best practices when working on a computer. Much of the discussion will apply
+to other programming languages such as Python as well as writing papers,
+posters, slides, etc. with tools such as \(\LaTeX\).</p>
+
+<p>General themes:</p>
+
+<ul>
+<li>Automation</li>
+<li>Toolbox</li>
+<li>Best practices</li>
+</ul>
 
 <h1>Making dirt fly!</h1>
 
@@ -238,7 +251,7 @@ fun3 &lt;- function(x) {
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   0.852   0.020   0.875
+##   0.848   0.020   0.869
 </code></pre>
 
 <pre><code class="r">
@@ -249,8 +262,8 @@ benchmark(ifelse(x &lt; 0, x, 0), x[x &lt; 0] &lt;- 0, replications = 5, columns
 </code></pre>
 
 <pre><code>##   replications elapsed
-## 1            5  10.124
-## 2            5   1.263
+## 1            5  10.026
+## 2            5   1.257
 </code></pre>
 
 <p>For more advanced assessment of bottlenecks in your code, consider <em>Rprof()</em>.</p>
@@ -287,8 +300,8 @@ gc()
 </code></pre>
 
 <pre><code>##             used  (Mb) gc trigger   (Mb)  max used  (Mb)
-## Ncells   1287488  68.8    1967602  105.1   1967602 105.1
-## Vcells 102206316 779.8  143442975 1094.4 112786392 860.5
+## Ncells   1287506  68.8    1967602  105.1   1967602 105.1
+## Vcells 102206585 779.8  143443318 1094.4 112787083 860.5
 </code></pre>
 
 <pre><code class="r">rm()
@@ -296,8 +309,8 @@ gc()
 </code></pre>
 
 <pre><code>##             used  (Mb) gc trigger   (Mb)  max used  (Mb)
-## Ncells   1287507  68.8    1967602  105.1   1967602 105.1
-## Vcells 102206355 779.8  150695123 1149.8 112786392 860.5
+## Ncells   1287525  68.8    1967602  105.1   1967602 105.1
+## Vcells 102206624 779.8  150695483 1149.8 112787083 860.5
 </code></pre>
 
 <h1>The UNIX command line</h1>
@@ -307,6 +320,22 @@ gc()
 <p>In Linux and Mac, you just need to open a Terminal window. On the Mac this is in Applications-&gt;Utilities-&gt;Terminal. Once in the Terminal, you can treat your Mac as if it is a UNIX machine (which it is).</p>
 
 <p>Windows has the old MS-DOS command line that allows some command line functionality. There is something call <em>cygwin</em> that provides UNIX-like functionality.</p>
+
+<h1>The UNIX Philosophy</h1>
+
+<blockquote>
+<p>Write programs that do one thing and do it well.</p>
+
+<p>Write programs to work together.</p>
+
+<p>Write programs to handle text streams, because that is a universal interface.</p>
+</blockquote>
+
+<p>&mdash; Doug McIlroy</p>
+
+<p>For more details, please see:</p>
+
+<p><a href="http://en.wikipedia.org/wiki/Unix_philosophy">http://en.wikipedia.org/wiki/Unix_philosophy</a></p>
 
 <h1>Reproducible research</h1>
 
@@ -332,9 +361,16 @@ Reproducible Research (1995)</p>
 <li>providing built-in backup</li>
 </ul>
 
-<p>A popular tool these days is <em>git</em>, with storage for projects at github.com. </p>
-
 <p>At a basic level, a simple principle is to have version numbers for all your work: code, datasets, manuscripts. Whenever you make a change to a dataset, increment the version number. For code and manuscripts, increment when you make substantial changes or have obvious breakpoints in your workflow. </p>
+
+<h1>Version control architectures</h1>
+
+<ul>
+<li>Client-server (e.g., CVS, Subversion)</li>
+<li>Distributed (e.g., Mercurial, <strong>Git</strong>)</li>
+</ul>
+
+<h1>Git data structure</h1>
 
 <h1>Git concepts: commit</h1>
 
@@ -485,16 +521,16 @@ summary.lm(lm(precipExtremes ~ timeInDays))
 ## 
 ## Residuals:
 ##      1      2      3      4      5 
-##  0.416 -0.667  0.545 -0.773  0.479 
+## -0.884  0.015  0.418 -0.173  0.623 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept)    0.184      0.341    0.54     0.63
-## timeInDays    -0.461      0.317   -1.46     0.24
+## (Intercept)   -0.241      0.305   -0.79     0.49
+## timeInDays    -0.663      0.436   -1.52     0.23
 ## 
-## Residual standard error: 0.762 on 3 degrees of freedom
-## Multiple R-squared:  0.414,  Adjusted R-squared:  0.219 
-## F-statistic: 2.12 on 1 and 3 DF,  p-value: 0.241
+## Residual standard error: 0.677 on 3 degrees of freedom
+## Multiple R-squared:  0.435,  Adjusted R-squared:  0.247 
+## F-statistic: 2.31 on 1 and 3 DF,  p-value: 0.226
 </code></pre>
 
 <h1>Breakout</h1>

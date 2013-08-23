@@ -39,11 +39,11 @@ August 2013, UC Berkeley
 </div>
 <div class="section slide level1" id="this-purpose-of-this-module">
 <h1 id="this-purpose-of-this-module">This purpose of this module</h1>
+<p>Note to BB: start recording.</p>
 <p>For some of the topics here, my goal is not to teach you how to fish, but merely to tell you that fish exist, they are delicious, that they can be caught, and where one might go to figure out how to catch them.</p>
 </div>
-<div class="section slide level1" id="object-oriented-programming-in-r">
-<h1 id="object-oriented-programming-in-r">Object-oriented programming in R</h1>
-<p>Note to BB: start recording.</p>
+<div class="section slide level1" id="object-oriented-programming-oop-in-r">
+<h1 id="object-oriented-programming-oop-in-r">Object-oriented programming (OOP) in R</h1>
 <p>Confusingly, R has three different systems for OOP, and none of them are as elegant and powerful as in Python or other languages more focused on OOP. That said, they get the job done for a lot of tasks.</p>
 <ul>
 <li>S3: informal system used for <code>lm()</code>, <code>glm()</code>, and many other core features in R in the <em>stats</em> package</li>
@@ -53,9 +53,9 @@ August 2013, UC Berkeley
 </div>
 <div class="section slide level1" id="basics-of-object-oriented-programming-oop">
 <h1 id="basics-of-object-oriented-programming-oop">Basics of object-oriented programming (OOP)</h1>
-<p>The basic idea is that coding is structured around <em>objects</em>, which have <em>class</em>, and <em>methods</em> that operate on objects in the class.</p>
+<p>The basic idea is that coding is structured around <em>objects</em>, which belong to a <em>class</em>, and <em>methods</em> that operate on objects in the class.</p>
 <p>Objects are like lists, but with methods that are specifically associated with particular classes, as we've seen with the <code>lm</code> class.</p>
-<p>Objects have fields, analogous to the components of a list. For S4 and reference classes, the fields of the class are fixed.</p>
+<p>Objects have fields, analogous to the components of a list. For S4 and reference classes, the fields of the class are fixed and all objects of the class must contain those fields.</p>
 </div>
 <div class="section slide level1" id="working-with-s3-classes-and-methods">
 <h1 id="working-with-s3-classes-and-methods">Working with S3 classes and methods</h1>
@@ -67,7 +67,7 @@ mod1 &lt;- <span class="kw">lm</span>(yc ~ x)
 mod2 &lt;- <span class="kw">glm</span>(yb ~ x, <span class="dt">family =</span> binomial)
 mod2$residuals  <span class="co"># access field with list-like syntax</span></code></pre>
 <pre><code>##      1      2      3      4      5      6      7      8      9     10 
-## -1.627 -1.864  1.318 -4.281  1.919 -1.382  3.478  1.293  1.590 -1.160</code></pre>
+## -2.160  1.863 -1.969 -2.084 -1.735 -2.038  1.771  1.993  2.287  2.097</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">
 <span class="kw">class</span>(mod2)</code></pre>
 <pre><code>## [1] &quot;glm&quot; &quot;lm&quot;</code></pre>
@@ -114,11 +114,11 @@ mod2$residuals  <span class="co"># access field with list-like syntax</span></co
 predict</code></pre>
 <pre><code>## function (object, ...) 
 ## UseMethod(&quot;predict&quot;)
-## &lt;bytecode: 0x1d82c78&gt;
+## &lt;bytecode: 0x24367a0&gt;
 ## &lt;environment: namespace:stats&gt;</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">
 <span class="co"># predict.glm</span></code></pre>
-<p>When <code>predict()</code> is called on a GLM object, it first calls the generic <code>predict()</code>, which then recognizes that the first argument is of the class <em>glm</em> and immediately calls the right class-specific method.</p>
+<p>When <code>predict()</code> is called on a GLM object, it first calls the generic <code>predict()</code>, which then recognizes that the first argument is of the class <em>glm</em> and immediately calls the right class-specific method, <code>predict.glm()</code> in this case.</p>
 </div>
 <div class="section slide level1" id="making-your-own-s3-classobjectmethod">
 <h1 id="making-your-own-s3-classobjectmethod">Making your own S3 class/object/method</h1>
@@ -262,7 +262,7 @@ fm1 &lt;- <span class="kw">lmer</span>(Reaction ~ Days + (Days | Subject), sleep
 </div>
 <div class="section slide level1" id="catching-errors">
 <h1 id="catching-errors">'Catching' errors</h1>
-<p>When you automate analyses, sometimes an R call will fail. But you don't want all of your analyses to grind to a halt because one failed. Rather, you want to catch the error, record that it failed, and move on.</p>
+<p>When you automate analyses, sometimes an R function call will fail. But you don't want all of your analyses to grind to a halt because one failed. Rather, you want to catch the error, record that it failed, and move on.</p>
 <p>For me this is most critical when I'm doing stratified analyses or sequential operations.</p>
 <p>The <code>try()</code> function is a powerful tool here.</p>
 </div>
@@ -316,7 +316,8 @@ for (edLevel in <span class="kw">unique</span>(earnings$ed)) {
 ## [1] 7
 ## [1] 2
 ## [1] 3</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">mod[[<span class="dv">2</span>]]</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">
+mod[[<span class="dv">2</span>]]</code></pre>
 <pre><code>## [1] NA</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">mod[[<span class="dv">3</span>]]</code></pre>
 <pre><code>## 
@@ -331,7 +332,7 @@ for (edLevel in <span class="kw">unique</span>(earnings$ed)) {
 <h1 id="computing-on-the-language">Computing on the language</h1>
 <p>One of the powerful capabilities you have in R is the ability to use R to modify and create R code.</p>
 <p>First we need to understand a bit about how R code is stored and manipulated when we don't want to immediately evaluate it.</p>
-<p>When you send some code to R to execute, it has to 'parse' the input; i.e., to process it so that it know how to evaluate it. The parsed input can then be evaluated in the proper context (i.e., the right frame).</p>
+<p>When you send some code to R to execute, it has to 'parse' the input; i.e., to process it so that it know how to evaluate it. The parsed input can then be evaluated in the proper context (i.e., the right frame, holding the objects to be operated on and created).</p>
 <p>We can capture parsed code before it is evaluated, manipulate it, and execute the modified result.</p>
 </div>
 <div class="section slide level1" id="capturing-and-evaluating-parsed-code">
@@ -376,17 +377,21 @@ codeText &lt;- <span class="kw">paste</span>(<span class="st">&quot;n&quot;</spa
 codeText</code></pre>
 <pre><code>## [1] &quot;n &lt;- 200&quot;</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">codeFromText &lt;- <span class="kw">parse</span>(<span class="dt">text =</span> codeText)
-<span class="kw">eval</span>(codeFromText)
+codeFromText</code></pre>
+<pre><code>## expression(n &lt;- 200)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">eval</span>(codeFromText)
 n</code></pre>
 <pre><code>## [1] 200</code></pre>
 <p>So you could use R's string manipulation capabilities to write and then evaluate R code. Meta.</p>
 </div>
 <div class="section slide level1" id="using-r-to-automate-working-with-object-names">
 <h1 id="using-r-to-automate-working-with-object-names">Using R to automate working with object names</h1>
-<p>Suppose you were given a bunch of objects named &quot;x1&quot;, &quot;x2&quot;, &quot;x3&quot;, ... and you wanted to write code to automatically do some computation on them.</p>
-<pre class="sourceCode r"><code class="sourceCode r">x1 &lt;- <span class="kw">rnorm</span>(<span class="dv">5</span>)
+<p>Suppose you were given a bunch of objects named &quot;x1&quot;, &quot;x2&quot;, &quot;x3&quot;, ... and you wanted to write code to automatically do some computation on them. Here I'll just demonstrate with three, but this is obviously more compelling if there are many of them.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># assume these objects were provided to you</span>
+x1 &lt;- <span class="kw">rnorm</span>(<span class="dv">5</span>)
 x2 &lt;- <span class="kw">rgamma</span>(<span class="dv">10</span>, <span class="dv">1</span>)
 x3 &lt;- <span class="kw">runif</span>(<span class="dv">20</span>)
+<span class="co"># now you want to work with them</span>
 nVals &lt;- <span class="dv">3</span>
 results &lt;- <span class="kw">rep</span>(<span class="dv">0</span>, nVals)
 for (i in <span class="dv">1</span>:nVals) {
@@ -396,7 +401,13 @@ for (i in <span class="dv">1</span>:nVals) {
     results[i] &lt;- <span class="kw">mean</span>(tmp)
 }
 results</code></pre>
-<pre><code>## [1] -0.9220  0.9922  0.5101</code></pre>
+<pre><code>## [1] 0.2424 1.4039 0.5924</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">varName</code></pre>
+<pre><code>## [1] &quot;x3&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">tmp</code></pre>
+<pre><code>##  [1] 0.66074 0.87269 0.95487 0.42136 0.67581 0.75816 0.12919 0.44587
+##  [9] 0.69025 0.75398 0.46281 0.84455 0.83354 0.94217 0.56806 0.97309
+## [17] 0.00401 0.02186 0.72919 0.10649</code></pre>
 <p>Or suppose you needed to create &quot;x1&quot;, &quot;x2&quot;, &quot;x3&quot;, automatically.</p>
 <pre class="sourceCode r"><code class="sourceCode r">nVals &lt;- <span class="dv">3</span>
 results &lt;- <span class="kw">rep</span>(<span class="dv">0</span>, nVals)
@@ -405,8 +416,8 @@ for (i in <span class="dv">1</span>:nVals) {
     <span class="kw">assign</span>(varName, <span class="kw">rnorm</span>(<span class="dv">10</span>))
 }
 x2</code></pre>
-<pre><code>##  [1]  1.12299  0.38456  0.78986  0.07278 -0.77397  0.33571  1.16791
-##  [8] -1.15586  1.52306  0.52946</code></pre>
+<pre><code>##  [1] -1.3509  0.5187 -0.2220  0.3963  0.2633  0.8467  0.4031 -0.8093
+##  [9]  0.6263  0.8882</code></pre>
 <p>Can you think of any uses of this ability for R to self-generate?</p>
 </div>
 <div class="section slide level1" id="file-encodings">
@@ -444,7 +455,7 @@ x</code></pre>
 <li>In UNIX, lines end in only a newline.</li>
 <li>On a Mac, lines may end only in a carriage return (though this may not generally be an issue).</li>
 </ul>
-<p>So in UNIX you might see <code>^M</code> at the end of lines when you open a Windows file in a text editor. The <em>dos2unix</em> or <em>fromdos</em> commands can do the necessary conversion</p>
+<p>So in UNIX you might see <code>^M</code> at the end of lines when you open a Windows file in a text editor. The <em>dos2unix</em> or <em>fromdos</em> in UNIX commands can do the necessary conversion</p>
 <p>In Windows you might have a UNIX text file appear to be all one line. The <em>unix2dos</em> or <em>todos</em> commands in UNIX can do the conversion.</p>
 <p>There is a UNIX utility call <em>mac2unix</em> that can convert Mac text files.</p>
 <p>There may also be Windows tools to deal with this.</p>
@@ -474,7 +485,11 @@ x</code></pre>
 ##  [6] &quot;year&quot;       &quot;volume&quot;     &quot;number&quot;     &quot;page_start&quot; &quot;page_end&quot;  
 ## [11] &quot;url&quot;        &quot;journal&quot;    &quot;journal_id&quot; &quot;volume_id&quot;  &quot;issue_id&quot;  
 ## [16] &quot;zmath&quot;</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">breiman &lt;- <span class="kw">dbGetQuery</span>(db, <span class="st">&quot;select * from authors</span><span class="ch">\n</span><span class="st">where name like 'Breiman%'&quot;</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">breiman &lt;- <span class="kw">dbGetQuery</span>(db, <span class="st">&quot;select * from authors</span><span class="ch">\n</span><span class="st">where name like 'Breiman%'&quot;</span>)
+breiman</code></pre>
+<pre><code>##     id           name
+## 1  532 Breiman, Leo\n
+## 2 1141  Breiman, L.\n</code></pre>
 </div>
 <div class="section slide level1" id="breakout">
 <h1 id="breakout">Breakout</h1>

@@ -37,9 +37,16 @@ August 2013, UC Berkeley
   </p>
   <p class="date">Jarrod Millman and Chris Paciorek</p>
 </div>
-<div class="section slide level1" id="working-with-code">
-<h1 id="working-with-code">Working with code</h1>
+<div class="section slide level1" id="outline">
+<h1 id="outline">Outline</h1>
 <p>Note: remember to start recording.</p>
+<p>This module is less focused on R. More to do with general recommendations on best practices when working on a computer. Much of the discussion will apply to other programming languages such as Python as well as writing papers, posters, slides, etc. with tools such as <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADoAAAATCAIAAABOeomBAAAABmJLR0QA/wD/AP+gvaeTAAAFE0lEQVRIib1WS0gbXRQ+M4kVJcVUlNqkFYQWGw1j1IooYm190IU0FFqRkqBUcOGioBTsdNkuSnRhFLFUsdWKNRsfSIsYxTTGWQ0RG6NSDRh8FQaDWGOMTmbmX1z/cRp8/vztt7rncc/9zrnn3BlMEAS4CILBYGRkJIZhF9r1fwG/6IZHjx5NT0//CSrnwcXoulwuhmEGBgb+EJszIQ8GgyRJrq6uMgxz7do1lUplMBgyMzOP9e7t7Y2NjZ2amjo4OLh06RJSVlZWrq2tabVaDMN8Pp/X601ISFCr1QCwuLgIAF+/fj2Th9vtbm9vn5ubY1k2Li7uxYsXubm5NE2bTCaGYRQKRV5e3qtXr0AQBEEQ2tradDrd9PS0cCoqKyvNZrNOp/v27ZuofPr0KU3TaO1wOHQ6XUdHBxJXV1f1ev3pMaXo7OzMyMior68XNZOTk0ajcWtrC4mHzcDz/JkFmJqaysjIePz4sVwul/YDx3F37tyReorje/36dbVa/ePHD/ZkcBwnbnz27Fl6evrExITL5QIAlmV7e3sbGxuVSuVhM4gH8Dx/OumRkZHq6mq1Wp2cnOx0OkV9fHy81C0sSGJiIsdxJEkuLy97vV6NRpOQkIBMOzs7379/v3XrVk9Pj+hvMpn0ej1JkgMDA+/evSsuLr569epvlRAEobW1lSAIp9N50jWFQqGamhq07urqIghibGwMiQcHB6Kbw+EgCOL9+/fSjTzPC4Lw4cMHgiBsNps0rNvtvn//fthZPT09aWlpz58/r6urCzMdVlcmk8lkslNeU4qitre3a2trUYbR0dHDw8NFRUUAEBERIbrhOC6TyXD86MGRyWTStVQEgNTUVK1Wy7KsNIjBYLBarQ6Hw2w2h9E4aoaTiCJYLBaTyYTmHQCMRiNN03t7e1FRUVI3FEdKV0RYLSYmJvLz8+VyeXJyssfj0Wg0UmtaWtrS0lJDQ0N+fr5UfxQXVVtq293dZRgGAAKBwP7+vsgVAEpKSoLB4NDQUBgndO/HzoB4oUjs7+8PBoMAUFNTE8Z1YWFhZWWloqJifX29oaFBapKLx6CTpDabzfbz50+tVtvd3b2+vk7TdFZWFgAwDOP3+3met1gsCoWiqKhIWuNTRpbn+b6+PqvV6vf7KYo6tvcEQWhubn7z5k1cXNzk5OTg4OCTJ0+SkpJ+o4sQtp+iqPLy8s3NzYKCAgDY29tD+lAodOXKFZIkAWB3d1ea5Cndj3J4+PBhTk6Oz+dzuVzHOjc1NT148AC9Nq9fvzYYDC9fvvz8+TNq+iO6OI5Le45hGIqijEZjYWFhWESVSlVeXn4sJ/xfnGSKiopSKpVKpTI7O1vM02633717FwBomvZ6vXV1dUh/8+bNqqqqtra2lpYWNOVylmVbW1udTieGYZ8+fbLZbACwtraGPlQpKSknVSsM4+Pjs7Oz8/PzGIZZrdadnR21Wl1WVib1wTBMzOTt27dosbS0ZLfbcRwfHBykKOry5ctfvnwpLS0FgEAgsLi4iGGYxWLZ2tq6d+8exnHc3NzcsQwiIiJu3759TrobGxs+n0+qUSgUYs8BQFdXV0tLi9lsDhv2zs5OjuP0ej0aawBQKpU3btwAgFAotLCwIHrGx8eD8Lfw8eNHnU5nt9ulykAgUFpaOjMzc84gmHDB3/P/BpIkPR6Px+MhCEKlUiHlr1+/3G73/v7+6OhoTEzMeeL8Jbp+v/8kE47j0dHR54zzD6ta49YECu1PAAAAAElFTkSuQmCC" style="vertical-align:middle" alt="\LaTeX" title="\LaTeX" />.</p>
+<p>General themes:</p>
+<ul>
+<li>Automation</li>
+<li>Toolbox</li>
+<li>Best practices</li>
+</ul>
 </div>
 <div class="section slide level1" id="making-dirt-fly">
 <h1 id="making-dirt-fly">Making dirt fly!</h1>
@@ -85,15 +92,15 @@ fun3 &lt;- function(x) {
 <p>There are a few tools in R for timing your code.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(<span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="fl">1e+07</span>)))</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.852   0.020   0.875</code></pre>
+##   0.848   0.020   0.869</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">
 <span class="kw">library</span>(rbenchmark)
 x &lt;- <span class="kw">rnorm</span>(<span class="fl">1e+07</span>)
 <span class="kw">benchmark</span>(<span class="kw">ifelse</span>(x &lt; <span class="dv">0</span>, x, <span class="dv">0</span>), x[x &lt; <span class="dv">0</span>] &lt;- <span class="dv">0</span>, <span class="dt">replications =</span> <span class="dv">5</span>, <span class="dt">columns =</span> <span class="kw">c</span>(<span class="st">&quot;replications&quot;</span>, 
     <span class="st">&quot;elapsed&quot;</span>))</code></pre>
 <pre><code>##   replications elapsed
-## 1            5  10.124
-## 2            5   1.263</code></pre>
+## 1            5  10.026
+## 2            5   1.257</code></pre>
 <p>For more advanced assessment of bottlenecks in your code, consider <em>Rprof()</em>.</p>
 </div>
 <div class="section slide level1" id="memory-use">
@@ -111,19 +118,30 @@ x &lt;- <span class="kw">rnorm</span>(<span class="fl">1e+07</span>)
 <pre class="sourceCode r"><code class="sourceCode r">x &lt;- <span class="kw">rnorm</span>(<span class="fl">1e+08</span>)
 <span class="kw">gc</span>()</code></pre>
 <pre><code>##             used  (Mb) gc trigger  (Mb)  max used  (Mb)
-## Ncells   1271252  67.9    1967602 105.1   1478051  79.0
-## Vcells 101887679 777.4  123693577 943.8 111894387 853.7</code></pre>
+## Ncells   1271270  67.9    1967602 105.1   1478096  79.0
+## Vcells 101887948 777.4  123693873 943.8 111894656 853.7</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>()
 <span class="kw">gc</span>()</code></pre>
 <pre><code>##             used  (Mb) gc trigger  (Mb)  max used  (Mb)
-## Ncells   1271272  67.9    1967602 105.1   1478051  79.0
-## Vcells 101887718 777.4  129958255 991.6 111894387 853.7</code></pre>
+## Ncells   1271290  67.9    1967602 105.1   1478096  79.0
+## Vcells 101887987 777.4  129958566 991.6 111894656 853.7</code></pre>
 </div>
 <div class="section slide level1" id="the-unix-command-line">
 <h1 id="the-unix-command-line">The UNIX command line</h1>
 <p>Being able to operate your computer from a command line rather than via point-and-click in a GUI environment provides incredible power and flexibility to the user, as well as allowing for reproducibility and automation in your work.</p>
 <p>In Linux and Mac, you just need to open a Terminal window. On the Mac this is in Applications-&gt;Utilities-&gt;Terminal. Once in the Terminal, you can treat your Mac as if it is a UNIX machine (which it is).</p>
 <p>Windows has the old MS-DOS command line that allows some command line functionality. There is something call <em>cygwin</em> that provides UNIX-like functionality.</p>
+</div>
+<div class="section slide level1" id="the-unix-philosophy">
+<h1 id="the-unix-philosophy">The UNIX Philosophy</h1>
+<blockquote>
+<p>Write programs that do one thing and do it well.</p>
+<p>Write programs to work together.</p>
+<p>Write programs to handle text streams, because that is a universal interface.</p>
+</blockquote>
+<p>--- Doug McIlroy</p>
+<p>For more details, please see:</p>
+<p>http://en.wikipedia.org/wiki/Unix_philosophy</p>
 </div>
 <div class="section slide level1" id="reproducible-research">
 <h1 id="reproducible-research">Reproducible research</h1>
@@ -141,8 +159,17 @@ x &lt;- <span class="kw">rnorm</span>(<span class="fl">1e+07</span>)
 <li>allowing you to share work easily without worrying about conflicts</li>
 <li>providing built-in backup</li>
 </ul>
-<p>A popular tool these days is <em>git</em>, with storage for projects at github.com.</p>
 <p>At a basic level, a simple principle is to have version numbers for all your work: code, datasets, manuscripts. Whenever you make a change to a dataset, increment the version number. For code and manuscripts, increment when you make substantial changes or have obvious breakpoints in your workflow.</p>
+</div>
+<div class="section slide level1" id="version-control-architectures">
+<h1 id="version-control-architectures">Version control architectures</h1>
+<ul>
+<li>Client-server (e.g., CVS, Subversion)</li>
+<li>Distributed (e.g., Mercurial, <strong>Git</strong>)</li>
+</ul>
+</div>
+<div class="section slide level1" id="git-data-structure">
+<h1 id="git-data-structure">Git data structure</h1>
 </div>
 <div class="section slide level1" id="git-concepts-commit">
 <h1 id="git-concepts-commit">Git concepts: commit</h1>
@@ -276,16 +303,16 @@ timeInDays &lt;- <span class="kw">rnorm</span>(<span class="dv">5</span>)  <span
 ## 
 ## Residuals:
 ##      1      2      3      4      5 
-##  0.416 -0.667  0.545 -0.773  0.479 
+## -0.884  0.015  0.418 -0.173  0.623 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept)    0.184      0.341    0.54     0.63
-## timeInDays    -0.461      0.317   -1.46     0.24
+## (Intercept)   -0.241      0.305   -0.79     0.49
+## timeInDays    -0.663      0.436   -1.52     0.23
 ## 
-## Residual standard error: 0.762 on 3 degrees of freedom
-## Multiple R-squared:  0.414,  Adjusted R-squared:  0.219 
-## F-statistic: 2.12 on 1 and 3 DF,  p-value: 0.241</code></pre>
+## Residual standard error: 0.677 on 3 degrees of freedom
+## Multiple R-squared:  0.435,  Adjusted R-squared:  0.247 
+## F-statistic: 2.31 on 1 and 3 DF,  p-value: 0.226</code></pre>
 </div>
 <div class="section slide level1" id="breakout">
 <h1 id="breakout">Breakout</h1>

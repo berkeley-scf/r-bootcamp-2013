@@ -206,14 +206,14 @@ system.time(trunc &lt;- ifelse(vals &gt; 0, vals, 0))
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   0.332   0.004   0.338
+##    0.34    0.00    0.34
 </code></pre>
 
 <pre><code class="r">system.time(vals &lt;- vals * (vals &gt; 0))
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   0.008   0.000   0.009
+##   0.008   0.000   0.010
 </code></pre>
 
 <pre><code class="r">tmp &lt;- as.character(vote$age60)
@@ -388,7 +388,7 @@ system.time({
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   0.064   0.000   0.063
+##   0.068   0.000   0.064
 </code></pre>
 
 <p>Here&#39;s how to pre-allocate an empty list: </p>
@@ -851,8 +851,6 @@ dim(vote)
 <h1>Breakout</h1>
 
 <h2>Problem 1</h2>
-
-<p><strong>To see this problem with the equations below rendered correctly, see module3_calc.html (the non-slide version).</strong></p>
 
 <p>Suppose we have two categorical variables and we conduct a hypothesis test of independence. The chi-square statistic is: </p>
 
