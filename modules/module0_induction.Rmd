@@ -4,6 +4,14 @@
 
 # A few administrative things
 
+## Where to find stuff
+
+The bSpace site is the main site for the bootcamp. It has information on software installation, a zip file with the materials for the modules (under Resources), and the Chat Room for online questions.  See http://dlab.berkeley.edu/training/r-bootcamp for accessing the bSpace site and note that you need to follow the instructions there when you access the site for the first time.
+
+The Github site (https://github.com/berkeley-scf/r-bootcamp-2013) is updated more regularly and is the master repository for materials for the modules; you can also get the individual files from Github. Instructions for accessing the materials on Github are available in one of the later slides in this document and on the bSpace site.
+
+If you have an administrative question, email r-bootcamp@lists.berkeley.edu.
+
 ## Airbears Wireless
 
 If you need Airbears access as a guest (i.e., you don't have a CalNet ID), try:
@@ -17,13 +25,6 @@ If you need Airbears access as a guest (i.e., you don't have a CalNet ID), try:
 * Username:	guest-181506 Password:	Z0WHEruUWZ
 * Username:	guest-181507 Password:	m12GkCsrqc
 
-## Where to find stuff
-
-The bSpace site is the main site for the bootcamp. It has information on software installation, a zip file with the materials for the modules (under Resources), and the Chat Room for online questions.  See http://dlab.berkeley.edu/training/r-bootcamp for accessing the bSpace site.
-
-The Github site (https://github.com/berkeley-scf/r-bootcamp-2013) is updated more regularly and is the master repository for materials for the modules; you can also get the individual files from Github. Instructions for accessing the materials on Github are available in one of the later slides in this document and on the bSpace site.
-
-If you have an administrative question, email r-bootcamp@lists.berkeley.edu.
 
 # A little warm-up
 
@@ -49,6 +50,8 @@ I encourage you to:
 - play with it and try variations and try to break it and see what happens
 - tell us if something interesting happens as you experiment, or post a comment in the chat room
 - ask questions of me, the counselors, and in the chat room
+
+This is a bootcamp. So there may be some pain involved! If you find yourself not following everything, that's ok. You may miss some details, but try to follow the basics and the big picture. 
 
 # RStudio and R Markdown
 
