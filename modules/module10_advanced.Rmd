@@ -11,11 +11,12 @@ earnings <- read.dta('../data/heights.dta')
 
 # This purpose of this module
 
+Note to BB: start recording.
+
 For some of the topics here, my goal is not to teach you how to fish, but merely to tell you that fish exist, they are delicious, that they can be caught, and where one might go to figure out how to catch them.
 
-# Object-oriented programming in R
+# Object-oriented programming (OOP) in R
 
-Note to BB: start recording.
 
 Confusingly, R has three different systems for OOP, and none of them are as elegant and powerful as in Python or other languages more focused on OOP. That said, they get the job done for a lot of tasks.
 
@@ -25,11 +26,11 @@ Confusingly, R has three different systems for OOP, and none of them are as eleg
 
 # Basics of object-oriented programming (OOP)
 
-The basic idea is that coding is structured around *objects*, which have  *class*, and *methods* that operate on objects in the class.
+The basic idea is that coding is structured around *objects*, which belong to a *class*, and *methods* that operate on objects in the class.
 
 Objects are like lists, but with methods that are specifically associated with particular classes, as we've seen with the `lm` class.
 
-Objects have fields, analogous to the components of a list. For S4 and reference classes, the fields of the class are fixed. 
+Objects have fields, analogous to the components of a list. For S4 and reference classes, the fields of the class are fixed and all objects of the class must contain those fields. 
 
 # Working with S3 classes and methods
 
@@ -56,7 +57,7 @@ predict
 # predict.glm
 ```
 
-When `predict()` is called on a GLM object, it first calls the generic `predict()`, which then recognizes that the first argument is of the class *glm* and immediately calls the right class-specific method.
+When `predict()` is called on a GLM object, it first calls the generic `predict()`, which then recognizes that the first argument is of the class *glm* and immediately calls the right class-specific method, `predict.glm()` in this case.
 
 # Making your own S3 class/object/method
 
@@ -152,7 +153,7 @@ So we've done something similar to what `sqrt()` actually does in R.
 
 # 'Catching' errors
 
-When you automate analyses, sometimes an R call will fail. But you don't want all of your analyses to grind to a halt because one failed. Rather, you want to catch the error, record that it failed, and move on.
+When you automate analyses, sometimes an R function call will fail. But you don't want all of your analyses to grind to a halt because one failed. Rather, you want to catch the error, record that it failed, and move on.
 
 For me this is most critical when I'm doing stratified analyses or sequential operations.
 
@@ -185,6 +186,7 @@ print(edLevel)
             tmp <- try(lm(earn ~ height, data = sub))
             if(is(tmp, "try-error")) mod[[edLevel]] <- NA else mod[[edLevel]] <- tmp
 }
+
 mod[[2]]
 mod[[3]]
 ```
@@ -195,7 +197,7 @@ One of the powerful capabilities you have in R is the ability to use R to modify
 
 First we need to understand a bit about how R code is stored and manipulated when we don't want to immediately evaluate it.
 
-When you send some code to R to execute, it has to 'parse' the input; i.e., to process it so that it know how to evaluate it. The parsed input can then be evaluated in the proper context (i.e., the right frame). 
+When you send some code to R to execute, it has to 'parse' the input; i.e., to process it so that it know how to evaluate it. The parsed input can then be evaluated in the proper context (i.e., the right frame, holding the objects to be operated on and created). 
 
 We can capture parsed code before it is evaluated, manipulate it, and execute the modified result.
 
@@ -222,6 +224,7 @@ newN <- 200
 codeText <- paste("n", "<-", newN)
 codeText
 codeFromText <- parse(text = codeText)
+codeFromText
 eval(codeFromText)
 n
 ```
@@ -230,12 +233,14 @@ So you could use R's string manipulation capabilities to write and then evaluate
 
 # Using R to automate working with object names 
 
-Suppose you were given a bunch of objects named "x1", "x2", "x3", ... and you wanted to write code to automatically do some computation on them.
+Suppose you were given a bunch of objects named "x1", "x2", "x3", ... and you wanted to write code to automatically do some computation on them. Here I'll just demonstrate with three, but this is obviously more compelling if there are many of them.
 
 ```{r}
+# assume these objects were provided to you
 x1 <- rnorm(5)
 x2 <- rgamma(10, 1)
 x3 <- runif(20)
+# now you want to work with them
 nVals <- 3
 results <- rep(0, nVals)
 for(i in 1:nVals) { 
@@ -245,6 +250,8 @@ for(i in 1:nVals) {
    results[i] <- mean(tmp)
 }
 results
+varName
+tmp
 ```
 
 Or suppose you needed to create "x1", "x2", "x3", automatically.
@@ -300,7 +307,7 @@ Windows, Mac, and Linux handle line endings in text files somewhat differently. 
 * In UNIX, lines end in only a newline.
 * On a Mac, lines may end only in a carriage return (though this may not generally be an issue).
 
-So in UNIX you might see `^M` at the end of lines when you open a Windows file in a text editor. The *dos2unix* or *fromdos* commands can do the necessary conversion
+So in UNIX you might see `^M` at the end of lines when you open a Windows file in a text editor. The *dos2unix* or *fromdos* in UNIX commands can do the necessary conversion
 
 In Windows you might have a UNIX text file appear to be all one line. The *unix2dos* or *todos* commands in UNIX can do the conversion. 
 
@@ -331,6 +338,8 @@ dbListTables(db)
 dbListFields(db, "articles")
 breiman <- dbGetQuery(db, "select * from authors 
    where name like 'Breiman%'")
+breiman
+
 ```
 
 # Breakout
