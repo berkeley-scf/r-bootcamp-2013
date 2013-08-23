@@ -329,9 +329,9 @@ What's the deal with the `all.x` and `all.y` ?  We can tell R whether we want to
 
 Suppose we have two categorical variables and we conduct a hypothesis test of independence. The chi-square statistic is: 
 
-\[
+$$
 \chi^2 = \sum_{i=1}^{n}\sum_{j=1}^{m} \frac{(y_{ij} - e_{ij})^2}{e_{ij}}, 
-\] 
+$$ 
 
 where $e_{ij} = \frac{y_{i\cdot} y_{\cdot j}}{y_{\cdot \cdot}}$, with $y_{i\cdot}$ the sum of the values in the i'th row, $y_{\cdot j}$ the sum of values in the j'th column, and $y_{\cdot\cdot}$ the sum of all the values. Suppose I give you a matrix in R with the $y_{ij}$ values. Compute the statistics without *any* loops.
 
