@@ -104,7 +104,7 @@ To use multiple cores on a single machine, use the *parallel* back-end from the 
 require(parallel)
 require(doParallel)
 require(foreach)
-nCores <- 4
+nCores <- 4  # actually only 2 on my laptop, but appears hyperthreaded
 registerDoParallel(nCores)
 
 testFun <- function(i) {
@@ -179,7 +179,7 @@ rnorm(5)
 ```
 * The (not so) bad: Use a different seed for each task or each process. It's possible the subsequences will overlap but quite unlikely.
 
-* The good: Use the L'Ecuyer algorithm to ensure distinct subsequences
+* The good: Use the L'Ecuyer algorithm (`library(lecuyer)`) to ensure distinct subsequences
     - with `foreach` you can use `%dorng%` from the *doRNG* package in place of `%dopar%`
     - with `mclapply()`, use the `mc.set.seed` argument (see `help(mcparallel)`) 
 
@@ -189,7 +189,7 @@ The syntax for using L'Ecuyer is available in [my parallel computing workshop no
 
 # A brief note on distributed computing for advanced users
 
-If you have access to multiple machines with a networked environment, such as the compute servers in the Statistics Department, there are a couple straightforward ways to parallelize EP jobs across machines.
+If you have access to multiple machines within a networked environment, such as the compute servers in the Statistics Department, there are a couple straightforward ways to parallelize EP jobs across machines.
 
 1. Use `foreach` with *doMPI* as the back-end. You'll need *MPI* and *Rmpi* installed on all machines. 
 2. Use sockets to make a cluster in R and then use `parLapply()`, `parSapply()`, `mclapply()`, etc.
@@ -198,4 +198,6 @@ See my [notes on distributed computing](http://www.stat.berkeley.edu/scf/paciore
 
 # Breakout
 
-Fit logistic regression models of preference for Bush/Kerry on income, stratified by state. Use `foreach` or a parallel version of one of the *apply* variants.
+Figure out how many cores your laptop has. 
+
+Fit logistic regression models of preference for Bush/Kerry on income, stratified by state. Use `foreach` or a parallel version of one of the *apply* variants.  Collect the resulting coefficients (and standard errors, if you're feeling ambitious) in a clean format such as a matrix or data frame.  Check to see if multiple cores are being used in the execution.
