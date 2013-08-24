@@ -90,6 +90,18 @@ fun3 <- function(x) {
 
 # Testing
 
+Testing should be performed on multiple levels and begun as early as possible
+in the development process.  For programs that accept input either from a user
+or file, it is important that the code validates the input is what
+it expects to receive. Tests that ensure individual code elements (e.g., functions,
+classes, and class methods) behave correctly are called \emph{unit tests}.
+Writing unit tests early in the process of implementing new functionality
+helps you think about what you want a piece of code to do, rather than just how
+it does it. This practice improves code quality by focusing your attention
+on use cases rather than getting lost in implementation details.
+
+`RUnit` is a testing framework for R, which helps automate test setup, creation,
+execution, and reporting.  For more information, see Bioconductor's [unit testing guidelines](http://www.bioconductor.org/developers/unitTesting-guidelines/).
 
 # Timing your code
 
@@ -129,6 +141,16 @@ gc()
 rm()
 gc()
 ```
+
+# Some ideas about reproducibility
+
+* Never change a dataset manually. Always have a script that operates on the data. 
+* Note when and where you download, and ideally download via a script as well (e.g., wget and curl are Linux tools for automated downloading.
+* Produce figures (e.g., from R) via a script and not by point-and-click
+* When making figures, use *save()* or *save.image()* to save all the inputs needed to recreate a figure, with the code for making the figure in a script file
+* If feasible, include your code for doing analyses and making figures in the relevant document reporting the work by using Rmarkdown or Latex with knitr or Sweave. 
+* Set the random number seed so someone else can duplicate your exact numbers
+
 
 # Scripting
 
@@ -691,22 +713,37 @@ changes (pull in git is really fetch+merge), and then push again.
 * [Gitwash: workflow for scientific Python projects](http://matthew-brett.github.io/pydagogue/gitwash_build.html)
 * [Git branching demo](http://pcottle.github.io/learnGitBranching/)
 
-# Some ideas about reproducibility
-
-* Never change a dataset manually. Always have a script that operates on the data. 
-* Note when and where you download, and ideally download via a script as well (e.g., wget and curl are Linux tools for automated downloading.
-* Produce figures (e.g., from R) via a script and not by point-and-click
-* When making figures, use *save()* or *save.image()* to save all the inputs needed to recreate a figure, with the code for making the figure in a script file
-* If feasible, include your code for doing analyses and making figures in the relevant document reporting the work by using Rmarkdown or Latex with knitr or Sweave. 
-* Set the random number seed so someone else can duplicate your exact numbers
-
-# Github
+# Code review 
 
 ![](figs/ipython_github_pull1.png)
 
 # knitr
 
 ![](figs/knitr-book.png)
+
+> Instead of imagining that our main task is to instruct a \emph{computer}
+> what to do, let us concentrate rather on explaining to \emph{human beings}
+> what we want a computer to do.
+>
+> --- Donald Knuth, Literate programming (1984)
+
+# Makefile
+
+Make is a popular tool for process automation.  It has a declarative syntax for
+expressing dependencies between sources and targets and a simple
+(timestamp-based) mechanism for resolving when dependencies need to be rebuilt.
+
+Here is a simplified example taken from the build system for the slides for this
+bootcamp:
+
+```bash
+clean:
+        rm -rf *.md *.html
+
+
+%.md: %.Rmd
+        ./make_slides $(basename $(@))
+```
 
 # Implementing Reproducible Computational Research
 
