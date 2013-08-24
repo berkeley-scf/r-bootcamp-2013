@@ -192,10 +192,6 @@ At a basic level, a simple principle is to have version numbers for all your wor
 * Client-server (e.g., CVS, Subversion)
 * Distributed (e.g., Mercurial, **Git**)
 
-# Git data structure
-
-
-
 # Git concepts: commit
 
 a **snapshot** of work at a point in time
@@ -509,15 +505,183 @@ check the box that says `Initialize this repository with a README`, since we
 already have an existing repository here.  That option is useful when you're
 starting first at Github and don't have a repo made already on a local computer.
 
-Since the above cell didn't produce any output after the `git remote -v` call,
-it means we have no remote repositories configured.  We will now proceed to do
-so.  Once logged into GitHub, go to the [new repository
-page](https://github.com/new) and make a repository called `test`.  Do **not**
-check the box that says `Initialize this repository with a README`, since we
-already have an existing repository here.  That option is useful when you're
-starting first at Github and don't have a repo made already on a local computer.
-
 We can now follow the instructions from the next page:
+
+```{r , engine='bash'}
+cd ~/src/jm-git-demo
+git remote add origin git@github.com:jarrodmillman/test.git
+git push -u origin master
+```
+
+Let's see the remote situation again:
+
+```{r , engine='bash'}
+cd ~/src/jm-git-demo
+git remote -v
+```
+
+We can now [see this repository publicly on github](https://github.com/jarrodmillman/test).
+
+Let's see how this can be useful for backup and syncing work between two
+different computers.  I'll simulate a 2nd computer by working in a different
+directory...
+
+
+```{r , engine='bash'}
+cd ~/src/
+# Here I clone my 'test' repo but with a different name, test2, to simulate a 2nd computer
+git clone git@github.com:jarrodmillman/test.git test2
+cd test2
+pwd
+git remote -v
+```
+
+Let's now make some changes in one 'computer' and synchronize them on the
+second.
+
+```{r , engine='bash'}
+cd ~/src/test2  # working on computer #2
+echo "More new content on my experiment" >> experiment.txt
+git commit -a -m"More work, on machine #2"
+```
+
+Now we put this new work up on the github server so it's available from the
+internet
+
+```{r , engine='bash'}
+cd ~/src/test2  # working on computer #2
+git push
+```
+
+Now let's fetch that work from machine #1:
+
+```{r , engine='bash'}
+cd ~/src/jm-git-demo
+git pull
+```
+
+# An important aside: conflict management
+
+While git is very good at merging, if two different branches modify the same
+file in the same location, it simply can't decide which change should prevail.
+At that point, human intervention is necessary to make the decision.  Git will
+help you by marking the location in the file that has a problem, but it's up to
+you to resolve the conflict.  Let's see how that works by intentionally creating
+a conflict.
+
+We start by creating a branch and making a change to our experiment file:
+
+```{r , engine='bash'}
+cd ~/src/jm-git-demo
+git branch trouble
+git checkout trouble
+echo "This is going to be a problem..." >> experiment.txt
+git commit -a -m"Changes in the trouble branch"
+```
+
+And now we go back to the master branch, where we change the *same* file:
+
+```{r , engine='bash'}
+cd ~/src/jm-git-demo
+git checkout master
+echo "More work on the master branch..." >> experiment.txt
+git commit -a -m"Mainline work"
+```
+
+So now let's see what happens if we try to merge the `trouble` branch into
+`master`:
+
+```{r , engine='bash'}
+cd ~/src/jm-git-demo
+git merge trouble
+```
+
+
+Let's see what git has put into our file:
+
+```{r , engine='bash'}
+cd ~/src/jm-git-demo
+cat experiment.txt
+```
+
+At this point, we go into the file with a text editor, decide which changes to
+keep, and make a new commit that records our decision. To automate my edits,
+I use the `sed` command.
+
+```{r , engine='bash'}
+cd ~/src/jm-git-demo
+sed -i '/^</d' experiment.txt
+sed -i '/^>/d' experiment.txt
+sed -i '/^=/d' experiment.txt
+```
+
+I've now made the edits, in this case I decided that both pieces of text were useful,
+so I just accepted both additions.
+
+```{r , engine='bash'}
+cd ~/src/jm-git-demo
+cat experiment.txt
+```
+
+
+Let's then make our new commit:
+
+```{r , engine='bash'}
+cd ~/src/jm-git-demo
+git commit -a -m"Completed merge of trouble, fixing conflicts along the way"
+git slog
+```
+
+*Note:* While it's a good idea to understand the basics of fixing merge
+conflicts by hand, in some cases you may find the use of an automated tool
+useful.  Git supports multiple [merge
+tools](https://www.kernel.org/pub/software/scm/git/docs/git-mergetool.html): a
+merge tool is a piece of software that conforms to a basic interface and knows
+how to merge two files into a new one.  Since these are typically graphical
+tools, there are various to choose from for the different operating systems, and
+as long as they obey a basic command structure, git can work with any of them.
+
+
+# Collaborating on github with a small team
+
+Single remote with shared access: we are going to set up a shared collaboration
+with one partner (the person sitting next to you).  This will show the basic
+workflow of collaborating on a project with a small team where everyone has
+write privileges to the same repository.
+
+Note for SVN users: this is similar to the classic SVN workflow, with the
+distinction that commit and push are separate steps.  SVN, having no local
+repository, commits directly to the shared central resource, so to a first
+approximation you can think of `svn commit` as being synonymous with `git
+commit; git push`.
+
+We will have two people, let's call them Alice and Bob, sharing a repository.
+Alice will be the owner of the repo and she will give Bob write privileges.
+
+We begin with a simple synchronization example, much like we just did above, but
+now between *two people* instead of one person.  Otherwise it's the same:
+
+- Bob clones Alice's repository.
+- Bob makes changes to a file and commits them locally.
+- Bob pushes his changes to github.
+- Alice pulls Bob's changes into her own repository.
+
+Next, we will have both parties make non-conflicting changes each, and commit
+them locally.  Then both try to push their changes:
+
+- Alice adds a new file, `alice.txt` to the repo and commits.
+- Bob adds `bob.txt` and commits.
+- Alice pushes to github.
+- Bob tries to push to github.  What happens here?
+
+The problem is that Bob's changes create a commit that conflicts with Alice's,
+so git refuses to apply them.  It forces Bob to first do the merge on his
+machine, so that if there is a conflict in the merge, Bob deals with the
+conflict manually (git could try to do the merge on the server, but in that case
+if there's a conflict, the server repo would be left in a conflicted state
+without a human to fix things up).  The solution is for Bob to first pull the
+changes (pull in git is really fetch+merge), and then push again.
+
 
 
 
