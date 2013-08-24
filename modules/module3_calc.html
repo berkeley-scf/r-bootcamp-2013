@@ -206,14 +206,14 @@ system.time(trunc &lt;- ifelse(vals &gt; 0, vals, 0))
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##    0.34    0.00    0.34
+##   0.340   0.004   0.348
 </code></pre>
 
 <pre><code class="r">system.time(vals &lt;- vals * (vals &gt; 0))
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   0.008   0.000   0.010
+##   0.012   0.000   0.010
 </code></pre>
 
 <pre><code class="r">tmp &lt;- as.character(vote$age60)
@@ -388,7 +388,7 @@ system.time({
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   0.068   0.000   0.064
+##   0.064   0.000   0.064
 </code></pre>
 
 <p>Here&#39;s how to pre-allocate an empty list: </p>
@@ -424,8 +424,8 @@ head(vals)
 <p>For this we use the <code>apply()</code> family of functions.</p>
 
 <pre><code class="r">mat &lt;- matrix(rnorm(100 * 1000), nr = 100)
-row_min &lt;- apply(mat, 1, min)
-col_max &lt;- apply(mat, 2, max)
+row_min &lt;- apply(mat, MARGIN = 1, FUN = min)
+col_max &lt;- apply(mat, MARGIN = 2, FUN = max)
 </code></pre>
 
 <p>There are actually some even faster specialized functions:</p>
@@ -809,14 +809,16 @@ ord[1:5]
 
 <p>In this case (as often true) we need to do some machinations to get everything prepared for the merge. The <em>key</em> we use is the state name.</p>
 
-<pre><code class="r"># a bit of querying indicates the state numbers are in alphabetical order,
-# so we can do this:
+<pre><code class="r"># PRE-PROCESSING a bit of querying indicates the state numbers are in
+# alphabetical order, so we can do this:
 numToName &lt;- data.frame(stateNum = 1:50, stateName = row.names(state.x77))
 voteWithStateNames &lt;- merge(vote, numToName, by.x = &quot;state&quot;, by.y = &quot;stateNum&quot;, 
     all.x = TRUE, all.y = FALSE)
 stateInfo &lt;- data.frame(state.x77)
 # need the names as column, not as the row names attribute:
 stateInfo$name &lt;- row.names(stateInfo)
+
+# ACTUAL DEMONSTRATION
 fullVote &lt;- merge(voteWithStateNames, stateInfo[, c(&quot;name&quot;, &quot;Population&quot;, &quot;Income&quot;, 
     &quot;Illiteracy&quot;, &quot;Life.Exp&quot;)], by.x = &quot;stateName&quot;, by.y = &quot;name&quot;, all.x = TRUE, 
     all.y = FALSE)
@@ -858,9 +860,11 @@ dim(vote)
 \chi^2 = \sum_{i=1}^{n}\sum_{j=1}^{m} \frac{(y_{ij} - e_{ij})^2}{e_{ij}}, 
 \] </p>
 
-<p>where \(e_{ij} = \frac{y_{i\cdot} y_{\cdot j}}{y_{\cdot \cdot}}\), with \(y_{i\cdot}\) the sum of the values in the i&#39;th row, \(y_{\cdot j}\) the sum of values in the j&#39;th column, and \(y_{\cdot\cdot}\) the sum of all the values. Suppose I give you a matrix in R with the \(y_{ij}\) values. Compute the statistics without <em>any</em> loops.</p>
+<p>where \(e_{ij} = \frac{y_{i\cdot} y_{\cdot j}}{y_{\cdot \cdot}}\), with \(y_{i\cdot}\) the sum of the values in the i&#39;th row, \(y_{\cdot j}\) the sum of values in the j&#39;th column, and \(y_{\cdot\cdot}\) the sum of all the values. Suppose I give you a matrix in R with the \(y_{ij}\) values. </p>
 
 <p>You can generate a test matrix as: <code>y &lt;- matrix(sample(1:10, 12, replace = TRUE), nrow = 3, ncol = 4)</code>.</p>
+
+<p>Compute the statistic without <em>any</em> loops as follows:</p>
 
 <ol>
 <li>Assume you have the <em>e</em> matrix. How do you compute the statistic without loops?</li>

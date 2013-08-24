@@ -45,7 +45,7 @@ August 2013, UC Berkeley
 <pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span> * pi  <span class="co"># multiply by a constant</span></code></pre>
 <pre><code>## [1] 6.283</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="dv">7</span> + <span class="kw">runif</span>(<span class="dv">1</span>)  <span class="co"># add a random number</span></code></pre>
-<pre><code>## [1] 7.907</code></pre>
+<pre><code>## [1] 7.649</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span>^<span class="dv">4</span>  <span class="co"># powers</span></code></pre>
 <pre><code>## [1] 81</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt</span>(<span class="dv">4</span>^<span class="dv">4</span>)  <span class="co"># functions</span></code></pre>
@@ -123,7 +123,7 @@ depts</code></pre>
 nums &lt;- <span class="kw">c</span>(<span class="fl">1.1</span>, <span class="dv">3</span>, -<span class="fl">5.7</span>)
 devs &lt;- <span class="kw">rnorm</span>(<span class="dv">5</span>)
 devs</code></pre>
-<pre><code>## [1] -0.78413  1.23208 -1.26214  0.09338 -0.24898</code></pre>
+<pre><code>## [1] -1.4806  1.2553 -1.3394 -0.6328 -0.6519</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">
 <span class="co"># integer vector</span>
 ints &lt;- <span class="kw">c</span>(1L, 5L, -3L) <span class="co"># force storage as integer not decimal number</span>
@@ -174,7 +174,7 @@ vals[<span class="dv">1</span>:<span class="dv">2</span>] &lt;- <span class="dv"
 vals &lt;- <span class="kw">rnorm</span>(<span class="dv">100</span>)
 vals[vals &lt; <span class="dv">0</span>] &lt;- <span class="dv">0</span>
 vals[<span class="dv">1</span>:<span class="dv">8</span>]</code></pre>
-<pre><code>## [1] 0.00000 0.00000 0.00000 0.07032 1.24290 0.00000 1.63089 0.00000</code></pre>
+<pre><code>## [1] 1.4354 0.0000 0.0000 0.4205 0.0000 0.1906 0.0000 0.6670</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">
 <span class="kw">set.seed</span>(<span class="dv">0</span>)  <span class="co"># make random number generation repeatable</span>
 vals &lt;- <span class="kw">rnorm</span>(<span class="dv">100</span>)
@@ -213,8 +213,12 @@ vec1 = vec2
 <p>An important related concept is that of recycling</p>
 <pre class="sourceCode r"><code class="sourceCode r">vec3 &lt;- <span class="kw">sample</span>(<span class="dv">1</span>:<span class="dv">5</span>, <span class="dv">5</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
 vec4 &lt;- <span class="kw">sample</span>(<span class="dv">1</span>:<span class="dv">5</span>, <span class="dv">3</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
-vec3</code></pre>
+vec1</code></pre>
+<pre><code>##  [1] 4 5 1 4 5 5 2 4 5 5</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">vec3</code></pre>
 <pre><code>## [1] 2 2 1 2 3</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">vec4</code></pre>
+<pre><code>## [1] 5 3 2</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">
 vec1 + vec3</code></pre>
 <pre><code>##  [1] 6 7 2 6 8 7 4 5 7 8</code></pre>
@@ -351,7 +355,7 @@ myList</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">myList$newOne &lt;- <span class="st">&quot;more weird stuff&quot;</span>
 <span class="kw">names</span>(myList)</code></pre>
 <pre><code>## [1] &quot;stuff&quot;     &quot;mat&quot;       &quot;moreStuff&quot; &quot;&quot;          &quot;newOne&quot;</code></pre>
-<p>Lists can be used as vectors of complicated objects. E.g., suppose you have a linear regression for each value of a stratifying variable. You could have a list of regression fits.</p>
+<p>Lists can be used as vectors of complicated objects. E.g., suppose you have a linear regression for each value of a stratifying variable. You could have a list of regression fits. Each regression fit will itself be a list, so you'll have a list of lists.</p>
 </div>
 <div class="section slide level1" id="other-classes-of-objects">
 <h1 id="other-classes-of-objects">Other classes of objects</h1>
@@ -471,10 +475,10 @@ vec2 &lt;- <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv"
 <pre><code>## bools :  logi [1:3] TRUE FALSE TRUE
 ## chars :  chr [1:6] &quot;hi&quot; &quot;hallo&quot; &quot;mother's&quot; &quot;father's&quot; ...
 ## depts :  chr [1:3] &quot;espm&quot; &quot;pmb&quot; &quot;stats&quot;
-## devs :  num [1:5] -0.7841 1.2321 -1.2621 0.0934 -0.249
+## devs :  num [1:5] -1.481 1.255 -1.339 -0.633 -0.652
 ## extremes :  num(0) 
 ## fours :  num [1:6] 4 4 4 4 4 4
-## idevs :  int [1:100] 1 5 5 5 -3 1 1 5 1 1 ...
+## idevs :  int [1:100] -3 1 -3 5 -3 -3 1 5 1 5 ...
 ## indices :  num [1:2] 1.7 2.3
 ## ints :  int [1:10] 1 2 3 4 5 6 7 8 9 10
 ## mat :  num [1:3, 1:3] -0.629 0.563 -0.953 -1.095 0.412 ...

@@ -163,7 +163,9 @@ An important related concept is that of recycling
 ```{r}
 vec3 <- sample(1:5, 5, replace = TRUE)
 vec4 <- sample(1:5, 3, replace = TRUE)
+vec1
 vec3
+vec4 
 
 vec1 + vec3
 vec1 + vec4
@@ -240,7 +242,7 @@ myList$newOne <- 'more weird stuff'
 names(myList)
 ```
 
-Lists can be used as vectors of complicated objects. E.g., suppose you have a linear regression for each value of a stratifying variable. You could have a list of regression fits.
+Lists can be used as vectors of complicated objects. E.g., suppose you have a linear regression for each value of a stratifying variable. You could have a list of regression fits. Each regression fit will itself be a list, so you'll have a list of lists.
 
 # Other classes of objects      
 

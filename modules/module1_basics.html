@@ -527,10 +527,22 @@ identical(vec1, vec2)
 
 <pre><code class="r">vec3 &lt;- sample(1:5, 5, replace = TRUE)
 vec4 &lt;- sample(1:5, 3, replace = TRUE)
-vec3
+vec1
+</code></pre>
+
+<pre><code>##  [1] 4 5 1 4 5 5 2 4 5 5
+</code></pre>
+
+<pre><code class="r">vec3
 </code></pre>
 
 <pre><code>## [1] 2 2 1 2 3
+</code></pre>
+
+<pre><code class="r">vec4
+</code></pre>
+
+<pre><code>## [1] 5 3 2
 </code></pre>
 
 <pre><code class="r">
@@ -767,7 +779,7 @@ names(myList)
 <pre><code>## [1] &quot;stuff&quot;     &quot;mat&quot;       &quot;moreStuff&quot; &quot;&quot;          &quot;newOne&quot;
 </code></pre>
 
-<p>Lists can be used as vectors of complicated objects. E.g., suppose you have a linear regression for each value of a stratifying variable. You could have a list of regression fits.</p>
+<p>Lists can be used as vectors of complicated objects. E.g., suppose you have a linear regression for each value of a stratifying variable. You could have a list of regression fits. Each regression fit will itself be a list, so you&#39;ll have a list of lists.</p>
 
 <h1>Other classes of objects</h1>
 

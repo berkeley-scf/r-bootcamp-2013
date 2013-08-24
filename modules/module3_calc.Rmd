@@ -151,8 +151,8 @@ For this we use the `apply()` family of functions.
 
 ```{r}
 mat <- matrix(rnorm(100*1000), nr = 100)
-row_min <- apply(mat, 1, min)
-col_max <- apply(mat, 2, max)
+row_min <- apply(mat, MARGIN = 1, FUN = min)
+col_max <- apply(mat, MARGIN = 2, FUN = max)
 ```
 
 There are actually some even faster specialized functions:
@@ -303,6 +303,7 @@ Here's an example using the voting data combined with a built-in R dataset on st
 In this case (as often true) we need to do some machinations to get everything prepared for the merge. The *key* we use is the state name.
 
 ```{r} 
+# PRE-PROCESSING
 # a bit of querying indicates the state numbers are in alphabetical order, so we can do this:
 numToName <- data.frame(stateNum = 1:50, 
    stateName = row.names(state.x77)) 
@@ -311,6 +312,8 @@ voteWithStateNames <- merge(vote, numToName, by.x = 'state',
 stateInfo <- data.frame(state.x77)
 # need the names as column, not as the row names attribute:
 stateInfo$name <- row.names(stateInfo) 
+
+# ACTUAL DEMONSTRATION
 fullVote <- merge(voteWithStateNames, stateInfo[ , 
    c('name', 'Population', 'Income', 'Illiteracy', 'Life.Exp')], 
    by.x  = 'stateName', by.y = 'name', all.x = TRUE, all.y = FALSE)
@@ -331,9 +334,11 @@ $$
 \chi^2 = \sum_{i=1}^{n}\sum_{j=1}^{m} \frac{(y_{ij} - e_{ij})^2}{e_{ij}}, 
 $$ 
 
-where $e_{ij} = \frac{y_{i\cdot} y_{\cdot j}}{y_{\cdot \cdot}}$, with $y_{i\cdot}$ the sum of the values in the i'th row, $y_{\cdot j}$ the sum of values in the j'th column, and $y_{\cdot\cdot}$ the sum of all the values. Suppose I give you a matrix in R with the $y_{ij}$ values. Compute the statistics without *any* loops.
+where $e_{ij} = \frac{y_{i\cdot} y_{\cdot j}}{y_{\cdot \cdot}}$, with $y_{i\cdot}$ the sum of the values in the i'th row, $y_{\cdot j}$ the sum of values in the j'th column, and $y_{\cdot\cdot}$ the sum of all the values. Suppose I give you a matrix in R with the $y_{ij}$ values. 
 
 You can generate a test matrix as: `y <- matrix(sample(1:10, 12, replace = TRUE), nrow = 3, ncol = 4)`.
+
+Compute the statistic without *any* loops as follows:
 
 1. Assume you have the *e* matrix. How do you compute the statistic without loops?
 2. How can you construct the *e* matrix? Hint: the numerator of *e* is just an *outer product* for which the `outer()` function can be used.

@@ -48,49 +48,49 @@ August 2013, UC Berkeley
 </ul>
 <pre class="sourceCode r"><code class="sourceCode r">mat &lt;- <span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">12</span>), <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)
 mat</code></pre>
-<pre><code>##         [,1]   [,2]    [,3]    [,4]
-## [1,] -0.9724 1.1689 -1.1157 -0.2164
-## [2,]  0.9651 0.5754  0.4694 -0.8673
-## [3,] -1.2388 1.2187  0.7633  2.0884</code></pre>
+<pre><code>##       [,1]    [,2]    [,3]    [,4]
+## [1,] 1.932 -0.4547 -0.3258 -0.8163
+## [2,] 1.152 -0.1366 -0.4712  0.8153
+## [3,] 1.409 -0.3346  0.9246 -2.6196</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">
 <span class="co"># vectorized calcs work with matrices too</span>
 mat * <span class="dv">4</span></code></pre>
-<pre><code>##        [,1]  [,2]   [,3]    [,4]
-## [1,] -3.890 4.675 -4.463 -0.8657
-## [2,]  3.860 2.302  1.878 -3.4691
-## [3,] -4.955 4.875  3.053  8.3537</code></pre>
+<pre><code>##       [,1]    [,2]   [,3]    [,4]
+## [1,] 7.730 -1.8188 -1.303  -3.265
+## [2,] 4.608 -0.5465 -1.885   3.261
+## [3,] 5.638 -1.3384  3.698 -10.478</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">mat &lt;- <span class="kw">cbind</span>(mat, <span class="dv">1</span>:<span class="dv">3</span>)
 mat</code></pre>
-<pre><code>##         [,1]   [,2]    [,3]    [,4] [,5]
-## [1,] -0.9724 1.1689 -1.1157 -0.2164    1
-## [2,]  0.9651 0.5754  0.4694 -0.8673    2
-## [3,] -1.2388 1.2187  0.7633  2.0884    3</code></pre>
+<pre><code>##       [,1]    [,2]    [,3]    [,4] [,5]
+## [1,] 1.932 -0.4547 -0.3258 -0.8163    1
+## [2,] 1.152 -0.1366 -0.4712  0.8153    2
+## [3,] 1.409 -0.3346  0.9246 -2.6196    3</code></pre>
 <p>Arrays are like matrices but can have more or fewer than two dimensions.</p>
 <pre class="sourceCode r"><code class="sourceCode r">arr &lt;- <span class="kw">array</span>(<span class="kw">rnorm</span>(<span class="dv">12</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>))
 arr</code></pre>
 <pre><code>## , , 1
 ## 
-##       [,1]    [,2]    [,3]
-## [1,] 1.217 0.05832  0.6623
-## [2,] 1.626 0.27458 -1.4986
+##       [,1]   [,2]    [,3]
+## [1,] 0.119 -2.535  0.9842
+## [2,] 0.232  1.446 -0.6479
 ## 
 ## , , 2
 ## 
 ##         [,1]    [,2]    [,3]
-## [1,] -0.8859 -0.2299 -0.4599
-## [2,] -1.0904 -0.8453  1.9385
+## [1,] -0.2608 -0.2994  1.0665
+## [2,]  0.9045 -0.6592 -0.3387
 ## 
 ## , , 3
 ## 
-##       [,1]    [,2]    [,3]
-## [1,] 1.217 0.05832  0.6623
-## [2,] 1.626 0.27458 -1.4986
+##       [,1]   [,2]    [,3]
+## [1,] 0.119 -2.535  0.9842
+## [2,] 0.232  1.446 -0.6479
 ## 
 ## , , 4
 ## 
 ##         [,1]    [,2]    [,3]
-## [1,] -0.8859 -0.2299 -0.4599
-## [2,] -1.0904 -0.8453  1.9385</code></pre>
+## [1,] -0.2608 -0.2994  1.0665
+## [2,]  0.9045 -0.6592 -0.3387</code></pre>
 </div>
 <div class="section slide level1" id="attributes">
 <h1 id="attributes">Attributes</h1>
@@ -100,10 +100,10 @@ arr</code></pre>
 ## [1] 3 5</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rownames</span>(mat) &lt;- <span class="kw">c</span>(<span class="st">&quot;first&quot;</span>, <span class="st">&quot;middle&quot;</span>, <span class="st">&quot;last&quot;</span>)
 mat</code></pre>
-<pre><code>##           [,1]   [,2]    [,3]    [,4] [,5]
-## first  -0.9724 1.1689 -1.1157 -0.2164    1
-## middle  0.9651 0.5754  0.4694 -0.8673    2
-## last   -1.2388 1.2187  0.7633  2.0884    3</code></pre>
+<pre><code>##         [,1]    [,2]    [,3]    [,4] [,5]
+## first  1.932 -0.4547 -0.3258 -0.8163    1
+## middle 1.152 -0.1366 -0.4712  0.8153    2
+## last   1.409 -0.3346  0.9246 -2.6196    3</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">attributes</span>(mat)</code></pre>
 <pre><code>## $dim
 ## [1] 3 5
@@ -116,16 +116,13 @@ mat</code></pre>
 ## NULL</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">
 mat[<span class="dv">4</span>]</code></pre>
-<pre><code>## [1] 1.169</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">attributes</span>(mat)$dim &lt;- <span class="ot">NULL</span></code></pre>
-<pre><code>## Error: 'dimnames' applied to non-array</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">mat</code></pre>
-<pre><code>##           [,1]   [,2]    [,3]    [,4] [,5]
-## first  -0.9724 1.1689 -1.1157 -0.2164    1
-## middle  0.9651 0.5754  0.4694 -0.8673    2
-## last   -1.2388 1.2187  0.7633  2.0884    3</code></pre>
+<pre><code>## [1] -0.4547</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">attributes</span>(mat) &lt;- <span class="ot">NULL</span>
+mat</code></pre>
+<pre><code>##  [1]  1.9324  1.1520  1.4094 -0.4547 -0.1366 -0.3346 -0.3258 -0.4712
+##  [9]  0.9246 -0.8163  0.8153 -2.6196  1.0000  2.0000  3.0000</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.matrix</span>(mat)</code></pre>
-<pre><code>## [1] TRUE</code></pre>
+<pre><code>## [1] FALSE</code></pre>
 <p>What can you infer about what a matrix is in R?</p>
 <p>What kind of object are the attributes themselves? How do I check?</p>
 </div>
@@ -156,17 +153,17 @@ mat</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">vec &lt;- <span class="kw">rnorm</span>(<span class="dv">12</span>)
 vec[<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>)] &lt;- <span class="ot">NA</span>
 vec</code></pre>
-<pre><code>##  [1]  0.35589 -0.64154       NA -1.39516       NA  1.23131 -1.22852
-##  [8]  0.84467 -0.01643  0.42668 -0.82921 -0.12732</code></pre>
+<pre><code>##  [1] -0.7016 -1.3075      NA -1.4403      NA -0.8394  1.3689 -0.4037
+##  [9]  2.6236 -1.2082  0.8394 -0.4275</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(vec)</code></pre>
 <pre><code>## [1] 12</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(vec)</code></pre>
 <pre><code>## [1] NA</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(vec, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre>
-<pre><code>## [1] -1.38</code></pre>
+<pre><code>## [1] -1.496</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(vec)</code></pre>
 <div class="figure">
-<img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-5" /><p class="caption">plot of chunk unnamed-chunk-5</p>
+<img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-5" /><p class="caption">plot of chunk unnamed-chunk-5</p>
 </div>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.na</span>(vec)</code></pre>
 <pre><code>##  [1] FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
@@ -195,8 +192,8 @@ big</code></pre>
 </ul>
 <pre class="sourceCode r"><code class="sourceCode r">vec &lt;- <span class="kw">c</span>(vec, <span class="ot">NULL</span>)
 vec</code></pre>
-<pre><code>##  [1]  0.35589 -0.64154       NA -1.39516       NA  1.23131 -1.22852
-##  [8]  0.84467 -0.01643  0.42668 -0.82921 -0.12732</code></pre>
+<pre><code>##  [1] -0.7016 -1.3075      NA -1.4403      NA -0.8394  1.3689 -0.4037
+##  [9]  2.6236 -1.2082  0.8394 -0.4275</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(vec)</code></pre>
 <pre><code>## [1] 12</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">a &lt;- <span class="ot">NULL</span>
@@ -447,10 +444,11 @@ answers &amp; update</code></pre>
 <ul>
 <li>Turning factors into other data types can be tricky. All factor levels have an underlying numeric structure.</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r">myfac &lt;- <span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;basic&quot;</span>, <span class="st">&quot;proficient&quot;</span>, <span class="st">&quot;advanced&quot;</span>, <span class="st">&quot;basic&quot;</span>, <span class="st">&quot;advanced&quot;</span>, <span class="st">&quot;minimal&quot;</span>))
-<span class="kw">levels</span>(myfac)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">students &lt;- <span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;basic&quot;</span>, <span class="st">&quot;proficient&quot;</span>, <span class="st">&quot;advanced&quot;</span>, <span class="st">&quot;basic&quot;</span>, <span class="st">&quot;advanced&quot;</span>, 
+    <span class="st">&quot;minimal&quot;</span>))
+<span class="kw">levels</span>(students)</code></pre>
 <pre><code>## [1] &quot;advanced&quot;   &quot;basic&quot;      &quot;minimal&quot;    &quot;proficient&quot;</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">unclass</span>(myfac)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">unclass</span>(students)</code></pre>
 <pre><code>## [1] 2 4 1 2 1 3
 ## attr(,&quot;levels&quot;)
 ## [1] &quot;advanced&quot;   &quot;basic&quot;      &quot;minimal&quot;    &quot;proficient&quot;</code></pre>
@@ -458,18 +456,19 @@ answers &amp; update</code></pre>
 <li>What's wrong?</li>
 <li>Be careful! The best way to convert a factor is to convert it to a character first.</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r">myfac &lt;- <span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;basic&quot;</span>, <span class="st">&quot;proficient&quot;</span>, <span class="st">&quot;advanced&quot;</span>, <span class="st">&quot;basic&quot;</span>, <span class="st">&quot;advanced&quot;</span>, <span class="st">&quot;minimal&quot;</span>))
+<pre class="sourceCode r"><code class="sourceCode r">students &lt;- <span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;basic&quot;</span>, <span class="st">&quot;proficient&quot;</span>, <span class="st">&quot;advanced&quot;</span>, <span class="st">&quot;basic&quot;</span>, <span class="st">&quot;advanced&quot;</span>, 
+    <span class="st">&quot;minimal&quot;</span>))
 score = <span class="kw">c</span>(<span class="dt">minimal =</span> <span class="dv">3</span>, <span class="dt">basic =</span> <span class="dv">1</span>, <span class="dt">advanced =</span> <span class="dv">13</span>, <span class="dt">proficient =</span> <span class="dv">7</span>)  <span class="co"># a named vector</span>
 score[<span class="st">&quot;advanced&quot;</span>]  <span class="co"># look up by name</span></code></pre>
 <pre><code>## advanced 
 ##       13</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">myfac[<span class="dv">3</span>]</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">students[<span class="dv">3</span>]</code></pre>
 <pre><code>## [1] advanced
 ## Levels: advanced basic minimal proficient</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">score[myfac[<span class="dv">3</span>]]</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">score[students[<span class="dv">3</span>]]</code></pre>
 <pre><code>## minimal 
 ##       3</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">score[<span class="kw">as.character</span>(myfac[<span class="dv">3</span>])]</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">score[<span class="kw">as.character</span>(students[<span class="dv">3</span>])]</code></pre>
 <pre><code>## advanced 
 ##       13</code></pre>
 <p>What's going wrong?</p>
@@ -481,45 +480,46 @@ score[<span class="st">&quot;advanced&quot;</span>]  <span class="co"># look up 
 mat &lt;- <span class="kw">matrix</span>(vec, <span class="dv">4</span>, <span class="dv">5</span>)
 <span class="kw">rownames</span>(mat) &lt;- letters[<span class="dv">1</span>:<span class="dv">4</span>]
 mat</code></pre>
-<pre><code>##        [,1]    [,2]    [,3]    [,4]    [,5]
-## a  0.711877 -1.8443  1.4202 -0.1093 0.33803
-## b  0.009653  0.1320  2.0012 -0.4650 0.08357
-## c -0.760183 -0.2016 -0.9524 -0.1701 0.66035
-## d  0.250913  0.3919 -1.0465  1.2599 0.86572</code></pre>
+<pre><code>##      [,1]    [,2]    [,3]     [,4]    [,5]
+## a -1.1228  1.5660 -0.1224 -1.77071  0.2603
+## b  1.0336  0.8607 -1.9927  0.53826 -0.3715
+## c  0.1648 -0.4020 -0.7387  1.20478  1.5358
+## d -0.3601 -1.3116 -0.2371  0.06624 -2.0234</code></pre>
 <ol style="list-style-type: decimal">
 <li>by direct indexing</li>
 </ol>
 <pre class="sourceCode r"><code class="sourceCode r">vec[<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">12</span>:<span class="dv">14</span>)]</code></pre>
-<pre><code>## [1] -0.7602 -1.8443 -1.0465 -0.1093 -0.4650</code></pre>
+<pre><code>## [1]  0.1648  1.5660 -0.2371 -1.7707  0.5383</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">vec[-<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>)]</code></pre>
-<pre><code>##  [1]  0.711877  0.009653  0.250913  0.131995 -0.201571  0.391892  1.420195
-##  [8]  2.001181 -0.952386 -1.046483 -0.109315 -0.465035 -0.170065  1.259931
-## [15]  0.338032  0.083573  0.660347  0.865717</code></pre>
+<pre><code>##  [1] -1.12280  1.03364 -0.36007  0.86069 -0.40202 -1.31160 -0.12240
+##  [8] -1.99270 -0.73866 -0.23711 -1.77071  0.53826  1.20478  0.06624
+## [15]  0.26027 -0.37151  1.53584 -2.02344</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">mat[<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="dv">5</span>]</code></pre>
 <pre><code>##       b       d 
-## 0.08357 0.86572</code></pre>
+## -0.3715 -2.0234</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">rowInd &lt;- <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>)
 colInd &lt;- <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)
 mat[<span class="kw">cbind</span>(rowInd, colInd)]</code></pre>
-<pre><code>## [1] -1.8443 -0.2016  0.2509</code></pre>
-<p>Note the last usage where we give it a 2-column matrix of indices 2) by a vector of logicals</p>
+<pre><code>## [1]  1.5660 -0.4020 -0.3601</code></pre>
+<p>Note the last usage where we give it a 2-column matrix of indices</p>
+<ol start="2" style="list-style-type: decimal">
+<li>by a vector of logicals</li>
+</ol>
 <pre class="sourceCode r"><code class="sourceCode r">cond &lt;- vec &gt; <span class="dv">0</span>
 vec[cond]</code></pre>
-<pre><code>##  [1] 0.711877 0.009653 0.250913 0.131995 0.391892 1.420195 2.001181
-##  [8] 1.259931 0.338032 0.083573 0.660347 0.865717</code></pre>
+<pre><code>## [1] 1.03364 0.16476 1.56601 0.86069 0.53826 1.20478 0.06624 0.26027 1.53584</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">mat[mat[, <span class="dv">1</span>] &gt; <span class="dv">0</span>, ]</code></pre>
-<pre><code>##       [,1]    [,2]   [,3]    [,4]    [,5]
-## a 0.711877 -1.8443  1.420 -0.1093 0.33803
-## b 0.009653  0.1320  2.001 -0.4650 0.08357
-## d 0.250913  0.3919 -1.046  1.2599 0.86572</code></pre>
+<pre><code>##     [,1]    [,2]    [,3]   [,4]    [,5]
+## b 1.0336  0.8607 -1.9927 0.5383 -0.3715
+## c 0.1648 -0.4020 -0.7387 1.2048  1.5358</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>by a vector of names</li>
 </ol>
 <pre class="sourceCode r"><code class="sourceCode r">mat[<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;d&quot;</span>, <span class="st">&quot;a&quot;</span>), ]</code></pre>
-<pre><code>##     [,1]    [,2]   [,3]    [,4]   [,5]
-## a 0.7119 -1.8443  1.420 -0.1093 0.3380
-## d 0.2509  0.3919 -1.046  1.2599 0.8657
-## a 0.7119 -1.8443  1.420 -0.1093 0.3380</code></pre>
+<pre><code>##      [,1]   [,2]    [,3]     [,4]    [,5]
+## a -1.1228  1.566 -0.1224 -1.77071  0.2603
+## d -0.3601 -1.312 -0.2371  0.06624 -2.0234
+## a -1.1228  1.566 -0.1224 -1.77071  0.2603</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>using <em>subset()</em></li>
 </ol>
@@ -581,7 +581,7 @@ chars2</code></pre>
 <h1 id="regular-expressions-regex-or-regexp">Regular expressions (regex or regexp)</h1>
 <p>Some of you may be familiar with using <em>regular expressions</em>, which is functionality for doing sophisticated pattern matching and replacement with strings. <em>Python</em> and <em>Perl</em> are both used extensively for such text manipulation.</p>
 <p>R has a full set of regular expression capabilities available through the <em>grep()</em>, <em>gregexpr()</em>, and <em>gsub()</em> functions (among others - many R functions will work with regular expressions).</p>
-<p>You can basically do any regular expression/string manipulationsto in R, though the syntax may be a bit clunky at times.</p>
+<p>You can basically do any regular expression/string manipulations in R, though the syntax may be a bit clunky at times.</p>
 </div>
 <div class="section slide level1" id="the-working-directory">
 <h1 id="the-working-directory">The working directory</h1>
@@ -689,8 +689,8 @@ missing[<span class="dv">1</span>:<span class="dv">5</span>]</code></pre>
 <h1 id="other-ways-to-read-data-into-r">Other ways to read data into R</h1>
 <p>The <em>read.table()</em> family of functions just skims the surface of things...</p>
 <ol style="list-style-type: decimal">
-<li>You can also read in a file as vector of characters, one character string per line of the file, and then post-process it.</li>
-<li>You can read fixed width format (constant number of characters per field) with <em>read.fwf()</em></li>
+<li>You can also read in a file as vector of characters, one character string per line of the file with <code>readLines()</code>, and then post-process it.</li>
+<li>You can read fixed width format (constant number of characters per field) with <code>read.fwf()</code>.</li>
 </ol>
 </div>
 <div class="section slide level1" id="reading-foreign-format-data">
@@ -725,7 +725,7 @@ y &lt;- <span class="kw">rnorm</span>(<span class="dv">10</span>)
 <pre><code>## Loading required package: xtable</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="kw">xtable</span>(<span class="kw">table</span>(vote$race, vote$pres04)), <span class="dt">type =</span> <span class="st">&quot;html&quot;</span>)</code></pre>
 <pre><code>## &lt;!-- html table generated in R 3.0.1 by xtable 1.7-1 package --&gt;
-## &lt;!-- Fri Aug 23 15:42:21 2013 --&gt;
+## &lt;!-- Fri Aug 23 16:59:01 2013 --&gt;
 ## &lt;TABLE border=1&gt;
 ## &lt;TR&gt; &lt;TH&gt;  &lt;/TH&gt; &lt;TH&gt; 0 &lt;/TH&gt; &lt;TH&gt; 1 &lt;/TH&gt; &lt;TH&gt; 2 &lt;/TH&gt; &lt;TH&gt; 3 &lt;/TH&gt; &lt;TH&gt; 4 &lt;/TH&gt; &lt;TH&gt; 9 &lt;/TH&gt;  &lt;/TR&gt;
 ##   &lt;TR&gt; &lt;TD align=&quot;right&quot;&gt; white &lt;/TD&gt; &lt;TD align=&quot;right&quot;&gt; 111 &lt;/TD&gt; &lt;TD align=&quot;right&quot;&gt; 26184 &lt;/TD&gt; &lt;TD align=&quot;right&quot;&gt; 33045 &lt;/TD&gt; &lt;TD align=&quot;right&quot;&gt; 417 &lt;/TD&gt; &lt;TD align=&quot;right&quot;&gt;  14 &lt;/TD&gt; &lt;TD align=&quot;right&quot;&gt; 409 &lt;/TD&gt; &lt;/TR&gt;
@@ -739,7 +739,7 @@ y &lt;- <span class="kw">rnorm</span>(<span class="dv">10</span>)
 <div class="section slide level1" id="breakout">
 <h1 id="breakout">Breakout</h1>
 <ol style="list-style-type: decimal">
-<li><p>Using the presidential preference dataset, create a new column based on <em>age9</em> that gives, as a numeric value, the midpoint of the age range assigned to each person. Try to do this with a combination of subsetting and string operations (i.e., can you convert the character numbers to actual numbers). To simplify things, feel free to get rid of the rows for ages &quot;75 and over&quot;.</p></li>
+<li><p>Using the voting/presidential preference dataset, create a new column based on <em>age9</em> that gives, as a numeric value, the midpoint of the age range assigned to each person. Try to do this with a combination of subsetting and string operations (i.e., can you convert the character numbers to actual numbers). To simplify things, feel free to get rid of the rows for ages &quot;75 and over&quot;.</p></li>
 <li><p>Go back to slide 6 on logical vectors and figure out what is going on in the last few lines of code.</p></li>
 <li><p>Go back to slide 22 and figure out what is going on with that complicated last line of code.</p></li>
 </ol>

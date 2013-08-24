@@ -295,25 +295,18 @@ mat[4]
 <pre><code>## [1] -1.178
 </code></pre>
 
-<pre><code class="r">attributes(mat)$dim &lt;- NULL
+<pre><code class="r">attributes(mat) &lt;- NULL
+mat
 </code></pre>
 
-<pre><code>## Error: &#39;dimnames&#39; applied to non-array
-</code></pre>
-
-<pre><code class="r">mat
-</code></pre>
-
-<pre><code>##           [,1]    [,2]    [,3]    [,4] [,5]
-## first   0.5872 -1.1782  1.3072 -0.2861    1
-## middle  0.9946 -0.1400 -0.6624  1.2640    2
-## last   -1.4555  0.5503  0.4209 -0.3674    3
+<pre><code>##  [1]  0.5872  0.9946 -1.4555 -1.1782 -0.1400  0.5503  1.3072 -0.6624
+##  [9]  0.4209 -0.2861  1.2640 -0.3674  1.0000  2.0000  3.0000
 </code></pre>
 
 <pre><code class="r">is.matrix(mat)
 </code></pre>
 
-<pre><code>## [1] TRUE
+<pre><code>## [1] FALSE
 </code></pre>
 
 <p>What can you infer about what a matrix is in R?</p>
@@ -826,14 +819,15 @@ head(vote$sizeplac_ord)
 <li>Turning factors into other data types can be tricky. All factor levels have an underlying numeric structure.</li>
 </ul>
 
-<pre><code class="r">myfac &lt;- factor(c(&quot;basic&quot;, &quot;proficient&quot;, &quot;advanced&quot;, &quot;basic&quot;, &quot;advanced&quot;, &quot;minimal&quot;))
-levels(myfac)
+<pre><code class="r">students &lt;- factor(c(&quot;basic&quot;, &quot;proficient&quot;, &quot;advanced&quot;, &quot;basic&quot;, &quot;advanced&quot;, 
+    &quot;minimal&quot;))
+levels(students)
 </code></pre>
 
 <pre><code>## [1] &quot;advanced&quot;   &quot;basic&quot;      &quot;minimal&quot;    &quot;proficient&quot;
 </code></pre>
 
-<pre><code class="r">unclass(myfac)
+<pre><code class="r">unclass(students)
 </code></pre>
 
 <pre><code>## [1] 2 4 1 2 1 3
@@ -846,7 +840,8 @@ levels(myfac)
 <li>Be careful! The best way to convert a factor is to convert it to a character first.</li>
 </ul>
 
-<pre><code class="r">myfac &lt;- factor(c(&quot;basic&quot;, &quot;proficient&quot;, &quot;advanced&quot;, &quot;basic&quot;, &quot;advanced&quot;, &quot;minimal&quot;))
+<pre><code class="r">students &lt;- factor(c(&quot;basic&quot;, &quot;proficient&quot;, &quot;advanced&quot;, &quot;basic&quot;, &quot;advanced&quot;, 
+    &quot;minimal&quot;))
 score = c(minimal = 3, basic = 1, advanced = 13, proficient = 7)  # a named vector
 score[&quot;advanced&quot;]  # look up by name
 </code></pre>
@@ -855,21 +850,21 @@ score[&quot;advanced&quot;]  # look up by name
 ##       13
 </code></pre>
 
-<pre><code class="r">myfac[3]
+<pre><code class="r">students[3]
 </code></pre>
 
 <pre><code>## [1] advanced
 ## Levels: advanced basic minimal proficient
 </code></pre>
 
-<pre><code class="r">score[myfac[3]]
+<pre><code class="r">score[students[3]]
 </code></pre>
 
 <pre><code>## minimal 
 ##       3
 </code></pre>
 
-<pre><code class="r">score[as.character(myfac[3])]
+<pre><code class="r">score[as.character(students[3])]
 </code></pre>
 
 <pre><code>## advanced 
@@ -926,8 +921,9 @@ mat[cbind(rowInd, colInd)]
 <pre><code>## [1] -1.3309 -0.2858  0.9401
 </code></pre>
 
-<p>Note the last usage where we give it a 2-column matrix of indices
-2) by a vector of logicals</p>
+<p>Note the last usage where we give it a 2-column matrix of indices</p>
+
+<p>2) by a vector of logicals</p>
 
 <pre><code class="r">cond &lt;- vec &gt; 0
 vec[cond]
@@ -1058,7 +1054,7 @@ chars2
 
 <p>R has a full set of regular expression capabilities available through the <em>grep()</em>, <em>gregexpr()</em>, and <em>gsub()</em> functions (among others - many R functions will work with regular expressions).</p>
 
-<p>You can basically do any regular expression/string manipulationsto in R, though the syntax may be a bit clunky at times.</p>
+<p>You can basically do any regular expression/string manipulations in R, though the syntax may be a bit clunky at times.</p>
 
 <h1>The working directory</h1>
 
@@ -1218,8 +1214,8 @@ missing[1:5]
 
 <p>The <em>read.table()</em> family of functions just skims the surface of things&hellip;</p>
 
-<p>1) You can also read in a file as vector of characters, one character string per line of the file, and then post-process it. 
-2) You can read fixed width format (constant number of characters per field) with <em>read.fwf()</em></p>
+<p>1) You can also read in a file as vector of characters, one character string per line of the file with <code>readLines()</code>, and then post-process it. 
+2) You can read fixed width format (constant number of characters per field) with <code>read.fwf()</code>.</p>
 
 <h1>Reading &#39;foreign&#39; format data</h1>
 
@@ -1261,7 +1257,7 @@ print(xtable(table(vote$race, vote$pres04)), type = &quot;html&quot;)
 </code></pre>
 
 <pre><code>## &lt;!-- html table generated in R 3.0.1 by xtable 1.7-1 package --&gt;
-## &lt;!-- Fri Aug 23 15:42:23 2013 --&gt;
+## &lt;!-- Fri Aug 23 16:59:02 2013 --&gt;
 ## &lt;TABLE border=1&gt;
 ## &lt;TR&gt; &lt;TH&gt;  &lt;/TH&gt; &lt;TH&gt; 0 &lt;/TH&gt; &lt;TH&gt; 1 &lt;/TH&gt; &lt;TH&gt; 2 &lt;/TH&gt; &lt;TH&gt; 3 &lt;/TH&gt; &lt;TH&gt; 4 &lt;/TH&gt; &lt;TH&gt; 9 &lt;/TH&gt;  &lt;/TR&gt;
 ##   &lt;TR&gt; &lt;TD align=&quot;right&quot;&gt; white &lt;/TD&gt; &lt;TD align=&quot;right&quot;&gt; 111 &lt;/TD&gt; &lt;TD align=&quot;right&quot;&gt; 26184 &lt;/TD&gt; &lt;TD align=&quot;right&quot;&gt; 33045 &lt;/TD&gt; &lt;TD align=&quot;right&quot;&gt; 417 &lt;/TD&gt; &lt;TD align=&quot;right&quot;&gt;  14 &lt;/TD&gt; &lt;TD align=&quot;right&quot;&gt; 409 &lt;/TD&gt; &lt;/TR&gt;
@@ -1277,7 +1273,7 @@ print(xtable(table(vote$race, vote$pres04)), type = &quot;html&quot;)
 <h1>Breakout</h1>
 
 <ol>
-<li><p>Using the presidential preference dataset, create a new column based on <em>age9</em> that gives, as a numeric value, the midpoint of the age range assigned to each person. Try to do this with a combination of subsetting and string operations (i.e., can you convert the character numbers to actual numbers). To simplify things, feel free to get rid of the rows for ages &ldquo;75 and over&rdquo;.</p></li>
+<li><p>Using the voting/presidential preference dataset, create a new column based on <em>age9</em> that gives, as a numeric value, the midpoint of the age range assigned to each person. Try to do this with a combination of subsetting and string operations (i.e., can you convert the character numbers to actual numbers). To simplify things, feel free to get rid of the rows for ages &ldquo;75 and over&rdquo;.</p></li>
 <li><p>Go back to slide 6 on logical vectors and figure out what is going on in the last few lines of code.</p></li>
 <li><p>Go back to slide 22 and figure out what is going on with that complicated last line of code.</p></li>
 </ol>

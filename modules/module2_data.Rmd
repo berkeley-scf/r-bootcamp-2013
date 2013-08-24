@@ -44,7 +44,7 @@ mat
 attributes(mat)
 
 mat[4]
-attributes(mat)$dim <- NULL
+attributes(mat) <- NULL
 mat
 is.matrix(mat)
 ```
@@ -213,23 +213,23 @@ Try to decipher what I just did with that complicated single line of code.
 - Turning factors into other data types can be tricky. All factor levels have an underlying numeric structure.
 
 ```{r fac2}
-myfac <- factor(c('basic','proficient','advanced','basic', 
+students <- factor(c('basic','proficient','advanced','basic', 
       'advanced', 'minimal'))
-levels(myfac)
-unclass(myfac)
+levels(students)
+unclass(students)
 ```
 
 - What's wrong?
 - Be careful! The best way to convert a factor is to convert it to a character first.
 
 ```{r}
-myfac <- factor(c('basic','proficient','advanced','basic', 
+students <- factor(c('basic','proficient','advanced','basic', 
       'advanced', 'minimal'))
 score = c(minimal = 3, basic = 1, advanced = 13, proficient = 7) # a named vector
 score["advanced"]  # look up by name
-myfac[3]
-score[myfac[3]]
-score[as.character(myfac[3])]
+students[3]
+score[students[3]]
+score[as.character(students[3])]
 ```
 
 What's going wrong?
@@ -254,6 +254,7 @@ colInd <- c(2, 2, 1)
 mat[cbind(rowInd, colInd)]
 ```
 Note the last usage where we give it a 2-column matrix of indices
+
 2) by a vector of logicals
 ```{r}
 cond <- vec > 0
@@ -309,7 +310,7 @@ Some of you may be familiar with using *regular expressions*, which is functiona
 
 R has a full set of regular expression capabilities available through the *grep()*, *gregexpr()*, and *gsub()* functions (among others - many R functions will work with regular expressions).
 
-You can basically do any regular expression/string manipulationsto in R, though the syntax may be a bit clunky at times.
+You can basically do any regular expression/string manipulations in R, though the syntax may be a bit clunky at times.
 
 # The working directory
 
@@ -358,8 +359,8 @@ It's good to first look at your data in plain text format outside of R and then 
 
 The *read.table()* family of functions just skims the surface of things...
 
-1) You can also read in a file as vector of characters, one character string per line of the file, and then post-process it. 
-2) You can read fixed width format (constant number of characters per field) with *read.fwf()*
+1) You can also read in a file as vector of characters, one character string per line of the file with `readLines()`, and then post-process it. 
+2) You can read fixed width format (constant number of characters per field) with `read.fwf()`.
 
 # Reading 'foreign' format data
 
@@ -399,7 +400,7 @@ Recall our discussion of the `summary()` function used on either a vector or a r
 
 # Breakout
 
-1. Using the presidential preference dataset, create a new column based on *age9* that gives, as a numeric value, the midpoint of the age range assigned to each person. Try to do this with a combination of subsetting and string operations (i.e., can you convert the character numbers to actual numbers). To simplify things, feel free to get rid of the rows for ages "75 and over".
+1. Using the voting/presidential preference dataset, create a new column based on *age9* that gives, as a numeric value, the midpoint of the age range assigned to each person. Try to do this with a combination of subsetting and string operations (i.e., can you convert the character numbers to actual numbers). To simplify things, feel free to get rid of the rows for ages "75 and over".
     
 2. Go back to slide 6 on logical vectors and figure out what is going on in the last few lines of code.
 
