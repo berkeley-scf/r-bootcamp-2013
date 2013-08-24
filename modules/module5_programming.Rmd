@@ -86,6 +86,14 @@ while (condition) {
 
 Concretely:
 
+```{r}
+i <- 0
+while (i < 10) {
+  i <- i + 1
+  print(i)
+}
+```
+
 It's easy to create infinite loops!
 
 # Examples: Fibonacci numbers
@@ -122,20 +130,23 @@ for (i in seq(1,10)) {
   if (i == 5) {
     next
   }
-  i
+  print(i)
 }
 ```
 
 `break` immediately ends loop evaluation:
 ```{r}
 val <- 0
+i <- 0
 while(TRUE) {
+  i <- i + 1
   val <- val + rnorm(1)
   if (abs(val) > 3) {
     break
   }
 }
 val
+i
 ```
 
 # Avoid loops
