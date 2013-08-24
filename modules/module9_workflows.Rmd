@@ -7,49 +7,63 @@
 # e.g. package and dataset loading
 ```
 
-# Outline
+# How not to make a mess of it
+
+> Programmers are always surrounded by complexity;
+> we cannot avoid it. Our applications are complex because
+> we are ambitious to use our computers in ever more
+> sophisticated ways. Programming is complex because of
+> the large number of conflicting objectives for each of our
+> programming projects. If our basic tool, the language in
+> which we design and code our programs, is also complicated,
+> the language itself becomes part of the problem
+> rather than part of its solution.
+>
+> --- C.A.R. Hoare - The Emperor's Old Clothes - Turing Award Lecture (1980)
+>
 
 Note: remember to start recording.
 
-This module is less focused on R. More to do with general recommendations on
-best practices when working on a computer. Much of the discussion will apply
-to other programming languages such as Python as well as writing papers,
-posters, slides, etc. with tools such as $\LaTeX$.
+# Reproducible research
 
-General themes:
+> An article about computational science in a scientific
+publication is **not the scholarship itself**, it is merely
+**advertising** of the scholarship. The actual scholarship is the
+complete software development environment and the
+complete set of instructions which generated the figures.
 
-* Automation
-* Toolbox
-* Best practices
+> --- Jonathan Buckheit and David Donoho, WaveLab and Reproducible Research (1995)
 
-# Making dirt fly!
+# Style guide
 
-![](figs/panama-canal.png)
+Try to avoid using the names of standard R functions for your objects, but R will generally be fairly smart about things.
 
-# Scripting
+```{r}
+c <- 7
+c(3,5)
+c
+rm(c)
+c
+```
 
-Keeping all your code in script (i.e., text) files is the way to go. Try to keep your files modular and focused.
+Try to use upperCamelCase or underscores when naming your objects (and don't mix and match). Leave periods for use in the context of S3 objects.
 
-If you find yourself writing code to do something multiple times, write a function to do it and just call that function.
+```{r}
+precipExtremes <- rnorm(5)  # precip_extremes
+timeInDays <- rnorm(5)   # time_in_days
+summary.lm(lm(precipExtremes ~ timeInDays))
+```
 
-If you use a good editor (such as RStudio's built-in editor, emacs with ESS, Aquamacs, [.... - see notes from intro session for new students]), it's easier to write and understand your code.
-
-You can then run blocks of code within RStudio easily.
-
-To run all the code in an entire file, do `source('myCodeFile.R')`.
-
-To run code as a background job in a Linux/Mac context:
-`R CMD BATCH --no-save myCodeFile.R myOutput.Rout &`
-
-Then you don't need to leave RStudio or R or a terminal window open. Your job will run by itself. If you are logged into a remote machine, you can log out and come back later.
-
-IMPORTANT: make sure to write any needed output to a file (e.g. .Rda files, CSV files, text output from print() or cat()).
+* [Google's R Style Guide](http://google-styleguide.googlecode.com/svn/trunk/Rguide.xml)
 
 # Debugging
 
-As a scripting language, R essentially has a debugger working automatically. But there is an official debugger and other tools that greatly help in figuring out problems.
+As a scripting language, R essentially has a debugger working automatically.
+But there is an official debugger and other tools that greatly help in figuring
+out problems.
 
-Let's briefly see these in action. I'll demo with a set of nested functions in which one has an error:
+Let's briefly see these in action. I'll demo with a set of nested functions in
+which one has an error:
 
 ```{r}
 fun1 <- function(x) {
@@ -64,15 +78,24 @@ fun3 <- function(x) {
 }
 ```    
 
-1) We can use *debug()* to step through a function line by line
-2) After an error occurs, we can use traceback() to look at the *call stack*
-3) More helpfully, if we set `options(error = recover)` before running code, we can go into the function in which the error occurred
-4) We can insert `browser()` inside a function and R will stop there and allow us to proceed with debugging statements
-5) You can temporarily insert code into a function (including built-in functions) with `trace(fxnName, edit = TRUE)`
+1) We can use ``debug()`` to step through a function line by line
 
+2) After an error occurs, we can use ``traceback()`` to look at the *call stack*
+
+3) More helpfully, if we set ``options(error = recover)`` before running code, we can go into the function in which the error occurred
+
+4) We can insert ``browser()`` inside a function and R will stop there and allow us to proceed with debugging statements
+
+5) You can temporarily insert code into a function (including built-in functions) with ``trace(fxnName, edit = TRUE)``
+
+# Testing
 
 
 # Timing your code
+
+> premature optimization is the root of all evil
+>
+> --- Donald Knuth, 1974
 
 There are a few tools in R for timing your code.
 
@@ -94,7 +117,7 @@ You should know how much memory (RAM) the computer you are using has and keep in
 
 If in total, the jobs on a machine approach the physical RAM, the machine will start to use the hard disk as 'virtual memory'. This is called paging or swapping, and once this happens you're often toast.
 
-You can assess memory use with *top* or *ps* in Linux/Mac or the system monitoring tool [???] in Windows.
+You can assess memory use with ``top`` or ``ps`` in Linux/Mac or the Task Manager in Windows.
 
 ```{r}
 x <- rnorm(1e7)
@@ -106,6 +129,26 @@ gc()
 rm()
 gc()
 ```
+
+# Scripting
+
+* Keep your code in script (i.e., text) files.
+* Keep your files modular and focused.
+* Write functions to reuse code.
+* Learn a powerful, general purpose text editor
+
+If you use a good editor (such as RStudio's built-in editor, emacs with ESS, Aquamacs, it's easier to write and understand your code.
+
+You can then run blocks of code within RStudio easily.
+
+To run all the code in an entire file, do `source('myCodeFile.R')`.
+
+To run code as a background job in a Linux/Mac context:
+`R CMD BATCH --no-save myCodeFile.R myOutput.Rout &`
+
+Then you don't need to leave RStudio or R or a terminal window open. Your job will run by itself. If you are logged into a remote machine, you can log out and come back later.
+
+IMPORTANT: make sure to write any needed output to a file (e.g. .Rda files, CSV files, text output from print() or cat()).
 
 # The UNIX command line
 
@@ -132,16 +175,6 @@ http://en.wikipedia.org/wiki/Unix_philosophy
 
 
 
-# Reproducible research
-
-> An article about computational science in a scientific
-publication is **not the scholarship itself**, it is merely
-**advertising** of the scholarship. The actual scholarship is the
-complete software development environment and the
-complete set of instructions which generated the figures.
-
---- Jonathan Buckheit and David Donoho, WaveLab and
-Reproducible Research (1995)
 
 # Version control
 
@@ -185,7 +218,7 @@ library('digest')
 # first commit
 data1 <- 'This is the start of my paper2.'
 meta1 <- 'date: 8/20/13'
-hash1 = digest(c(data1,meta1), algo="sha1")
+hash1 <- digest(c(data1,meta1), algo="sha1")
 cat('Hash:', hash1)
 
 # second commit, linked to the first
@@ -233,24 +266,17 @@ git help
 
 ![[arXiv:1210.0530v3 [cs.MS] 29 Nov 2012](http://arxiv.org/abs/1210.0530v3)](figs/best-practices.png)
 
-# Coding practices
 
-Try to avoid using the names of standard R functions for your objects, but R will generally be fairly smart about things.
+# Don't just "make the dirt fly!"
 
-```{r}
-c <- 7
-c(3,5)
-c
-rm(c)
-c
-```
-
-Try to use upperCamelCase or underscores when naming your objects (and don't mix and match). Leave periods for use in the context of S3 objects. 
-
-```{r}
-precipExtremes <- rnorm(5)  # precip_extremes
-timeInDays <- rnorm(5)   # time_in_days
-summary.lm(lm(precipExtremes ~ timeInDays))
-```
+![](figs/panama-canal.png)
 
 # Breakout
+
+1. Configure Git for use at the commandline.
+
+1. Clone practice problem.
+
+1. Debug script.
+
+1. Write a little helper function to profile code.
