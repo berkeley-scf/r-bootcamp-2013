@@ -9,6 +9,7 @@ library(plyr)
 library(reshape2)
 library(ggplot2)
 library(lattice)
+library(gridExtra)
 if(!('modules' %in% unlist(strsplit(getwd(), split = '/')))) setwd('modules')
 mydata <- read.csv("../data/cpds.csv")
 ```
