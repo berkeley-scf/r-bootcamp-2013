@@ -6,49 +6,6 @@
 
 <title>How not to make a mess of it</title>
 
-<!-- Styles for R syntax highlighter -->
-<style type="text/css">
-   pre .operator,
-   pre .paren {
-     color: rgb(104, 118, 135)
-   }
-
-   pre .literal {
-     color: rgb(88, 72, 246)
-   }
-
-   pre .number {
-     color: rgb(0, 0, 205);
-   }
-
-   pre .comment {
-     color: rgb(76, 136, 107);
-   }
-
-   pre .keyword {
-     color: rgb(0, 0, 255);
-   }
-
-   pre .identifier {
-     color: rgb(0, 0, 0);
-   }
-
-   pre .string {
-     color: rgb(3, 106, 7);
-   }
-</style>
-
-<!-- R syntax highlighter -->
-<script type="text/javascript">
-var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
-hljs.initHighlightingOnLoad();
-</script>
-
-<!-- MathJax scripts -->
-<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
 <style type="text/css">
 body, td {
    font-family: sans-serif;
@@ -176,6 +133,47 @@ hr {
 }
 </style>
 
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: rgb(88, 72, 246)
+   }
+
+   pre .number {
+     color: rgb(0, 0, 205);
+   }
+
+   pre .comment {
+     color: rgb(76, 136, 107);
+   }
+
+   pre .keyword {
+     color: rgb(0, 0, 255);
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: rgb(3, 106, 7);
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 
 </head>
@@ -247,17 +245,17 @@ summary.lm(lm(precipExtremes ~ timeInDays))
 ## lm(formula = precipExtremes ~ timeInDays)
 ## 
 ## Residuals:
-##       1       2       3       4       5 
-## -0.7406 -0.4711  0.4224  0.0909  0.6984 
+##      1      2      3      4      5 
+## -0.351 -0.193 -0.174  0.582  0.135 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept)   0.4300     0.3269    1.32     0.28
-## timeInDays   -0.0448     0.3668   -0.12     0.91
+## (Intercept)  -0.0864     0.1948   -0.44     0.69
+## timeInDays   -0.6651     0.6637   -1.00     0.39
 ## 
-## Residual standard error: 0.694 on 3 degrees of freedom
-## Multiple R-squared:  0.00494,    Adjusted R-squared:  -0.327 
-## F-statistic: 0.0149 on 1 and 3 DF,  p-value: 0.911
+## Residual standard error: 0.427 on 3 degrees of freedom
+## Multiple R-squared:  0.251,  Adjusted R-squared:  0.00103 
+## F-statistic:    1 on 1 and 3 DF,  p-value: 0.39
 </code></pre>
 
 <ul>
@@ -324,7 +322,7 @@ execution, and reporting.  For more information, see Bioconductor&#39;s <a href=
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   0.949   0.003   0.954
+##   0.852   0.016   0.869
 </code></pre>
 
 <pre><code class="r">
@@ -335,8 +333,8 @@ benchmark(ifelse(x &lt; 0, x, 0), x[x &lt; 0] &lt;- 0, replications = 5, columns
 </code></pre>
 
 <pre><code>##   replications elapsed
-## 1            5   11.08
-## 2            5    1.59
+## 1            5  10.132
+## 2            5   1.252
 </code></pre>
 
 <p>For more advanced assessment of bottlenecks in your code, consider <em>Rprof()</em>.</p>
@@ -373,8 +371,8 @@ gc()
 </code></pre>
 
 <pre><code>##             used  (Mb) gc trigger   (Mb)  max used  (Mb)
-## Ncells    169791   9.1     350000   18.7    350000  18.7
-## Vcells 100830202 769.3  141709815 1081.2 110944130 846.5
+## Ncells   1288900  68.9    1967602  105.1   1967602 105.1
+## Vcells 102313407 780.6  143602889 1095.7 113166250 863.4
 </code></pre>
 
 <pre><code class="r">rm()
@@ -382,8 +380,8 @@ gc()
 </code></pre>
 
 <pre><code>##             used  (Mb) gc trigger   (Mb)  max used  (Mb)
-## Ncells    169810   9.1     350000   18.7    350000  18.7
-## Vcells 100830241 769.3  148875305 1135.9 110944130 846.5
+## Ncells   1288919  68.9    1967602  105.1   1967602 105.1
+## Vcells 102313446 780.6  150863033 1151.0 113166250 863.4
 </code></pre>
 
 <h1>Some ideas about reproducibility</h1>
@@ -550,7 +548,7 @@ rm -rf jm-git-demo
 git init jm-git-demo
 </code></pre>
 
-<pre><code>## Initialized empty Git repository in /home/jarrod/src/jm-git-demo/.git/
+<pre><code>## Initialized empty Git repository in /accounts/gen/vis/paciorek/staff/workshops/r-bootcamp-2013/modules/jm-git-demo/.git/
 </code></pre>
 
 <p>Let&#39;s look at what git did:</p>
@@ -559,25 +557,94 @@ git init jm-git-demo
 ls -la
 </code></pre>
 
-<pre><code>## total 12
-## drwxrwxr-x   3 jarrod jarrod 4096 Aug 24 14:16 .
-## drwxrwxr-x. 16 jarrod jarrod 4096 Aug 24 14:16 ..
-## drwxrwxr-x   7 jarrod jarrod 4096 Aug 24 14:16 .git
+<pre><code>## total 12320
+## drwxr-sr-x 7 paciorek scfstaff      83 Aug 24  2013 .
+## drwxr-sr-x 9 paciorek scfstaff      15 Aug 24 18:31 ..
+## -rw-r--r-- 1 paciorek scfstaff     430 Aug 20 18:03 allslides.sh
+## -rw-r--r-- 1 paciorek scfstaff     248 Aug 20 18:03 allslides.sh~
+## drwxr-sr-x 2 paciorek scfstaff      15 Aug 24 13:27 bkout_solns
+## drwxr-sr-x 2 paciorek scfstaff      36 Aug 24 18:37 cache
+## -rw-r--r-- 1 paciorek scfstaff     117 Aug 24 18:37 experiment.txt
+## drwxr-sr-x 2 paciorek scfstaff      15 Aug 24 13:27 figs
+## drwxr-sr-x 2 paciorek scfstaff      68 Aug 24 18:36 figure
+## -rw-r--r-- 1 paciorek scfstaff      93 Aug 24 18:37 file-newname.txt
+## -rw-r--r-- 1 paciorek scfstaff     699 Aug 21 14:48 funny
+## -rw-r--r-- 1 paciorek scfstaff     771 Aug  5 15:39 funny~
+## drwxr-sr-x 3 paciorek scfstaff       3 Aug 24  2013 jm-git-demo
+## -rw-r--r-- 1 paciorek scfstaff     374 Jul 18 16:22 make~
+## -rw-r--r-- 1 paciorek scfstaff     872 Aug 22 07:45 Makefile
+## -rwxr-xr-x 1 paciorek scfstaff     518 Aug 23 15:03 make_slides
+## -rw-r--r-- 1 paciorek scfstaff   11979 Aug 23 15:42 module0_induction.html
+## -rw-r--r-- 1 paciorek scfstaff    8654 Aug 23 15:42 module0_induction.md
+## -rw-r--r-- 1 paciorek scfstaff    8654 Aug 23 12:07 module0_induction.Rmd
+## -rw-r--r-- 1 paciorek scfstaff    5544 Jul 19 14:21 module0_induction.Rmd~
+## -rw-r--r-- 1 paciorek scfstaff  102607 Aug 23 15:42 module0_induction_slides.html
+## -rw-r--r-- 1 paciorek scfstaff   36267 Aug 23 15:44 module10_advanced.html
+## -rw-r--r-- 1 paciorek scfstaff   18206 Aug 23 15:44 module10_advanced.md
+## -rw-r--r-- 1 paciorek scfstaff   11949 Aug 24 18:15 module10_advanced.Rmd
+## -rw-r--r-- 1 paciorek scfstaff      57 Aug  5 17:13 module10_advanced.Rmd~
+## -rw-r--r-- 1 paciorek scfstaff  124829 Aug 23 15:44 module10_advanced_slides.html
+## -rw-r--r-- 1 paciorek scfstaff   23975 Aug 23 15:47 module11_parallel.html
+## -rw-r--r-- 1 paciorek scfstaff    9325 Aug 23 15:47 module11_parallel.md
+## -rw-r--r-- 1 paciorek scfstaff    9036 Aug 23 12:34 module11_parallel.Rmd
+## -rw-r--r-- 1 paciorek scfstaff    4665 Jul 25 14:02 module11_parallel.Rmd~
+## -rw-r--r-- 1 paciorek scfstaff  106557 Aug 23 15:47 module11_parallel_slides.html
+## -rw-r--r-- 1 paciorek scfstaff    4408 Aug 22 17:28 module12_next.html
+## -rw-r--r-- 1 paciorek scfstaff    2175 Aug 22 17:28 module12_next.md
+## -rw-r--r-- 1 paciorek scfstaff    2313 Aug 22 17:28 module12_next.Rmd
+## -rw-r--r-- 1 paciorek scfstaff    5642 Aug 13 13:06 module12_next.Rmd~
+## -rw-r--r-- 1 paciorek scfstaff   94304 Aug 22 17:28 module12_next_slides.html
+## -rw-r--r-- 1 paciorek scfstaff  137716 Aug 23 16:58 module1_basics.html
+## -rw-r--r-- 1 paciorek scfstaff   20416 Aug 23 16:58 module1_basics.md
+## -rw-r--r-- 1 paciorek scfstaff    8839 Aug 23 16:08 module1_basics.Rmd
+## -rw-r--r-- 1 paciorek scfstaff    4615 Jul 20 14:24 module1_basics.Rmd~
+## -rw-r--r-- 1 paciorek scfstaff  231744 Aug 23 16:58 module1_basics_slides.html
+## -rw-r--r-- 1 paciorek scfstaff   11107 Aug 23 16:58 module1.Rda
+## -rw-r--r-- 1 paciorek scfstaff   59399 Aug 23 16:59 module2_data.html
+## -rw-r--r-- 1 paciorek scfstaff   29635 Aug 23 16:59 module2_data.md
+## -rw-r--r-- 1 paciorek scfstaff   11765 Aug 23 16:58 module2_data.Rmd
+## -rw-r--r-- 1 paciorek scfstaff    4665 Jul 26 16:52 module2_data.Rmd~
+## -rw-r--r-- 1 paciorek scfstaff  153252 Aug 23 16:59 module2_data_slides.html
+## -rw-r--r-- 1 paciorek scfstaff   45932 Aug 23 17:22 module3_calc.html
+## -rw-r--r-- 1 paciorek scfstaff   18895 Aug 23 17:22 module3_calc.md
+## -rw-r--r-- 1 paciorek scfstaff   10219 Aug 23 17:22 module3_calc.Rmd
+## -rw-r--r-- 1 paciorek scfstaff    6959 Aug  2 14:57 module3_calc.Rmd~
+## -rw-r--r-- 1 paciorek scfstaff  145552 Aug 23 17:22 module3_calc_slides.html
+## -rw-r--r-- 1 paciorek scfstaff   20508 Aug 22 13:32 module4_resources.html
+## -rw-r--r-- 1 paciorek scfstaff    6213 Aug 22 13:32 module4_resources.md
+## -rw-r--r-- 1 paciorek scfstaff    5642 Aug 21 16:23 module4_resources.Rmd
+## -rw-r--r-- 1 paciorek scfstaff    1002 Jul 18 16:31 module4_resources.Rmd~
+## -rw-r--r-- 1 paciorek scfstaff  101289 Aug 22 13:32 module4_resources_slides.html
+## -rw-r--r-- 1 paciorek scfstaff   85701 Aug 24 18:36 module5_programming.html
+## -rw-r--r-- 1 paciorek scfstaff    7768 Aug 24 18:36 module5_programming.md
+## -rw-r--r-- 1 paciorek scfstaff    6015 Aug 24 13:27 module5_programming.Rmd
+## -rw-r--r-- 1 paciorek scfstaff  171146 Aug 24 18:36 module5_programming_slides.html
+## -rw-r--r-- 1 paciorek scfstaff  158791 Aug 22 13:32 module6_analysis.html
+## -rw-r--r-- 1 paciorek scfstaff   59090 Aug 22 13:32 module6_analysis.md
+## -rw-r--r-- 1 paciorek scfstaff   22025 Aug 22 12:27 module6_analysis.Rmd
+## -rw-r--r-- 1 paciorek scfstaff    9792 Aug 12 13:58 module6_analysis.Rmd~
+## -rw-r--r-- 1 paciorek scfstaff  260016 Aug 22 13:32 module6_analysis_slides.html
+## -rw-r--r-- 1 paciorek scfstaff  151313 Aug 23 15:42 module7_coreTools.html
+## -rw-r--r-- 1 paciorek scfstaff   13094 Aug 23 15:42 module7_coreTools.md
+## -rw-r--r-- 1 paciorek scfstaff    7103 Aug 23 13:07 module7_coreTools.Rmd
+## -rw-r--r-- 1 paciorek scfstaff  239075 Aug 23 15:42 module7_coreTools_slides.html
+## -rw-r--r-- 1 paciorek scfstaff  912000 Aug 24 18:36 module8_graphics.html
+## -rw-r--r-- 1 paciorek scfstaff   10799 Aug 24 18:36 module8_graphics.md
+## -rw-r--r-- 1 paciorek scfstaff    9525 Aug 24 18:01 module8_graphics.Rmd
+## -rw-r--r-- 1 paciorek scfstaff 1009541 Aug 24 18:36 module8_graphics_slides.html
+## -rw-r--r-- 1 paciorek scfstaff 1232228 Aug 24 18:01 module9_workflows.html
+## -rw-r--r-- 1 paciorek scfstaff  122638 Aug 24 18:37 module9_workflows.md
+## -rw-r--r-- 1 paciorek scfstaff   25230 Aug 24 18:01 module9_workflows.Rmd
+## -rw-r--r-- 1 paciorek scfstaff    5678 Jul 25 15:18 module9_workflows.Rmd~
+## -rw-r--r-- 1 paciorek scfstaff 1413497 Aug 24 18:37 module9_workflows_slides.html
+## -rw-r--r-- 1 paciorek scfstaff 3856481 Aug 23 17:24 modules.zip
+## -rw-r--r-- 1 paciorek scfstaff    4632 Aug 23 16:59 myplot.pdf
+## -rw-r--r-- 1 paciorek scfstaff     112 Jul 18 16:29 notes.txt
+## -rw-r--r-- 1 paciorek scfstaff   13913 Aug  6 17:07 .Rhistory
 </code></pre>
 
 <pre><code class="bash">cd ~/src/jm-git-demo
 ls -l .git
-</code></pre>
-
-<pre><code>## total 32
-## drwxrwxr-x 2 jarrod jarrod 4096 Aug 24 14:16 branches
-## -rw-rw-r-- 1 jarrod jarrod   92 Aug 24 14:16 config
-## -rw-rw-r-- 1 jarrod jarrod   73 Aug 24 14:16 description
-## -rw-rw-r-- 1 jarrod jarrod   23 Aug 24 14:16 HEAD
-## drwxrwxr-x 2 jarrod jarrod 4096 Aug 24 14:16 hooks
-## drwxrwxr-x 2 jarrod jarrod 4096 Aug 24 14:16 info
-## drwxrwxr-x 4 jarrod jarrod 4096 Aug 24 14:16 objects
-## drwxrwxr-x 4 jarrod jarrod 4096 Aug 24 14:16 refs
 </code></pre>
 
 <h1><code>git add</code>: adding content to the repository</h1>
@@ -603,14 +670,73 @@ git status
 </code></pre>
 
 <pre><code>## # On branch master
-## #
-## # Initial commit
+## # Your branch is ahead of &#39;origin/master&#39; by 3 commits.
 ## #
 ## # Changes to be committed:
-## #   (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)
+## #   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
 ## #
 ## #    new file:   file1.txt
 ## #
+## # Changes not staged for commit:
+## #   (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+## #   (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+## #
+## #    modified:   module9_workflows_slides.html
+## #
+## # Untracked files:
+## #   (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+## #
+## #    ../.gitignore
+## #    ../admin/
+## #    ../data/RTAData.csv
+## #    ../data/RTADataSub.csv
+## #    ../data/cis.db
+## #    ../make_zip
+## #    ../make_zip~
+## #    allslides.sh
+## #    allslides.sh~
+## #    bkout_solns/module11_soln.Rmd
+## #    bkout_solns/module11_soln.Rmd~
+## #    bkout_solns/module1_soln.Rmd~
+## #    bkout_solns/module2_soln.Rmd~
+## #    bkout_solns/module3_soln.Rmd~
+## #    bkout_solns/module6_soln.Rmd
+## #    bkout_solns/module6_soln.Rmd~
+## #    bkout_solns/module7_soln.Rmd
+## #    bkout_solns/module7_soln.Rmd~
+## #    cache/
+## #    figure/
+## #    funny
+## #    funny~
+## #    make~
+## #    module0_induction.Rmd~
+## #    module0_induction.md
+## #    module1.Rda
+## #    module10_advanced.Rmd~
+## #    module10_advanced.md
+## #    module11_parallel.Rmd~
+## #    module11_parallel.md
+## #    module12_next.Rmd~
+## #    module12_next.md
+## #    module1_basics.Rmd~
+## #    module1_basics.md
+## #    module2_data.Rmd~
+## #    module2_data.md
+## #    module3_calc.Rmd~
+## #    module3_calc.md
+## #    module4_resources.Rmd~
+## #    module4_resources.md
+## #    module5_programming.md
+## #    module6_analysis.Rmd~
+## #    module6_analysis.md
+## #    module7_coreTools.md
+## #    module8_graphics.md
+## #    module9_workflows.Rmd~
+## #    module9_workflows.md
+## #    myplot.pdf
+## #    notes.txt
+## #    ../schedule/schedule.lyx~
+## #    ../videos/
 </code></pre>
 
 <h1><code>git commit</code>: permanently record our changes in git&#39;s database</h1>
@@ -628,9 +754,21 @@ records our actions.</p>
 git commit -a -m&quot;This is our first commit&quot;
 </code></pre>
 
-<pre><code>## [master (root-commit) e26d020] This is our first commit
-##  1 file changed, 1 insertion(+)
-##  create mode 100644 file1.txt
+<pre><code>## [master 3d313f8] This is our first commit
+##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Your name and email address were configured automatically based
+## on your username and hostname. Please check that they are accurate.
+## You can suppress this message by setting them explicitly:
+## 
+##     git config --global user.name &quot;Your Name&quot;
+##     git config --global user.email you@example.com
+## 
+## After doing this, you may fix the identity used for this commit with:
+## 
+##     git commit --amend --reset-author
+## 
+##  2 files changed, 2750 insertions(+), 157 deletions(-)
+##  create mode 100644 modules/file1.txt
 </code></pre>
 
 <p>In the commit above, we  used the <code>-m</code> flag to specify a message at the command
@@ -646,11 +784,616 @@ only tries to facilitate best practices, it&#39;s not your nanny).</p>
 git log
 </code></pre>
 
-<pre><code>## commit e26d020f6ed1f8e87bba58f14a5aa5a78967329b
-## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
-## Date:   Sat Aug 24 14:16:49 2013 -0700
+<pre><code>## commit 3d313f8e95bff321a7c54e4a769df03dac820b64
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:37:58 2013 -0700
 ## 
 ##     This is our first commit
+## 
+## commit 71b92a44f44748c48f39ea64c7972f23a6dc3b31
+## Merge: c255d41 e95a78d
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:37:48 2013 -0700
+## 
+##     Completed merge of trouble, fixing conflicts along the way
+## 
+## commit c255d41f0c862fc32ef0747111573221725498a6
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:37:47 2013 -0700
+## 
+##     Mainline work
+## 
+## commit e95a78d16b43d906ebda82217f83dc08f6f2e251
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:37:47 2013 -0700
+## 
+##     Changes in the trouble branch
+## 
+## commit 967f2e1786c46ac12df972b45a01f3963c952f2a
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:37:44 2013 -0700
+## 
+##     More work, on machine #2
+## 
+## commit c876a932a6cc2c417d7b4472cc809963872beb90
+## Merge: 002b8e0 67f91a7
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:37:28 2013 -0700
+## 
+##     Merge branch &#39;experiment&#39;
+## 
+## commit 002b8e0832744bca4d7fbcc326a44efcd13afc19
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:37:28 2013 -0700
+## 
+##     The mainline keeps moving
+## 
+## commit 67f91a756864083f3a0fd1247f6a949d13b2d989
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:37:27 2013 -0700
+## 
+##     Trying something new
+## 
+## commit 9dafa738f4c1d61d21de8b6f161dc940a26cb843
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:37:27 2013 -0700
+## 
+##     I like this new name better
+## 
+## commit 7a4c5e564470ad78c4a4f7d804babc59ad788915
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:37:26 2013 -0700
+## 
+##     I have made great progress on this critical matter.
+## 
+## commit e07396e2d4e4bc3d8e5b983dabd9ccf34475f1ea
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:37:25 2013 -0700
+## 
+##     This is our first commit
+## 
+## commit 8715a3df1c4f54da00f2149a751dc238b28bc0e8
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:02:23 2013 -0700
+## 
+##     added mod5 soln
+## 
+## commit 9c43f0a860ba48139aa765cf33e4081a34603d42
+## Author: Chris Krogslund &lt;ckrogslund@berkeley.edu&gt;
+## Date:   Sat Aug 24 17:13:22 2013 -0700
+## 
+##     Update module8_graphics.Rmd
+## 
+## commit bd71ed209ab063f35c8a5da62935527bfd428054
+## Author: Chris Krogslund &lt;ckrogslund@berkeley.edu&gt;
+## Date:   Sat Aug 24 17:12:53 2013 -0700
+## 
+##     Update module8_graphics.Rmd
+## 
+## commit 077dde57ff56216b6b0106e2bbe571b3a051660c
+## Author: Christopher Paciorek &lt;paciorek@stat.berkeley.edu&gt;
+## Date:   Sat Aug 24 16:32:07 2013 -0700
+## 
+##     Update README.md
+## 
+## commit ec0cc81290a648527c4730570908e4e7761fbbec
+## Merge: f5cbae9 c1dde99
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Sat Aug 24 14:22:05 2013 -0700
+## 
+##     Merge pull request #9 from jarrodmillman/workflow
+##     
+##     ENH: almost complete lecture notes
+## 
+## commit c1dde99ddae4a1760ffc0c02345d8cdba0800a10
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Sat Aug 24 14:20:12 2013 -0700
+## 
+##     ENH: almost complete lecture notes
+## 
+## commit f5cbae92e84658fa06fc0e4260d8dfc452b921e1
+## Merge: 31960ca fa91275
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 13:27:34 2013 -0700
+## 
+##     Merge branch &#39;master&#39; of https://github.com/berkeley-scf/r-bootcamp-2013
+## 
+## commit 31960cadb66fca9e556e6a0f1e824e409e635299
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 13:26:46 2013 -0700
+## 
+##     added mod3 soln
+## 
+## commit fa91275b2cdab86e487b1e344291320318c3d839
+## Merge: 056b9c9 1dc2477
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Sat Aug 24 12:32:32 2013 -0700
+## 
+##     Merge pull request #8 from jarrodmillman/workflow
+##     
+##     ENH: more work on the Git intro
+## 
+## commit 1dc2477fc83ac802454de5b2e71284052dfcadf2
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Sat Aug 24 12:31:06 2013 -0700
+## 
+##     ENH: more work on the Git intro
+## 
+## commit 056b9c9d80f5fc14154b1f1d233ecf341347715c
+## Merge: c1b8baf a542120
+## Author: paciorek@stat.berkeley.edu &lt;paciorek@airbears2-10-142-159-11.airbears2.1918.berkeley.edu&gt;
+## Date:   Sat Aug 24 11:35:24 2013 -0700
+## 
+##     Merge branch &#39;master&#39; of https://github.com/berkeley-scf/r-bootcamp-2013
+## 
+## commit c1b8baf28f26e3f17d92ef9a53e03ab1f5f0234e
+## Author: paciorek@stat.berkeley.edu &lt;paciorek@airbears2-10-142-159-11.airbears2.1918.berkeley.edu&gt;
+## Date:   Sat Aug 24 11:34:50 2013 -0700
+## 
+##     added mod1/2 solns
+## 
+## commit a5421206332c978110ceb1767da2865c037e49a1
+## Merge: 6560e5d ce2e535
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Sat Aug 24 11:06:03 2013 -0700
+## 
+##     Merge pull request #7 from jarrodmillman/workflow
+##     
+##     ENH: fleshing out intro to Git
+## 
+## commit ce2e535242d30f6c50ea0c2ea89d09f5a002b7a8
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Sat Aug 24 11:02:57 2013 -0700
+## 
+##     ENH: fleshing out intro to Git
+## 
+## commit 6560e5d254b6322b0b7925313569b428ca58dfd0
+## Author: Jacob Lynn &lt;jacob.lynn@berkeley.edu&gt;
+## Date:   Sat Aug 24 06:40:51 2013 -0700
+## 
+##     Small changes to module 5.
+## 
+## commit 985d6b31ce68bc7bc0bad819f6ba613419a1aa8e
+## Merge: 8a9dc85 90ee48b
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Sat Aug 24 00:47:28 2013 -0700
+## 
+##     Merge pull request #6 from jarrodmillman/workflow
+##     
+##     ENH: snapshot
+## 
+## commit 90ee48b0730df1763ec6364ad0e9943b0a0b09f7
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Sat Aug 24 00:43:26 2013 -0700
+## 
+##     ENH: snapshot
+## 
+## commit 8a9dc854a25dd5eb0e4c3948f3d294e357e0761b
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Fri Aug 23 17:24:31 2013 -0700
+## 
+##     edits to modules0-3, remake zip
+## 
+## commit 028ba424fdb725d1b329669d7163f6d4e1227d74
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Fri Aug 23 15:49:41 2013 -0700
+## 
+##     hopefully final (for Saturday sessions) of all slides/html and modules.zip file
+## 
+## commit 9edc0461919714fbe2bae394e86bc9d3f2867b0e
+## Author: Jacob Lynn &lt;jacob.lynn@berkeley.edu&gt;
+## Date:   Fri Aug 23 15:30:49 2013 -0700
+## 
+##     Minor changes to breakout problems in module 5
+## 
+## commit c3637cdcdf9b028e479d84cff6ca43bffdd3bf0f
+## Merge: 130e7af aba4fea
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Fri Aug 23 15:26:51 2013 -0700
+## 
+##     Merge pull request #5 from jarrodmillman/workflow
+##     
+##     ENH: checkpointing some minor additions
+## 
+## commit aba4fea6fb163aaec1231af8aabf205481103167
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Fri Aug 23 15:25:38 2013 -0700
+## 
+##     ENH: checkpointing some minor additions
+## 
+## commit 130e7af65d1cbef9149679d0658c1ab3466ac89c
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Fri Aug 23 15:09:39 2013 -0700
+## 
+##     took out warning in breakout in module3
+## 
+## commit 9454a221fd13e4b779c7e76a285d17597ada2570
+## Merge: 47c3d58 93e7a4a
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Fri Aug 23 15:03:20 2013 -0700
+## 
+##     Merge branch &#39;master&#39; of https://github.com/berkeley-scf/r-bootcamp-2013
+## 
+## commit 47c3d5886ab6b492a2e6276489ed5f022a0f4f1d
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Fri Aug 23 15:03:16 2013 -0700
+## 
+##     edits to modules
+## 
+## commit 93e7a4af6654e04830b7b323bf8bc36265dd3b26
+## Merge: cbab4bb fa098e9
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Fri Aug 23 14:24:17 2013 -0700
+## 
+##     Merge pull request #4 from jarrodmillman/workflow
+##     
+##     Slide rendering
+## 
+## commit fa098e993a0ddb7e4888d9dac396c942c950e39d
+## Merge: 8e5dba9 cbab4bb
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Fri Aug 23 14:22:04 2013 -0700
+## 
+##     Merge remote-tracking branch &#39;upstream/master&#39; into workflow
+##     
+##     * upstream/master:
+##       edits to module11
+##       modified module11
+## 
+## commit 8e5dba92a0325ecc91988ad864c4987017987ad6
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Fri Aug 23 14:15:21 2013 -0700
+## 
+##     ENH: try to properly display Latex in slides
+## 
+## commit cbab4bbee84a1759ecc2843eac386ff95dab40af
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Fri Aug 23 12:51:49 2013 -0700
+## 
+##     edits to module11
+## 
+## commit f8fd82a64f393a7b0b3fbd986334ae0e106669e1
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Fri Aug 23 12:16:40 2013 -0700
+## 
+##     modified module11
+## 
+## commit 460fc6cfd35025dff4e6a13065c7331dca7e7acd
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Thu Aug 22 18:54:14 2013 -0700
+## 
+##     edits to module10
+## 
+## commit cc4498f4db33e8c6ee664b4d7c83c2451b81634b
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Thu Aug 22 17:30:35 2013 -0700
+## 
+##     edits to module 12
+## 
+## commit 56a60ae3c7431b46214f771ad37f6de5f9392448
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Thu Aug 22 17:24:36 2013 -0700
+## 
+##     edits to modules 0 and 7
+## 
+## commit 493113a849515f5a658d58c0dcca7432602beae2
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Thu Aug 22 16:50:00 2013 -0700
+## 
+##     modified module7
+## 
+## commit c9b25909ece7cc4cb0beacfa51e4dcd3f4ded5ea
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Thu Aug 22 13:40:02 2013 -0700
+## 
+##     remade the zip file
+## 
+## commit 1a372d23bc6e3385397dbc39bdf581419823a463
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Thu Aug 22 13:30:42 2013 -0700
+## 
+##     edits to module6 breakout and addition of stateIncome.txt
+## 
+## commit 0c3b46d4cc9a86937aa1b3b606e3dcff26a67400
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Thu Aug 22 10:34:07 2013 -0700
+## 
+##     edits to modules 0, 1, 2
+## 
+## commit eef2498caeafa7b8cd20965afc7ece2e33474a39
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Thu Aug 22 09:15:56 2013 -0700
+## 
+##     edits to module3
+## 
+## commit 2e18b2c07c4a8491ad2ed88b16a845a2f9873b29
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Thu Aug 22 08:32:48 2013 -0700
+## 
+##     edits to module 3
+## 
+## commit 45cb7a3e11cac5d0ea54d3d23d00d1129b4d8a50
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Thu Aug 22 07:55:20 2013 -0700
+## 
+##     edits to makefile and recompile of all html
+## 
+## commit 1aeddc708d99fe44b0f1ab5b6956109242029862
+## Author: Jacob Lynn &lt;jacob.lynn@berkeley.edu&gt;
+## Date:   Wed Aug 21 17:56:23 2013 -0700
+## 
+##     Updated module 5.
+## 
+## commit c390e2346fb76a16b0a3686f7c0a4cbc650cefef
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Wed Aug 21 16:41:13 2013 -0700
+## 
+##     edits to modules
+## 
+## commit 447efa04e15f6fde2074e6cea0083974b80ec723
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Wed Aug 21 15:40:34 2013 -0700
+## 
+##     minor edits to modules
+## 
+## commit e369b661b5ee7d9bf53c4a5eec986fdd28068f5c
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Wed Aug 21 15:30:44 2013 -0700
+## 
+##     minor changes to modules
+## 
+## commit d2f1147ea8b523b41a81edebe0162affc1e933cf
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Wed Aug 21 14:49:58 2013 -0700
+## 
+##     minor edits to modules
+## 
+## commit 5da5e1e8b029df641855cca21c6353e99d920d69
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Tue Aug 20 21:44:13 2013 -0700
+## 
+##     added modules.zip with all modules and data
+## 
+## commit b5fc9bf39bbc60ce8adfe175a329974839cc2a07
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Tue Aug 20 21:40:36 2013 -0700
+## 
+##     added html versions of modules
+## 
+## commit 49c29ef5eafbabb647123ef3e5d00dda482f3d8e
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Tue Aug 20 21:39:28 2013 -0700
+## 
+##     minor mods to modules
+## 
+## commit 508227edc697dd48a309702dbed419e166616103
+## Merge: 8c1ac54 1b74d12
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Tue Aug 20 19:55:33 2013 -0700
+## 
+##     Merge pull request #3 from jarrodmillman/workflow
+##     
+##     ENH: more on git and reordered slides
+## 
+## commit 1b74d1254b364e5fb45d2dc95ab9133285d3252d
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Tue Aug 20 19:50:32 2013 -0700
+## 
+##     ENH: more on git and reordered slides
+## 
+## commit 8c1ac54028e1d670ed7f15f240a5b8edf61acc99
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Tue Aug 20 18:02:27 2013 -0700
+## 
+##     minor change to module6 path to data file
+## 
+## commit 5557e39a43ac192208dad1d1471149aae5da6c4f
+## Merge: a096735 a833c02
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Tue Aug 20 14:46:04 2013 -0700
+## 
+##     Merge pull request #2 from jarrodmillman/workflow
+##     
+##     Workflow
+## 
+## commit a833c022065b2270367d77a9c59d5b9d6954ef07
+## Merge: ef4c762 a096735
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Tue Aug 20 14:43:28 2013 -0700
+## 
+##     Merge branch &#39;master&#39; into workflow
+##     
+##     * master:
+## 
+## commit ef4c762f34368e2bd6cbd1e193297fba9871ebc0
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Tue Aug 20 14:40:57 2013 -0700
+## 
+##     ENH: checkpointing work-in-progress on module 9, added figs directory
+## 
+## commit a0967354eecd78278bab1efec5af67009f944b12
+## Merge: 0e6699d ce7c703
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Tue Aug 20 11:32:05 2013 -0700
+## 
+##     Merge pull request #1 from jarrodmillman/master
+##     
+##     Added Makefile, modified make_slides, and small bugfix.
+## 
+## commit ce7c703b69456a560a6dfcb8868c1019dadedbba
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Tue Aug 20 11:28:38 2013 -0700
+## 
+##     ENH: added Makefile and modified make_slides script to accept module to
+##     build from commandline argument
+## 
+## commit 39ffc541e7d79b0f5fe6ad3c043699d41825f47c
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Tue Aug 20 11:26:58 2013 -0700
+## 
+##     BF: data directory is one up from modules directory
+## 
+## commit 0e6699df07869ab93c4a94804f80ee9a49f6d8e6
+## Author: Chris Krogslund &lt;ckrogslund@berkeley.edu&gt;
+## Date:   Tue Aug 20 10:19:08 2013 -0700
+## 
+##     Added cpds.csv dataset
+## 
+## commit d5dc77ec1c70d3c9f6811eeea7e8be2d9a883f02
+## Author: Chris Krogslund &lt;ckrogslund@berkeley.edu&gt;
+## Date:   Tue Aug 20 09:24:58 2013 -0700
+## 
+##     Create module8_graphics.Rmd
+## 
+## commit 51fb47689169c1e4b60ecdc4e0d9ad1c7d9830ba
+## Author: Chris Krogslund &lt;ckrogslund@berkeley.edu&gt;
+## Date:   Tue Aug 20 09:22:34 2013 -0700
+## 
+##     Update module6_analysis.Rmd
+## 
+## commit b19b86d4fa01e5752e85e6b24bbef6edbb1d29f6
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Mon Aug 19 20:20:25 2013 -0700
+## 
+##     modified make_slides
+## 
+## commit f7a6567ef28b38ff9bf9a57d5598dc970ef4491f
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Tue Aug 13 15:23:46 2013 -0700
+## 
+##     renamed gen as make_slides
+## 
+## commit 0cf3baedd1c28f87e1068e9c9412139cadf685a3
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Tue Aug 13 13:28:00 2013 -0700
+## 
+##     added module12
+## 
+## commit f4705be38814a21bfe8b94f95d38f32ac4673c19
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Tue Aug 13 12:54:42 2013 -0700
+## 
+##     modified schedule
+## 
+## commit 16b7eb5874e06ba3174ec243d67d1d06fd856c42
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Tue Aug 13 12:53:48 2013 -0700
+## 
+##     modified schedule
+## 
+## commit ae006c35d7df82e9c2aee007ac88c279fe1fbc72
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Mon Aug 12 14:06:50 2013 -0700
+## 
+##     added stub module6 with breakout
+## 
+## commit f0e49369276ae3b2d347512ea95574d914efc099
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Mon Aug 12 13:18:06 2013 -0700
+## 
+##     edited schedule
+## 
+## commit cf35aab75c065dcb1446d10085e80b86e12ffd23
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Fri Aug 9 17:07:16 2013 -0700
+## 
+##     edits to module11
+## 
+## commit 60f15c443a91f9b8daa55a1a464e1d10a1c9d317
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Thu Aug 8 18:12:09 2013 -0700
+## 
+##     more edits to modules 3,11
+## 
+## commit de7d6afe5d4e4e855494342a5dd6fed9cb67fca1
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Thu Aug 8 16:32:12 2013 -0700
+## 
+##     modified module3 among other modules
+## 
+## commit 32677dc2156ee4d59c7384f1e77dc977731c39eb
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Tue Aug 6 17:02:43 2013 -0700
+## 
+##     heavily revised modules 1 and 2
+## 
+## commit bfbab4abc9aeade16660c51e952ddaa4370c9313
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Mon Aug 5 17:55:10 2013 -0700
+## 
+##     various modifications to modules
+## 
+## commit abb7a14b35d304e019980e8282ae134378a2188b
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Fri Aug 2 17:18:32 2013 -0700
+## 
+##     updated schedule document
+## 
+## commit 12f0d1f8d3d897a39c0b0e114959cb3ba5f44a34
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Fri Aug 2 17:15:24 2013 -0700
+## 
+##     added module3
+## 
+## commit 4790ed11f9fcc7bdff00cb70163165c5ae889f3a
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Thu Aug 1 15:32:58 2013 -0700
+## 
+##     added module7
+## 
+## commit 384cf0439ff93d0faa2f108b6f15ddd7d1a953d5
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Thu Aug 1 13:32:23 2013 -0700
+## 
+##     added module2
+## 
+## commit 04892f3b138ce9948d07ac3a2871ce3484f1e725
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Fri Jul 26 17:55:54 2013 -0700
+## 
+##     added draft of module2
+## 
+## commit 9f9b349e5d8545c959bc46d89cfe0e94e61bfa91
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Fri Jul 26 16:42:30 2013 -0700
+## 
+##     added initial modules and data
+## 
+## commit 1e3b021565a0313e650532c74ea4bc7801306d5e
+## Author: Christopher Paciorek &lt;paciorek@stat.berkeley.edu&gt;
+## Date:   Mon Jul 1 17:03:14 2013 -0700
+## 
+##     Update test.R
+## 
+## commit 1754eb4486948d4c196b2ab546ae4fe80b7c12aa
+## Author: Christopher Paciorek &lt;paciorek@Christophers-MacBook-Pro-2.local&gt;
+## Date:   Mon Jul 1 16:58:16 2013 -0700
+## 
+##     udated test.R
+## 
+## commit 116b37c4006a105afc31d26b44b9e8622be38540
+## Author: Christopher Paciorek &lt;paciorek@stat.berkeley.edu&gt;
+## Date:   Mon Jul 1 16:53:06 2013 -0700
+## 
+##     Update test.R
+## 
+## commit 219f113d88dfdd1ba8b624c41fdabd06e79ed3de
+## Author: Christopher Paciorek &lt;paciorek@Christophers-MacBook-Pro-2.local&gt;
+## Date:   Mon Jul 1 16:52:13 2013 -0700
+## 
+##     adding test.R
+## 
+## commit 651559d466af233a9e8cf96f33d13490019cc83a
+## Author: Christopher Paciorek &lt;paciorek@stat.berkeley.edu&gt;
+## Date:   Mon Jul 1 16:49:53 2013 -0700
+## 
+##     Update README.md
+## 
+## commit a7469b55c1b0cf98b0684dadde6f1151ebefc488
+## Author: Christopher Paciorek &lt;paciorek@stat.berkeley.edu&gt;
+## Date:   Mon Jul 1 16:48:35 2013 -0700
+## 
+##     Initial commit
 </code></pre>
 
 <h1><code>git diff</code>: what have I changed?</h1>
@@ -669,10 +1412,10 @@ echo &quot;And now some more text...&quot; &gt;&gt; file1.txt
 git diff
 </code></pre>
 
-<pre><code>## diff --git a/file1.txt b/file1.txt
+<pre><code>## diff --git a/modules/file1.txt b/modules/file1.txt
 ## index ce645c7..4baa979 100644
-## --- a/file1.txt
-## +++ b/file1.txt
+## --- a/modules/file1.txt
+## +++ b/modules/file1.txt
 ## @@ -1 +1,2 @@
 ##  My first bit of text
 ## +And now some more text...
@@ -684,7 +1427,19 @@ git diff
 git commit -a -m&quot;I have made great progress on this critical matter.&quot;
 </code></pre>
 
-<pre><code>## [master 4fc98f8] I have made great progress on this critical matter.
+<pre><code>## [master 0f845b6] I have made great progress on this critical matter.
+##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Your name and email address were configured automatically based
+## on your username and hostname. Please check that they are accurate.
+## You can suppress this message by setting them explicitly:
+## 
+##     git config --global user.name &quot;Your Name&quot;
+##     git config --global user.email you@example.com
+## 
+## After doing this, you may fix the identity used for this commit with:
+## 
+##     git commit --amend --reset-author
+## 
 ##  1 file changed, 1 insertion(+)
 </code></pre>
 
@@ -698,17 +1453,622 @@ git commit -a -m&quot;I have made great progress on this critical matter.&quot;
 git log
 </code></pre>
 
-<pre><code>## commit 4fc98f804de6c9965c3ad550e93aca6cd10b0983
-## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
-## Date:   Sat Aug 24 14:16:49 2013 -0700
+<pre><code>## commit 0f845b6f3bad1968166cc96c03abcad0502e73af
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:37:58 2013 -0700
 ## 
 ##     I have made great progress on this critical matter.
 ## 
-## commit e26d020f6ed1f8e87bba58f14a5aa5a78967329b
-## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
-## Date:   Sat Aug 24 14:16:49 2013 -0700
+## commit 3d313f8e95bff321a7c54e4a769df03dac820b64
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:37:58 2013 -0700
 ## 
 ##     This is our first commit
+## 
+## commit 71b92a44f44748c48f39ea64c7972f23a6dc3b31
+## Merge: c255d41 e95a78d
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:37:48 2013 -0700
+## 
+##     Completed merge of trouble, fixing conflicts along the way
+## 
+## commit c255d41f0c862fc32ef0747111573221725498a6
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:37:47 2013 -0700
+## 
+##     Mainline work
+## 
+## commit e95a78d16b43d906ebda82217f83dc08f6f2e251
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:37:47 2013 -0700
+## 
+##     Changes in the trouble branch
+## 
+## commit 967f2e1786c46ac12df972b45a01f3963c952f2a
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:37:44 2013 -0700
+## 
+##     More work, on machine #2
+## 
+## commit c876a932a6cc2c417d7b4472cc809963872beb90
+## Merge: 002b8e0 67f91a7
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:37:28 2013 -0700
+## 
+##     Merge branch &#39;experiment&#39;
+## 
+## commit 002b8e0832744bca4d7fbcc326a44efcd13afc19
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:37:28 2013 -0700
+## 
+##     The mainline keeps moving
+## 
+## commit 67f91a756864083f3a0fd1247f6a949d13b2d989
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:37:27 2013 -0700
+## 
+##     Trying something new
+## 
+## commit 9dafa738f4c1d61d21de8b6f161dc940a26cb843
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:37:27 2013 -0700
+## 
+##     I like this new name better
+## 
+## commit 7a4c5e564470ad78c4a4f7d804babc59ad788915
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:37:26 2013 -0700
+## 
+##     I have made great progress on this critical matter.
+## 
+## commit e07396e2d4e4bc3d8e5b983dabd9ccf34475f1ea
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:37:25 2013 -0700
+## 
+##     This is our first commit
+## 
+## commit 8715a3df1c4f54da00f2149a751dc238b28bc0e8
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:02:23 2013 -0700
+## 
+##     added mod5 soln
+## 
+## commit 9c43f0a860ba48139aa765cf33e4081a34603d42
+## Author: Chris Krogslund &lt;ckrogslund@berkeley.edu&gt;
+## Date:   Sat Aug 24 17:13:22 2013 -0700
+## 
+##     Update module8_graphics.Rmd
+## 
+## commit bd71ed209ab063f35c8a5da62935527bfd428054
+## Author: Chris Krogslund &lt;ckrogslund@berkeley.edu&gt;
+## Date:   Sat Aug 24 17:12:53 2013 -0700
+## 
+##     Update module8_graphics.Rmd
+## 
+## commit 077dde57ff56216b6b0106e2bbe571b3a051660c
+## Author: Christopher Paciorek &lt;paciorek@stat.berkeley.edu&gt;
+## Date:   Sat Aug 24 16:32:07 2013 -0700
+## 
+##     Update README.md
+## 
+## commit ec0cc81290a648527c4730570908e4e7761fbbec
+## Merge: f5cbae9 c1dde99
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Sat Aug 24 14:22:05 2013 -0700
+## 
+##     Merge pull request #9 from jarrodmillman/workflow
+##     
+##     ENH: almost complete lecture notes
+## 
+## commit c1dde99ddae4a1760ffc0c02345d8cdba0800a10
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Sat Aug 24 14:20:12 2013 -0700
+## 
+##     ENH: almost complete lecture notes
+## 
+## commit f5cbae92e84658fa06fc0e4260d8dfc452b921e1
+## Merge: 31960ca fa91275
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 13:27:34 2013 -0700
+## 
+##     Merge branch &#39;master&#39; of https://github.com/berkeley-scf/r-bootcamp-2013
+## 
+## commit 31960cadb66fca9e556e6a0f1e824e409e635299
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 13:26:46 2013 -0700
+## 
+##     added mod3 soln
+## 
+## commit fa91275b2cdab86e487b1e344291320318c3d839
+## Merge: 056b9c9 1dc2477
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Sat Aug 24 12:32:32 2013 -0700
+## 
+##     Merge pull request #8 from jarrodmillman/workflow
+##     
+##     ENH: more work on the Git intro
+## 
+## commit 1dc2477fc83ac802454de5b2e71284052dfcadf2
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Sat Aug 24 12:31:06 2013 -0700
+## 
+##     ENH: more work on the Git intro
+## 
+## commit 056b9c9d80f5fc14154b1f1d233ecf341347715c
+## Merge: c1b8baf a542120
+## Author: paciorek@stat.berkeley.edu &lt;paciorek@airbears2-10-142-159-11.airbears2.1918.berkeley.edu&gt;
+## Date:   Sat Aug 24 11:35:24 2013 -0700
+## 
+##     Merge branch &#39;master&#39; of https://github.com/berkeley-scf/r-bootcamp-2013
+## 
+## commit c1b8baf28f26e3f17d92ef9a53e03ab1f5f0234e
+## Author: paciorek@stat.berkeley.edu &lt;paciorek@airbears2-10-142-159-11.airbears2.1918.berkeley.edu&gt;
+## Date:   Sat Aug 24 11:34:50 2013 -0700
+## 
+##     added mod1/2 solns
+## 
+## commit a5421206332c978110ceb1767da2865c037e49a1
+## Merge: 6560e5d ce2e535
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Sat Aug 24 11:06:03 2013 -0700
+## 
+##     Merge pull request #7 from jarrodmillman/workflow
+##     
+##     ENH: fleshing out intro to Git
+## 
+## commit ce2e535242d30f6c50ea0c2ea89d09f5a002b7a8
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Sat Aug 24 11:02:57 2013 -0700
+## 
+##     ENH: fleshing out intro to Git
+## 
+## commit 6560e5d254b6322b0b7925313569b428ca58dfd0
+## Author: Jacob Lynn &lt;jacob.lynn@berkeley.edu&gt;
+## Date:   Sat Aug 24 06:40:51 2013 -0700
+## 
+##     Small changes to module 5.
+## 
+## commit 985d6b31ce68bc7bc0bad819f6ba613419a1aa8e
+## Merge: 8a9dc85 90ee48b
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Sat Aug 24 00:47:28 2013 -0700
+## 
+##     Merge pull request #6 from jarrodmillman/workflow
+##     
+##     ENH: snapshot
+## 
+## commit 90ee48b0730df1763ec6364ad0e9943b0a0b09f7
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Sat Aug 24 00:43:26 2013 -0700
+## 
+##     ENH: snapshot
+## 
+## commit 8a9dc854a25dd5eb0e4c3948f3d294e357e0761b
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Fri Aug 23 17:24:31 2013 -0700
+## 
+##     edits to modules0-3, remake zip
+## 
+## commit 028ba424fdb725d1b329669d7163f6d4e1227d74
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Fri Aug 23 15:49:41 2013 -0700
+## 
+##     hopefully final (for Saturday sessions) of all slides/html and modules.zip file
+## 
+## commit 9edc0461919714fbe2bae394e86bc9d3f2867b0e
+## Author: Jacob Lynn &lt;jacob.lynn@berkeley.edu&gt;
+## Date:   Fri Aug 23 15:30:49 2013 -0700
+## 
+##     Minor changes to breakout problems in module 5
+## 
+## commit c3637cdcdf9b028e479d84cff6ca43bffdd3bf0f
+## Merge: 130e7af aba4fea
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Fri Aug 23 15:26:51 2013 -0700
+## 
+##     Merge pull request #5 from jarrodmillman/workflow
+##     
+##     ENH: checkpointing some minor additions
+## 
+## commit aba4fea6fb163aaec1231af8aabf205481103167
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Fri Aug 23 15:25:38 2013 -0700
+## 
+##     ENH: checkpointing some minor additions
+## 
+## commit 130e7af65d1cbef9149679d0658c1ab3466ac89c
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Fri Aug 23 15:09:39 2013 -0700
+## 
+##     took out warning in breakout in module3
+## 
+## commit 9454a221fd13e4b779c7e76a285d17597ada2570
+## Merge: 47c3d58 93e7a4a
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Fri Aug 23 15:03:20 2013 -0700
+## 
+##     Merge branch &#39;master&#39; of https://github.com/berkeley-scf/r-bootcamp-2013
+## 
+## commit 47c3d5886ab6b492a2e6276489ed5f022a0f4f1d
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Fri Aug 23 15:03:16 2013 -0700
+## 
+##     edits to modules
+## 
+## commit 93e7a4af6654e04830b7b323bf8bc36265dd3b26
+## Merge: cbab4bb fa098e9
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Fri Aug 23 14:24:17 2013 -0700
+## 
+##     Merge pull request #4 from jarrodmillman/workflow
+##     
+##     Slide rendering
+## 
+## commit fa098e993a0ddb7e4888d9dac396c942c950e39d
+## Merge: 8e5dba9 cbab4bb
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Fri Aug 23 14:22:04 2013 -0700
+## 
+##     Merge remote-tracking branch &#39;upstream/master&#39; into workflow
+##     
+##     * upstream/master:
+##       edits to module11
+##       modified module11
+## 
+## commit 8e5dba92a0325ecc91988ad864c4987017987ad6
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Fri Aug 23 14:15:21 2013 -0700
+## 
+##     ENH: try to properly display Latex in slides
+## 
+## commit cbab4bbee84a1759ecc2843eac386ff95dab40af
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Fri Aug 23 12:51:49 2013 -0700
+## 
+##     edits to module11
+## 
+## commit f8fd82a64f393a7b0b3fbd986334ae0e106669e1
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Fri Aug 23 12:16:40 2013 -0700
+## 
+##     modified module11
+## 
+## commit 460fc6cfd35025dff4e6a13065c7331dca7e7acd
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Thu Aug 22 18:54:14 2013 -0700
+## 
+##     edits to module10
+## 
+## commit cc4498f4db33e8c6ee664b4d7c83c2451b81634b
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Thu Aug 22 17:30:35 2013 -0700
+## 
+##     edits to module 12
+## 
+## commit 56a60ae3c7431b46214f771ad37f6de5f9392448
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Thu Aug 22 17:24:36 2013 -0700
+## 
+##     edits to modules 0 and 7
+## 
+## commit 493113a849515f5a658d58c0dcca7432602beae2
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Thu Aug 22 16:50:00 2013 -0700
+## 
+##     modified module7
+## 
+## commit c9b25909ece7cc4cb0beacfa51e4dcd3f4ded5ea
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Thu Aug 22 13:40:02 2013 -0700
+## 
+##     remade the zip file
+## 
+## commit 1a372d23bc6e3385397dbc39bdf581419823a463
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Thu Aug 22 13:30:42 2013 -0700
+## 
+##     edits to module6 breakout and addition of stateIncome.txt
+## 
+## commit 0c3b46d4cc9a86937aa1b3b606e3dcff26a67400
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Thu Aug 22 10:34:07 2013 -0700
+## 
+##     edits to modules 0, 1, 2
+## 
+## commit eef2498caeafa7b8cd20965afc7ece2e33474a39
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Thu Aug 22 09:15:56 2013 -0700
+## 
+##     edits to module3
+## 
+## commit 2e18b2c07c4a8491ad2ed88b16a845a2f9873b29
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Thu Aug 22 08:32:48 2013 -0700
+## 
+##     edits to module 3
+## 
+## commit 45cb7a3e11cac5d0ea54d3d23d00d1129b4d8a50
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Thu Aug 22 07:55:20 2013 -0700
+## 
+##     edits to makefile and recompile of all html
+## 
+## commit 1aeddc708d99fe44b0f1ab5b6956109242029862
+## Author: Jacob Lynn &lt;jacob.lynn@berkeley.edu&gt;
+## Date:   Wed Aug 21 17:56:23 2013 -0700
+## 
+##     Updated module 5.
+## 
+## commit c390e2346fb76a16b0a3686f7c0a4cbc650cefef
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Wed Aug 21 16:41:13 2013 -0700
+## 
+##     edits to modules
+## 
+## commit 447efa04e15f6fde2074e6cea0083974b80ec723
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Wed Aug 21 15:40:34 2013 -0700
+## 
+##     minor edits to modules
+## 
+## commit e369b661b5ee7d9bf53c4a5eec986fdd28068f5c
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Wed Aug 21 15:30:44 2013 -0700
+## 
+##     minor changes to modules
+## 
+## commit d2f1147ea8b523b41a81edebe0162affc1e933cf
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Wed Aug 21 14:49:58 2013 -0700
+## 
+##     minor edits to modules
+## 
+## commit 5da5e1e8b029df641855cca21c6353e99d920d69
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Tue Aug 20 21:44:13 2013 -0700
+## 
+##     added modules.zip with all modules and data
+## 
+## commit b5fc9bf39bbc60ce8adfe175a329974839cc2a07
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Tue Aug 20 21:40:36 2013 -0700
+## 
+##     added html versions of modules
+## 
+## commit 49c29ef5eafbabb647123ef3e5d00dda482f3d8e
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Tue Aug 20 21:39:28 2013 -0700
+## 
+##     minor mods to modules
+## 
+## commit 508227edc697dd48a309702dbed419e166616103
+## Merge: 8c1ac54 1b74d12
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Tue Aug 20 19:55:33 2013 -0700
+## 
+##     Merge pull request #3 from jarrodmillman/workflow
+##     
+##     ENH: more on git and reordered slides
+## 
+## commit 1b74d1254b364e5fb45d2dc95ab9133285d3252d
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Tue Aug 20 19:50:32 2013 -0700
+## 
+##     ENH: more on git and reordered slides
+## 
+## commit 8c1ac54028e1d670ed7f15f240a5b8edf61acc99
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Tue Aug 20 18:02:27 2013 -0700
+## 
+##     minor change to module6 path to data file
+## 
+## commit 5557e39a43ac192208dad1d1471149aae5da6c4f
+## Merge: a096735 a833c02
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Tue Aug 20 14:46:04 2013 -0700
+## 
+##     Merge pull request #2 from jarrodmillman/workflow
+##     
+##     Workflow
+## 
+## commit a833c022065b2270367d77a9c59d5b9d6954ef07
+## Merge: ef4c762 a096735
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Tue Aug 20 14:43:28 2013 -0700
+## 
+##     Merge branch &#39;master&#39; into workflow
+##     
+##     * master:
+## 
+## commit ef4c762f34368e2bd6cbd1e193297fba9871ebc0
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Tue Aug 20 14:40:57 2013 -0700
+## 
+##     ENH: checkpointing work-in-progress on module 9, added figs directory
+## 
+## commit a0967354eecd78278bab1efec5af67009f944b12
+## Merge: 0e6699d ce7c703
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Tue Aug 20 11:32:05 2013 -0700
+## 
+##     Merge pull request #1 from jarrodmillman/master
+##     
+##     Added Makefile, modified make_slides, and small bugfix.
+## 
+## commit ce7c703b69456a560a6dfcb8868c1019dadedbba
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Tue Aug 20 11:28:38 2013 -0700
+## 
+##     ENH: added Makefile and modified make_slides script to accept module to
+##     build from commandline argument
+## 
+## commit 39ffc541e7d79b0f5fe6ad3c043699d41825f47c
+## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
+## Date:   Tue Aug 20 11:26:58 2013 -0700
+## 
+##     BF: data directory is one up from modules directory
+## 
+## commit 0e6699df07869ab93c4a94804f80ee9a49f6d8e6
+## Author: Chris Krogslund &lt;ckrogslund@berkeley.edu&gt;
+## Date:   Tue Aug 20 10:19:08 2013 -0700
+## 
+##     Added cpds.csv dataset
+## 
+## commit d5dc77ec1c70d3c9f6811eeea7e8be2d9a883f02
+## Author: Chris Krogslund &lt;ckrogslund@berkeley.edu&gt;
+## Date:   Tue Aug 20 09:24:58 2013 -0700
+## 
+##     Create module8_graphics.Rmd
+## 
+## commit 51fb47689169c1e4b60ecdc4e0d9ad1c7d9830ba
+## Author: Chris Krogslund &lt;ckrogslund@berkeley.edu&gt;
+## Date:   Tue Aug 20 09:22:34 2013 -0700
+## 
+##     Update module6_analysis.Rmd
+## 
+## commit b19b86d4fa01e5752e85e6b24bbef6edbb1d29f6
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Mon Aug 19 20:20:25 2013 -0700
+## 
+##     modified make_slides
+## 
+## commit f7a6567ef28b38ff9bf9a57d5598dc970ef4491f
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Tue Aug 13 15:23:46 2013 -0700
+## 
+##     renamed gen as make_slides
+## 
+## commit 0cf3baedd1c28f87e1068e9c9412139cadf685a3
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Tue Aug 13 13:28:00 2013 -0700
+## 
+##     added module12
+## 
+## commit f4705be38814a21bfe8b94f95d38f32ac4673c19
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Tue Aug 13 12:54:42 2013 -0700
+## 
+##     modified schedule
+## 
+## commit 16b7eb5874e06ba3174ec243d67d1d06fd856c42
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Tue Aug 13 12:53:48 2013 -0700
+## 
+##     modified schedule
+## 
+## commit ae006c35d7df82e9c2aee007ac88c279fe1fbc72
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Mon Aug 12 14:06:50 2013 -0700
+## 
+##     added stub module6 with breakout
+## 
+## commit f0e49369276ae3b2d347512ea95574d914efc099
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Mon Aug 12 13:18:06 2013 -0700
+## 
+##     edited schedule
+## 
+## commit cf35aab75c065dcb1446d10085e80b86e12ffd23
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Fri Aug 9 17:07:16 2013 -0700
+## 
+##     edits to module11
+## 
+## commit 60f15c443a91f9b8daa55a1a464e1d10a1c9d317
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Thu Aug 8 18:12:09 2013 -0700
+## 
+##     more edits to modules 3,11
+## 
+## commit de7d6afe5d4e4e855494342a5dd6fed9cb67fca1
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Thu Aug 8 16:32:12 2013 -0700
+## 
+##     modified module3 among other modules
+## 
+## commit 32677dc2156ee4d59c7384f1e77dc977731c39eb
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Tue Aug 6 17:02:43 2013 -0700
+## 
+##     heavily revised modules 1 and 2
+## 
+## commit bfbab4abc9aeade16660c51e952ddaa4370c9313
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Mon Aug 5 17:55:10 2013 -0700
+## 
+##     various modifications to modules
+## 
+## commit abb7a14b35d304e019980e8282ae134378a2188b
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Fri Aug 2 17:18:32 2013 -0700
+## 
+##     updated schedule document
+## 
+## commit 12f0d1f8d3d897a39c0b0e114959cb3ba5f44a34
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Fri Aug 2 17:15:24 2013 -0700
+## 
+##     added module3
+## 
+## commit 4790ed11f9fcc7bdff00cb70163165c5ae889f3a
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Thu Aug 1 15:32:58 2013 -0700
+## 
+##     added module7
+## 
+## commit 384cf0439ff93d0faa2f108b6f15ddd7d1a953d5
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Thu Aug 1 13:32:23 2013 -0700
+## 
+##     added module2
+## 
+## commit 04892f3b138ce9948d07ac3a2871ce3484f1e725
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Fri Jul 26 17:55:54 2013 -0700
+## 
+##     added draft of module2
+## 
+## commit 9f9b349e5d8545c959bc46d89cfe0e94e61bfa91
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Fri Jul 26 16:42:30 2013 -0700
+## 
+##     added initial modules and data
+## 
+## commit 1e3b021565a0313e650532c74ea4bc7801306d5e
+## Author: Christopher Paciorek &lt;paciorek@stat.berkeley.edu&gt;
+## Date:   Mon Jul 1 17:03:14 2013 -0700
+## 
+##     Update test.R
+## 
+## commit 1754eb4486948d4c196b2ab546ae4fe80b7c12aa
+## Author: Christopher Paciorek &lt;paciorek@Christophers-MacBook-Pro-2.local&gt;
+## Date:   Mon Jul 1 16:58:16 2013 -0700
+## 
+##     udated test.R
+## 
+## commit 116b37c4006a105afc31d26b44b9e8622be38540
+## Author: Christopher Paciorek &lt;paciorek@stat.berkeley.edu&gt;
+## Date:   Mon Jul 1 16:53:06 2013 -0700
+## 
+##     Update test.R
+## 
+## commit 219f113d88dfdd1ba8b624c41fdabd06e79ed3de
+## Author: Christopher Paciorek &lt;paciorek@Christophers-MacBook-Pro-2.local&gt;
+## Date:   Mon Jul 1 16:52:13 2013 -0700
+## 
+##     adding test.R
+## 
+## commit 651559d466af233a9e8cf96f33d13490019cc83a
+## Author: Christopher Paciorek &lt;paciorek@stat.berkeley.edu&gt;
+## Date:   Mon Jul 1 16:49:53 2013 -0700
+## 
+##     Update README.md
+## 
+## commit a7469b55c1b0cf98b0684dadde6f1151ebefc488
+## Author: Christopher Paciorek &lt;paciorek@stat.berkeley.edu&gt;
+## Date:   Mon Jul 1 16:48:35 2013 -0700
+## 
+##     Initial commit
 </code></pre>
 
 <p>Sometimes it&#39;s handy to see a very summarized version of the log:</p>
@@ -717,8 +2077,136 @@ git log
 git log --oneline --topo-order --graph
 </code></pre>
 
-<pre><code>## * 4fc98f8 I have made great progress on this critical matter.
-## * e26d020 This is our first commit
+<pre><code>## * 0f845b6 I have made great progress on this critical matter.
+## * 3d313f8 This is our first commit
+## *   71b92a4 Completed merge of trouble, fixing conflicts along the way
+## |\  
+## | * e95a78d Changes in the trouble branch
+## * | c255d41 Mainline work
+## |/  
+## * 967f2e1 More work, on machine #2
+## *   c876a93 Merge branch &#39;experiment&#39;
+## |\  
+## | * 67f91a7 Trying something new
+## * | 002b8e0 The mainline keeps moving
+## |/  
+## * 9dafa73 I like this new name better
+## * 7a4c5e5 I have made great progress on this critical matter.
+## * e07396e This is our first commit
+## * 8715a3d added mod5 soln
+## * 9c43f0a Update module8_graphics.Rmd
+## * bd71ed2 Update module8_graphics.Rmd
+## * 077dde5 Update README.md
+## *   ec0cc81 Merge pull request #9 from jarrodmillman/workflow
+## |\  
+## | * c1dde99 ENH: almost complete lecture notes
+## |/  
+## *   f5cbae9 Merge branch &#39;master&#39; of https://github.com/berkeley-scf/r-bootcamp-2013
+## |\  
+## | *   fa91275 Merge pull request #8 from jarrodmillman/workflow
+## | |\  
+## | | * 1dc2477 ENH: more work on the Git intro
+## | |/  
+## | *   056b9c9 Merge branch &#39;master&#39; of https://github.com/berkeley-scf/r-bootcamp-2013
+## | |\  
+## | | *   a542120 Merge pull request #7 from jarrodmillman/workflow
+## | | |\  
+## | | | * ce2e535 ENH: fleshing out intro to Git
+## | | |/  
+## | | * 6560e5d Small changes to module 5.
+## | | *   985d6b3 Merge pull request #6 from jarrodmillman/workflow
+## | | |\  
+## | | | * 90ee48b ENH: snapshot
+## | | |/  
+## | * | c1b8baf added mod1/2 solns
+## | |/  
+## * | 31960ca added mod3 soln
+## |/  
+## * 8a9dc85 edits to modules0-3, remake zip
+## * 028ba42 hopefully final (for Saturday sessions) of all slides/html and modules.zip file
+## * 9edc046 Minor changes to breakout problems in module 5
+## *   c3637cd Merge pull request #5 from jarrodmillman/workflow
+## |\  
+## | * aba4fea ENH: checkpointing some minor additions
+## * | 130e7af took out warning in breakout in module3
+## * |   9454a22 Merge branch &#39;master&#39; of https://github.com/berkeley-scf/r-bootcamp-2013
+## |\ \  
+## | * \   93e7a4a Merge pull request #4 from jarrodmillman/workflow
+## | |\ \  
+## | | |/  
+## | | *   fa098e9 Merge remote-tracking branch &#39;upstream/master&#39; into workflow
+## | | |\  
+## | | |/  
+## | |/|   
+## | | * 8e5dba9 ENH: try to properly display Latex in slides
+## * | | 47c3d58 edits to modules
+## |/ /  
+## * | cbab4bb edits to module11
+## * | f8fd82a modified module11
+## |/  
+## * 460fc6c edits to module10
+## * cc4498f edits to module 12
+## * 56a60ae edits to modules 0 and 7
+## * 493113a modified module7
+## * c9b2590 remade the zip file
+## * 1a372d2 edits to module6 breakout and addition of stateIncome.txt
+## * 0c3b46d edits to modules 0, 1, 2
+## * eef2498 edits to module3
+## * 2e18b2c edits to module 3
+## * 45cb7a3 edits to makefile and recompile of all html
+## * 1aeddc7 Updated module 5.
+## * c390e23 edits to modules
+## * 447efa0 minor edits to modules
+## * e369b66 minor changes to modules
+## * d2f1147 minor edits to modules
+## * 5da5e1e added modules.zip with all modules and data
+## * b5fc9bf added html versions of modules
+## * 49c29ef minor mods to modules
+## *   508227e Merge pull request #3 from jarrodmillman/workflow
+## |\  
+## | * 1b74d12 ENH: more on git and reordered slides
+## |/  
+## * 8c1ac54 minor change to module6 path to data file
+## *   5557e39 Merge pull request #2 from jarrodmillman/workflow
+## |\  
+## | *   a833c02 Merge branch &#39;master&#39; into workflow
+## | |\  
+## | |/  
+## |/|   
+## * |   a096735 Merge pull request #1 from jarrodmillman/master
+## |\ \  
+## | | * ef4c762 ENH: checkpointing work-in-progress on module 9, added figs directory
+## | |/  
+## | * ce7c703 ENH: added Makefile and modified make_slides script to accept module to build from commandline argument
+## | * 39ffc54 BF: data directory is one up from modules directory
+## |/  
+## * 0e6699d Added cpds.csv dataset
+## * d5dc77e Create module8_graphics.Rmd
+## * 51fb476 Update module6_analysis.Rmd
+## * b19b86d modified make_slides
+## * f7a6567 renamed gen as make_slides
+## * 0cf3bae added module12
+## * f4705be modified schedule
+## * 16b7eb5 modified schedule
+## * ae006c3 added stub module6 with breakout
+## * f0e4936 edited schedule
+## * cf35aab edits to module11
+## * 60f15c4 more edits to modules 3,11
+## * de7d6af modified module3 among other modules
+## * 32677dc heavily revised modules 1 and 2
+## * bfbab4a various modifications to modules
+## * abb7a14 updated schedule document
+## * 12f0d1f added module3
+## * 4790ed1 added module7
+## * 384cf04 added module2
+## * 04892f3 added draft of module2
+## * 9f9b349 added initial modules and data
+## * 1e3b021 Update test.R
+## * 1754eb4 udated test.R
+## * 116b37c Update test.R
+## * 219f113 adding test.R
+## * 651559d Update README.md
+## * a7469b5 Initial commit
 </code></pre>
 
 <p>Git supports <em>aliases:</em> new names given to command combinations. Let&#39;s make this
@@ -732,8 +2220,136 @@ git config --global alias.slog &quot;log --oneline --topo-order --graph&quot;
 git slog
 </code></pre>
 
-<pre><code>## * 4fc98f8 I have made great progress on this critical matter.
-## * e26d020 This is our first commit
+<pre><code>## * 0f845b6 I have made great progress on this critical matter.
+## * 3d313f8 This is our first commit
+## *   71b92a4 Completed merge of trouble, fixing conflicts along the way
+## |\  
+## | * e95a78d Changes in the trouble branch
+## * | c255d41 Mainline work
+## |/  
+## * 967f2e1 More work, on machine #2
+## *   c876a93 Merge branch &#39;experiment&#39;
+## |\  
+## | * 67f91a7 Trying something new
+## * | 002b8e0 The mainline keeps moving
+## |/  
+## * 9dafa73 I like this new name better
+## * 7a4c5e5 I have made great progress on this critical matter.
+## * e07396e This is our first commit
+## * 8715a3d added mod5 soln
+## * 9c43f0a Update module8_graphics.Rmd
+## * bd71ed2 Update module8_graphics.Rmd
+## * 077dde5 Update README.md
+## *   ec0cc81 Merge pull request #9 from jarrodmillman/workflow
+## |\  
+## | * c1dde99 ENH: almost complete lecture notes
+## |/  
+## *   f5cbae9 Merge branch &#39;master&#39; of https://github.com/berkeley-scf/r-bootcamp-2013
+## |\  
+## | *   fa91275 Merge pull request #8 from jarrodmillman/workflow
+## | |\  
+## | | * 1dc2477 ENH: more work on the Git intro
+## | |/  
+## | *   056b9c9 Merge branch &#39;master&#39; of https://github.com/berkeley-scf/r-bootcamp-2013
+## | |\  
+## | | *   a542120 Merge pull request #7 from jarrodmillman/workflow
+## | | |\  
+## | | | * ce2e535 ENH: fleshing out intro to Git
+## | | |/  
+## | | * 6560e5d Small changes to module 5.
+## | | *   985d6b3 Merge pull request #6 from jarrodmillman/workflow
+## | | |\  
+## | | | * 90ee48b ENH: snapshot
+## | | |/  
+## | * | c1b8baf added mod1/2 solns
+## | |/  
+## * | 31960ca added mod3 soln
+## |/  
+## * 8a9dc85 edits to modules0-3, remake zip
+## * 028ba42 hopefully final (for Saturday sessions) of all slides/html and modules.zip file
+## * 9edc046 Minor changes to breakout problems in module 5
+## *   c3637cd Merge pull request #5 from jarrodmillman/workflow
+## |\  
+## | * aba4fea ENH: checkpointing some minor additions
+## * | 130e7af took out warning in breakout in module3
+## * |   9454a22 Merge branch &#39;master&#39; of https://github.com/berkeley-scf/r-bootcamp-2013
+## |\ \  
+## | * \   93e7a4a Merge pull request #4 from jarrodmillman/workflow
+## | |\ \  
+## | | |/  
+## | | *   fa098e9 Merge remote-tracking branch &#39;upstream/master&#39; into workflow
+## | | |\  
+## | | |/  
+## | |/|   
+## | | * 8e5dba9 ENH: try to properly display Latex in slides
+## * | | 47c3d58 edits to modules
+## |/ /  
+## * | cbab4bb edits to module11
+## * | f8fd82a modified module11
+## |/  
+## * 460fc6c edits to module10
+## * cc4498f edits to module 12
+## * 56a60ae edits to modules 0 and 7
+## * 493113a modified module7
+## * c9b2590 remade the zip file
+## * 1a372d2 edits to module6 breakout and addition of stateIncome.txt
+## * 0c3b46d edits to modules 0, 1, 2
+## * eef2498 edits to module3
+## * 2e18b2c edits to module 3
+## * 45cb7a3 edits to makefile and recompile of all html
+## * 1aeddc7 Updated module 5.
+## * c390e23 edits to modules
+## * 447efa0 minor edits to modules
+## * e369b66 minor changes to modules
+## * d2f1147 minor edits to modules
+## * 5da5e1e added modules.zip with all modules and data
+## * b5fc9bf added html versions of modules
+## * 49c29ef minor mods to modules
+## *   508227e Merge pull request #3 from jarrodmillman/workflow
+## |\  
+## | * 1b74d12 ENH: more on git and reordered slides
+## |/  
+## * 8c1ac54 minor change to module6 path to data file
+## *   5557e39 Merge pull request #2 from jarrodmillman/workflow
+## |\  
+## | *   a833c02 Merge branch &#39;master&#39; into workflow
+## | |\  
+## | |/  
+## |/|   
+## * |   a096735 Merge pull request #1 from jarrodmillman/master
+## |\ \  
+## | | * ef4c762 ENH: checkpointing work-in-progress on module 9, added figs directory
+## | |/  
+## | * ce7c703 ENH: added Makefile and modified make_slides script to accept module to build from commandline argument
+## | * 39ffc54 BF: data directory is one up from modules directory
+## |/  
+## * 0e6699d Added cpds.csv dataset
+## * d5dc77e Create module8_graphics.Rmd
+## * 51fb476 Update module6_analysis.Rmd
+## * b19b86d modified make_slides
+## * f7a6567 renamed gen as make_slides
+## * 0cf3bae added module12
+## * f4705be modified schedule
+## * 16b7eb5 modified schedule
+## * ae006c3 added stub module6 with breakout
+## * f0e4936 edited schedule
+## * cf35aab edits to module11
+## * 60f15c4 more edits to modules 3,11
+## * de7d6af modified module3 among other modules
+## * 32677dc heavily revised modules 1 and 2
+## * bfbab4a various modifications to modules
+## * abb7a14 updated schedule document
+## * 12f0d1f added module3
+## * 4790ed1 added module7
+## * 384cf04 added module2
+## * 04892f3 added draft of module2
+## * 9f9b349 added initial modules and data
+## * 1e3b021 Update test.R
+## * 1754eb4 udated test.R
+## * 116b37c Update test.R
+## * 219f113 adding test.R
+## * 651559d Update README.md
+## * a7469b5 Initial commit
 </code></pre>
 
 <h1><code>git mv</code> and <code>rm</code>: moving and removing files</h1>
@@ -748,11 +2364,63 @@ git status
 </code></pre>
 
 <pre><code>## # On branch master
-## # Changes to be committed:
-## #   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+## # Your branch is ahead of &#39;origin/master&#39; by 5 commits.
 ## #
-## #    renamed:    file1.txt -&gt; file-newname.txt
+## # Untracked files:
+## #   (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
 ## #
+## #    ../.gitignore
+## #    ../admin/
+## #    ../data/RTAData.csv
+## #    ../data/RTADataSub.csv
+## #    ../data/cis.db
+## #    ../make_zip
+## #    ../make_zip~
+## #    allslides.sh
+## #    allslides.sh~
+## #    bkout_solns/module11_soln.Rmd
+## #    bkout_solns/module11_soln.Rmd~
+## #    bkout_solns/module1_soln.Rmd~
+## #    bkout_solns/module2_soln.Rmd~
+## #    bkout_solns/module3_soln.Rmd~
+## #    bkout_solns/module6_soln.Rmd
+## #    bkout_solns/module6_soln.Rmd~
+## #    bkout_solns/module7_soln.Rmd
+## #    bkout_solns/module7_soln.Rmd~
+## #    cache/
+## #    figure/
+## #    funny
+## #    funny~
+## #    make~
+## #    module0_induction.Rmd~
+## #    module0_induction.md
+## #    module1.Rda
+## #    module10_advanced.Rmd~
+## #    module10_advanced.md
+## #    module11_parallel.Rmd~
+## #    module11_parallel.md
+## #    module12_next.Rmd~
+## #    module12_next.md
+## #    module1_basics.Rmd~
+## #    module1_basics.md
+## #    module2_data.Rmd~
+## #    module2_data.md
+## #    module3_calc.Rmd~
+## #    module3_calc.md
+## #    module4_resources.Rmd~
+## #    module4_resources.md
+## #    module5_programming.md
+## #    module6_analysis.Rmd~
+## #    module6_analysis.md
+## #    module7_coreTools.md
+## #    module8_graphics.md
+## #    module9_workflows.Rmd~
+## #    module9_workflows.md
+## #    myplot.pdf
+## #    notes.txt
+## #    ../schedule/schedule.lyx~
+## #    ../videos/
+## nothing added to commit but untracked files present (use &quot;git add&quot; to track)
 </code></pre>
 
 <p>Note that these changes must be committed too, to become permanent!  In git&#39;s
@@ -765,13 +2433,195 @@ echo &quot;Let&#39;s look at the log again:&quot;
 git slog
 </code></pre>
 
-<pre><code>## [master 5664481] I like this new name better
-##  1 file changed, 0 insertions(+), 0 deletions(-)
-##  rename file1.txt =&gt; file-newname.txt (100%)
+<pre><code>## # On branch master
+## # Your branch is ahead of &#39;origin/master&#39; by 5 commits.
+## #
+## # Untracked files:
+## #   (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+## #
+## #    ../.gitignore
+## #    ../admin/
+## #    ../data/RTAData.csv
+## #    ../data/RTADataSub.csv
+## #    ../data/cis.db
+## #    ../make_zip
+## #    ../make_zip~
+## #    allslides.sh
+## #    allslides.sh~
+## #    bkout_solns/module11_soln.Rmd
+## #    bkout_solns/module11_soln.Rmd~
+## #    bkout_solns/module1_soln.Rmd~
+## #    bkout_solns/module2_soln.Rmd~
+## #    bkout_solns/module3_soln.Rmd~
+## #    bkout_solns/module6_soln.Rmd
+## #    bkout_solns/module6_soln.Rmd~
+## #    bkout_solns/module7_soln.Rmd
+## #    bkout_solns/module7_soln.Rmd~
+## #    cache/
+## #    figure/
+## #    funny
+## #    funny~
+## #    make~
+## #    module0_induction.Rmd~
+## #    module0_induction.md
+## #    module1.Rda
+## #    module10_advanced.Rmd~
+## #    module10_advanced.md
+## #    module11_parallel.Rmd~
+## #    module11_parallel.md
+## #    module12_next.Rmd~
+## #    module12_next.md
+## #    module1_basics.Rmd~
+## #    module1_basics.md
+## #    module2_data.Rmd~
+## #    module2_data.md
+## #    module3_calc.Rmd~
+## #    module3_calc.md
+## #    module4_resources.Rmd~
+## #    module4_resources.md
+## #    module5_programming.md
+## #    module6_analysis.Rmd~
+## #    module6_analysis.md
+## #    module7_coreTools.md
+## #    module8_graphics.md
+## #    module9_workflows.Rmd~
+## #    module9_workflows.md
+## #    myplot.pdf
+## #    notes.txt
+## #    ../schedule/schedule.lyx~
+## #    ../videos/
+## nothing added to commit but untracked files present (use &quot;git add&quot; to track)
 ## Let&#39;s look at the log again:
-## * 5664481 I like this new name better
-## * 4fc98f8 I have made great progress on this critical matter.
-## * e26d020 This is our first commit
+## * 0f845b6 I have made great progress on this critical matter.
+## * 3d313f8 This is our first commit
+## *   71b92a4 Completed merge of trouble, fixing conflicts along the way
+## |\  
+## | * e95a78d Changes in the trouble branch
+## * | c255d41 Mainline work
+## |/  
+## * 967f2e1 More work, on machine #2
+## *   c876a93 Merge branch &#39;experiment&#39;
+## |\  
+## | * 67f91a7 Trying something new
+## * | 002b8e0 The mainline keeps moving
+## |/  
+## * 9dafa73 I like this new name better
+## * 7a4c5e5 I have made great progress on this critical matter.
+## * e07396e This is our first commit
+## * 8715a3d added mod5 soln
+## * 9c43f0a Update module8_graphics.Rmd
+## * bd71ed2 Update module8_graphics.Rmd
+## * 077dde5 Update README.md
+## *   ec0cc81 Merge pull request #9 from jarrodmillman/workflow
+## |\  
+## | * c1dde99 ENH: almost complete lecture notes
+## |/  
+## *   f5cbae9 Merge branch &#39;master&#39; of https://github.com/berkeley-scf/r-bootcamp-2013
+## |\  
+## | *   fa91275 Merge pull request #8 from jarrodmillman/workflow
+## | |\  
+## | | * 1dc2477 ENH: more work on the Git intro
+## | |/  
+## | *   056b9c9 Merge branch &#39;master&#39; of https://github.com/berkeley-scf/r-bootcamp-2013
+## | |\  
+## | | *   a542120 Merge pull request #7 from jarrodmillman/workflow
+## | | |\  
+## | | | * ce2e535 ENH: fleshing out intro to Git
+## | | |/  
+## | | * 6560e5d Small changes to module 5.
+## | | *   985d6b3 Merge pull request #6 from jarrodmillman/workflow
+## | | |\  
+## | | | * 90ee48b ENH: snapshot
+## | | |/  
+## | * | c1b8baf added mod1/2 solns
+## | |/  
+## * | 31960ca added mod3 soln
+## |/  
+## * 8a9dc85 edits to modules0-3, remake zip
+## * 028ba42 hopefully final (for Saturday sessions) of all slides/html and modules.zip file
+## * 9edc046 Minor changes to breakout problems in module 5
+## *   c3637cd Merge pull request #5 from jarrodmillman/workflow
+## |\  
+## | * aba4fea ENH: checkpointing some minor additions
+## * | 130e7af took out warning in breakout in module3
+## * |   9454a22 Merge branch &#39;master&#39; of https://github.com/berkeley-scf/r-bootcamp-2013
+## |\ \  
+## | * \   93e7a4a Merge pull request #4 from jarrodmillman/workflow
+## | |\ \  
+## | | |/  
+## | | *   fa098e9 Merge remote-tracking branch &#39;upstream/master&#39; into workflow
+## | | |\  
+## | | |/  
+## | |/|   
+## | | * 8e5dba9 ENH: try to properly display Latex in slides
+## * | | 47c3d58 edits to modules
+## |/ /  
+## * | cbab4bb edits to module11
+## * | f8fd82a modified module11
+## |/  
+## * 460fc6c edits to module10
+## * cc4498f edits to module 12
+## * 56a60ae edits to modules 0 and 7
+## * 493113a modified module7
+## * c9b2590 remade the zip file
+## * 1a372d2 edits to module6 breakout and addition of stateIncome.txt
+## * 0c3b46d edits to modules 0, 1, 2
+## * eef2498 edits to module3
+## * 2e18b2c edits to module 3
+## * 45cb7a3 edits to makefile and recompile of all html
+## * 1aeddc7 Updated module 5.
+## * c390e23 edits to modules
+## * 447efa0 minor edits to modules
+## * e369b66 minor changes to modules
+## * d2f1147 minor edits to modules
+## * 5da5e1e added modules.zip with all modules and data
+## * b5fc9bf added html versions of modules
+## * 49c29ef minor mods to modules
+## *   508227e Merge pull request #3 from jarrodmillman/workflow
+## |\  
+## | * 1b74d12 ENH: more on git and reordered slides
+## |/  
+## * 8c1ac54 minor change to module6 path to data file
+## *   5557e39 Merge pull request #2 from jarrodmillman/workflow
+## |\  
+## | *   a833c02 Merge branch &#39;master&#39; into workflow
+## | |\  
+## | |/  
+## |/|   
+## * |   a096735 Merge pull request #1 from jarrodmillman/master
+## |\ \  
+## | | * ef4c762 ENH: checkpointing work-in-progress on module 9, added figs directory
+## | |/  
+## | * ce7c703 ENH: added Makefile and modified make_slides script to accept module to build from commandline argument
+## | * 39ffc54 BF: data directory is one up from modules directory
+## |/  
+## * 0e6699d Added cpds.csv dataset
+## * d5dc77e Create module8_graphics.Rmd
+## * 51fb476 Update module6_analysis.Rmd
+## * b19b86d modified make_slides
+## * f7a6567 renamed gen as make_slides
+## * 0cf3bae added module12
+## * f4705be modified schedule
+## * 16b7eb5 modified schedule
+## * ae006c3 added stub module6 with breakout
+## * f0e4936 edited schedule
+## * cf35aab edits to module11
+## * 60f15c4 more edits to modules 3,11
+## * de7d6af modified module3 among other modules
+## * 32677dc heavily revised modules 1 and 2
+## * bfbab4a various modifications to modules
+## * abb7a14 updated schedule document
+## * 12f0d1f added module3
+## * 4790ed1 added module7
+## * 384cf04 added module2
+## * 04892f3 added draft of module2
+## * 9f9b349 added initial modules and data
+## * 1e3b021 Update test.R
+## * 1754eb4 udated test.R
+## * 116b37c Update test.R
+## * 219f113 adding test.R
+## * 651559d Update README.md
+## * a7469b5 Initial commit
 </code></pre>
 
 <p>And <code>git rm</code> works in a similar fashion.</p>
@@ -821,8 +2671,144 @@ ls
 </code></pre>
 
 <pre><code>## # On branch master
-## nothing to commit, working directory clean
+## # Your branch is ahead of &#39;origin/master&#39; by 5 commits.
+## #
+## # Untracked files:
+## #   (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+## #
+## #    ../.gitignore
+## #    ../admin/
+## #    ../data/RTAData.csv
+## #    ../data/RTADataSub.csv
+## #    ../data/cis.db
+## #    ../make_zip
+## #    ../make_zip~
+## #    allslides.sh
+## #    allslides.sh~
+## #    bkout_solns/module11_soln.Rmd
+## #    bkout_solns/module11_soln.Rmd~
+## #    bkout_solns/module1_soln.Rmd~
+## #    bkout_solns/module2_soln.Rmd~
+## #    bkout_solns/module3_soln.Rmd~
+## #    bkout_solns/module6_soln.Rmd
+## #    bkout_solns/module6_soln.Rmd~
+## #    bkout_solns/module7_soln.Rmd
+## #    bkout_solns/module7_soln.Rmd~
+## #    cache/
+## #    figure/
+## #    funny
+## #    funny~
+## #    make~
+## #    module0_induction.Rmd~
+## #    module0_induction.md
+## #    module1.Rda
+## #    module10_advanced.Rmd~
+## #    module10_advanced.md
+## #    module11_parallel.Rmd~
+## #    module11_parallel.md
+## #    module12_next.Rmd~
+## #    module12_next.md
+## #    module1_basics.Rmd~
+## #    module1_basics.md
+## #    module2_data.Rmd~
+## #    module2_data.md
+## #    module3_calc.Rmd~
+## #    module3_calc.md
+## #    module4_resources.Rmd~
+## #    module4_resources.md
+## #    module5_programming.md
+## #    module6_analysis.Rmd~
+## #    module6_analysis.md
+## #    module7_coreTools.md
+## #    module8_graphics.md
+## #    module9_workflows.Rmd~
+## #    module9_workflows.md
+## #    myplot.pdf
+## #    notes.txt
+## #    ../schedule/schedule.lyx~
+## #    ../videos/
+## nothing added to commit but untracked files present (use &quot;git add&quot; to track)
+## allslides.sh
+## allslides.sh~
+## bkout_solns
+## cache
+## experiment.txt
+## figs
+## figure
+## file1.txt
 ## file-newname.txt
+## funny
+## funny~
+## jm-git-demo
+## make~
+## Makefile
+## make_slides
+## module0_induction.html
+## module0_induction.md
+## module0_induction.Rmd
+## module0_induction.Rmd~
+## module0_induction_slides.html
+## module10_advanced.html
+## module10_advanced.md
+## module10_advanced.Rmd
+## module10_advanced.Rmd~
+## module10_advanced_slides.html
+## module11_parallel.html
+## module11_parallel.md
+## module11_parallel.Rmd
+## module11_parallel.Rmd~
+## module11_parallel_slides.html
+## module12_next.html
+## module12_next.md
+## module12_next.Rmd
+## module12_next.Rmd~
+## module12_next_slides.html
+## module1_basics.html
+## module1_basics.md
+## module1_basics.Rmd
+## module1_basics.Rmd~
+## module1_basics_slides.html
+## module1.Rda
+## module2_data.html
+## module2_data.md
+## module2_data.Rmd
+## module2_data.Rmd~
+## module2_data_slides.html
+## module3_calc.html
+## module3_calc.md
+## module3_calc.Rmd
+## module3_calc.Rmd~
+## module3_calc_slides.html
+## module4_resources.html
+## module4_resources.md
+## module4_resources.Rmd
+## module4_resources.Rmd~
+## module4_resources_slides.html
+## module5_programming.html
+## module5_programming.md
+## module5_programming.Rmd
+## module5_programming_slides.html
+## module6_analysis.html
+## module6_analysis.md
+## module6_analysis.Rmd
+## module6_analysis.Rmd~
+## module6_analysis_slides.html
+## module7_coreTools.html
+## module7_coreTools.md
+## module7_coreTools.Rmd
+## module7_coreTools_slides.html
+## module8_graphics.html
+## module8_graphics.md
+## module8_graphics.Rmd
+## module8_graphics_slides.html
+## module9_workflows.html
+## module9_workflows.md
+## module9_workflows.Rmd
+## module9_workflows.Rmd~
+## module9_workflows_slides.html
+## modules.zip
+## myplot.pdf
+## notes.txt
 </code></pre>
 
 <p>We are now going to try two different routes of development: on the <code>master</code>
@@ -842,13 +2828,180 @@ git commit -a -m&quot;Trying something new&quot;
 git slog
 </code></pre>
 
-<pre><code>## [experiment 5e9a0e7] Trying something new
-##  1 file changed, 1 insertion(+)
-##  create mode 100644 experiment.txt
-## * 5e9a0e7 Trying something new
-## * 5664481 I like this new name better
-## * 4fc98f8 I have made great progress on this critical matter.
-## * e26d020 This is our first commit
+<pre><code>## # On branch experiment
+## # Untracked files:
+## #   (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+## #
+## #    ../.gitignore
+## #    ../admin/
+## #    ../data/RTAData.csv
+## #    ../data/RTADataSub.csv
+## #    ../data/cis.db
+## #    ../make_zip
+## #    ../make_zip~
+## #    allslides.sh
+## #    allslides.sh~
+## #    bkout_solns/module11_soln.Rmd
+## #    bkout_solns/module11_soln.Rmd~
+## #    bkout_solns/module1_soln.Rmd~
+## #    bkout_solns/module2_soln.Rmd~
+## #    bkout_solns/module3_soln.Rmd~
+## #    bkout_solns/module6_soln.Rmd
+## #    bkout_solns/module6_soln.Rmd~
+## #    bkout_solns/module7_soln.Rmd
+## #    bkout_solns/module7_soln.Rmd~
+## #    cache/
+## #    figure/
+## #    funny
+## #    funny~
+## #    make~
+## #    module0_induction.Rmd~
+## #    module0_induction.md
+## #    module1.Rda
+## #    module10_advanced.Rmd~
+## #    module10_advanced.md
+## #    module11_parallel.Rmd~
+## #    module11_parallel.md
+## #    module12_next.Rmd~
+## #    module12_next.md
+## #    module1_basics.Rmd~
+## #    module1_basics.md
+## #    module2_data.Rmd~
+## #    module2_data.md
+## #    module3_calc.Rmd~
+## #    module3_calc.md
+## #    module4_resources.Rmd~
+## #    module4_resources.md
+## #    module5_programming.md
+## #    module6_analysis.Rmd~
+## #    module6_analysis.md
+## #    module7_coreTools.md
+## #    module8_graphics.md
+## #    module9_workflows.Rmd~
+## #    module9_workflows.md
+## #    myplot.pdf
+## #    notes.txt
+## #    ../schedule/schedule.lyx~
+## #    ../videos/
+## nothing added to commit but untracked files present (use &quot;git add&quot; to track)
+## * 67f91a7 Trying something new
+## * 9dafa73 I like this new name better
+## * 7a4c5e5 I have made great progress on this critical matter.
+## * e07396e This is our first commit
+## * 8715a3d added mod5 soln
+## * 9c43f0a Update module8_graphics.Rmd
+## * bd71ed2 Update module8_graphics.Rmd
+## * 077dde5 Update README.md
+## *   ec0cc81 Merge pull request #9 from jarrodmillman/workflow
+## |\  
+## | * c1dde99 ENH: almost complete lecture notes
+## |/  
+## *   f5cbae9 Merge branch &#39;master&#39; of https://github.com/berkeley-scf/r-bootcamp-2013
+## |\  
+## | *   fa91275 Merge pull request #8 from jarrodmillman/workflow
+## | |\  
+## | | * 1dc2477 ENH: more work on the Git intro
+## | |/  
+## | *   056b9c9 Merge branch &#39;master&#39; of https://github.com/berkeley-scf/r-bootcamp-2013
+## | |\  
+## | | *   a542120 Merge pull request #7 from jarrodmillman/workflow
+## | | |\  
+## | | | * ce2e535 ENH: fleshing out intro to Git
+## | | |/  
+## | | * 6560e5d Small changes to module 5.
+## | | *   985d6b3 Merge pull request #6 from jarrodmillman/workflow
+## | | |\  
+## | | | * 90ee48b ENH: snapshot
+## | | |/  
+## | * | c1b8baf added mod1/2 solns
+## | |/  
+## * | 31960ca added mod3 soln
+## |/  
+## * 8a9dc85 edits to modules0-3, remake zip
+## * 028ba42 hopefully final (for Saturday sessions) of all slides/html and modules.zip file
+## * 9edc046 Minor changes to breakout problems in module 5
+## *   c3637cd Merge pull request #5 from jarrodmillman/workflow
+## |\  
+## | * aba4fea ENH: checkpointing some minor additions
+## * | 130e7af took out warning in breakout in module3
+## * |   9454a22 Merge branch &#39;master&#39; of https://github.com/berkeley-scf/r-bootcamp-2013
+## |\ \  
+## | * \   93e7a4a Merge pull request #4 from jarrodmillman/workflow
+## | |\ \  
+## | | |/  
+## | | *   fa098e9 Merge remote-tracking branch &#39;upstream/master&#39; into workflow
+## | | |\  
+## | | |/  
+## | |/|   
+## | | * 8e5dba9 ENH: try to properly display Latex in slides
+## * | | 47c3d58 edits to modules
+## |/ /  
+## * | cbab4bb edits to module11
+## * | f8fd82a modified module11
+## |/  
+## * 460fc6c edits to module10
+## * cc4498f edits to module 12
+## * 56a60ae edits to modules 0 and 7
+## * 493113a modified module7
+## * c9b2590 remade the zip file
+## * 1a372d2 edits to module6 breakout and addition of stateIncome.txt
+## * 0c3b46d edits to modules 0, 1, 2
+## * eef2498 edits to module3
+## * 2e18b2c edits to module 3
+## * 45cb7a3 edits to makefile and recompile of all html
+## * 1aeddc7 Updated module 5.
+## * c390e23 edits to modules
+## * 447efa0 minor edits to modules
+## * e369b66 minor changes to modules
+## * d2f1147 minor edits to modules
+## * 5da5e1e added modules.zip with all modules and data
+## * b5fc9bf added html versions of modules
+## * 49c29ef minor mods to modules
+## *   508227e Merge pull request #3 from jarrodmillman/workflow
+## |\  
+## | * 1b74d12 ENH: more on git and reordered slides
+## |/  
+## * 8c1ac54 minor change to module6 path to data file
+## *   5557e39 Merge pull request #2 from jarrodmillman/workflow
+## |\  
+## | *   a833c02 Merge branch &#39;master&#39; into workflow
+## | |\  
+## | |/  
+## |/|   
+## * |   a096735 Merge pull request #1 from jarrodmillman/master
+## |\ \  
+## | | * ef4c762 ENH: checkpointing work-in-progress on module 9, added figs directory
+## | |/  
+## | * ce7c703 ENH: added Makefile and modified make_slides script to accept module to build from commandline argument
+## | * 39ffc54 BF: data directory is one up from modules directory
+## |/  
+## * 0e6699d Added cpds.csv dataset
+## * d5dc77e Create module8_graphics.Rmd
+## * 51fb476 Update module6_analysis.Rmd
+## * b19b86d modified make_slides
+## * f7a6567 renamed gen as make_slides
+## * 0cf3bae added module12
+## * f4705be modified schedule
+## * 16b7eb5 modified schedule
+## * ae006c3 added stub module6 with breakout
+## * f0e4936 edited schedule
+## * cf35aab edits to module11
+## * 60f15c4 more edits to modules 3,11
+## * de7d6af modified module3 among other modules
+## * 32677dc heavily revised modules 1 and 2
+## * bfbab4a various modifications to modules
+## * abb7a14 updated schedule document
+## * 12f0d1f added module3
+## * 4790ed1 added module7
+## * 384cf04 added module2
+## * 04892f3 added draft of module2
+## * 9f9b349 added initial modules and data
+## * 1e3b021 Update test.R
+## * 1754eb4 udated test.R
+## * 116b37c Update test.R
+## * 219f113 adding test.R
+## * 651559d Update README.md
+## * a7469b5 Initial commit
 </code></pre>
 
 <pre><code class="bash">cd ~/src/jm-git-demo
@@ -856,9 +3009,137 @@ git checkout master
 git slog
 </code></pre>
 
-<pre><code>## * 5664481 I like this new name better
-## * 4fc98f8 I have made great progress on this critical matter.
-## * e26d020 This is our first commit
+<pre><code>## Your branch is ahead of &#39;origin/master&#39; by 5 commits.
+## * 0f845b6 I have made great progress on this critical matter.
+## * 3d313f8 This is our first commit
+## *   71b92a4 Completed merge of trouble, fixing conflicts along the way
+## |\  
+## | * e95a78d Changes in the trouble branch
+## * | c255d41 Mainline work
+## |/  
+## * 967f2e1 More work, on machine #2
+## *   c876a93 Merge branch &#39;experiment&#39;
+## |\  
+## | * 67f91a7 Trying something new
+## * | 002b8e0 The mainline keeps moving
+## |/  
+## * 9dafa73 I like this new name better
+## * 7a4c5e5 I have made great progress on this critical matter.
+## * e07396e This is our first commit
+## * 8715a3d added mod5 soln
+## * 9c43f0a Update module8_graphics.Rmd
+## * bd71ed2 Update module8_graphics.Rmd
+## * 077dde5 Update README.md
+## *   ec0cc81 Merge pull request #9 from jarrodmillman/workflow
+## |\  
+## | * c1dde99 ENH: almost complete lecture notes
+## |/  
+## *   f5cbae9 Merge branch &#39;master&#39; of https://github.com/berkeley-scf/r-bootcamp-2013
+## |\  
+## | *   fa91275 Merge pull request #8 from jarrodmillman/workflow
+## | |\  
+## | | * 1dc2477 ENH: more work on the Git intro
+## | |/  
+## | *   056b9c9 Merge branch &#39;master&#39; of https://github.com/berkeley-scf/r-bootcamp-2013
+## | |\  
+## | | *   a542120 Merge pull request #7 from jarrodmillman/workflow
+## | | |\  
+## | | | * ce2e535 ENH: fleshing out intro to Git
+## | | |/  
+## | | * 6560e5d Small changes to module 5.
+## | | *   985d6b3 Merge pull request #6 from jarrodmillman/workflow
+## | | |\  
+## | | | * 90ee48b ENH: snapshot
+## | | |/  
+## | * | c1b8baf added mod1/2 solns
+## | |/  
+## * | 31960ca added mod3 soln
+## |/  
+## * 8a9dc85 edits to modules0-3, remake zip
+## * 028ba42 hopefully final (for Saturday sessions) of all slides/html and modules.zip file
+## * 9edc046 Minor changes to breakout problems in module 5
+## *   c3637cd Merge pull request #5 from jarrodmillman/workflow
+## |\  
+## | * aba4fea ENH: checkpointing some minor additions
+## * | 130e7af took out warning in breakout in module3
+## * |   9454a22 Merge branch &#39;master&#39; of https://github.com/berkeley-scf/r-bootcamp-2013
+## |\ \  
+## | * \   93e7a4a Merge pull request #4 from jarrodmillman/workflow
+## | |\ \  
+## | | |/  
+## | | *   fa098e9 Merge remote-tracking branch &#39;upstream/master&#39; into workflow
+## | | |\  
+## | | |/  
+## | |/|   
+## | | * 8e5dba9 ENH: try to properly display Latex in slides
+## * | | 47c3d58 edits to modules
+## |/ /  
+## * | cbab4bb edits to module11
+## * | f8fd82a modified module11
+## |/  
+## * 460fc6c edits to module10
+## * cc4498f edits to module 12
+## * 56a60ae edits to modules 0 and 7
+## * 493113a modified module7
+## * c9b2590 remade the zip file
+## * 1a372d2 edits to module6 breakout and addition of stateIncome.txt
+## * 0c3b46d edits to modules 0, 1, 2
+## * eef2498 edits to module3
+## * 2e18b2c edits to module 3
+## * 45cb7a3 edits to makefile and recompile of all html
+## * 1aeddc7 Updated module 5.
+## * c390e23 edits to modules
+## * 447efa0 minor edits to modules
+## * e369b66 minor changes to modules
+## * d2f1147 minor edits to modules
+## * 5da5e1e added modules.zip with all modules and data
+## * b5fc9bf added html versions of modules
+## * 49c29ef minor mods to modules
+## *   508227e Merge pull request #3 from jarrodmillman/workflow
+## |\  
+## | * 1b74d12 ENH: more on git and reordered slides
+## |/  
+## * 8c1ac54 minor change to module6 path to data file
+## *   5557e39 Merge pull request #2 from jarrodmillman/workflow
+## |\  
+## | *   a833c02 Merge branch &#39;master&#39; into workflow
+## | |\  
+## | |/  
+## |/|   
+## * |   a096735 Merge pull request #1 from jarrodmillman/master
+## |\ \  
+## | | * ef4c762 ENH: checkpointing work-in-progress on module 9, added figs directory
+## | |/  
+## | * ce7c703 ENH: added Makefile and modified make_slides script to accept module to build from commandline argument
+## | * 39ffc54 BF: data directory is one up from modules directory
+## |/  
+## * 0e6699d Added cpds.csv dataset
+## * d5dc77e Create module8_graphics.Rmd
+## * 51fb476 Update module6_analysis.Rmd
+## * b19b86d modified make_slides
+## * f7a6567 renamed gen as make_slides
+## * 0cf3bae added module12
+## * f4705be modified schedule
+## * 16b7eb5 modified schedule
+## * ae006c3 added stub module6 with breakout
+## * f0e4936 edited schedule
+## * cf35aab edits to module11
+## * 60f15c4 more edits to modules 3,11
+## * de7d6af modified module3 among other modules
+## * 32677dc heavily revised modules 1 and 2
+## * bfbab4a various modifications to modules
+## * abb7a14 updated schedule document
+## * 12f0d1f added module3
+## * 4790ed1 added module7
+## * 384cf04 added module2
+## * 04892f3 added draft of module2
+## * 9f9b349 added initial modules and data
+## * 1e3b021 Update test.R
+## * 1754eb4 udated test.R
+## * 116b37c Update test.R
+## * 219f113 adding test.R
+## * 651559d Update README.md
+## * a7469b5 Initial commit
 </code></pre>
 
 <pre><code class="bash">cd ~/src/jm-git-demo
@@ -867,19 +3148,238 @@ git commit -a -m&quot;The mainline keeps moving&quot;
 git slog
 </code></pre>
 
-<pre><code>## [master 6db18d9] The mainline keeps moving
+<pre><code>## [master 9a1f4f9] The mainline keeps moving
+##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Your name and email address were configured automatically based
+## on your username and hostname. Please check that they are accurate.
+## You can suppress this message by setting them explicitly:
+## 
+##     git config --global user.name &quot;Your Name&quot;
+##     git config --global user.email you@example.com
+## 
+## After doing this, you may fix the identity used for this commit with:
+## 
+##     git commit --amend --reset-author
+## 
 ##  1 file changed, 1 insertion(+)
-## * 6db18d9 The mainline keeps moving
-## * 5664481 I like this new name better
-## * 4fc98f8 I have made great progress on this critical matter.
-## * e26d020 This is our first commit
+## * 9a1f4f9 The mainline keeps moving
+## * 0f845b6 I have made great progress on this critical matter.
+## * 3d313f8 This is our first commit
+## *   71b92a4 Completed merge of trouble, fixing conflicts along the way
+## |\  
+## | * e95a78d Changes in the trouble branch
+## * | c255d41 Mainline work
+## |/  
+## * 967f2e1 More work, on machine #2
+## *   c876a93 Merge branch &#39;experiment&#39;
+## |\  
+## | * 67f91a7 Trying something new
+## * | 002b8e0 The mainline keeps moving
+## |/  
+## * 9dafa73 I like this new name better
+## * 7a4c5e5 I have made great progress on this critical matter.
+## * e07396e This is our first commit
+## * 8715a3d added mod5 soln
+## * 9c43f0a Update module8_graphics.Rmd
+## * bd71ed2 Update module8_graphics.Rmd
+## * 077dde5 Update README.md
+## *   ec0cc81 Merge pull request #9 from jarrodmillman/workflow
+## |\  
+## | * c1dde99 ENH: almost complete lecture notes
+## |/  
+## *   f5cbae9 Merge branch &#39;master&#39; of https://github.com/berkeley-scf/r-bootcamp-2013
+## |\  
+## | *   fa91275 Merge pull request #8 from jarrodmillman/workflow
+## | |\  
+## | | * 1dc2477 ENH: more work on the Git intro
+## | |/  
+## | *   056b9c9 Merge branch &#39;master&#39; of https://github.com/berkeley-scf/r-bootcamp-2013
+## | |\  
+## | | *   a542120 Merge pull request #7 from jarrodmillman/workflow
+## | | |\  
+## | | | * ce2e535 ENH: fleshing out intro to Git
+## | | |/  
+## | | * 6560e5d Small changes to module 5.
+## | | *   985d6b3 Merge pull request #6 from jarrodmillman/workflow
+## | | |\  
+## | | | * 90ee48b ENH: snapshot
+## | | |/  
+## | * | c1b8baf added mod1/2 solns
+## | |/  
+## * | 31960ca added mod3 soln
+## |/  
+## * 8a9dc85 edits to modules0-3, remake zip
+## * 028ba42 hopefully final (for Saturday sessions) of all slides/html and modules.zip file
+## * 9edc046 Minor changes to breakout problems in module 5
+## *   c3637cd Merge pull request #5 from jarrodmillman/workflow
+## |\  
+## | * aba4fea ENH: checkpointing some minor additions
+## * | 130e7af took out warning in breakout in module3
+## * |   9454a22 Merge branch &#39;master&#39; of https://github.com/berkeley-scf/r-bootcamp-2013
+## |\ \  
+## | * \   93e7a4a Merge pull request #4 from jarrodmillman/workflow
+## | |\ \  
+## | | |/  
+## | | *   fa098e9 Merge remote-tracking branch &#39;upstream/master&#39; into workflow
+## | | |\  
+## | | |/  
+## | |/|   
+## | | * 8e5dba9 ENH: try to properly display Latex in slides
+## * | | 47c3d58 edits to modules
+## |/ /  
+## * | cbab4bb edits to module11
+## * | f8fd82a modified module11
+## |/  
+## * 460fc6c edits to module10
+## * cc4498f edits to module 12
+## * 56a60ae edits to modules 0 and 7
+## * 493113a modified module7
+## * c9b2590 remade the zip file
+## * 1a372d2 edits to module6 breakout and addition of stateIncome.txt
+## * 0c3b46d edits to modules 0, 1, 2
+## * eef2498 edits to module3
+## * 2e18b2c edits to module 3
+## * 45cb7a3 edits to makefile and recompile of all html
+## * 1aeddc7 Updated module 5.
+## * c390e23 edits to modules
+## * 447efa0 minor edits to modules
+## * e369b66 minor changes to modules
+## * d2f1147 minor edits to modules
+## * 5da5e1e added modules.zip with all modules and data
+## * b5fc9bf added html versions of modules
+## * 49c29ef minor mods to modules
+## *   508227e Merge pull request #3 from jarrodmillman/workflow
+## |\  
+## | * 1b74d12 ENH: more on git and reordered slides
+## |/  
+## * 8c1ac54 minor change to module6 path to data file
+## *   5557e39 Merge pull request #2 from jarrodmillman/workflow
+## |\  
+## | *   a833c02 Merge branch &#39;master&#39; into workflow
+## | |\  
+## | |/  
+## |/|   
+## * |   a096735 Merge pull request #1 from jarrodmillman/master
+## |\ \  
+## | | * ef4c762 ENH: checkpointing work-in-progress on module 9, added figs directory
+## | |/  
+## | * ce7c703 ENH: added Makefile and modified make_slides script to accept module to build from commandline argument
+## | * 39ffc54 BF: data directory is one up from modules directory
+## |/  
+## * 0e6699d Added cpds.csv dataset
+## * d5dc77e Create module8_graphics.Rmd
+## * 51fb476 Update module6_analysis.Rmd
+## * b19b86d modified make_slides
+## * f7a6567 renamed gen as make_slides
+## * 0cf3bae added module12
+## * f4705be modified schedule
+## * 16b7eb5 modified schedule
+## * ae006c3 added stub module6 with breakout
+## * f0e4936 edited schedule
+## * cf35aab edits to module11
+## * 60f15c4 more edits to modules 3,11
+## * de7d6af modified module3 among other modules
+## * 32677dc heavily revised modules 1 and 2
+## * bfbab4a various modifications to modules
+## * abb7a14 updated schedule document
+## * 12f0d1f added module3
+## * 4790ed1 added module7
+## * 384cf04 added module2
+## * 04892f3 added draft of module2
+## * 9f9b349 added initial modules and data
+## * 1e3b021 Update test.R
+## * 1754eb4 udated test.R
+## * 116b37c Update test.R
+## * 219f113 adding test.R
+## * 651559d Update README.md
+## * a7469b5 Initial commit
 </code></pre>
 
 <pre><code class="bash">cd ~/src/jm-git-demo
 ls
 </code></pre>
 
-<pre><code>## file-newname.txt
+<pre><code>## allslides.sh
+## allslides.sh~
+## bkout_solns
+## cache
+## experiment.txt
+## figs
+## figure
+## file1.txt
+## file-newname.txt
+## funny
+## funny~
+## jm-git-demo
+## make~
+## Makefile
+## make_slides
+## module0_induction.html
+## module0_induction.md
+## module0_induction.Rmd
+## module0_induction.Rmd~
+## module0_induction_slides.html
+## module10_advanced.html
+## module10_advanced.md
+## module10_advanced.Rmd
+## module10_advanced.Rmd~
+## module10_advanced_slides.html
+## module11_parallel.html
+## module11_parallel.md
+## module11_parallel.Rmd
+## module11_parallel.Rmd~
+## module11_parallel_slides.html
+## module12_next.html
+## module12_next.md
+## module12_next.Rmd
+## module12_next.Rmd~
+## module12_next_slides.html
+## module1_basics.html
+## module1_basics.md
+## module1_basics.Rmd
+## module1_basics.Rmd~
+## module1_basics_slides.html
+## module1.Rda
+## module2_data.html
+## module2_data.md
+## module2_data.Rmd
+## module2_data.Rmd~
+## module2_data_slides.html
+## module3_calc.html
+## module3_calc.md
+## module3_calc.Rmd
+## module3_calc.Rmd~
+## module3_calc_slides.html
+## module4_resources.html
+## module4_resources.md
+## module4_resources.Rmd
+## module4_resources.Rmd~
+## module4_resources_slides.html
+## module5_programming.html
+## module5_programming.md
+## module5_programming.Rmd
+## module5_programming_slides.html
+## module6_analysis.html
+## module6_analysis.md
+## module6_analysis.Rmd
+## module6_analysis.Rmd~
+## module6_analysis_slides.html
+## module7_coreTools.html
+## module7_coreTools.md
+## module7_coreTools.Rmd
+## module7_coreTools_slides.html
+## module8_graphics.html
+## module8_graphics.md
+## module8_graphics.Rmd
+## module8_graphics_slides.html
+## module9_workflows.html
+## module9_workflows.md
+## module9_workflows.Rmd
+## module9_workflows.Rmd~
+## module9_workflows_slides.html
+## modules.zip
+## myplot.pdf
+## notes.txt
 </code></pre>
 
 <pre><code class="bash">cd ~/src/jm-git-demo
@@ -887,18 +3387,138 @@ git merge experiment
 git slog
 </code></pre>
 
-<pre><code>## Merge made by the &#39;recursive&#39; strategy.
-##  experiment.txt | 1 +
-##  1 file changed, 1 insertion(+)
-##  create mode 100644 experiment.txt
-## *   ecdf159 Merge branch &#39;experiment&#39;
+<pre><code>## Already up-to-date.
+## * 9a1f4f9 The mainline keeps moving
+## * 0f845b6 I have made great progress on this critical matter.
+## * 3d313f8 This is our first commit
+## *   71b92a4 Completed merge of trouble, fixing conflicts along the way
 ## |\  
-## | * 5e9a0e7 Trying something new
-## * | 6db18d9 The mainline keeps moving
+## | * e95a78d Changes in the trouble branch
+## * | c255d41 Mainline work
 ## |/  
-## * 5664481 I like this new name better
-## * 4fc98f8 I have made great progress on this critical matter.
-## * e26d020 This is our first commit
+## * 967f2e1 More work, on machine #2
+## *   c876a93 Merge branch &#39;experiment&#39;
+## |\  
+## | * 67f91a7 Trying something new
+## * | 002b8e0 The mainline keeps moving
+## |/  
+## * 9dafa73 I like this new name better
+## * 7a4c5e5 I have made great progress on this critical matter.
+## * e07396e This is our first commit
+## * 8715a3d added mod5 soln
+## * 9c43f0a Update module8_graphics.Rmd
+## * bd71ed2 Update module8_graphics.Rmd
+## * 077dde5 Update README.md
+## *   ec0cc81 Merge pull request #9 from jarrodmillman/workflow
+## |\  
+## | * c1dde99 ENH: almost complete lecture notes
+## |/  
+## *   f5cbae9 Merge branch &#39;master&#39; of https://github.com/berkeley-scf/r-bootcamp-2013
+## |\  
+## | *   fa91275 Merge pull request #8 from jarrodmillman/workflow
+## | |\  
+## | | * 1dc2477 ENH: more work on the Git intro
+## | |/  
+## | *   056b9c9 Merge branch &#39;master&#39; of https://github.com/berkeley-scf/r-bootcamp-2013
+## | |\  
+## | | *   a542120 Merge pull request #7 from jarrodmillman/workflow
+## | | |\  
+## | | | * ce2e535 ENH: fleshing out intro to Git
+## | | |/  
+## | | * 6560e5d Small changes to module 5.
+## | | *   985d6b3 Merge pull request #6 from jarrodmillman/workflow
+## | | |\  
+## | | | * 90ee48b ENH: snapshot
+## | | |/  
+## | * | c1b8baf added mod1/2 solns
+## | |/  
+## * | 31960ca added mod3 soln
+## |/  
+## * 8a9dc85 edits to modules0-3, remake zip
+## * 028ba42 hopefully final (for Saturday sessions) of all slides/html and modules.zip file
+## * 9edc046 Minor changes to breakout problems in module 5
+## *   c3637cd Merge pull request #5 from jarrodmillman/workflow
+## |\  
+## | * aba4fea ENH: checkpointing some minor additions
+## * | 130e7af took out warning in breakout in module3
+## * |   9454a22 Merge branch &#39;master&#39; of https://github.com/berkeley-scf/r-bootcamp-2013
+## |\ \  
+## | * \   93e7a4a Merge pull request #4 from jarrodmillman/workflow
+## | |\ \  
+## | | |/  
+## | | *   fa098e9 Merge remote-tracking branch &#39;upstream/master&#39; into workflow
+## | | |\  
+## | | |/  
+## | |/|   
+## | | * 8e5dba9 ENH: try to properly display Latex in slides
+## * | | 47c3d58 edits to modules
+## |/ /  
+## * | cbab4bb edits to module11
+## * | f8fd82a modified module11
+## |/  
+## * 460fc6c edits to module10
+## * cc4498f edits to module 12
+## * 56a60ae edits to modules 0 and 7
+## * 493113a modified module7
+## * c9b2590 remade the zip file
+## * 1a372d2 edits to module6 breakout and addition of stateIncome.txt
+## * 0c3b46d edits to modules 0, 1, 2
+## * eef2498 edits to module3
+## * 2e18b2c edits to module 3
+## * 45cb7a3 edits to makefile and recompile of all html
+## * 1aeddc7 Updated module 5.
+## * c390e23 edits to modules
+## * 447efa0 minor edits to modules
+## * e369b66 minor changes to modules
+## * d2f1147 minor edits to modules
+## * 5da5e1e added modules.zip with all modules and data
+## * b5fc9bf added html versions of modules
+## * 49c29ef minor mods to modules
+## *   508227e Merge pull request #3 from jarrodmillman/workflow
+## |\  
+## | * 1b74d12 ENH: more on git and reordered slides
+## |/  
+## * 8c1ac54 minor change to module6 path to data file
+## *   5557e39 Merge pull request #2 from jarrodmillman/workflow
+## |\  
+## | *   a833c02 Merge branch &#39;master&#39; into workflow
+## | |\  
+## | |/  
+## |/|   
+## * |   a096735 Merge pull request #1 from jarrodmillman/master
+## |\ \  
+## | | * ef4c762 ENH: checkpointing work-in-progress on module 9, added figs directory
+## | |/  
+## | * ce7c703 ENH: added Makefile and modified make_slides script to accept module to build from commandline argument
+## | * 39ffc54 BF: data directory is one up from modules directory
+## |/  
+## * 0e6699d Added cpds.csv dataset
+## * d5dc77e Create module8_graphics.Rmd
+## * 51fb476 Update module6_analysis.Rmd
+## * b19b86d modified make_slides
+## * f7a6567 renamed gen as make_slides
+## * 0cf3bae added module12
+## * f4705be modified schedule
+## * 16b7eb5 modified schedule
+## * ae006c3 added stub module6 with breakout
+## * f0e4936 edited schedule
+## * cf35aab edits to module11
+## * 60f15c4 more edits to modules 3,11
+## * de7d6af modified module3 among other modules
+## * 32677dc heavily revised modules 1 and 2
+## * bfbab4a various modifications to modules
+## * abb7a14 updated schedule document
+## * 12f0d1f added module3
+## * 4790ed1 added module7
+## * 384cf04 added module2
+## * 04892f3 added draft of module2
+## * 9f9b349 added initial modules and data
+## * 1e3b021 Update test.R
+## * 1754eb4 udated test.R
+## * 116b37c Update test.R
+## * 219f113 adding test.R
+## * 651559d Update README.md
+## * a7469b5 Initial commit
 </code></pre>
 
 <h1>Using remotes as a single user</h1>
@@ -918,9 +3538,90 @@ echo &quot;Let&#39;s see if we have any remote repositories here:&quot;
 git remote -v
 </code></pre>
 
-<pre><code>## experiment.txt
+<pre><code>## allslides.sh
+## allslides.sh~
+## bkout_solns
+## cache
+## experiment.txt
+## figs
+## figure
+## file1.txt
 ## file-newname.txt
+## funny
+## funny~
+## jm-git-demo
+## make~
+## Makefile
+## make_slides
+## module0_induction.html
+## module0_induction.md
+## module0_induction.Rmd
+## module0_induction.Rmd~
+## module0_induction_slides.html
+## module10_advanced.html
+## module10_advanced.md
+## module10_advanced.Rmd
+## module10_advanced.Rmd~
+## module10_advanced_slides.html
+## module11_parallel.html
+## module11_parallel.md
+## module11_parallel.Rmd
+## module11_parallel.Rmd~
+## module11_parallel_slides.html
+## module12_next.html
+## module12_next.md
+## module12_next.Rmd
+## module12_next.Rmd~
+## module12_next_slides.html
+## module1_basics.html
+## module1_basics.md
+## module1_basics.Rmd
+## module1_basics.Rmd~
+## module1_basics_slides.html
+## module1.Rda
+## module2_data.html
+## module2_data.md
+## module2_data.Rmd
+## module2_data.Rmd~
+## module2_data_slides.html
+## module3_calc.html
+## module3_calc.md
+## module3_calc.Rmd
+## module3_calc.Rmd~
+## module3_calc_slides.html
+## module4_resources.html
+## module4_resources.md
+## module4_resources.Rmd
+## module4_resources.Rmd~
+## module4_resources_slides.html
+## module5_programming.html
+## module5_programming.md
+## module5_programming.Rmd
+## module5_programming_slides.html
+## module6_analysis.html
+## module6_analysis.md
+## module6_analysis.Rmd
+## module6_analysis.Rmd~
+## module6_analysis_slides.html
+## module7_coreTools.html
+## module7_coreTools.md
+## module7_coreTools.Rmd
+## module7_coreTools_slides.html
+## module8_graphics.html
+## module8_graphics.md
+## module8_graphics.Rmd
+## module8_graphics_slides.html
+## module9_workflows.html
+## module9_workflows.md
+## module9_workflows.Rmd
+## module9_workflows.Rmd~
+## module9_workflows_slides.html
+## modules.zip
+## myplot.pdf
+## notes.txt
 ## Let&#39;s see if we have any remote repositories here:
+## origin   https://github.com/berkeley-scf/r-bootcamp-2013 (fetch)
+## origin   https://github.com/berkeley-scf/r-bootcamp-2013 (push)
 </code></pre>
 
 <p>Since the above cell didn&#39;t produce any output after the <code>git remote -v</code> call,
@@ -938,14 +3639,17 @@ git remote add origin git@github.com:jarrodmillman/test.git
 git push -u origin master
 </code></pre>
 
+<pre><code>## Branch master set up to track remote branch master from origin.
+</code></pre>
+
 <p>Let&#39;s see the remote situation again:</p>
 
 <pre><code class="bash">cd ~/src/jm-git-demo
 git remote -v
 </code></pre>
 
-<pre><code>## origin   git@github.com:jarrodmillman/test.git (fetch)
-## origin   git@github.com:jarrodmillman/test.git (push)
+<pre><code>## origin   https://github.com/berkeley-scf/r-bootcamp-2013 (fetch)
+## origin   https://github.com/berkeley-scf/r-bootcamp-2013 (push)
 </code></pre>
 
 <p>We can now <a href="https://github.com/jarrodmillman/test">see this repository publicly on github</a>.</p>
@@ -962,9 +3666,10 @@ pwd
 git remote -v
 </code></pre>
 
-<pre><code>## /home/jarrod/src/test2
-## origin   git@github.com:jarrodmillman/test.git (fetch)
-## origin   git@github.com:jarrodmillman/test.git (push)
+<pre><code>## Cloning into &#39;test2&#39;...
+## /accounts/gen/vis/paciorek/staff/workshops/r-bootcamp-2013/modules
+## origin   https://github.com/berkeley-scf/r-bootcamp-2013 (fetch)
+## origin   https://github.com/berkeley-scf/r-bootcamp-2013 (push)
 </code></pre>
 
 <p>Let&#39;s now make some changes in one &#39;computer&#39; and synchronize them on the
@@ -975,7 +3680,19 @@ echo &quot;More new content on my experiment&quot; &gt;&gt; experiment.txt
 git commit -a -m&quot;More work, on machine #2&quot;
 </code></pre>
 
-<pre><code>## [master c8db79a] More work, on machine #2
+<pre><code>## [master 4e38e89] More work, on machine #2
+##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Your name and email address were configured automatically based
+## on your username and hostname. Please check that they are accurate.
+## You can suppress this message by setting them explicitly:
+## 
+##     git config --global user.name &quot;Your Name&quot;
+##     git config --global user.email you@example.com
+## 
+## After doing this, you may fix the identity used for this commit with:
+## 
+##     git commit --amend --reset-author
+## 
 ##  1 file changed, 1 insertion(+)
 </code></pre>
 
@@ -990,6 +3707,9 @@ git push
 
 <pre><code class="bash">cd ~/src/jm-git-demo
 git pull
+</code></pre>
+
+<pre><code>## Already up-to-date.
 </code></pre>
 
 <h1>An important aside: conflict management</h1>
@@ -1010,7 +3730,19 @@ echo &quot;This is going to be a problem...&quot; &gt;&gt; experiment.txt
 git commit -a -m&quot;Changes in the trouble branch&quot;
 </code></pre>
 
-<pre><code>## [trouble 3b78295] Changes in the trouble branch
+<pre><code>## [trouble debf77c] Changes in the trouble branch
+##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Your name and email address were configured automatically based
+## on your username and hostname. Please check that they are accurate.
+## You can suppress this message by setting them explicitly:
+## 
+##     git config --global user.name &quot;Your Name&quot;
+##     git config --global user.email you@example.com
+## 
+## After doing this, you may fix the identity used for this commit with:
+## 
+##     git commit --amend --reset-author
+## 
 ##  1 file changed, 1 insertion(+)
 </code></pre>
 
@@ -1022,7 +3754,19 @@ echo &quot;More work on the master branch...&quot; &gt;&gt; experiment.txt
 git commit -a -m&quot;Mainline work&quot;
 </code></pre>
 
-<pre><code>## [master ae1dae9] Mainline work
+<pre><code>## [master e29bbd7] Mainline work
+##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Your name and email address were configured automatically based
+## on your username and hostname. Please check that they are accurate.
+## You can suppress this message by setting them explicitly:
+## 
+##     git config --global user.name &quot;Your Name&quot;
+##     git config --global user.email you@example.com
+## 
+## After doing this, you may fix the identity used for this commit with:
+## 
+##     git commit --amend --reset-author
+## 
 ##  1 file changed, 1 insertion(+)
 </code></pre>
 
@@ -1033,8 +3777,8 @@ git commit -a -m&quot;Mainline work&quot;
 git merge trouble
 </code></pre>
 
-<pre><code>## Auto-merging experiment.txt
-## CONFLICT (content): Merge conflict in experiment.txt
+<pre><code>## Auto-merging modules/experiment.txt
+## CONFLICT (content): Merge conflict in modules/experiment.txt
 ## Automatic merge failed; fix conflicts and then commit the result.
 </code></pre>
 
@@ -1045,7 +3789,11 @@ cat experiment.txt
 </code></pre>
 
 <pre><code>## Some crazy idea
+## More new content on my experiment
+## More work on the master branch...
+## This is going to be a problem...
 ## &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+## More new content on my experiment
 ## More work on the master branch...
 ## =======
 ## This is going to be a problem...
@@ -1070,6 +3818,10 @@ cat experiment.txt
 </code></pre>
 
 <pre><code>## Some crazy idea
+## More new content on my experiment
+## More work on the master branch...
+## This is going to be a problem...
+## More new content on my experiment
 ## More work on the master branch...
 ## This is going to be a problem...
 </code></pre>
@@ -1081,20 +3833,156 @@ git commit -a -m&quot;Completed merge of trouble, fixing conflicts along the way
 git slog
 </code></pre>
 
-<pre><code>## [master 58a5464] Completed merge of trouble, fixing conflicts along the way
-## *   58a5464 Completed merge of trouble, fixing conflicts along the way
+<pre><code>## [master a990228] Completed merge of trouble, fixing conflicts along the way
+##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Your name and email address were configured automatically based
+## on your username and hostname. Please check that they are accurate.
+## You can suppress this message by setting them explicitly:
+## 
+##     git config --global user.name &quot;Your Name&quot;
+##     git config --global user.email you@example.com
+## 
+## After doing this, you may fix the identity used for this commit with:
+## 
+##     git commit --amend --reset-author
+## 
+## *   a990228 Completed merge of trouble, fixing conflicts along the way
 ## |\  
-## | * 3b78295 Changes in the trouble branch
-## * | ae1dae9 Mainline work
+## | * debf77c Changes in the trouble branch
+## * | e29bbd7 Mainline work
+## * | 4e38e89 More work, on machine #2
+## * | 9a1f4f9 The mainline keeps moving
+## * | 0f845b6 I have made great progress on this critical matter.
+## * | 3d313f8 This is our first commit
+## * |   71b92a4 Completed merge of trouble, fixing conflicts along the way
+## |\ \  
+## | |/  
+## | * e95a78d Changes in the trouble branch
+## * | c255d41 Mainline work
 ## |/  
-## *   ecdf159 Merge branch &#39;experiment&#39;
+## * 967f2e1 More work, on machine #2
+## *   c876a93 Merge branch &#39;experiment&#39;
 ## |\  
-## | * 5e9a0e7 Trying something new
-## * | 6db18d9 The mainline keeps moving
+## | * 67f91a7 Trying something new
+## * | 002b8e0 The mainline keeps moving
 ## |/  
-## * 5664481 I like this new name better
-## * 4fc98f8 I have made great progress on this critical matter.
-## * e26d020 This is our first commit
+## * 9dafa73 I like this new name better
+## * 7a4c5e5 I have made great progress on this critical matter.
+## * e07396e This is our first commit
+## * 8715a3d added mod5 soln
+## * 9c43f0a Update module8_graphics.Rmd
+## * bd71ed2 Update module8_graphics.Rmd
+## * 077dde5 Update README.md
+## *   ec0cc81 Merge pull request #9 from jarrodmillman/workflow
+## |\  
+## | * c1dde99 ENH: almost complete lecture notes
+## |/  
+## *   f5cbae9 Merge branch &#39;master&#39; of https://github.com/berkeley-scf/r-bootcamp-2013
+## |\  
+## | *   fa91275 Merge pull request #8 from jarrodmillman/workflow
+## | |\  
+## | | * 1dc2477 ENH: more work on the Git intro
+## | |/  
+## | *   056b9c9 Merge branch &#39;master&#39; of https://github.com/berkeley-scf/r-bootcamp-2013
+## | |\  
+## | | *   a542120 Merge pull request #7 from jarrodmillman/workflow
+## | | |\  
+## | | | * ce2e535 ENH: fleshing out intro to Git
+## | | |/  
+## | | * 6560e5d Small changes to module 5.
+## | | *   985d6b3 Merge pull request #6 from jarrodmillman/workflow
+## | | |\  
+## | | | * 90ee48b ENH: snapshot
+## | | |/  
+## | * | c1b8baf added mod1/2 solns
+## | |/  
+## * | 31960ca added mod3 soln
+## |/  
+## * 8a9dc85 edits to modules0-3, remake zip
+## * 028ba42 hopefully final (for Saturday sessions) of all slides/html and modules.zip file
+## * 9edc046 Minor changes to breakout problems in module 5
+## *   c3637cd Merge pull request #5 from jarrodmillman/workflow
+## |\  
+## | * aba4fea ENH: checkpointing some minor additions
+## * | 130e7af took out warning in breakout in module3
+## * |   9454a22 Merge branch &#39;master&#39; of https://github.com/berkeley-scf/r-bootcamp-2013
+## |\ \  
+## | * \   93e7a4a Merge pull request #4 from jarrodmillman/workflow
+## | |\ \  
+## | | |/  
+## | | *   fa098e9 Merge remote-tracking branch &#39;upstream/master&#39; into workflow
+## | | |\  
+## | | |/  
+## | |/|   
+## | | * 8e5dba9 ENH: try to properly display Latex in slides
+## * | | 47c3d58 edits to modules
+## |/ /  
+## * | cbab4bb edits to module11
+## * | f8fd82a modified module11
+## |/  
+## * 460fc6c edits to module10
+## * cc4498f edits to module 12
+## * 56a60ae edits to modules 0 and 7
+## * 493113a modified module7
+## * c9b2590 remade the zip file
+## * 1a372d2 edits to module6 breakout and addition of stateIncome.txt
+## * 0c3b46d edits to modules 0, 1, 2
+## * eef2498 edits to module3
+## * 2e18b2c edits to module 3
+## * 45cb7a3 edits to makefile and recompile of all html
+## * 1aeddc7 Updated module 5.
+## * c390e23 edits to modules
+## * 447efa0 minor edits to modules
+## * e369b66 minor changes to modules
+## * d2f1147 minor edits to modules
+## * 5da5e1e added modules.zip with all modules and data
+## * b5fc9bf added html versions of modules
+## * 49c29ef minor mods to modules
+## *   508227e Merge pull request #3 from jarrodmillman/workflow
+## |\  
+## | * 1b74d12 ENH: more on git and reordered slides
+## |/  
+## * 8c1ac54 minor change to module6 path to data file
+## *   5557e39 Merge pull request #2 from jarrodmillman/workflow
+## |\  
+## | *   a833c02 Merge branch &#39;master&#39; into workflow
+## | |\  
+## | |/  
+## |/|   
+## * |   a096735 Merge pull request #1 from jarrodmillman/master
+## |\ \  
+## | | * ef4c762 ENH: checkpointing work-in-progress on module 9, added figs directory
+## | |/  
+## | * ce7c703 ENH: added Makefile and modified make_slides script to accept module to build from commandline argument
+## | * 39ffc54 BF: data directory is one up from modules directory
+## |/  
+## * 0e6699d Added cpds.csv dataset
+## * d5dc77e Create module8_graphics.Rmd
+## * 51fb476 Update module6_analysis.Rmd
+## * b19b86d modified make_slides
+## * f7a6567 renamed gen as make_slides
+## * 0cf3bae added module12
+## * f4705be modified schedule
+## * 16b7eb5 modified schedule
+## * ae006c3 added stub module6 with breakout
+## * f0e4936 edited schedule
+## * cf35aab edits to module11
+## * 60f15c4 more edits to modules 3,11
+## * de7d6af modified module3 among other modules
+## * 32677dc heavily revised modules 1 and 2
+## * bfbab4a various modifications to modules
+## * abb7a14 updated schedule document
+## * 12f0d1f added module3
+## * 4790ed1 added module7
+## * 384cf04 added module2
+## * 04892f3 added draft of module2
+## * 9f9b349 added initial modules and data
+## * 1e3b021 Update test.R
+## * 1754eb4 udated test.R
+## * 116b37c Update test.R
+## * 219f113 adding test.R
+## * 651559d Update README.md
+## * a7469b5 Initial commit
 </code></pre>
 
 <p><em>Note:</em> While it&#39;s a good idea to understand the basics of fixing merge
