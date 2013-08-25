@@ -15,8 +15,6 @@ mydata <- read.csv("../data/cpds.csv")
 
 # Out with the old...
 
-Note to BB: remember to start recording.
-
 You've already seen how to construct basic plots 
 
 ```{r, fig.cap=" "}
@@ -124,6 +122,14 @@ Note that ggplot2 graphs in layers (hence the endless +...+...+...), which reall
 ...+geom_xxxx(data=      , aes(x=     ,y=     ,[options]),[options])+...+...+...
 ```
 
+You can see the layering effect by comparing the same graph with different colors for each layer
+
+```{r, fig.cap=" ", warning=FALSE}
+ggplot(data=mydata, aes(x=vturn, y=realgdpgr))+geom_point(color="black")+geom_point(data=mydata, aes(x=vturn, y=unemp), color="red")
+
+ggplot(data=mydata, aes(x=vturn, y=realgdpgr))+geom_point(color="red")+geom_point(data=mydata, aes(x=vturn, y=unemp), color="black")
+```
+
 # lattice v. ggplot2: Kernel Densities
 
 ```{r, fig.cap=" ", warning=FALSE}
@@ -142,15 +148,33 @@ ggplot(data=mydata, aes(x=vturn, y=outlays))+geom_point() # ggplot2
 
 ```{r, fig.cap=" ", warning=FALSE}
 xyplot(vturn~year, data=mydata, subset=mydata$country=="France") #lattice (points)
-ggplot(data=subset(x=mydata, subset=country=="France", select=c("vturn", "year")), aes(x=year, y=vturn), )+geom_point() # ggplot2 (points)
+ggplot(data=subset(x=mydata, subset=country=="France", select=c("vturn", "year")), aes(x=year, y=vturn) )+geom_point() # ggplot2 (points)
 xyplot(vturn~year, data=mydata, subset=mydata$country=="France", type="l") #lattice (line)
-ggplot(data=subset(x=mydata, subset=country=="France", select=c("vturn", "year")), aes(x=year, y=vturn), )+geom_line() # ggplot2 (line)
+ggplot(data=subset(x=mydata, subset=country=="France", select=c("vturn", "year")), aes(x=year, y=vturn) )+geom_line() # ggplot2 (line)
 ```
 
 # lattice v. ggplot2: "trellis" plots 
 ```{r, fig.cap=" ", warning=FALSE}
 xyplot(vturn~year|country, data=mydata) #lattice
-ggplot(data=mydata, aes(x=year, y=vturn))+geom_point()+facet_wrap(~country) # ggplot2 (points)
+ggplot(data=mydata, aes(x=year, y=vturn))+geom_point()+facet_wrap(~country) #ggplot2
+```
+
+# lattice v. ggplot2: countour plots
+```{r, fig.cap=" ", warning=FALSE}
+data(volcano)
+volcano3d <- melt(volcano)
+names(volcano3d) <- c("xvar", "yvar", "zvar")
+contourplot(zvar~xvar+yvar, data=volcano3d) #lattice
+ggplot(data=volcano3d, aes(x=xvar, y=yvar, z = zvar))+geom_contour() #ggplot2
+```
+
+# lattice v. ggplot2: tile/image plots
+```{r, fig.cap=" ", warning=FALSE}
+data(volcano)
+volcano3d <- melt(volcano)
+names(volcano3d) <- c("xvar", "yvar", "zvar")
+levelplot(zvar~xvar+yvar, data=volcano3d) #lattice
+ggplot(data=volcano3d, aes(x=xvar, y=yvar, z = zvar))+geom_tile(aes(fill=zvar)) #ggplot2
 ```
 
 # lattice: 3D plots
@@ -202,6 +226,32 @@ ggplot(data=      , aes(x=     , y=       , color=      , linetype=     , shape=
 
 Can you see how the different aesthetic types have been implemented?
 
+# Titles, labels, options, etc.
+```{r, fig.cap=" ", warning=FALSE}
+xyplot(vturn~year, data=mydata, subset=mydata$country=="France", 
+       xlab="The X Label", ylab="The Y Label", xlim=c(1980, 1989), 
+       main="The Title") #lattice (points)
+ggplot(data=subset(x=mydata, subset=country=="France", select=c("vturn", "year")), aes(x=year, y=vturn))+
+  geom_point()+xlab(label="The X Label")+ylab(label="The Y Lab")+xlim(1980,1989)+ggtitle(label="The Title") # ggplot2 (points)
+```
+
+# Combining many plots
+```{r, warning=FALSE}
+x<-rnorm(n=1000, mean=0, sd=1)
+y<-x^3-2*x^2+0.5*x
+
+dat<-arrange(data.frame(x,y), x)
+par(mfrow=c(3,1))
+plot(dat$x,dat$y, type="p")
+plot(dat$x,dat$y, type="l")
+plot(dat$x,dat$y, type="o")
+
+plot1=ggplot(data=mydata.subset, aes(x=year, y=vturn, color=))+geom_line(aes(color=country))
+plot2=ggplot(data=mydata.subset, aes(x=year, y=vturn, linetype=))+geom_line(aes(linetype=country))
+plot3=ggplot(data=mydata.subset, aes(x=year, y=vturn, shape=))+geom_point(aes(shape=country))
+grid.arrange(plot1, plot2, plot3, nrow=3, ncol=1)
+```
+
 # Exporting your fancy graphics
 
 Two basic image types
@@ -211,7 +261,7 @@ Two basic image types
 Every pixel of a plot contains its own separate coding; not so great if you want to resize the image
 
 ```{r, eval=FALSE}
-jpeg(filename="bah.png")
+jpeg(filename="bah.png", width=   , height=    )
 plot(x,y)
 dev.off()
 ```
@@ -221,7 +271,7 @@ dev.off()
 Every element of a plot is encoded with a function that gives its coding conditional on several factors; great for resizing
 
 ```{r, eval=FALSE}
-pdf(filename="bah.pdf")
+pdf(filename="bah.pdf", width=   , height=    )
 plot(x,y)
 dev.off()
 ```
@@ -236,9 +286,9 @@ ggsave(filename=, plot=, scale=, width=, height=)
 
 - Two-part breakout
 
-1) Not all variable types are suitable for representation by every ggplot aesthetic.  What kinds of variables can each aesthetic meaningfully represent? 
+1) Not all variable types are suitable for representation by every ggplot aesthetic.  What kinds of variables can the aesthetics color, size, and shape meaningfully represent? 
 
-2) ggplot graphics are often layered, with some data represented by a set of aesthetics being overlayed upon a different combination of data and aesthetics.  Can you fit simple linear trend lines to every facet of the grid voter turnout graph?  Hint: use a simple linear regression and consult ?geom_smooth
+2) ggplot graphics are often layered, with some data represented by a set of aesthetics being overlayed upon a different combination of data and aesthetics.  Can you fit simple linear trend lines to every facet of the grided voter turnout graph?  Hint: use a simple linear regression and consult ?geom_smooth
 
 # Breakout Answers!
 
