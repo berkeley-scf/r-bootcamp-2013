@@ -76,16 +76,18 @@ timeInDays &lt;- <span class="kw">rnorm</span>(<span class="dv">5</span>)  <span
 ## 
 ## Residuals:
 ##      1      2      3      4      5 
-## -1.206  0.628  0.492  0.817 -0.732 
+##  0.345  0.493 -0.768 -0.481  0.411
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept)   -0.255      0.474   -0.54     0.63
-## timeInDays    -0.830      0.604   -1.37     0.26
+## (Intercept)    0.170      0.306    0.56    0.617
+## timeInDays     1.211      0.497    2.44    0.093 .
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 1.05 on 3 degrees of freedom
-## Multiple R-squared:  0.386,  Adjusted R-squared:  0.182 
-## F-statistic: 1.89 on 1 and 3 DF,  p-value: 0.263</code></pre>
+## Residual standard error: 0.671 on 3 degrees of freedom
+## Multiple R-squared:  0.665,  Adjusted R-squared:  0.553
+## F-statistic: 5.94 on 1 and 3 DF,  p-value: 0.0927</code></pre>
 <ul>
 <li><a href="http://google-styleguide.googlecode.com/svn/trunk/Rguide.xml">Google's R Style Guide</a></li>
 </ul>
@@ -178,13 +180,13 @@ Rprof(NULL)</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">x &lt;- <span class="kw">rnorm</span>(<span class="fl">1e+08</span>)
 <span class="kw">gc</span>()</code></pre>
 <pre><code>##             used  (Mb) gc trigger  (Mb)  max used  (Mb)
-## Ncells    165003   8.9     350000  18.7    335312  18.0
-## Vcells 100530050 767.0  122196780 932.3 110537061 843.4</code></pre>
+## Ncells    167820   9.0     350000  18.7    335239  18.0
+## Vcells 100534930 767.1  122202161 932.4 110541941 843.4</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>()
 <span class="kw">gc</span>()</code></pre>
 <pre><code>##             used  (Mb) gc trigger  (Mb)  max used  (Mb)
-## Ncells    165025   8.9     350000  18.7    335312  18.0
-## Vcells 100530097 767.0  128386619 979.6 110537061 843.4</code></pre>
+## Ncells    167842   9.0     350000  18.7    335239  18.0
+## Vcells 100534977 767.1  128392269 979.6 110541941 843.4</code></pre>
 </div>
 <div class="section slide level1" id="some-ideas-about-reproducibility">
 <h1>Some ideas about reproducibility</h1>
@@ -326,20 +328,20 @@ git init jm-git-demo</code></pre>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> ~/src/jm-git-demo
 <span class="kw">ls</span> -la</code></pre>
 <pre><code>## total 12
-## drwxrwxr-x   3 jarrod jarrod 4096 Aug 25 09:42 .
-## drwxrwxr-x. 16 jarrod jarrod 4096 Aug 25 09:42 ..
-## drwxrwxr-x   7 jarrod jarrod 4096 Aug 25 09:42 .git</code></pre>
+## drwxrwxr-x   3 jarrod jarrod 4096 Aug 25 10:51 .
+## drwxrwxr-x. 15 jarrod jarrod 4096 Aug 25 10:51 ..
+## drwxrwxr-x   7 jarrod jarrod 4096 Aug 25 10:51 .git</code></pre>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> ~/src/jm-git-demo
 <span class="kw">ls</span> -l .git</code></pre>
 <pre><code>## total 32
-## drwxrwxr-x 2 jarrod jarrod 4096 Aug 25 09:42 branches
-## -rw-rw-r-- 1 jarrod jarrod   92 Aug 25 09:42 config
-## -rw-rw-r-- 1 jarrod jarrod   73 Aug 25 09:42 description
-## -rw-rw-r-- 1 jarrod jarrod   23 Aug 25 09:42 HEAD
-## drwxrwxr-x 2 jarrod jarrod 4096 Aug 25 09:42 hooks
-## drwxrwxr-x 2 jarrod jarrod 4096 Aug 25 09:42 info
-## drwxrwxr-x 4 jarrod jarrod 4096 Aug 25 09:42 objects
-## drwxrwxr-x 4 jarrod jarrod 4096 Aug 25 09:42 refs</code></pre>
+## drwxrwxr-x 2 jarrod jarrod 4096 Aug 25 10:51 branches
+## -rw-rw-r-- 1 jarrod jarrod   92 Aug 25 10:51 config
+## -rw-rw-r-- 1 jarrod jarrod   73 Aug 25 10:51 description
+## -rw-rw-r-- 1 jarrod jarrod   23 Aug 25 10:51 HEAD
+## drwxrwxr-x 2 jarrod jarrod 4096 Aug 25 10:51 hooks
+## drwxrwxr-x 2 jarrod jarrod 4096 Aug 25 10:51 info
+## drwxrwxr-x 4 jarrod jarrod 4096 Aug 25 10:51 objects
+## drwxrwxr-x 4 jarrod jarrod 4096 Aug 25 10:51 refs</code></pre>
 </div>
 <div class="section slide level1" id="git-add-adding-content-to-the-repository">
 <h1><code>git add</code>: adding content to the repository</h1>
@@ -367,7 +369,7 @@ git status</code></pre>
 <p>For now, we are <em>always</em> going to call <code>git commit</code> either with the <code>-a</code> option <em>or</em> with specific filenames (<code>git commit file1 file2...</code>). This delays the discussion of an aspect of git called the <em>index</em> (often referred to also as the 'staging area') that we will cover later. Most everyday work in regular scientific practice doesn't require understanding the extra moving parts that the index involves, so on a first round we'll bypass it. Later on we will discuss how to use it to achieve more fine-grained control of what and how git records our actions.</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> ~/src/jm-git-demo
 git commit -a -m<span class="st">&quot;This is our first commit&quot;</span></code></pre>
-<pre><code>## [master (root-commit) f38ca36] This is our first commit
+<pre><code>## [master (root-commit) 34fc13b] This is our first commit
 ##  1 file changed, 1 insertion(+)
 ##  create mode 100644 file1.txt</code></pre>
 <p>In the commit above, we used the <code>-m</code> flag to specify a message at the command line. If we don't do that, git will open the editor we specified in our configuration above and require that we enter a message. By default, git refuses to record changes that don't have a message to go along with them (though you can obviously 'cheat' by using an empty or meaningless string: git only tries to facilitate best practices, it's not your nanny).</p>
@@ -376,9 +378,9 @@ git commit -a -m<span class="st">&quot;This is our first commit&quot;</span></co
 <h1><code>git log</code>: what has been committed so far</h1>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> ~/src/jm-git-demo
 git log</code></pre>
-<pre><code>## commit f38ca36d4b77664ed0d77c3f5d294244772d13b1
+<pre><code>## commit 34fc13bbf9e86a94a0a15fc799ec4f5afda3a680
 ## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
-## Date:   Sun Aug 25 09:42:22 2013 -0700
+## Date:   Sun Aug 25 10:51:39 2013 -0700
 ## 
 ##     This is our first commit</code></pre>
 </div>
@@ -402,7 +404,7 @@ git <span class="kw">diff</span></code></pre>
 <h1>The cycle of git virtue: work, commit, work, commit, ...</h1>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> ~/src/jm-git-demo
 git commit -a -m<span class="st">&quot;I have made great progress on this critical matter.&quot;</span></code></pre>
-<pre><code>## [master c8c1fba] I have made great progress on this critical matter.
+<pre><code>## [master 9416c44] I have made great progress on this critical matter.
 ##  1 file changed, 1 insertion(+)</code></pre>
 <ul>
 <li><code>git log</code> revisited</li>
@@ -410,30 +412,30 @@ git commit -a -m<span class="st">&quot;I have made great progress on this critic
 <p>First, let's see what the log shows us now:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> ~/src/jm-git-demo
 git log</code></pre>
-<pre><code>## commit c8c1fba46bcafd5b4212df4a5e47038d611306b1
+<pre><code>## commit 9416c447aeb772d24c860765c75938ffb20b0c47
 ## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
-## Date:   Sun Aug 25 09:42:22 2013 -0700
+## Date:   Sun Aug 25 10:51:40 2013 -0700
 ## 
 ##     I have made great progress on this critical matter.
 ## 
-## commit f38ca36d4b77664ed0d77c3f5d294244772d13b1
+## commit 34fc13bbf9e86a94a0a15fc799ec4f5afda3a680
 ## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
-## Date:   Sun Aug 25 09:42:22 2013 -0700
+## Date:   Sun Aug 25 10:51:39 2013 -0700
 ## 
 ##     This is our first commit</code></pre>
 <p>Sometimes it's handy to see a very summarized version of the log:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> ~/src/jm-git-demo
 git log --oneline --topo-order --graph</code></pre>
-<pre><code>## * c8c1fba I have made great progress on this critical matter.
-## * f38ca36 This is our first commit</code></pre>
+<pre><code>## * 9416c44 I have made great progress on this critical matter.
+## * 34fc13b This is our first commit</code></pre>
 <p>Git supports <em>aliases:</em> new names given to command combinations. Let's make this handy shortlog an alias, so we only have to type <code>git slog</code> and see this compact log:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> ~/src/jm-git-demo
 <span class="co"># We create our alias (this saves it in git's permanent configuration file):</span>
 git config --global alias.slog <span class="st">&quot;log --oneline --topo-order --graph&quot;</span>
 <span class="co"># And now we can use it</span>
 git slog</code></pre>
-<pre><code>## * c8c1fba I have made great progress on this critical matter.
-## * f38ca36 This is our first commit</code></pre>
+<pre><code>## * 9416c44 I have made great progress on this critical matter.
+## * 34fc13b This is our first commit</code></pre>
 </div>
 <div class="section slide level1" id="git-mv-and-rm-moving-and-removing-files">
 <h1><code>git mv</code> and <code>rm</code>: moving and removing files</h1>
@@ -452,13 +454,13 @@ git status</code></pre>
 git commit -a -m<span class="st">&quot;I like this new name better&quot;</span>
 <span class="kw">echo</span> <span class="st">&quot;Let's look at the log again:&quot;</span>
 git slog</code></pre>
-<pre><code>## [master 5a638bc] I like this new name better
+<pre><code>## [master c1deb83] I like this new name better
 ##  1 file changed, 0 insertions(+), 0 deletions(-)
 ##  rename file1.txt =&gt; file-newname.txt (100%)
 ## Let's look at the log again:
-## * 5a638bc I like this new name better
-## * c8c1fba I have made great progress on this critical matter.
-## * f38ca36 This is our first commit</code></pre>
+## * c1deb83 I like this new name better
+## * 9416c44 I have made great progress on this critical matter.
+## * 34fc13b This is our first commit</code></pre>
 <p>And <code>git rm</code> works in a similar fashion.</p>
 <p><strong>Optional:</strong> Exercise</p>
 <p>Add a new file <code>file2.txt</code>, commit it, make some changes to it, commit them again, and then remove it (and don't forget to commit this last step!).</p>
@@ -504,29 +506,29 @@ git checkout experiment</code></pre>
 git add experiment.txt
 git commit -a -m<span class="st">&quot;Trying something new&quot;</span>
 git slog</code></pre>
-<pre><code>## [experiment 0b6518d] Trying something new
+<pre><code>## [experiment 5c46400] Trying something new
 ##  1 file changed, 1 insertion(+)
 ##  create mode 100644 experiment.txt
-## * 0b6518d Trying something new
-## * 5a638bc I like this new name better
-## * c8c1fba I have made great progress on this critical matter.
-## * f38ca36 This is our first commit</code></pre>
+## * 5c46400 Trying something new
+## * c1deb83 I like this new name better
+## * 9416c44 I have made great progress on this critical matter.
+## * 34fc13b This is our first commit</code></pre>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> ~/src/jm-git-demo
 git checkout master
 git slog</code></pre>
-<pre><code>## * 5a638bc I like this new name better
-## * c8c1fba I have made great progress on this critical matter.
-## * f38ca36 This is our first commit</code></pre>
+<pre><code>## * c1deb83 I like this new name better
+## * 9416c44 I have made great progress on this critical matter.
+## * 34fc13b This is our first commit</code></pre>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> ~/src/jm-git-demo
 <span class="kw">echo</span> <span class="st">&quot;All the while, more work goes on in master...&quot;</span> <span class="kw">&gt;&gt;</span> file-newname.txt
 git commit -a -m<span class="st">&quot;The mainline keeps moving&quot;</span>
 git slog</code></pre>
-<pre><code>## [master 6d36929] The mainline keeps moving
+<pre><code>## [master 0a14293] The mainline keeps moving
 ##  1 file changed, 1 insertion(+)
-## * 6d36929 The mainline keeps moving
-## * 5a638bc I like this new name better
-## * c8c1fba I have made great progress on this critical matter.
-## * f38ca36 This is our first commit</code></pre>
+## * 0a14293 The mainline keeps moving
+## * c1deb83 I like this new name better
+## * 9416c44 I have made great progress on this critical matter.
+## * 34fc13b This is our first commit</code></pre>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> ~/src/jm-git-demo
 <span class="kw">ls</span></code></pre>
 <pre><code>## file-newname.txt</code></pre>
@@ -537,14 +539,14 @@ git slog</code></pre>
 ##  experiment.txt | 1 +
 ##  1 file changed, 1 insertion(+)
 ##  create mode 100644 experiment.txt
-## *   e88482f Merge branch 'experiment'
+## *   1b2244c Merge branch 'experiment'
 ## |\  
-## | * 0b6518d Trying something new
-## * | 6d36929 The mainline keeps moving
+## | * 5c46400 Trying something new
+## * | 0a14293 The mainline keeps moving
 ## |/  
-## * 5a638bc I like this new name better
-## * c8c1fba I have made great progress on this critical matter.
-## * f38ca36 This is our first commit</code></pre>
+## * c1deb83 I like this new name better
+## * 9416c44 I have made great progress on this critical matter.
+## * 34fc13b This is our first commit</code></pre>
 </div>
 <div class="section slide level1" id="using-remotes-as-a-single-user">
 <h1>Using remotes as a single user</h1>
@@ -582,7 +584,7 @@ git remote -v</code></pre>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> ~/src/test2  <span class="co"># working on computer #2</span>
 <span class="kw">echo</span> <span class="st">&quot;More new content on my experiment&quot;</span> <span class="kw">&gt;&gt;</span> experiment.txt
 git commit -a -m<span class="st">&quot;More work, on machine #2&quot;</span></code></pre>
-<pre><code>## [master ee56096] More work, on machine #2
+<pre><code>## [master 3e80a71] More work, on machine #2
 ##  1 file changed, 1 insertion(+)</code></pre>
 <p>Now we put this new work up on the github server so it's available from the internet</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> ~/src/test2  <span class="co"># working on computer #2</span>
@@ -600,14 +602,14 @@ git branch trouble
 git checkout trouble
 <span class="kw">echo</span> <span class="st">&quot;This is going to be a problem...&quot;</span> <span class="kw">&gt;&gt;</span> experiment.txt
 git commit -a -m<span class="st">&quot;Changes in the trouble branch&quot;</span></code></pre>
-<pre><code>## [trouble f15db2d] Changes in the trouble branch
+<pre><code>## [trouble 94d1c5e] Changes in the trouble branch
 ##  1 file changed, 1 insertion(+)</code></pre>
 <p>And now we go back to the master branch, where we change the <em>same</em> file:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> ~/src/jm-git-demo
 git checkout master
 <span class="kw">echo</span> <span class="st">&quot;More work on the master branch...&quot;</span> <span class="kw">&gt;&gt;</span> experiment.txt
 git commit -a -m<span class="st">&quot;Mainline work&quot;</span></code></pre>
-<pre><code>## [master 3be33c8] Mainline work
+<pre><code>## [master 33493e3] Mainline work
 ##  1 file changed, 1 insertion(+)</code></pre>
 <p>So now let's see what happens if we try to merge the <code>trouble</code> branch into <code>master</code>:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> ~/src/jm-git-demo
@@ -639,20 +641,20 @@ git merge trouble</code></pre>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> ~/src/jm-git-demo
 git commit -a -m<span class="st">&quot;Completed merge of trouble, fixing conflicts along the way&quot;</span>
 git slog</code></pre>
-<pre><code>## [master 2206119] Completed merge of trouble, fixing conflicts along the way
-## *   2206119 Completed merge of trouble, fixing conflicts along the way
+<pre><code>## [master 70c729f] Completed merge of trouble, fixing conflicts along the way
+## *   70c729f Completed merge of trouble, fixing conflicts along the way
 ## |\  
-## | * f15db2d Changes in the trouble branch
-## * | 3be33c8 Mainline work
+## | * 94d1c5e Changes in the trouble branch
+## * | 33493e3 Mainline work
 ## |/  
-## *   e88482f Merge branch 'experiment'
+## *   1b2244c Merge branch 'experiment'
 ## |\  
-## | * 0b6518d Trying something new
-## * | 6d36929 The mainline keeps moving
+## | * 5c46400 Trying something new
+## * | 0a14293 The mainline keeps moving
 ## |/  
-## * 5a638bc I like this new name better
-## * c8c1fba I have made great progress on this critical matter.
-## * f38ca36 This is our first commit</code></pre>
+## * c1deb83 I like this new name better
+## * 9416c44 I have made great progress on this critical matter.
+## * 34fc13b This is our first commit</code></pre>
 <p><em>Note:</em> While it's a good idea to understand the basics of fixing merge conflicts by hand, in some cases you may find the use of an automated tool useful. Git supports multiple <a href="https://www.kernel.org/pub/software/scm/git/docs/git-mergetool.html">merge tools</a>: a merge tool is a piece of software that conforms to a basic interface and knows how to merge two files into a new one. Since these are typically graphical tools, there are various to choose from for the different operating systems, and as long as they obey a basic command structure, git can work with any of them.</p>
 </div>
 <div class="section slide level1" id="collaborating-on-github-with-a-small-team">
@@ -732,10 +734,10 @@ git slog</code></pre>
 <div class="section slide level1" id="breakout">
 <h1>Breakout</h1>
 <ol style="list-style-type: decimal">
-<li><p>Configure Git for use at the commandline.</p></li>
-<li><p>Clone practice problem.</p></li>
-<li><p>Debug script.</p></li>
-<li><p>Write a little helper function to profile code.</p></li>
+<li><p>Configure Git for use at the commandline (see next slide).</p></li>
+<li><p>Clone practice problem: <code>bash cd &lt;where you want to work&gt; git clone https://github.com/berkeley-scf/r-bootcamp-2013.git</code></p></li>
+<li><p>Debug <code>fun3</code> in <code>r-bootcamp-2013/modules/src/profile-example.R</code>.</p></li>
+<li><p>Profile and interpret results.</p></li>
 </ol>
 </div>
 <div class="section slide level1" id="breakout-configure-git">

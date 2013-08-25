@@ -184,17 +184,21 @@ hr {
 <h1>How not to make a mess of it</h1>
 
 <blockquote>
-<p>Programmers are always surrounded by complexity;
-we cannot avoid it. Our applications are complex because
-we are ambitious to use our computers in ever more
-sophisticated ways. Programming is complex because of
-the large number of conflicting objectives for each of our
-programming projects. *If our basic tool, the language in
-which we design and code our programs, is also complicated,
-the language itself becomes part of the problem
-rather than part of its solution.</p>
+<p>Programmers are always surrounded by complexity; we cannot avoid it. Our
+applications are complex because we are ambitious to use our computers in
+ever more sophisticated ways. Programming is complex because of the large
+number of conflicting objectives for each of our programming projects. *If
+our basic tool, the language in which we design and code our programs, is
+also complicated, the language itself becomes part of the problem rather than
+part of its solution.</p>
 
-<p>At first I hoped that such a technically unsound project would collapse but I soon realized it was doomed to success. Almost anything in software can be implemented, sold, and even used given enough determination. There is nothing a mere scientist can say that will stand against the flood of a hundred million dollars. But there is one quality that cannot be purchased in this way — and that is reliability. The price of reliability is the pursuit of the utmost simplicity. It is a price which the very rich find most hard to pay.</p>
+<p>At first I hoped that such a technically unsound project would collapse but I
+soon realized it was doomed to success. Almost anything in software can be
+implemented, sold, and even used given enough determination. There is nothing
+a mere scientist can say that will stand against the flood of a hundred
+million dollars. But there is one quality that cannot be purchased in this
+way — and that is reliability. The price of reliability is the pursuit of the
+utmost simplicity. It is a price which the very rich find most hard to pay.</p>
 
 <p>&mdash; C.A.R. Hoare - The Emperor&#39;s Old Clothes - Turing Award Lecture (1980)</p>
 </blockquote>
@@ -405,18 +409,18 @@ object.size(x)
 gc()
 </code></pre>
 
-<pre><code>##             used  (Mb) gc trigger   (Mb)  max used  (Mb)
-## Ncells    169810   9.1     350000   18.7    350000  18.7
-## Vcells 100830541 769.3  141710246 1081.2 110945145 846.5
+<pre><code>##             used  (Mb) gc trigger   (Mb) max used  (Mb)
+## Ncells    172627   9.3     350000   18.7 3.50e+05  18.7
+## Vcells 100835411 769.4  141716476 1081.3 1.11e+08 846.6
 </code></pre>
 
 <pre><code class="r">rm()
 gc()
 </code></pre>
 
-<pre><code>##             used  (Mb) gc trigger   (Mb)  max used  (Mb)
-## Ncells    169829   9.1     350000   18.7    350000  18.7
-## Vcells 100830580 769.3  148875758 1135.9 110945145 846.5
+<pre><code>##             used  (Mb) gc trigger   (Mb) max used  (Mb)
+## Ncells    172646   9.3     350000   18.7 3.50e+05  18.7
+## Vcells 100835450 769.4  148882299 1135.9 1.11e+08 846.6
 </code></pre>
 
 <h1>Some ideas about reproducibility</h1>
@@ -593,9 +597,9 @@ ls -la
 </code></pre>
 
 <pre><code>## total 12
-## drwxrwxr-x   3 jarrod jarrod 4096 Aug 25 09:42 .
-## drwxrwxr-x. 16 jarrod jarrod 4096 Aug 25 09:42 ..
-## drwxrwxr-x   7 jarrod jarrod 4096 Aug 25 09:42 .git
+## drwxrwxr-x   3 jarrod jarrod 4096 Aug 25 10:51 .
+## drwxrwxr-x. 15 jarrod jarrod 4096 Aug 25 10:51 ..
+## drwxrwxr-x   7 jarrod jarrod 4096 Aug 25 10:51 .git
 </code></pre>
 
 <pre><code class="bash">cd ~/src/jm-git-demo
@@ -603,14 +607,14 @@ ls -l .git
 </code></pre>
 
 <pre><code>## total 32
-## drwxrwxr-x 2 jarrod jarrod 4096 Aug 25 09:42 branches
-## -rw-rw-r-- 1 jarrod jarrod   92 Aug 25 09:42 config
-## -rw-rw-r-- 1 jarrod jarrod   73 Aug 25 09:42 description
-## -rw-rw-r-- 1 jarrod jarrod   23 Aug 25 09:42 HEAD
-## drwxrwxr-x 2 jarrod jarrod 4096 Aug 25 09:42 hooks
-## drwxrwxr-x 2 jarrod jarrod 4096 Aug 25 09:42 info
-## drwxrwxr-x 4 jarrod jarrod 4096 Aug 25 09:42 objects
-## drwxrwxr-x 4 jarrod jarrod 4096 Aug 25 09:42 refs
+## drwxrwxr-x 2 jarrod jarrod 4096 Aug 25 10:51 branches
+## -rw-rw-r-- 1 jarrod jarrod   92 Aug 25 10:51 config
+## -rw-rw-r-- 1 jarrod jarrod   73 Aug 25 10:51 description
+## -rw-rw-r-- 1 jarrod jarrod   23 Aug 25 10:51 HEAD
+## drwxrwxr-x 2 jarrod jarrod 4096 Aug 25 10:51 hooks
+## drwxrwxr-x 2 jarrod jarrod 4096 Aug 25 10:51 info
+## drwxrwxr-x 4 jarrod jarrod 4096 Aug 25 10:51 objects
+## drwxrwxr-x 4 jarrod jarrod 4096 Aug 25 10:51 refs
 </code></pre>
 
 <h1><code>git add</code>: adding content to the repository</h1>
@@ -661,7 +665,7 @@ records our actions.</p>
 git commit -a -m&quot;This is our first commit&quot;
 </code></pre>
 
-<pre><code>## [master (root-commit) f91e90f] This is our first commit
+<pre><code>## [master (root-commit) b57d53f] This is our first commit
 ##  1 file changed, 1 insertion(+)
 ##  create mode 100644 file1.txt
 </code></pre>
@@ -679,9 +683,9 @@ only tries to facilitate best practices, it&#39;s not your nanny).</p>
 git log
 </code></pre>
 
-<pre><code>## commit f91e90f7ee79b912627d110df62c76f825331077
+<pre><code>## commit b57d53f8ce4ccc0d1cc7b1d933bb95a7b723f556
 ## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
-## Date:   Sun Aug 25 09:42:44 2013 -0700
+## Date:   Sun Aug 25 10:51:58 2013 -0700
 ## 
 ##     This is our first commit
 </code></pre>
@@ -717,7 +721,7 @@ git diff
 git commit -a -m&quot;I have made great progress on this critical matter.&quot;
 </code></pre>
 
-<pre><code>## [master ce035c7] I have made great progress on this critical matter.
+<pre><code>## [master 498e26f] I have made great progress on this critical matter.
 ##  1 file changed, 1 insertion(+)
 </code></pre>
 
@@ -731,15 +735,15 @@ git commit -a -m&quot;I have made great progress on this critical matter.&quot;
 git log
 </code></pre>
 
-<pre><code>## commit ce035c75679c7386e17216eac8bd6585015ded0f
+<pre><code>## commit 498e26f8afdeed0daaa7a8613012068a38665485
 ## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
-## Date:   Sun Aug 25 09:42:44 2013 -0700
+## Date:   Sun Aug 25 10:51:58 2013 -0700
 ## 
 ##     I have made great progress on this critical matter.
 ## 
-## commit f91e90f7ee79b912627d110df62c76f825331077
+## commit b57d53f8ce4ccc0d1cc7b1d933bb95a7b723f556
 ## Author: Jarrod Millman &lt;jarrod.millman@gmail.com&gt;
-## Date:   Sun Aug 25 09:42:44 2013 -0700
+## Date:   Sun Aug 25 10:51:58 2013 -0700
 ## 
 ##     This is our first commit
 </code></pre>
@@ -750,8 +754,8 @@ git log
 git log --oneline --topo-order --graph
 </code></pre>
 
-<pre><code>## * ce035c7 I have made great progress on this critical matter.
-## * f91e90f This is our first commit
+<pre><code>## * 498e26f I have made great progress on this critical matter.
+## * b57d53f This is our first commit
 </code></pre>
 
 <p>Git supports <em>aliases:</em> new names given to command combinations. Let&#39;s make this
@@ -765,8 +769,8 @@ git config --global alias.slog &quot;log --oneline --topo-order --graph&quot;
 git slog
 </code></pre>
 
-<pre><code>## * ce035c7 I have made great progress on this critical matter.
-## * f91e90f This is our first commit
+<pre><code>## * 498e26f I have made great progress on this critical matter.
+## * b57d53f This is our first commit
 </code></pre>
 
 <h1><code>git mv</code> and <code>rm</code>: moving and removing files</h1>
@@ -798,13 +802,13 @@ echo &quot;Let&#39;s look at the log again:&quot;
 git slog
 </code></pre>
 
-<pre><code>## [master b829523] I like this new name better
+<pre><code>## [master b169628] I like this new name better
 ##  1 file changed, 0 insertions(+), 0 deletions(-)
 ##  rename file1.txt =&gt; file-newname.txt (100%)
 ## Let&#39;s look at the log again:
-## * b829523 I like this new name better
-## * ce035c7 I have made great progress on this critical matter.
-## * f91e90f This is our first commit
+## * b169628 I like this new name better
+## * 498e26f I have made great progress on this critical matter.
+## * b57d53f This is our first commit
 </code></pre>
 
 <p>And <code>git rm</code> works in a similar fashion.</p>
@@ -875,13 +879,13 @@ git commit -a -m&quot;Trying something new&quot;
 git slog
 </code></pre>
 
-<pre><code>## [experiment b0de8ff] Trying something new
+<pre><code>## [experiment 8d689ae] Trying something new
 ##  1 file changed, 1 insertion(+)
 ##  create mode 100644 experiment.txt
-## * b0de8ff Trying something new
-## * b829523 I like this new name better
-## * ce035c7 I have made great progress on this critical matter.
-## * f91e90f This is our first commit
+## * 8d689ae Trying something new
+## * b169628 I like this new name better
+## * 498e26f I have made great progress on this critical matter.
+## * b57d53f This is our first commit
 </code></pre>
 
 <pre><code class="bash">cd ~/src/jm-git-demo
@@ -889,9 +893,9 @@ git checkout master
 git slog
 </code></pre>
 
-<pre><code>## * b829523 I like this new name better
-## * ce035c7 I have made great progress on this critical matter.
-## * f91e90f This is our first commit
+<pre><code>## * b169628 I like this new name better
+## * 498e26f I have made great progress on this critical matter.
+## * b57d53f This is our first commit
 </code></pre>
 
 <pre><code class="bash">cd ~/src/jm-git-demo
@@ -900,12 +904,12 @@ git commit -a -m&quot;The mainline keeps moving&quot;
 git slog
 </code></pre>
 
-<pre><code>## [master b43a913] The mainline keeps moving
+<pre><code>## [master 450421a] The mainline keeps moving
 ##  1 file changed, 1 insertion(+)
-## * b43a913 The mainline keeps moving
-## * b829523 I like this new name better
-## * ce035c7 I have made great progress on this critical matter.
-## * f91e90f This is our first commit
+## * 450421a The mainline keeps moving
+## * b169628 I like this new name better
+## * 498e26f I have made great progress on this critical matter.
+## * b57d53f This is our first commit
 </code></pre>
 
 <pre><code class="bash">cd ~/src/jm-git-demo
@@ -924,14 +928,14 @@ git slog
 ##  experiment.txt | 1 +
 ##  1 file changed, 1 insertion(+)
 ##  create mode 100644 experiment.txt
-## *   113473d Merge branch &#39;experiment&#39;
+## *   19e79ca Merge branch &#39;experiment&#39;
 ## |\  
-## | * b0de8ff Trying something new
-## * | b43a913 The mainline keeps moving
+## | * 8d689ae Trying something new
+## * | 450421a The mainline keeps moving
 ## |/  
-## * b829523 I like this new name better
-## * ce035c7 I have made great progress on this critical matter.
-## * f91e90f This is our first commit
+## * b169628 I like this new name better
+## * 498e26f I have made great progress on this critical matter.
+## * b57d53f This is our first commit
 </code></pre>
 
 <h1>Using remotes as a single user</h1>
@@ -1008,7 +1012,7 @@ echo &quot;More new content on my experiment&quot; &gt;&gt; experiment.txt
 git commit -a -m&quot;More work, on machine #2&quot;
 </code></pre>
 
-<pre><code>## [master ef26cf2] More work, on machine #2
+<pre><code>## [master 3686da9] More work, on machine #2
 ##  1 file changed, 1 insertion(+)
 </code></pre>
 
@@ -1043,7 +1047,7 @@ echo &quot;This is going to be a problem...&quot; &gt;&gt; experiment.txt
 git commit -a -m&quot;Changes in the trouble branch&quot;
 </code></pre>
 
-<pre><code>## [trouble 3861ee2] Changes in the trouble branch
+<pre><code>## [trouble 7dab450] Changes in the trouble branch
 ##  1 file changed, 1 insertion(+)
 </code></pre>
 
@@ -1055,7 +1059,7 @@ echo &quot;More work on the master branch...&quot; &gt;&gt; experiment.txt
 git commit -a -m&quot;Mainline work&quot;
 </code></pre>
 
-<pre><code>## [master ac58679] Mainline work
+<pre><code>## [master 88f9cf9] Mainline work
 ##  1 file changed, 1 insertion(+)
 </code></pre>
 
@@ -1114,20 +1118,20 @@ git commit -a -m&quot;Completed merge of trouble, fixing conflicts along the way
 git slog
 </code></pre>
 
-<pre><code>## [master 5625347] Completed merge of trouble, fixing conflicts along the way
-## *   5625347 Completed merge of trouble, fixing conflicts along the way
+<pre><code>## [master d1a809b] Completed merge of trouble, fixing conflicts along the way
+## *   d1a809b Completed merge of trouble, fixing conflicts along the way
 ## |\  
-## | * 3861ee2 Changes in the trouble branch
-## * | ac58679 Mainline work
+## | * 7dab450 Changes in the trouble branch
+## * | 88f9cf9 Mainline work
 ## |/  
-## *   113473d Merge branch &#39;experiment&#39;
+## *   19e79ca Merge branch &#39;experiment&#39;
 ## |\  
-## | * b0de8ff Trying something new
-## * | b43a913 The mainline keeps moving
+## | * 8d689ae Trying something new
+## * | 450421a The mainline keeps moving
 ## |/  
-## * b829523 I like this new name better
-## * ce035c7 I have made great progress on this critical matter.
-## * f91e90f This is our first commit
+## * b169628 I like this new name better
+## * 498e26f I have made great progress on this critical matter.
+## * b57d53f This is our first commit
 </code></pre>
 
 <p><em>Note:</em> While it&#39;s a good idea to understand the basics of fixing merge
@@ -1183,7 +1187,7 @@ if there&#39;s a conflict, the server repo would be left in a conflicted state
 without a human to fix things up).  The solution is for Bob to first pull the
 changes (pull in git is really fetch+merge), and then push again.</p>
 
-<p>#Learning Git</p>
+<h1>Learning Git</h1>
 
 <ul>
 <li><a href="http://nyuccl.org/pages/GitTutorial/">Git for Scientists: A Tutorial</a></li>
@@ -1239,10 +1243,14 @@ bootcamp:</p>
 <h1>Breakout</h1>
 
 <ol>
-<li><p>Configure Git for use at the commandline.</p></li>
-<li><p>Clone practice problem.</p></li>
-<li><p>Debug script.</p></li>
-<li><p>Write a little helper function to profile code.</p></li>
+<li><p>Configure Git for use at the commandline (see next slide).</p></li>
+<li><p>Clone practice problem:</p>
+
+<pre><code class="bash">cd &lt;where you want to work&gt;
+git clone https://github.com/berkeley-scf/r-bootcamp-2013.git
+</code></pre></li>
+<li><p>Debug <code>fun3</code> in <code>r-bootcamp-2013/modules/src/profile-example.R</code>.</p></li>
+<li><p>Profile and interpret results.</p></li>
 </ol>
 
 <h1>Breakout: configure Git</h1>
