@@ -372,7 +372,7 @@ gc()
 
 <pre><code>##             used  (Mb) gc trigger   (Mb)  max used  (Mb)
 ## Ncells    179585   9.6     407500   21.8    407500  21.8
-## Vcells 100834805 769.4  141716337 1081.3 110976253 846.7
+## Vcells 100834805 769.4  141716337 1081.3 110976266 846.7
 </code></pre>
 
 <pre><code class="r">rm()
@@ -381,7 +381,7 @@ gc()
 
 <pre><code>##             used  (Mb) gc trigger   (Mb)  max used  (Mb)
 ## Ncells    179604   9.6     407500   21.8    407500  21.8
-## Vcells 100834844 769.4  148882153 1135.9 110976253 846.7
+## Vcells 100834844 769.4  148882153 1135.9 110976266 846.7
 </code></pre>
 
 <h1>Some ideas about reproducibility</h1>
@@ -558,8 +558,8 @@ ls -la
 </code></pre>
 
 <pre><code>## total 3
-## drwxr-sr-x 3 paciorek scfstaff  3 Aug 24  2013 .
-## drwxr-sr-x 3 paciorek scfstaff  3 Aug 24  2013 ..
+## drwxr-sr-x 3 paciorek scfstaff  3 Aug 24 18:43 .
+## drwxr-sr-x 3 paciorek scfstaff  3 Aug 24 18:43 ..
 ## drwxr-sr-x 7 paciorek scfstaff 10 Aug 24  2013 .git
 </code></pre>
 
@@ -573,9 +573,9 @@ ls -l .git
 ## -rw-r--r-- 1 paciorek scfstaff 73 Aug 24  2013 description
 ## -rw-r--r-- 1 paciorek scfstaff 23 Aug 24  2013 HEAD
 ## drwxr-sr-x 2 paciorek scfstaff 10 Aug 24  2013 hooks
-## drwxr-sr-x 2 paciorek scfstaff  3 Aug 24  2013 info
+## drwxr-sr-x 2 paciorek scfstaff  3 Aug 24 18:43 info
 ## drwxr-sr-x 4 paciorek scfstaff  4 Aug 24  2013 objects
-## drwxr-sr-x 4 paciorek scfstaff  4 Aug 24  2013 refs
+## drwxr-sr-x 4 paciorek scfstaff  4 Aug 24 18:43 refs
 </code></pre>
 
 <h1><code>git add</code>: adding content to the repository</h1>
@@ -626,7 +626,7 @@ records our actions.</p>
 git commit -a -m&quot;This is our first commit&quot;
 </code></pre>
 
-<pre><code>## [master (root-commit) cd8d275] This is our first commit
+<pre><code>## [master (root-commit) a480cd5] This is our first commit
 ##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
 ## Your name and email address were configured automatically based
 ## on your username and hostname. Please check that they are accurate.
@@ -656,9 +656,9 @@ only tries to facilitate best practices, it&#39;s not your nanny).</p>
 git log
 </code></pre>
 
-<pre><code>## commit cd8d2752967179daecadad7a96721bb50fccb65c
+<pre><code>## commit a480cd59c540f4a356859f03ed4ca123c6782d26
 ## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
-## Date:   Sat Aug 24 18:40:27 2013 -0700
+## Date:   Sat Aug 24 18:43:33 2013 -0700
 ## 
 ##     This is our first commit
 </code></pre>
@@ -694,7 +694,7 @@ git diff
 git commit -a -m&quot;I have made great progress on this critical matter.&quot;
 </code></pre>
 
-<pre><code>## [master 00c9970] I have made great progress on this critical matter.
+<pre><code>## [master 6ed35f0] I have made great progress on this critical matter.
 ##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
 ## Your name and email address were configured automatically based
 ## on your username and hostname. Please check that they are accurate.
@@ -720,15 +720,15 @@ git commit -a -m&quot;I have made great progress on this critical matter.&quot;
 git log
 </code></pre>
 
-<pre><code>## commit 00c997022c164b8ed08276ff91467a02b6c05781
+<pre><code>## commit 6ed35f0bb9b183eba1592d16d2fcb75f516688ad
 ## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
-## Date:   Sat Aug 24 18:40:28 2013 -0700
+## Date:   Sat Aug 24 18:43:33 2013 -0700
 ## 
 ##     I have made great progress on this critical matter.
 ## 
-## commit cd8d2752967179daecadad7a96721bb50fccb65c
+## commit a480cd59c540f4a356859f03ed4ca123c6782d26
 ## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
-## Date:   Sat Aug 24 18:40:27 2013 -0700
+## Date:   Sat Aug 24 18:43:33 2013 -0700
 ## 
 ##     This is our first commit
 </code></pre>
@@ -739,8 +739,8 @@ git log
 git log --oneline --topo-order --graph
 </code></pre>
 
-<pre><code>## * 00c9970 I have made great progress on this critical matter.
-## * cd8d275 This is our first commit
+<pre><code>## * 6ed35f0 I have made great progress on this critical matter.
+## * a480cd5 This is our first commit
 </code></pre>
 
 <p>Git supports <em>aliases:</em> new names given to command combinations. Let&#39;s make this
@@ -754,8 +754,8 @@ git config --global alias.slog &quot;log --oneline --topo-order --graph&quot;
 git slog
 </code></pre>
 
-<pre><code>## * 00c9970 I have made great progress on this critical matter.
-## * cd8d275 This is our first commit
+<pre><code>## * 6ed35f0 I have made great progress on this critical matter.
+## * a480cd5 This is our first commit
 </code></pre>
 
 <h1><code>git mv</code> and <code>rm</code>: moving and removing files</h1>
@@ -787,7 +787,7 @@ echo &quot;Let&#39;s look at the log again:&quot;
 git slog
 </code></pre>
 
-<pre><code>## [master ba9f246] I like this new name better
+<pre><code>## [master a3ec8e8] I like this new name better
 ##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
 ## Your name and email address were configured automatically based
 ## on your username and hostname. Please check that they are accurate.
@@ -803,9 +803,9 @@ git slog
 ##  1 file changed, 0 insertions(+), 0 deletions(-)
 ##  rename file1.txt =&gt; file-newname.txt (100%)
 ## Let&#39;s look at the log again:
-## * ba9f246 I like this new name better
-## * 00c9970 I have made great progress on this critical matter.
-## * cd8d275 This is our first commit
+## * a3ec8e8 I like this new name better
+## * 6ed35f0 I have made great progress on this critical matter.
+## * a480cd5 This is our first commit
 </code></pre>
 
 <p>And <code>git rm</code> works in a similar fashion.</p>
@@ -876,7 +876,7 @@ git commit -a -m&quot;Trying something new&quot;
 git slog
 </code></pre>
 
-<pre><code>## [experiment 74507e6] Trying something new
+<pre><code>## [experiment 404b438] Trying something new
 ##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
 ## Your name and email address were configured automatically based
 ## on your username and hostname. Please check that they are accurate.
@@ -891,10 +891,10 @@ git slog
 ## 
 ##  1 file changed, 1 insertion(+)
 ##  create mode 100644 experiment.txt
-## * 74507e6 Trying something new
-## * ba9f246 I like this new name better
-## * 00c9970 I have made great progress on this critical matter.
-## * cd8d275 This is our first commit
+## * 404b438 Trying something new
+## * a3ec8e8 I like this new name better
+## * 6ed35f0 I have made great progress on this critical matter.
+## * a480cd5 This is our first commit
 </code></pre>
 
 <pre><code class="bash">cd ~/src/jm-git-demo
@@ -902,9 +902,9 @@ git checkout master
 git slog
 </code></pre>
 
-<pre><code>## * ba9f246 I like this new name better
-## * 00c9970 I have made great progress on this critical matter.
-## * cd8d275 This is our first commit
+<pre><code>## * a3ec8e8 I like this new name better
+## * 6ed35f0 I have made great progress on this critical matter.
+## * a480cd5 This is our first commit
 </code></pre>
 
 <pre><code class="bash">cd ~/src/jm-git-demo
@@ -913,7 +913,7 @@ git commit -a -m&quot;The mainline keeps moving&quot;
 git slog
 </code></pre>
 
-<pre><code>## [master 9a728ef] The mainline keeps moving
+<pre><code>## [master 34363bd] The mainline keeps moving
 ##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
 ## Your name and email address were configured automatically based
 ## on your username and hostname. Please check that they are accurate.
@@ -927,10 +927,10 @@ git slog
 ##     git commit --amend --reset-author
 ## 
 ##  1 file changed, 1 insertion(+)
-## * 9a728ef The mainline keeps moving
-## * ba9f246 I like this new name better
-## * 00c9970 I have made great progress on this critical matter.
-## * cd8d275 This is our first commit
+## * 34363bd The mainline keeps moving
+## * a3ec8e8 I like this new name better
+## * 6ed35f0 I have made great progress on this critical matter.
+## * a480cd5 This is our first commit
 </code></pre>
 
 <pre><code class="bash">cd ~/src/jm-git-demo
@@ -949,14 +949,14 @@ git slog
 ##  experiment.txt |    1 +
 ##  1 file changed, 1 insertion(+)
 ##  create mode 100644 experiment.txt
-## *   19382f8 Merge branch &#39;experiment&#39;
+## *   8e10653 Merge branch &#39;experiment&#39;
 ## |\  
-## | * 74507e6 Trying something new
-## * | 9a728ef The mainline keeps moving
+## | * 404b438 Trying something new
+## * | 34363bd The mainline keeps moving
 ## |/  
-## * ba9f246 I like this new name better
-## * 00c9970 I have made great progress on this critical matter.
-## * cd8d275 This is our first commit
+## * a3ec8e8 I like this new name better
+## * 6ed35f0 I have made great progress on this critical matter.
+## * a480cd5 This is our first commit
 </code></pre>
 
 <h1>Using remotes as a single user</h1>
@@ -1032,7 +1032,7 @@ echo &quot;More new content on my experiment&quot; &gt;&gt; experiment.txt
 git commit -a -m&quot;More work, on machine #2&quot;
 </code></pre>
 
-<pre><code>## [master ee77a25] More work, on machine #2
+<pre><code>## [master aa4b222] More work, on machine #2
 ##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
 ## Your name and email address were configured automatically based
 ## on your username and hostname. Please check that they are accurate.
@@ -1045,7 +1045,7 @@ git commit -a -m&quot;More work, on machine #2&quot;
 ## 
 ##     git commit --amend --reset-author
 ## 
-##  2 files changed, 186 insertions(+), 3121 deletions(-)
+##  2 files changed, 58 insertions(+), 57 deletions(-)
 </code></pre>
 
 <p>Now we put this new work up on the github server so it&#39;s available from the
@@ -1079,7 +1079,7 @@ echo &quot;This is going to be a problem...&quot; &gt;&gt; experiment.txt
 git commit -a -m&quot;Changes in the trouble branch&quot;
 </code></pre>
 
-<pre><code>## [trouble 5dc8aca] Changes in the trouble branch
+<pre><code>## [trouble 29a0352] Changes in the trouble branch
 ##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
 ## Your name and email address were configured automatically based
 ## on your username and hostname. Please check that they are accurate.
@@ -1103,7 +1103,7 @@ echo &quot;More work on the master branch...&quot; &gt;&gt; experiment.txt
 git commit -a -m&quot;Mainline work&quot;
 </code></pre>
 
-<pre><code>## [master 289dfe8] Mainline work
+<pre><code>## [master 5eb3c2a] Mainline work
 ##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
 ## Your name and email address were configured automatically based
 ## on your username and hostname. Please check that they are accurate.
@@ -1174,7 +1174,7 @@ git commit -a -m&quot;Completed merge of trouble, fixing conflicts along the way
 git slog
 </code></pre>
 
-<pre><code>## [master f3dd384] Completed merge of trouble, fixing conflicts along the way
+<pre><code>## [master a5928be] Completed merge of trouble, fixing conflicts along the way
 ##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
 ## Your name and email address were configured automatically based
 ## on your username and hostname. Please check that they are accurate.
@@ -1187,19 +1187,19 @@ git slog
 ## 
 ##     git commit --amend --reset-author
 ## 
-## *   f3dd384 Completed merge of trouble, fixing conflicts along the way
+## *   a5928be Completed merge of trouble, fixing conflicts along the way
 ## |\  
-## | * 5dc8aca Changes in the trouble branch
-## * | 289dfe8 Mainline work
+## | * 29a0352 Changes in the trouble branch
+## * | 5eb3c2a Mainline work
 ## |/  
-## *   19382f8 Merge branch &#39;experiment&#39;
+## *   8e10653 Merge branch &#39;experiment&#39;
 ## |\  
-## | * 74507e6 Trying something new
-## * | 9a728ef The mainline keeps moving
+## | * 404b438 Trying something new
+## * | 34363bd The mainline keeps moving
 ## |/  
-## * ba9f246 I like this new name better
-## * 00c9970 I have made great progress on this critical matter.
-## * cd8d275 This is our first commit
+## * a3ec8e8 I like this new name better
+## * 6ed35f0 I have made great progress on this critical matter.
+## * a480cd5 This is our first commit
 </code></pre>
 
 <p><em>Note:</em> While it&#39;s a good idea to understand the basics of fixing merge
