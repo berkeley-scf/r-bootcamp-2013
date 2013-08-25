@@ -799,13 +799,17 @@ clean:
 
 # Breakout
 
-1. Configure Git for use at the commandline.
+1. Configure Git for use at the commandline (see next slide).
 
-1. Clone practice problem.
+1. Clone practice problem:
+```bash
+cd <where you want to work>
+git clone https://github.com/berkeley-scf/r-bootcamp-2013.git
+```
 
-1. Debug script.
+1. Debug `fun3` in `r-bootcamp-2013/modules/src/profile-example.R`.
 
-1. Write a little helper function to profile code.
+1. Profile and interpret results.
 
 # Breakout: configure Git
 
