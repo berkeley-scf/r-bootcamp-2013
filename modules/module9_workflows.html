@@ -371,8 +371,8 @@ gc()
 </code></pre>
 
 <pre><code>##             used  (Mb) gc trigger   (Mb)  max used  (Mb)
-## Ncells   1288900  68.9    1967602  105.1   1967602 105.1
-## Vcells 102313407 780.6  143602889 1095.7 113166250 863.4
+## Ncells    179585   9.6     407500   21.8    407500  21.8
+## Vcells 100834805 769.4  141716338 1081.3 111069809 847.4
 </code></pre>
 
 <pre><code class="r">rm()
@@ -380,8 +380,8 @@ gc()
 </code></pre>
 
 <pre><code>##             used  (Mb) gc trigger   (Mb)  max used  (Mb)
-## Ncells   1288919  68.9    1967602  105.1   1967602 105.1
-## Vcells 102313446 780.6  150863033 1151.0 113166250 863.4
+## Ncells    179604   9.6     407500   21.8    407500  21.8
+## Vcells 100834844 769.4  148882154 1135.9 111069809 847.4
 </code></pre>
 
 <h1>Some ideas about reproducibility</h1>
@@ -557,17 +557,18 @@ git init jm-git-demo
 ls -la
 </code></pre>
 
-<pre><code>## total 12320
-## drwxr-sr-x 7 paciorek scfstaff      83 Aug 24  2013 .
+<pre><code>## total 9762
+## drwxr-sr-x 7 paciorek scfstaff      84 Aug 24  2013 .
 ## drwxr-sr-x 9 paciorek scfstaff      15 Aug 24 18:31 ..
 ## -rw-r--r-- 1 paciorek scfstaff     430 Aug 20 18:03 allslides.sh
 ## -rw-r--r-- 1 paciorek scfstaff     248 Aug 20 18:03 allslides.sh~
 ## drwxr-sr-x 2 paciorek scfstaff      15 Aug 24 13:27 bkout_solns
 ## drwxr-sr-x 2 paciorek scfstaff      36 Aug 24 18:37 cache
-## -rw-r--r-- 1 paciorek scfstaff     117 Aug 24 18:37 experiment.txt
+## -rw-r--r-- 1 paciorek scfstaff     319 Aug 24 18:38 experiment.txt
 ## drwxr-sr-x 2 paciorek scfstaff      15 Aug 24 13:27 figs
 ## drwxr-sr-x 2 paciorek scfstaff      68 Aug 24 18:36 figure
-## -rw-r--r-- 1 paciorek scfstaff      93 Aug 24 18:37 file-newname.txt
+## -rw-r--r-- 1 paciorek scfstaff      47 Aug 24 18:38 file1.txt
+## -rw-r--r-- 1 paciorek scfstaff     185 Aug 24 18:38 file-newname.txt
 ## -rw-r--r-- 1 paciorek scfstaff     699 Aug 21 14:48 funny
 ## -rw-r--r-- 1 paciorek scfstaff     771 Aug  5 15:39 funny~
 ## drwxr-sr-x 3 paciorek scfstaff       3 Aug 24  2013 jm-git-demo
@@ -632,11 +633,11 @@ ls -la
 ## -rw-r--r-- 1 paciorek scfstaff   10799 Aug 24 18:36 module8_graphics.md
 ## -rw-r--r-- 1 paciorek scfstaff    9525 Aug 24 18:01 module8_graphics.Rmd
 ## -rw-r--r-- 1 paciorek scfstaff 1009541 Aug 24 18:36 module8_graphics_slides.html
-## -rw-r--r-- 1 paciorek scfstaff 1232228 Aug 24 18:01 module9_workflows.html
-## -rw-r--r-- 1 paciorek scfstaff  122638 Aug 24 18:37 module9_workflows.md
+## -rw-r--r-- 1 paciorek scfstaff 1333058 Aug 24 18:38 module9_workflows.html
+## -rw-r--r-- 1 paciorek scfstaff  137046 Aug 24 18:38 module9_workflows.md
 ## -rw-r--r-- 1 paciorek scfstaff   25230 Aug 24 18:01 module9_workflows.Rmd
 ## -rw-r--r-- 1 paciorek scfstaff    5678 Jul 25 15:18 module9_workflows.Rmd~
-## -rw-r--r-- 1 paciorek scfstaff 1413497 Aug 24 18:37 module9_workflows_slides.html
+## -rw-r--r-- 1 paciorek scfstaff 1428409 Aug 24 18:38 module9_workflows_slides.html
 ## -rw-r--r-- 1 paciorek scfstaff 3856481 Aug 23 17:24 modules.zip
 ## -rw-r--r-- 1 paciorek scfstaff    4632 Aug 23 16:59 myplot.pdf
 ## -rw-r--r-- 1 paciorek scfstaff     112 Jul 18 16:29 notes.txt
@@ -675,7 +676,7 @@ git status
 ## # Changes to be committed:
 ## #   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
 ## #
-## #    new file:   file1.txt
+## #    modified:   file1.txt
 ## #
 ## # Changes not staged for commit:
 ## #   (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
@@ -754,7 +755,7 @@ records our actions.</p>
 git commit -a -m&quot;This is our first commit&quot;
 </code></pre>
 
-<pre><code>## [master 3d313f8] This is our first commit
+<pre><code>## [master a4edec2] This is our first commit
 ##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
 ## Your name and email address were configured automatically based
 ## on your username and hostname. Please check that they are accurate.
@@ -767,8 +768,7 @@ git commit -a -m&quot;This is our first commit&quot;
 ## 
 ##     git commit --amend --reset-author
 ## 
-##  2 files changed, 2750 insertions(+), 157 deletions(-)
-##  create mode 100644 modules/file1.txt
+##  2 files changed, 532 insertions(+), 82 deletions(-)
 </code></pre>
 
 <p>In the commit above, we  used the <code>-m</code> flag to specify a message at the command
@@ -784,7 +784,93 @@ only tries to facilitate best practices, it&#39;s not your nanny).</p>
 git log
 </code></pre>
 
-<pre><code>## commit 3d313f8e95bff321a7c54e4a769df03dac820b64
+<pre><code>## commit a4edec234c805cc7878d276f706c622376045828
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:38:46 2013 -0700
+## 
+##     This is our first commit
+## 
+## commit cf003626202b2cdba3532644b481149c7899f84f
+## Merge: 5d460f4 72e5c8f
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:38:36 2013 -0700
+## 
+##     Completed merge of trouble, fixing conflicts along the way
+## 
+## commit 5d460f46e328092ab63e0f2f1fd226ae7a9b612c
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:38:35 2013 -0700
+## 
+##     Mainline work
+## 
+## commit 72e5c8f7380bcae32c06bf6347e24f248406fa26
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:38:35 2013 -0700
+## 
+##     Changes in the trouble branch
+## 
+## commit 6d2ea9f4ca0077092d162aa9b42921759b97f5a3
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:38:32 2013 -0700
+## 
+##     More work, on machine #2
+## 
+## commit 621d926e6f74286db522ab6108bdde45a1d5bf01
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:38:28 2013 -0700
+## 
+##     The mainline keeps moving
+## 
+## commit 8ed54fc52ab6f0dc6014b71467dffcfec6f22442
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:38:27 2013 -0700
+## 
+##     I have made great progress on this critical matter.
+## 
+## commit 9619346698defab6bf72377f877cd8457c5efbd3
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:38:26 2013 -0700
+## 
+##     This is our first commit
+## 
+## commit debf77c744c20ab65b19d05bfef22f054f25e0de
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:38:09 2013 -0700
+## 
+##     Changes in the trouble branch
+## 
+## commit a990228d5687959aba41ae3d0e41f6dbff44ef96
+## Merge: e29bbd7 debf77c
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:38:09 2013 -0700
+## 
+##     Completed merge of trouble, fixing conflicts along the way
+## 
+## commit e29bbd7d0be4a903cafff4206ec167faa92a8602
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:38:09 2013 -0700
+## 
+##     Mainline work
+## 
+## commit 4e38e898a6b5f09f7054e4d40db1e89783b88acf
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:38:06 2013 -0700
+## 
+##     More work, on machine #2
+## 
+## commit 9a1f4f9758aec03a0f2b99ecb4bc18fc2474b40f
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:37:59 2013 -0700
+## 
+##     The mainline keeps moving
+## 
+## commit 0f845b6f3bad1968166cc96c03abcad0502e73af
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:37:58 2013 -0700
+## 
+##     I have made great progress on this critical matter.
+## 
+## commit 3d313f8e95bff321a7c54e4a769df03dac820b64
 ## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
 ## Date:   Sat Aug 24 18:37:58 2013 -0700
 ## 
@@ -797,17 +883,17 @@ git log
 ## 
 ##     Completed merge of trouble, fixing conflicts along the way
 ## 
-## commit c255d41f0c862fc32ef0747111573221725498a6
-## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
-## Date:   Sat Aug 24 18:37:47 2013 -0700
-## 
-##     Mainline work
-## 
 ## commit e95a78d16b43d906ebda82217f83dc08f6f2e251
 ## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
 ## Date:   Sat Aug 24 18:37:47 2013 -0700
 ## 
 ##     Changes in the trouble branch
+## 
+## commit c255d41f0c862fc32ef0747111573221725498a6
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:37:47 2013 -0700
+## 
+##     Mainline work
 ## 
 ## commit 967f2e1786c46ac12df972b45a01f3963c952f2a
 ## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
@@ -1427,7 +1513,7 @@ git diff
 git commit -a -m&quot;I have made great progress on this critical matter.&quot;
 </code></pre>
 
-<pre><code>## [master 0f845b6] I have made great progress on this critical matter.
+<pre><code>## [master 97d76ad] I have made great progress on this critical matter.
 ##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
 ## Your name and email address were configured automatically based
 ## on your username and hostname. Please check that they are accurate.
@@ -1453,7 +1539,93 @@ git commit -a -m&quot;I have made great progress on this critical matter.&quot;
 git log
 </code></pre>
 
-<pre><code>## commit 0f845b6f3bad1968166cc96c03abcad0502e73af
+<pre><code>## commit 97d76ad3177692168464355b449ce7aee1f4ac19
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:38:46 2013 -0700
+## 
+##     I have made great progress on this critical matter.
+## 
+## commit a4edec234c805cc7878d276f706c622376045828
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:38:46 2013 -0700
+## 
+##     This is our first commit
+## 
+## commit cf003626202b2cdba3532644b481149c7899f84f
+## Merge: 5d460f4 72e5c8f
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:38:36 2013 -0700
+## 
+##     Completed merge of trouble, fixing conflicts along the way
+## 
+## commit 5d460f46e328092ab63e0f2f1fd226ae7a9b612c
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:38:35 2013 -0700
+## 
+##     Mainline work
+## 
+## commit 72e5c8f7380bcae32c06bf6347e24f248406fa26
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:38:35 2013 -0700
+## 
+##     Changes in the trouble branch
+## 
+## commit 6d2ea9f4ca0077092d162aa9b42921759b97f5a3
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:38:32 2013 -0700
+## 
+##     More work, on machine #2
+## 
+## commit 621d926e6f74286db522ab6108bdde45a1d5bf01
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:38:28 2013 -0700
+## 
+##     The mainline keeps moving
+## 
+## commit 8ed54fc52ab6f0dc6014b71467dffcfec6f22442
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:38:27 2013 -0700
+## 
+##     I have made great progress on this critical matter.
+## 
+## commit 9619346698defab6bf72377f877cd8457c5efbd3
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:38:26 2013 -0700
+## 
+##     This is our first commit
+## 
+## commit debf77c744c20ab65b19d05bfef22f054f25e0de
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:38:09 2013 -0700
+## 
+##     Changes in the trouble branch
+## 
+## commit a990228d5687959aba41ae3d0e41f6dbff44ef96
+## Merge: e29bbd7 debf77c
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:38:09 2013 -0700
+## 
+##     Completed merge of trouble, fixing conflicts along the way
+## 
+## commit e29bbd7d0be4a903cafff4206ec167faa92a8602
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:38:09 2013 -0700
+## 
+##     Mainline work
+## 
+## commit 4e38e898a6b5f09f7054e4d40db1e89783b88acf
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:38:06 2013 -0700
+## 
+##     More work, on machine #2
+## 
+## commit 9a1f4f9758aec03a0f2b99ecb4bc18fc2474b40f
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:37:59 2013 -0700
+## 
+##     The mainline keeps moving
+## 
+## commit 0f845b6f3bad1968166cc96c03abcad0502e73af
 ## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
 ## Date:   Sat Aug 24 18:37:58 2013 -0700
 ## 
@@ -1472,17 +1644,17 @@ git log
 ## 
 ##     Completed merge of trouble, fixing conflicts along the way
 ## 
-## commit c255d41f0c862fc32ef0747111573221725498a6
-## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
-## Date:   Sat Aug 24 18:37:47 2013 -0700
-## 
-##     Mainline work
-## 
 ## commit e95a78d16b43d906ebda82217f83dc08f6f2e251
 ## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
 ## Date:   Sat Aug 24 18:37:47 2013 -0700
 ## 
 ##     Changes in the trouble branch
+## 
+## commit c255d41f0c862fc32ef0747111573221725498a6
+## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
+## Date:   Sat Aug 24 18:37:47 2013 -0700
+## 
+##     Mainline work
 ## 
 ## commit 967f2e1786c46ac12df972b45a01f3963c952f2a
 ## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
@@ -2077,10 +2249,28 @@ git log
 git log --oneline --topo-order --graph
 </code></pre>
 
-<pre><code>## * 0f845b6 I have made great progress on this critical matter.
-## * 3d313f8 This is our first commit
-## *   71b92a4 Completed merge of trouble, fixing conflicts along the way
+<pre><code>## * 97d76ad I have made great progress on this critical matter.
+## * a4edec2 This is our first commit
+## *   cf00362 Completed merge of trouble, fixing conflicts along the way
 ## |\  
+## | * 72e5c8f Changes in the trouble branch
+## * | 5d460f4 Mainline work
+## * | 6d2ea9f More work, on machine #2
+## * | 621d926 The mainline keeps moving
+## * | 8ed54fc I have made great progress on this critical matter.
+## * | 9619346 This is our first commit
+## * |   a990228 Completed merge of trouble, fixing conflicts along the way
+## |\ \  
+## | |/  
+## | * debf77c Changes in the trouble branch
+## * | e29bbd7 Mainline work
+## * | 4e38e89 More work, on machine #2
+## * | 9a1f4f9 The mainline keeps moving
+## * | 0f845b6 I have made great progress on this critical matter.
+## * | 3d313f8 This is our first commit
+## * |   71b92a4 Completed merge of trouble, fixing conflicts along the way
+## |\ \  
+## | |/  
 ## | * e95a78d Changes in the trouble branch
 ## * | c255d41 Mainline work
 ## |/  
@@ -2220,10 +2410,28 @@ git config --global alias.slog &quot;log --oneline --topo-order --graph&quot;
 git slog
 </code></pre>
 
-<pre><code>## * 0f845b6 I have made great progress on this critical matter.
-## * 3d313f8 This is our first commit
-## *   71b92a4 Completed merge of trouble, fixing conflicts along the way
+<pre><code>## * 97d76ad I have made great progress on this critical matter.
+## * a4edec2 This is our first commit
+## *   cf00362 Completed merge of trouble, fixing conflicts along the way
 ## |\  
+## | * 72e5c8f Changes in the trouble branch
+## * | 5d460f4 Mainline work
+## * | 6d2ea9f More work, on machine #2
+## * | 621d926 The mainline keeps moving
+## * | 8ed54fc I have made great progress on this critical matter.
+## * | 9619346 This is our first commit
+## * |   a990228 Completed merge of trouble, fixing conflicts along the way
+## |\ \  
+## | |/  
+## | * debf77c Changes in the trouble branch
+## * | e29bbd7 Mainline work
+## * | 4e38e89 More work, on machine #2
+## * | 9a1f4f9 The mainline keeps moving
+## * | 0f845b6 I have made great progress on this critical matter.
+## * | 3d313f8 This is our first commit
+## * |   71b92a4 Completed merge of trouble, fixing conflicts along the way
+## |\ \  
+## | |/  
 ## | * e95a78d Changes in the trouble branch
 ## * | c255d41 Mainline work
 ## |/  
@@ -2492,10 +2700,28 @@ git slog
 ## #    ../videos/
 ## nothing added to commit but untracked files present (use &quot;git add&quot; to track)
 ## Let&#39;s look at the log again:
-## * 0f845b6 I have made great progress on this critical matter.
-## * 3d313f8 This is our first commit
-## *   71b92a4 Completed merge of trouble, fixing conflicts along the way
+## * 97d76ad I have made great progress on this critical matter.
+## * a4edec2 This is our first commit
+## *   cf00362 Completed merge of trouble, fixing conflicts along the way
 ## |\  
+## | * 72e5c8f Changes in the trouble branch
+## * | 5d460f4 Mainline work
+## * | 6d2ea9f More work, on machine #2
+## * | 621d926 The mainline keeps moving
+## * | 8ed54fc I have made great progress on this critical matter.
+## * | 9619346 This is our first commit
+## * |   a990228 Completed merge of trouble, fixing conflicts along the way
+## |\ \  
+## | |/  
+## | * debf77c Changes in the trouble branch
+## * | e29bbd7 Mainline work
+## * | 4e38e89 More work, on machine #2
+## * | 9a1f4f9 The mainline keeps moving
+## * | 0f845b6 I have made great progress on this critical matter.
+## * | 3d313f8 This is our first commit
+## * |   71b92a4 Completed merge of trouble, fixing conflicts along the way
+## |\ \  
+## | |/  
 ## | * e95a78d Changes in the trouble branch
 ## * | c255d41 Mainline work
 ## |/  
@@ -3010,10 +3236,28 @@ git slog
 </code></pre>
 
 <pre><code>## Your branch is ahead of &#39;origin/master&#39; by 5 commits.
-## * 0f845b6 I have made great progress on this critical matter.
-## * 3d313f8 This is our first commit
-## *   71b92a4 Completed merge of trouble, fixing conflicts along the way
+## * 97d76ad I have made great progress on this critical matter.
+## * a4edec2 This is our first commit
+## *   cf00362 Completed merge of trouble, fixing conflicts along the way
 ## |\  
+## | * 72e5c8f Changes in the trouble branch
+## * | 5d460f4 Mainline work
+## * | 6d2ea9f More work, on machine #2
+## * | 621d926 The mainline keeps moving
+## * | 8ed54fc I have made great progress on this critical matter.
+## * | 9619346 This is our first commit
+## * |   a990228 Completed merge of trouble, fixing conflicts along the way
+## |\ \  
+## | |/  
+## | * debf77c Changes in the trouble branch
+## * | e29bbd7 Mainline work
+## * | 4e38e89 More work, on machine #2
+## * | 9a1f4f9 The mainline keeps moving
+## * | 0f845b6 I have made great progress on this critical matter.
+## * | 3d313f8 This is our first commit
+## * |   71b92a4 Completed merge of trouble, fixing conflicts along the way
+## |\ \  
+## | |/  
 ## | * e95a78d Changes in the trouble branch
 ## * | c255d41 Mainline work
 ## |/  
@@ -3148,7 +3392,7 @@ git commit -a -m&quot;The mainline keeps moving&quot;
 git slog
 </code></pre>
 
-<pre><code>## [master 9a1f4f9] The mainline keeps moving
+<pre><code>## [master 7334284] The mainline keeps moving
 ##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
 ## Your name and email address were configured automatically based
 ## on your username and hostname. Please check that they are accurate.
@@ -3162,11 +3406,29 @@ git slog
 ##     git commit --amend --reset-author
 ## 
 ##  1 file changed, 1 insertion(+)
-## * 9a1f4f9 The mainline keeps moving
-## * 0f845b6 I have made great progress on this critical matter.
-## * 3d313f8 This is our first commit
-## *   71b92a4 Completed merge of trouble, fixing conflicts along the way
+## * 7334284 The mainline keeps moving
+## * 97d76ad I have made great progress on this critical matter.
+## * a4edec2 This is our first commit
+## *   cf00362 Completed merge of trouble, fixing conflicts along the way
 ## |\  
+## | * 72e5c8f Changes in the trouble branch
+## * | 5d460f4 Mainline work
+## * | 6d2ea9f More work, on machine #2
+## * | 621d926 The mainline keeps moving
+## * | 8ed54fc I have made great progress on this critical matter.
+## * | 9619346 This is our first commit
+## * |   a990228 Completed merge of trouble, fixing conflicts along the way
+## |\ \  
+## | |/  
+## | * debf77c Changes in the trouble branch
+## * | e29bbd7 Mainline work
+## * | 4e38e89 More work, on machine #2
+## * | 9a1f4f9 The mainline keeps moving
+## * | 0f845b6 I have made great progress on this critical matter.
+## * | 3d313f8 This is our first commit
+## * |   71b92a4 Completed merge of trouble, fixing conflicts along the way
+## |\ \  
+## | |/  
 ## | * e95a78d Changes in the trouble branch
 ## * | c255d41 Mainline work
 ## |/  
@@ -3388,11 +3650,29 @@ git slog
 </code></pre>
 
 <pre><code>## Already up-to-date.
-## * 9a1f4f9 The mainline keeps moving
-## * 0f845b6 I have made great progress on this critical matter.
-## * 3d313f8 This is our first commit
-## *   71b92a4 Completed merge of trouble, fixing conflicts along the way
+## * 7334284 The mainline keeps moving
+## * 97d76ad I have made great progress on this critical matter.
+## * a4edec2 This is our first commit
+## *   cf00362 Completed merge of trouble, fixing conflicts along the way
 ## |\  
+## | * 72e5c8f Changes in the trouble branch
+## * | 5d460f4 Mainline work
+## * | 6d2ea9f More work, on machine #2
+## * | 621d926 The mainline keeps moving
+## * | 8ed54fc I have made great progress on this critical matter.
+## * | 9619346 This is our first commit
+## * |   a990228 Completed merge of trouble, fixing conflicts along the way
+## |\ \  
+## | |/  
+## | * debf77c Changes in the trouble branch
+## * | e29bbd7 Mainline work
+## * | 4e38e89 More work, on machine #2
+## * | 9a1f4f9 The mainline keeps moving
+## * | 0f845b6 I have made great progress on this critical matter.
+## * | 3d313f8 This is our first commit
+## * |   71b92a4 Completed merge of trouble, fixing conflicts along the way
+## |\ \  
+## | |/  
 ## | * e95a78d Changes in the trouble branch
 ## * | c255d41 Mainline work
 ## |/  
@@ -3680,7 +3960,7 @@ echo &quot;More new content on my experiment&quot; &gt;&gt; experiment.txt
 git commit -a -m&quot;More work, on machine #2&quot;
 </code></pre>
 
-<pre><code>## [master 4e38e89] More work, on machine #2
+<pre><code>## [master d53c1e0] More work, on machine #2
 ##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
 ## Your name and email address were configured automatically based
 ## on your username and hostname. Please check that they are accurate.
@@ -3730,7 +4010,7 @@ echo &quot;This is going to be a problem...&quot; &gt;&gt; experiment.txt
 git commit -a -m&quot;Changes in the trouble branch&quot;
 </code></pre>
 
-<pre><code>## [trouble debf77c] Changes in the trouble branch
+<pre><code>## [trouble a12eeeb] Changes in the trouble branch
 ##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
 ## Your name and email address were configured automatically based
 ## on your username and hostname. Please check that they are accurate.
@@ -3754,7 +4034,7 @@ echo &quot;More work on the master branch...&quot; &gt;&gt; experiment.txt
 git commit -a -m&quot;Mainline work&quot;
 </code></pre>
 
-<pre><code>## [master e29bbd7] Mainline work
+<pre><code>## [master fa5efb3] Mainline work
 ##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
 ## Your name and email address were configured automatically based
 ## on your username and hostname. Please check that they are accurate.
@@ -3792,6 +4072,12 @@ cat experiment.txt
 ## More new content on my experiment
 ## More work on the master branch...
 ## This is going to be a problem...
+## More new content on my experiment
+## More work on the master branch...
+## This is going to be a problem...
+## More new content on my experiment
+## More work on the master branch...
+## This is going to be a problem...
 ## &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 ## More new content on my experiment
 ## More work on the master branch...
@@ -3824,6 +4110,12 @@ cat experiment.txt
 ## More new content on my experiment
 ## More work on the master branch...
 ## This is going to be a problem...
+## More new content on my experiment
+## More work on the master branch...
+## This is going to be a problem...
+## More new content on my experiment
+## More work on the master branch...
+## This is going to be a problem...
 </code></pre>
 
 <p>Let&#39;s then make our new commit:</p>
@@ -3833,7 +4125,7 @@ git commit -a -m&quot;Completed merge of trouble, fixing conflicts along the way
 git slog
 </code></pre>
 
-<pre><code>## [master a990228] Completed merge of trouble, fixing conflicts along the way
+<pre><code>## [master 256a4df] Completed merge of trouble, fixing conflicts along the way
 ##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
 ## Your name and email address were configured automatically based
 ## on your username and hostname. Please check that they are accurate.
@@ -3846,8 +4138,26 @@ git slog
 ## 
 ##     git commit --amend --reset-author
 ## 
-## *   a990228 Completed merge of trouble, fixing conflicts along the way
+## *   256a4df Completed merge of trouble, fixing conflicts along the way
 ## |\  
+## | * a12eeeb Changes in the trouble branch
+## * | fa5efb3 Mainline work
+## * | d53c1e0 More work, on machine #2
+## * | 7334284 The mainline keeps moving
+## * | 97d76ad I have made great progress on this critical matter.
+## * | a4edec2 This is our first commit
+## * |   cf00362 Completed merge of trouble, fixing conflicts along the way
+## |\ \  
+## | |/  
+## | * 72e5c8f Changes in the trouble branch
+## * | 5d460f4 Mainline work
+## * | 6d2ea9f More work, on machine #2
+## * | 621d926 The mainline keeps moving
+## * | 8ed54fc I have made great progress on this critical matter.
+## * | 9619346 This is our first commit
+## * |   a990228 Completed merge of trouble, fixing conflicts along the way
+## |\ \  
+## | |/  
 ## | * debf77c Changes in the trouble branch
 ## * | e29bbd7 Mainline work
 ## * | 4e38e89 More work, on machine #2
