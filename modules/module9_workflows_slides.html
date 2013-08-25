@@ -75,16 +75,16 @@ timeInDays &lt;- <span class="kw">rnorm</span>(<span class="dv">5</span>)  <span
 ## 
 ## Residuals:
 ##      1      2      3      4      5 
-## -0.637  0.133  0.285  0.515 -0.295 
+## -0.571 -0.410 -0.320  0.555  0.746 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept)   -0.337      0.243   -1.39     0.26
-## timeInDays    -0.495      0.327   -1.51     0.23
+## (Intercept)    0.197      0.368    0.53     0.63
+## timeInDays     0.357      0.294    1.21     0.31
 ## 
-## Residual standard error: 0.534 on 3 degrees of freedom
-## Multiple R-squared:  0.433,  Adjusted R-squared:  0.243 
-## F-statistic: 2.29 on 1 and 3 DF,  p-value: 0.228</code></pre>
+## Residual standard error: 0.698 on 3 degrees of freedom
+## Multiple R-squared:  0.329,  Adjusted R-squared:  0.106 
+## F-statistic: 1.47 on 1 and 3 DF,  p-value: 0.312</code></pre>
 <ul>
 <li><a href="http://google-styleguide.googlecode.com/svn/trunk/Rguide.xml">Google's R Style Guide</a></li>
 </ul>
@@ -310,9 +310,9 @@ git init jm-git-demo</code></pre>
 ## -rw-r--r-- 1 paciorek scfstaff 73 Aug 24  2013 description
 ## -rw-r--r-- 1 paciorek scfstaff 23 Aug 24  2013 HEAD
 ## drwxr-sr-x 2 paciorek scfstaff 10 Aug 24  2013 hooks
-## drwxr-sr-x 2 paciorek scfstaff  3 Aug 24 18:40 info
+## drwxr-sr-x 2 paciorek scfstaff  3 Aug 24  2013 info
 ## drwxr-sr-x 4 paciorek scfstaff  4 Aug 24  2013 objects
-## drwxr-sr-x 4 paciorek scfstaff  4 Aug 24 18:40 refs</code></pre>
+## drwxr-sr-x 4 paciorek scfstaff  4 Aug 24  2013 refs</code></pre>
 </div>
 <div class="section slide level1" id="git-add-adding-content-to-the-repository">
 <h1 id="git-add-adding-content-to-the-repository"><code>git add</code>: adding content to the repository</h1>
@@ -340,7 +340,7 @@ git status</code></pre>
 <p>For now, we are <em>always</em> going to call <code>git commit</code> either with the <code>-a</code> option <em>or</em> with specific filenames (<code>git commit file1 file2...</code>). This delays the discussion of an aspect of git called the <em>index</em> (often referred to also as the 'staging area') that we will cover later. Most everyday work in regular scientific practice doesn't require understanding the extra moving parts that the index involves, so on a first round we'll bypass it. Later on we will discuss how to use it to achieve more fine-grained control of what and how git records our actions.</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> ~/src/jm-git-demo
 git commit -a -m<span class="st">&quot;This is our first commit&quot;</span></code></pre>
-<pre><code>## [master (root-commit) a7fcb9d] This is our first commit
+<pre><code>## [master (root-commit) c1201bf] This is our first commit
 ##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
 ## Your name and email address were configured automatically based
 ## on your username and hostname. Please check that they are accurate.
@@ -361,9 +361,9 @@ git commit -a -m<span class="st">&quot;This is our first commit&quot;</span></co
 <h1 id="git-log-what-has-been-committed-so-far"><code>git log</code>: what has been committed so far</h1>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> ~/src/jm-git-demo
 git log</code></pre>
-<pre><code>## commit a7fcb9d2e4e04bfa7c55f3938ffbba1f894148ae
+<pre><code>## commit c1201bf9d8681111433491b9db3f21b68257684a
 ## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
-## Date:   Sat Aug 24 18:40:10 2013 -0700
+## Date:   Sat Aug 24 18:43:14 2013 -0700
 ## 
 ##     This is our first commit</code></pre>
 </div>
@@ -387,7 +387,7 @@ git <span class="kw">diff</span></code></pre>
 <h1 id="the-cycle-of-git-virtue-work-commit-work-commit-...">The cycle of git virtue: work, commit, work, commit, ...</h1>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> ~/src/jm-git-demo
 git commit -a -m<span class="st">&quot;I have made great progress on this critical matter.&quot;</span></code></pre>
-<pre><code>## [master e7e5253] I have made great progress on this critical matter.
+<pre><code>## [master e6a7e80] I have made great progress on this critical matter.
 ##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
 ## Your name and email address were configured automatically based
 ## on your username and hostname. Please check that they are accurate.
@@ -407,30 +407,30 @@ git commit -a -m<span class="st">&quot;I have made great progress on this critic
 <p>First, let's see what the log shows us now:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> ~/src/jm-git-demo
 git log</code></pre>
-<pre><code>## commit e7e525368df7fe9e3ed9330120cd92886d1bd495
+<pre><code>## commit e6a7e80a86a94dc2284668ab64fec871c1ab99a4
 ## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
-## Date:   Sat Aug 24 18:40:10 2013 -0700
+## Date:   Sat Aug 24 18:43:15 2013 -0700
 ## 
 ##     I have made great progress on this critical matter.
 ## 
-## commit a7fcb9d2e4e04bfa7c55f3938ffbba1f894148ae
+## commit c1201bf9d8681111433491b9db3f21b68257684a
 ## Author: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
-## Date:   Sat Aug 24 18:40:10 2013 -0700
+## Date:   Sat Aug 24 18:43:14 2013 -0700
 ## 
 ##     This is our first commit</code></pre>
 <p>Sometimes it's handy to see a very summarized version of the log:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> ~/src/jm-git-demo
 git log --oneline --topo-order --graph</code></pre>
-<pre><code>## * e7e5253 I have made great progress on this critical matter.
-## * a7fcb9d This is our first commit</code></pre>
+<pre><code>## * e6a7e80 I have made great progress on this critical matter.
+## * c1201bf This is our first commit</code></pre>
 <p>Git supports <em>aliases:</em> new names given to command combinations. Let's make this handy shortlog an alias, so we only have to type <code>git slog</code> and see this compact log:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> ~/src/jm-git-demo
 <span class="co"># We create our alias (this saves it in git's permanent configuration file):</span>
 git config --global alias.slog <span class="st">&quot;log --oneline --topo-order --graph&quot;</span>
 <span class="co"># And now we can use it</span>
 git slog</code></pre>
-<pre><code>## * e7e5253 I have made great progress on this critical matter.
-## * a7fcb9d This is our first commit</code></pre>
+<pre><code>## * e6a7e80 I have made great progress on this critical matter.
+## * c1201bf This is our first commit</code></pre>
 </div>
 <div class="section slide level1" id="git-mv-and-rm-moving-and-removing-files">
 <h1 id="git-mv-and-rm-moving-and-removing-files"><code>git mv</code> and <code>rm</code>: moving and removing files</h1>
@@ -449,7 +449,7 @@ git status</code></pre>
 git commit -a -m<span class="st">&quot;I like this new name better&quot;</span>
 <span class="kw">echo</span> <span class="st">&quot;Let's look at the log again:&quot;</span>
 git slog</code></pre>
-<pre><code>## [master 8bffbb0] I like this new name better
+<pre><code>## [master 22afc65] I like this new name better
 ##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
 ## Your name and email address were configured automatically based
 ## on your username and hostname. Please check that they are accurate.
@@ -465,9 +465,9 @@ git slog</code></pre>
 ##  1 file changed, 0 insertions(+), 0 deletions(-)
 ##  rename file1.txt =&gt; file-newname.txt (100%)
 ## Let's look at the log again:
-## * 8bffbb0 I like this new name better
-## * e7e5253 I have made great progress on this critical matter.
-## * a7fcb9d This is our first commit</code></pre>
+## * 22afc65 I like this new name better
+## * e6a7e80 I have made great progress on this critical matter.
+## * c1201bf This is our first commit</code></pre>
 <p>And <code>git rm</code> works in a similar fashion.</p>
 <p><strong>Optional:</strong> Exercise</p>
 <p>Add a new file <code>file2.txt</code>, commit it, make some changes to it, commit them again, and then remove it (and don't forget to commit this last step!).</p>
@@ -513,7 +513,7 @@ git checkout experiment</code></pre>
 git add experiment.txt
 git commit -a -m<span class="st">&quot;Trying something new&quot;</span>
 git slog</code></pre>
-<pre><code>## [experiment bb060e3] Trying something new
+<pre><code>## [experiment 168dc72] Trying something new
 ##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
 ## Your name and email address were configured automatically based
 ## on your username and hostname. Please check that they are accurate.
@@ -528,21 +528,21 @@ git slog</code></pre>
 ## 
 ##  1 file changed, 1 insertion(+)
 ##  create mode 100644 experiment.txt
-## * bb060e3 Trying something new
-## * 8bffbb0 I like this new name better
-## * e7e5253 I have made great progress on this critical matter.
-## * a7fcb9d This is our first commit</code></pre>
+## * 168dc72 Trying something new
+## * 22afc65 I like this new name better
+## * e6a7e80 I have made great progress on this critical matter.
+## * c1201bf This is our first commit</code></pre>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> ~/src/jm-git-demo
 git checkout master
 git slog</code></pre>
-<pre><code>## * 8bffbb0 I like this new name better
-## * e7e5253 I have made great progress on this critical matter.
-## * a7fcb9d This is our first commit</code></pre>
+<pre><code>## * 22afc65 I like this new name better
+## * e6a7e80 I have made great progress on this critical matter.
+## * c1201bf This is our first commit</code></pre>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> ~/src/jm-git-demo
 <span class="kw">echo</span> <span class="st">&quot;All the while, more work goes on in master...&quot;</span> <span class="kw">&gt;&gt;</span> file-newname.txt
 git commit -a -m<span class="st">&quot;The mainline keeps moving&quot;</span>
 git slog</code></pre>
-<pre><code>## [master f286bbc] The mainline keeps moving
+<pre><code>## [master c5cb315] The mainline keeps moving
 ##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
 ## Your name and email address were configured automatically based
 ## on your username and hostname. Please check that they are accurate.
@@ -556,10 +556,10 @@ git slog</code></pre>
 ##     git commit --amend --reset-author
 ## 
 ##  1 file changed, 1 insertion(+)
-## * f286bbc The mainline keeps moving
-## * 8bffbb0 I like this new name better
-## * e7e5253 I have made great progress on this critical matter.
-## * a7fcb9d This is our first commit</code></pre>
+## * c5cb315 The mainline keeps moving
+## * 22afc65 I like this new name better
+## * e6a7e80 I have made great progress on this critical matter.
+## * c1201bf This is our first commit</code></pre>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> ~/src/jm-git-demo
 <span class="kw">ls</span></code></pre>
 <pre><code>## file-newname.txt</code></pre>
@@ -570,14 +570,14 @@ git slog</code></pre>
 ##  experiment.txt |    1 +
 ##  1 file changed, 1 insertion(+)
 ##  create mode 100644 experiment.txt
-## *   097747a Merge branch 'experiment'
+## *   0e0e831 Merge branch 'experiment'
 ## |\  
-## | * bb060e3 Trying something new
-## * | f286bbc The mainline keeps moving
+## | * 168dc72 Trying something new
+## * | c5cb315 The mainline keeps moving
 ## |/  
-## * 8bffbb0 I like this new name better
-## * e7e5253 I have made great progress on this critical matter.
-## * a7fcb9d This is our first commit</code></pre>
+## * 22afc65 I like this new name better
+## * e6a7e80 I have made great progress on this critical matter.
+## * c1201bf This is our first commit</code></pre>
 </div>
 <div class="section slide level1" id="using-remotes-as-a-single-user">
 <h1 id="using-remotes-as-a-single-user">Using remotes as a single user</h1>
@@ -614,7 +614,7 @@ git remote -v</code></pre>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> ~/src/test2  <span class="co"># working on computer #2</span>
 <span class="kw">echo</span> <span class="st">&quot;More new content on my experiment&quot;</span> <span class="kw">&gt;&gt;</span> experiment.txt
 git commit -a -m<span class="st">&quot;More work, on machine #2&quot;</span></code></pre>
-<pre><code>## [master 5379de3] More work, on machine #2
+<pre><code>## [master d82ae21] More work, on machine #2
 ##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
 ## Your name and email address were configured automatically based
 ## on your username and hostname. Please check that they are accurate.
@@ -627,7 +627,7 @@ git commit -a -m<span class="st">&quot;More work, on machine #2&quot;</span></co
 ## 
 ##     git commit --amend --reset-author
 ## 
-##  2 files changed, 363 insertions(+), 52 deletions(-)</code></pre>
+##  2 files changed, 205 insertions(+), 3297 deletions(-)</code></pre>
 <p>Now we put this new work up on the github server so it's available from the internet</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> ~/src/test2  <span class="co"># working on computer #2</span>
 git push</code></pre>
@@ -644,7 +644,7 @@ git branch trouble
 git checkout trouble
 <span class="kw">echo</span> <span class="st">&quot;This is going to be a problem...&quot;</span> <span class="kw">&gt;&gt;</span> experiment.txt
 git commit -a -m<span class="st">&quot;Changes in the trouble branch&quot;</span></code></pre>
-<pre><code>## [trouble 56b3cd9] Changes in the trouble branch
+<pre><code>## [trouble bb04975] Changes in the trouble branch
 ##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
 ## Your name and email address were configured automatically based
 ## on your username and hostname. Please check that they are accurate.
@@ -663,7 +663,7 @@ git commit -a -m<span class="st">&quot;Changes in the trouble branch&quot;</span
 git checkout master
 <span class="kw">echo</span> <span class="st">&quot;More work on the master branch...&quot;</span> <span class="kw">&gt;&gt;</span> experiment.txt
 git commit -a -m<span class="st">&quot;Mainline work&quot;</span></code></pre>
-<pre><code>## [master b4c0e4f] Mainline work
+<pre><code>## [master 1bf95a4] Mainline work
 ##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
 ## Your name and email address were configured automatically based
 ## on your username and hostname. Please check that they are accurate.
@@ -707,7 +707,7 @@ git merge trouble</code></pre>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> ~/src/jm-git-demo
 git commit -a -m<span class="st">&quot;Completed merge of trouble, fixing conflicts along the way&quot;</span>
 git slog</code></pre>
-<pre><code>## [master ce4bc87] Completed merge of trouble, fixing conflicts along the way
+<pre><code>## [master 418b57a] Completed merge of trouble, fixing conflicts along the way
 ##  Committer: Christopher Paciorek &lt;paciorek@scf.Berkeley.EDU&gt;
 ## Your name and email address were configured automatically based
 ## on your username and hostname. Please check that they are accurate.
@@ -720,19 +720,19 @@ git slog</code></pre>
 ## 
 ##     git commit --amend --reset-author
 ## 
-## *   ce4bc87 Completed merge of trouble, fixing conflicts along the way
+## *   418b57a Completed merge of trouble, fixing conflicts along the way
 ## |\  
-## | * 56b3cd9 Changes in the trouble branch
-## * | b4c0e4f Mainline work
+## | * bb04975 Changes in the trouble branch
+## * | 1bf95a4 Mainline work
 ## |/  
-## *   097747a Merge branch 'experiment'
+## *   0e0e831 Merge branch 'experiment'
 ## |\  
-## | * bb060e3 Trying something new
-## * | f286bbc The mainline keeps moving
+## | * 168dc72 Trying something new
+## * | c5cb315 The mainline keeps moving
 ## |/  
-## * 8bffbb0 I like this new name better
-## * e7e5253 I have made great progress on this critical matter.
-## * a7fcb9d This is our first commit</code></pre>
+## * 22afc65 I like this new name better
+## * e6a7e80 I have made great progress on this critical matter.
+## * c1201bf This is our first commit</code></pre>
 <p><em>Note:</em> While it's a good idea to understand the basics of fixing merge conflicts by hand, in some cases you may find the use of an automated tool useful. Git supports multiple <a href="https://www.kernel.org/pub/software/scm/git/docs/git-mergetool.html">merge tools</a>: a merge tool is a piece of software that conforms to a basic interface and knows how to merge two files into a new one. Since these are typically graphical tools, there are various to choose from for the different operating systems, and as long as they obey a basic command structure, git can work with any of them.</p>
 </div>
 <div class="section slide level1" id="collaborating-on-github-with-a-small-team">
