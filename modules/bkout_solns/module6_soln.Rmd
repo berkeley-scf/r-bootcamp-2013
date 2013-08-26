@@ -20,11 +20,13 @@ Consider the voting preference data. Fit a logistic regression to the data for C
 ca <- vote[vote$state == 5, ]
 ca <- ca[ca$pres04 == 1 | ca$pres04 == 2, ]
 ca$pres04[ca$pres04 == 2] <- 0 # 0=bush; 1=kerry
-mod0 <- glm(pres04 ~ income, data = ca)
-mod1 <- glm(pres04 ~ income + race + sex, data = ca)
+mod0 <- glm(pres04 ~ income, data = ca, family = binomial)
+mod1 <- glm(pres04 ~ income + race + sex, data = ca, family = binomial)
 # stratified models
-mod_white <- glm(pres04 ~ income + sex, data = ca[ca$race == 'white', ])
-mod_black <- glm(pres04 ~ income + sex, data = ca[ca$race == 'black', ])
+mod_white <- glm(pres04 ~ income + sex, data = ca[ca$race == 'white', ], 
+  family = binomial)
+mod_black <- glm(pres04 ~ income + sex, data = ca[ca$race == 'black', ], 
+  family = binomial)
 ```
 
 How do you predict the probability of voting for Kerry for a given set of covariate values? Consider the `predict.glm()` function and what its help page says. Or write code that converts from the model coefficients to the probability scale. Compare the predicted probability of voting for Kerry for a white male of high income with a white male of low income. Do the same for white females. 
@@ -46,7 +48,7 @@ The following only barely scratches the surface of what one could/should do.
 vote_white <- vote[vote$race == "white", ]
 spl <- split(vote_white, vote_white$state)
 out <- sapply(spl, function(x) {
-  mod <- glm(pres04 ~ income + sex, data = x)
+  mod <- glm(pres04 ~ income + sex, data = x, family = binomial)
   mod$coef
 })
 

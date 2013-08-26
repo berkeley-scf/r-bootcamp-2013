@@ -39,6 +39,12 @@ Note that packages often are dependent on other packages so these dependencies m
 
 You can also install directly from a package zip/tarball rather than from CRAN by giving a filename instead of a package name.
 
+# General information about a package
+
+You can use syntax as follows to get a list of the objects in a package and a brief description: `library(help = packageName)`. 
+
+On CRAN there often *vignettes* that are an overview and describe usage of a package if you click on a specific package. The *reference manual* is just a single document with the help files for all of the objects/functions in a package, so may be helpful but often it's hard to get the big picture view from that.
+
 # The search path
 
 To see the packages that are loaded and the order in which packages are searched for functions/objects: `search()`.

@@ -139,7 +139,6 @@ cluster <- makeCluster(nCores)
 cluster
 
 out <- parSapply(cluster, seq_len(nSims), testFun)
-out2 <- mclapply(seq_len(nSims), testFun, mc.cores = nCores)
 out[1:5]
 ```
 
