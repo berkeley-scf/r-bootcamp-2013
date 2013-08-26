@@ -1,0 +1,49 @@
+This is the website for the inaugural R bootcamp at Berkeley. The bootcamp will be an intensive two-day introduction to R using RStudio. Topics will include
+
+    R basics - reading and manipulating data, working with R data objects, doing calculations, making plots
+    programming in R
+    doing statistical work in R
+    more advanced topics: efficiency, object-oriented programming, advanced graphics, batch jobs
+    parallel processing in R
+
+No prior experience with R is expected, but some familiarity with programming concepts such as loops, if-then-else statements, functions, etc. will be helpful.
+
+Please email r-bootcamp@lists.berkeley.edu if you have questions.
+Preparation:
+
+Please come with a laptop (Mac, Windows, or Linux are all ok) with RStudio and R installed. RStudio is optional but highly recommended. If you do not have access to a laptop and are affiliated with the Statistics department, please email r-bootcamp@lists.berkeley.edu and we may be able to loan you one.
+
+First, install R. To install R, see
+
+
+    Mac: install R-3.0.1.pkg from http://cran.rstudio.com/bin/macosx/
+    Windows: http://cran.rstudio.com/bin/windows/base/
+    Linux: http://cran.rstudio.com/bin/linux/
+
+Then install RStudio. To do so, see http://www.rstudio.com/ide/download/desktop.
+
+There is no firm requirement in terms of what version of R or RStudio you should have installed, but having R 2.15.0 or higher is probably wise.
+
+Verify that you can install add-on R packages by installing the 'foreign' package. In RStudio, go to 'Tools->Install Packages'. In the resulting dialog box, enter 'foreign' (without quotes) in the 'Packages' field. Depending on the location specified in the 'Install to Library' field, you may need to enter your administrator password. To be able to install packages to the directory of an individual user, you may need to do the following:
+
+    In R, enter the command "Sys.getenv()['R_USER_LIBS']" without the double quotes.
+    Create the directory specified in the result that R returns, e.g., on a Mac, this might be ~/Library/R/3.0/library.
+
+There are a number of other packages we will use during the bootcamp, so if you want to be able to mimic all of the commands we use, you will want to install these packages. You can do this from the command line in R with the following command:
+
+install.packages(c('foreign', 'RSQLite', 'plyr', 'reshape2', 'ggplot2', 'lmtest', 'sandwich', 'chron', 'lattice', 'rbenchmark', 'digest', 'lme4', 'doParallel', 'foreach', 'xtable', 'fields'))
+
+For more detailed installation instructions for Windows, see our notes under the Resources tab on the bSpace site: https://bspace.berkeley.edu/access/content/group/28905ed6-df96-4778-b2a7-d87fb6405ba2/windowsInstallNotes.txt or simply the windowsInstallNotes.txt file in the preparation directory of the zip file/Github repository.
+
+
+Obtaining the bootcamp materials:
+
+To get the materials from Github onto your local machine, if you're familiar with Git, you can do a Git clone of the repository.
+
+Alternatively, the easiest way to get the files is through RStudio. Follow these instructions:
+
+    Select the following under the Project menu: Project -> Create Project -> Version Control -> Git
+    Set the repository url to https://github.com/berkeley-scf/r-bootcamp-2013, the directory name to "r-bootcamp-2013" and the subdirectory to a directory of your choice.
+    You can access the modules in the form of R Markdown files (a simple format that allows one to easily create HTML, and also embed chunks of R code) by clicking in the RStudio files window on the 'modules' directory and choosing the module of your choice. This will open the R Markdown file in the RStudio editor.
+    You can run code in a code chunk from a module by putting the cursor within the chunk and choosing Chunks->Run Current Chunk.
+
