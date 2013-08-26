@@ -214,6 +214,12 @@ hljs.initHighlightingOnLoad();
 
 <p>You can also install directly from a package zip/tarball rather than from CRAN by giving a filename instead of a package name.</p>
 
+<h1>General information about a package</h1>
+
+<p>You can use syntax as follows to get a list of the objects in a package and a brief description: <code>library(help = packageName)</code>. </p>
+
+<p>On CRAN there often <em>vignettes</em> that are an overview and describe usage of a package if you click on a specific package. The <em>reference manual</em> is just a single document with the help files for all of the objects/functions in a package, so may be helpful but often it&#39;s hard to get the big picture view from that.</p>
+
 <h1>The search path</h1>
 
 <p>To see the packages that are loaded and the order in which packages are searched for functions/objects: <code>search()</code>.</p>
@@ -255,7 +261,7 @@ lm(y ~ x)
 </code></pre>
 
 <pre><code>## y ~ x
-## &lt;environment: 0x175d3f8&gt;
+## &lt;environment: 0x2946c90&gt;
 </code></pre>
 
 <pre><code class="r">stats::lm(y ~ x)
@@ -267,7 +273,7 @@ lm(y ~ x)
 ## 
 ## Coefficients:
 ## (Intercept)            x  
-##       0.155        0.166
+##      -0.685        1.105
 </code></pre>
 
 <p>Can you explain what is going on? Consider the results of <code>search()</code>.</p>
