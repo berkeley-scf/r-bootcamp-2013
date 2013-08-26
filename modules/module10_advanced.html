@@ -215,7 +215,7 @@ mod2$residuals  # access field with list-like syntax
 </code></pre>
 
 <pre><code>##      1      2      3      4      5      6      7      8      9     10 
-##  1.593  2.508 -2.469  2.541  1.553  1.608 -1.992 -1.236 -1.729 -2.553
+##  1.085  1.180 -9.730  1.103  1.081  1.082  1.112  1.105  1.145  1.110
 </code></pre>
 
 <pre><code class="r">
@@ -293,7 +293,7 @@ predict
 
 <pre><code>## function (object, ...) 
 ## UseMethod(&quot;predict&quot;)
-## &lt;bytecode: 0x24367a0&gt;
+## &lt;bytecode: 0x11224e8&gt;
 ## &lt;environment: namespace:stats&gt;
 </code></pre>
 
@@ -716,7 +716,7 @@ for (i in 1:nVals) {
 results
 </code></pre>
 
-<pre><code>## [1] -0.05156  0.92707  0.53729
+<pre><code>## [1] -0.1599  1.0643  0.4676
 </code></pre>
 
 <pre><code class="r">varName
@@ -728,9 +728,9 @@ results
 <pre><code class="r">tmp
 </code></pre>
 
-<pre><code>##  [1] 0.97866 0.23552 0.01176 0.36273 0.03088 0.89325 0.29806 0.99698
-##  [9] 0.73083 0.39942 0.62165 0.36998 0.87711 0.08256 0.83460 0.55873
-## [17] 0.10669 0.67214 0.95098 0.73330
+<pre><code>##  [1] 0.31283 0.15817 0.89947 0.33034 0.12799 0.84983 0.21545 0.35449
+##  [9] 0.47547 0.72238 0.43068 0.06026 0.20882 0.26778 0.54259 0.10632
+## [17] 0.69462 0.85230 0.85560 0.88741
 </code></pre>
 
 <p>Or suppose you needed to create &ldquo;x1&rdquo;, &ldquo;x2&rdquo;, &ldquo;x3&rdquo;, automatically.</p>
@@ -744,8 +744,8 @@ for (i in 1:nVals) {
 x2
 </code></pre>
 
-<pre><code>##  [1] -1.31278  0.68073 -0.03082 -0.59822 -0.24104  0.93920 -1.38128
-##  [8] -0.02924 -0.65170 -0.69980
+<pre><code>##  [1] -1.6368374 -1.4127772 -0.1720354  0.8306078 -1.8450419 -0.0933289
+##  [7]  0.0006529 -1.3792172 -0.9843680  0.9387518
 </code></pre>
 
 <p>Can you think of any uses of this ability for R to self-generate?</p>
@@ -803,17 +803,17 @@ x
 
 <ul>
 <li>In Windows lines end in both a newline (the ASCII character <code>\n</code>) and a carriage return (<code>\r</code>). </li>
-<li>In UNIX, lines end in only a newline.</li>
-<li>On a Mac, lines may end only in a carriage return (though this may not generally be an issue).</li>
+<li>In UNIX and Mac OS X, lines end in only a newline.</li>
 </ul>
 
 <p>So in UNIX you might see <code>^M</code> at the end of lines when you open a Windows file in a text editor. The <em>dos2unix</em> or <em>fromdos</em> in UNIX commands can do the necessary conversion</p>
 
 <p>In Windows you might have a UNIX text file appear to be all one line. The <em>unix2dos</em> or <em>todos</em> commands in UNIX can do the conversion. </p>
 
-<p>There is a UNIX utility call <em>mac2unix</em> that can convert Mac text files.</p>
-
 <p>There may also be Windows tools to deal with this. </p>
+
+<p>As a side note, before Mac OS X, lines may ended only in a carriage return.
+There is a UNIX utility call <em>mac2unix</em> that can convert such text files.</p>
 
 <h1>Working with databases</h1>
 
@@ -863,6 +863,9 @@ breiman
 <h1>Breakout</h1>
 
 <p>Does anyone notice any grammatical issues in <a href="http://dilbert.com/strips/comic/2008-05-07/">this Dilbert strip</a>?</p>
+
+<p>Please fill out the feedback form!
+<a href="https://docs.google.com/spreadsheet/viewform?formkey=dHBaaW5GdVBESWJDUnp6enZNdXpIeUE6MA">https://docs.google.com/spreadsheet/viewform?formkey=dHBaaW5GdVBESWJDUnp6enZNdXpIeUE6MA</a></p>
 
 <p>Have a snack!</p>
 

@@ -156,7 +156,6 @@ cluster</code></pre>
 <pre><code>## socket cluster with 4 nodes on host 'localhost'</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">
 out &lt;- <span class="kw">parSapply</span>(cluster, <span class="kw">seq_len</span>(nSims), testFun)
-out2 &lt;- <span class="kw">mclapply</span>(<span class="kw">seq_len</span>(nSims), testFun, <span class="dt">mc.cores =</span> nCores)
 out[<span class="dv">1</span>:<span class="dv">5</span>]</code></pre>
 <pre><code>## [1]  0.0004037 -0.0002178 -0.0002258  0.0005587  0.0002852</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(parallel)

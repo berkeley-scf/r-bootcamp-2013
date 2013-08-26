@@ -67,7 +67,7 @@ mod1 &lt;- <span class="kw">lm</span>(yc ~ x)
 mod2 &lt;- <span class="kw">glm</span>(yb ~ x, <span class="dt">family =</span> binomial)
 mod2$residuals  <span class="co"># access field with list-like syntax</span></code></pre>
 <pre><code>##      1      2      3      4      5      6      7      8      9     10 
-## -2.160  1.863 -1.969 -2.084 -1.735 -2.038  1.771  1.993  2.287  2.097</code></pre>
+## -1.133 -1.113 -1.079 -1.169  2.526 -3.240 -1.074 -1.061  3.240 -1.043</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">
 <span class="kw">class</span>(mod2)</code></pre>
 <pre><code>## [1] &quot;glm&quot; &quot;lm&quot;</code></pre>
@@ -114,7 +114,7 @@ mod2$residuals  <span class="co"># access field with list-like syntax</span></co
 predict</code></pre>
 <pre><code>## function (object, ...) 
 ## UseMethod(&quot;predict&quot;)
-## &lt;bytecode: 0x24367a0&gt;
+## &lt;bytecode: 0x11224e8&gt;
 ## &lt;environment: namespace:stats&gt;</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">
 <span class="co"># predict.glm</span></code></pre>
@@ -401,13 +401,13 @@ for (i in <span class="dv">1</span>:nVals) {
     results[i] &lt;- <span class="kw">mean</span>(tmp)
 }
 results</code></pre>
-<pre><code>## [1] 0.2424 1.4039 0.5924</code></pre>
+<pre><code>## [1] -0.4859  1.0351  0.5120</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">varName</code></pre>
 <pre><code>## [1] &quot;x3&quot;</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">tmp</code></pre>
-<pre><code>##  [1] 0.66074 0.87269 0.95487 0.42136 0.67581 0.75816 0.12919 0.44587
-##  [9] 0.69025 0.75398 0.46281 0.84455 0.83354 0.94217 0.56806 0.97309
-## [17] 0.00401 0.02186 0.72919 0.10649</code></pre>
+<pre><code>##  [1] 0.428605 0.602512 0.633760 0.085317 0.747923 0.109254 0.191747
+##  [8] 0.009666 0.347557 0.299755 0.599203 0.804584 0.703254 0.566804
+## [15] 0.990518 0.750419 0.458876 0.640811 0.598365 0.670340</code></pre>
 <p>Or suppose you needed to create &quot;x1&quot;, &quot;x2&quot;, &quot;x3&quot;, automatically.</p>
 <pre class="sourceCode r"><code class="sourceCode r">nVals &lt;- <span class="dv">3</span>
 results &lt;- <span class="kw">rep</span>(<span class="dv">0</span>, nVals)
@@ -416,8 +416,8 @@ for (i in <span class="dv">1</span>:nVals) {
     <span class="kw">assign</span>(varName, <span class="kw">rnorm</span>(<span class="dv">10</span>))
 }
 x2</code></pre>
-<pre><code>##  [1] -1.3509  0.5187 -0.2220  0.3963  0.2633  0.8467  0.4031 -0.8093
-##  [9]  0.6263  0.8882</code></pre>
+<pre><code>##  [1] -0.07520  2.18524 -0.82398 -0.26709 -1.34836  0.58760 -0.62308
+##  [8] -0.09177 -1.55000 -0.44705</code></pre>
 <p>Can you think of any uses of this ability for R to self-generate?</p>
 </div>
 <div class="section slide level1" id="file-encodings">
@@ -452,13 +452,12 @@ x</code></pre>
 <p>Windows, Mac, and Linux handle line endings in text files somewhat differently. So if you read a text file into R that was created in a different operating system you can run into difficulties.</p>
 <ul>
 <li>In Windows lines end in both a newline (the ASCII character <code>\n</code>) and a carriage return (<code>\r</code>).</li>
-<li>In UNIX, lines end in only a newline.</li>
-<li>On a Mac, lines may end only in a carriage return (though this may not generally be an issue).</li>
+<li>In UNIX and Mac OS X, lines end in only a newline.</li>
 </ul>
 <p>So in UNIX you might see <code>^M</code> at the end of lines when you open a Windows file in a text editor. The <em>dos2unix</em> or <em>fromdos</em> in UNIX commands can do the necessary conversion</p>
 <p>In Windows you might have a UNIX text file appear to be all one line. The <em>unix2dos</em> or <em>todos</em> commands in UNIX can do the conversion.</p>
-<p>There is a UNIX utility call <em>mac2unix</em> that can convert Mac text files.</p>
 <p>There may also be Windows tools to deal with this.</p>
+<p>As a side note, before Mac OS X, lines may ended only in a carriage return. There is a UNIX utility call <em>mac2unix</em> that can convert such text files.</p>
 </div>
 <div class="section slide level1" id="working-with-databases">
 <h1 id="working-with-databases">Working with databases</h1>
@@ -494,6 +493,7 @@ breiman</code></pre>
 <div class="section slide level1" id="breakout">
 <h1 id="breakout">Breakout</h1>
 <p>Does anyone notice any grammatical issues in <a href="http://dilbert.com/strips/comic/2008-05-07/">this Dilbert strip</a>?</p>
+<p>Please fill out the feedback form! https://docs.google.com/spreadsheet/viewform?formkey=dHBaaW5GdVBESWJDUnp6enZNdXpIeUE6MA</p>
 <p>Have a snack!</p>
 </div>
 </body>

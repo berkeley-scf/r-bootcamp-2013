@@ -332,7 +332,6 @@ cluster
 
 <pre><code class="r">
 out &lt;- parSapply(cluster, seq_len(nSims), testFun)
-out2 &lt;- mclapply(seq_len(nSims), testFun, mc.cores = nCores)
 out[1:5]
 </code></pre>
 

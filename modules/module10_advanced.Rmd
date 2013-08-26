@@ -304,16 +304,17 @@ x
 Windows, Mac, and Linux handle line endings in text files somewhat differently. So if you read a text file into R that was created in a different operating system you can run into difficulties.
 
 * In Windows lines end in both a newline (the ASCII character `\n`) and a carriage return (`\r`). 
-* In UNIX, lines end in only a newline.
-* On a Mac, lines may end only in a carriage return (though this may not generally be an issue).
+* In UNIX and Mac OS X, lines end in only a newline.
+
 
 So in UNIX you might see `^M` at the end of lines when you open a Windows file in a text editor. The *dos2unix* or *fromdos* in UNIX commands can do the necessary conversion
 
 In Windows you might have a UNIX text file appear to be all one line. The *unix2dos* or *todos* commands in UNIX can do the conversion. 
 
-There is a UNIX utility call *mac2unix* that can convert Mac text files.
-
 There may also be Windows tools to deal with this. 
+
+As a side note, before Mac OS X, lines may ended only in a carriage return.
+There is a UNIX utility call *mac2unix* that can convert such text files.
 
 # Working with databases
 
