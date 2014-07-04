@@ -3,7 +3,7 @@ First make sure you've installed git by downloading and installing the correct b
   http://git-scm.com/downloads
 
 Here are some instructions from the RStudio page:
-  http://www.rstudio.com/ide/<wbr />docs/version_control/overview
+  http://www.rstudio.com/ide/docs/version_control/overview
  
 You may need to tell RStudio where the git executable is located as follows.
  
